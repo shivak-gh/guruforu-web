@@ -1,23 +1,23 @@
 # GuruForU - Coming Soon Website
 
-A beautiful, modern coming soon page built with Next.js and ready to deploy on Google Cloud Run.
+A beautiful, modern coming soon page built with Next.js 15 and ready to deploy on Google Cloud Run.
 
 ## Features
 
 - 🎨 Modern, responsive design with animated gradient background
-- ⏱️ Real-time countdown timer
-- 📧 Email notification signup form
+- ✨ Floating particle animations
 - 🚀 Optimized for Google Cloud Run deployment
 - ⚡ Fast and lightweight
+- 📱 Fully responsive design
 
 ## Local Development
 
-1. Install dependencies:
+1. **Install dependencies:**
 ```bash
 npm install
 ```
 
-2. Run the development server:
+2. **Run the development server:**
 ```bash
 npm run dev
 ```
@@ -36,10 +36,35 @@ npm start
 ### Prerequisites
 
 - Google Cloud SDK installed and configured
+- A Google Cloud project with Cloud Run API and Cloud Build API enabled
 - Docker installed (for local testing)
-- A Google Cloud project with Cloud Run API enabled
 
-### Deployment Steps
+### Option 1: Using Cloud Build (Recommended)
+
+1. **Create the GitHub repository** (if not already created):
+   - Go to https://github.com/gratiq and create a new repository named `guruforu-web`
+   - Push your code:
+   ```bash
+   git remote add origin https://github.com/gratiq/guruforu-web.git
+   git push -u origin main
+   ```
+
+2. **Connect GitHub to Cloud Build:**
+   - Go to Cloud Build > Triggers in Google Cloud Console
+   - Click "Create Trigger"
+   - Connect your GitHub repository
+   - Select the repository: `gratiq/guruforu-web`
+   - Configure the trigger:
+     - Name: `deploy-guruforu-web`
+     - Event: Push to a branch
+     - Branch: `^main$`
+     - Configuration: Cloud Build configuration file
+     - Location: `cloudbuild.yaml`
+
+3. **Deploy:**
+   - Push to the main branch, or manually trigger the build in Cloud Build
+
+### Option 2: Manual Deployment
 
 1. **Build and push the Docker image:**
 ```bash
@@ -53,20 +78,24 @@ gcloud run deploy guruforu-web \
   --platform managed \
   --region us-central1 \
   --allow-unauthenticated \
-  --port 3000
+  --port 3000 \
+  --memory 512Mi \
+  --cpu 1
 ```
 
 Replace `[PROJECT-ID]` with your Google Cloud project ID.
 
-### Alternative: Using Cloud Build
+### Option 3: Using Cloud Build CLI
 
-You can also use Cloud Build with a `cloudbuild.yaml` file for automated deployments.
+```bash
+gcloud builds submit --config cloudbuild.yaml
+```
 
 ## Configuration
 
-- **Launch Date**: Edit the launch date in `app/page.tsx` (currently set to March 1, 2026)
-- **Branding**: Update the title, logo, and footer text in `app/layout.tsx` and `app/page.tsx`
-- **Email Notifications**: Implement your email notification service in the form submit handler in `app/page.tsx`
+- **Branding**: Update the title, logo emoji, and footer text in `app/layout.tsx` and `app/page.tsx`
+- **Message**: Customize the coming soon message in `app/page.tsx`
+- **Styling**: Modify colors and animations in `app/page.module.css`
 
 ## Project Structure
 
@@ -78,12 +107,23 @@ You can also use Cloud Build with a `cloudbuild.yaml` file for automated deploym
 │   ├── page.module.css     # Page styles
 │   └── globals.css         # Global styles
 ├── Dockerfile              # Docker configuration for Cloud Run
+├── cloudbuild.yaml         # Cloud Build configuration
 ├── next.config.js          # Next.js configuration
 ├── package.json            # Dependencies
 └── tsconfig.json           # TypeScript configuration
 ```
 
+## GitHub Setup
+
+If you haven't created the GitHub repository yet:
+
+1. Create a new repository at https://github.com/gratiq/guruforu-web
+2. Add the remote and push:
+```bash
+git remote add origin https://github.com/gratiq/guruforu-web.git
+git push -u origin main
+```
+
 ## License
 
 © 2026 GuruForU. All rights reserved.
-
