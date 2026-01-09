@@ -18,13 +18,13 @@ export default function ComingSoon() {
         <div className={styles.logo}>🚀</div>
         <h1 className={styles.title}>Coming Soon</h1>
         <p className={styles.subtitle}>
-          We're crafting something extraordinary. 
+          We&apos;re crafting something extraordinary. 
           <br />
           Something that will change the way you experience the web.
         </p>
         <div className={styles.divider}></div>
         <p className={styles.message}>
-          Stay tuned for our grand launch. We can't wait to share it with you!
+          Stay tuned for our grand launch. We can&apos;t wait to share it with you!
         </p>
       </div>
 
