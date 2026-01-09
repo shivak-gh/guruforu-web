@@ -36,6 +36,8 @@ steps:
       - '${_MIN_INSTANCES}'
       - '--max-instances'
       - '${_MAX_INSTANCES}'
+      - '--set-env-vars'
+      - 'NODE_ENV=production'
       - '--ingress=all'
 
 substitutions:
