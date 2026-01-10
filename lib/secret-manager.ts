@@ -53,18 +53,22 @@ export async function getSecret(
 
     return secretValue
   } catch (error) {
-    console.error(`Error fetching secret ${secretName}:`, error)
+    console.error(`Error fetching secret ${secretName} from Secret Manager:`, error)
     
-    // If running locally, fallback to environment variable for development
-    if (process.env.NODE_ENV === 'development') {
-      const envKey = secretName.replace(/-/g, '_')
-      const envValue = process.env[envKey]
-      if (envValue) {
-        console.warn(`Using environment variable ${envKey} as fallback for development`)
-        return envValue
-      }
+    // Fallback to environment variable if Secret Manager fails (works in both dev and production)
+    const envKey = secretName.replace(/-/g, '_')
+    const envValue = process.env[envKey]
+    if (envValue) {
+      console.warn(`⚠️ Using environment variable ${envKey} as fallback (Secret Manager unavailable)`)
+      // Cache the env var value as well
+      secretCache.set(secretName, {
+        value: envValue,
+        timestamp: Date.now(),
+      })
+      return envValue
     }
     
+    console.error(`Secret ${secretName} not found in Secret Manager or environment variables`)
     return null
   }
 }

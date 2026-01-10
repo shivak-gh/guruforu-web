@@ -39,7 +39,7 @@ steps:
       - '--max-instances'
       - '${_MAX_INSTANCES}'
       - '--set-env-vars'
-      - 'NODE_ENV=production,NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6LfwKEYsAAAAAGScm2h15522_4x0a2-7FSLdX-Ob,CONTACT_EMAIL=support@guruforu.com,BREVO_FROM_EMAIL=noreply@guruforu.com,BREVO_FROM_NAME=GuruForU Contact Form'
+      - 'NODE_ENV=production,NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6LfwKEYsAAAAAGScm2h15522_4x0a2-7FSLdX-Ob,CONTACT_EMAIL=support@guruforu.com,BREVO_FROM_EMAIL=noreply@guruforu.com,BREVO_FROM_NAME=GuruForU Contact Form,GOOGLE_CLOUD_PROJECT=$PROJECT_ID,RECAPTCHA_SECRET_KEY=6LfwKEYsAAAAANDGm2TrSOra1Qw2HyQ3SKAi62BM'
       - '--ingress=all'
 
 substitutions:
