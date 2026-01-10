@@ -5,6 +5,14 @@ import styles from './page.module.css'
 export default function ComingSoon() {
   return (
     <div className={styles.container}>
+      <header className={styles.header}>
+        <img 
+          src="/guruforu-ai-education-logo.png" 
+          alt="GuruForU" 
+          className={styles.headerLogo}
+        />
+      </header>
+      
       <div className={styles.background}>
         <div className={styles.gradient}></div>
         <div className={styles.particles}>
@@ -16,7 +24,7 @@ export default function ComingSoon() {
 
       <div className={styles.content}>
         <div className={styles.logo}>
-          <img src="/guru-logo.jpg" alt="GuruForU Logo" className={styles.logoImage} />
+          <img src="/guru-logo.png" alt="GuruForU Logo" className={styles.logoImage} />
         </div>
         <h1 className={styles.title}>Coming Soon</h1>
         <p className={styles.subtitle}>
