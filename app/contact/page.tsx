@@ -1,0 +1,414 @@
+'use client'
+
+import React, { useState, useEffect, useRef } from 'react'
+import styles from './page.module.css'
+import Link from 'next/link'
+
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (callback: () => void) => void
+      execute: (siteKey: string, options: { action: string }) => Promise<string>
+    }
+  }
+}
+
+export default function ContactUs() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const recaptchaLoaded = useRef(false)
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''
+
+  // Debug: Log site key on mount (only in development)
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('reCAPTCHA Site Key configured:', recaptchaSiteKey ? `${recaptchaSiteKey.substring(0, 10)}...` : 'NOT SET')
+    }
+  }, [recaptchaSiteKey])
+
+  // Load reCAPTCHA script
+  useEffect(() => {
+    if (!recaptchaSiteKey) {
+      console.warn('reCAPTCHA Site Key is not set. Please set NEXT_PUBLIC_RECAPTCHA_SITE_KEY environment variable.')
+      return
+    }
+
+    if (recaptchaLoaded.current || window.grecaptcha) {
+      return
+    }
+
+    // Check if script is already in the DOM
+    const existingScript = document.querySelector(`script[src*="recaptcha/api.js"]`)
+    if (existingScript) {
+      // Script already exists, wait for it to load
+      const checkGrecaptcha = setInterval(() => {
+        if (window.grecaptcha && typeof window.grecaptcha.ready === 'function') {
+          recaptchaLoaded.current = true
+          clearInterval(checkGrecaptcha)
+        }
+      }, 100)
+
+      // Clear interval after 10 seconds
+      setTimeout(() => clearInterval(checkGrecaptcha), 10000)
+      return
+    }
+
+    // Create and load the script
+    const script = document.createElement('script')
+    script.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`
+    script.async = true
+    script.defer = true
+    
+    script.onload = () => {
+      // Wait for grecaptcha to be fully initialized
+      if (window.grecaptcha && typeof window.grecaptcha.ready === 'function') {
+        recaptchaLoaded.current = true
+        console.log('reCAPTCHA v3 loaded successfully')
+      } else {
+        // If grecaptcha isn't immediately available, check periodically
+        const checkReady = setInterval(() => {
+          if (window.grecaptcha && typeof window.grecaptcha.ready === 'function') {
+            recaptchaLoaded.current = true
+            console.log('reCAPTCHA v3 ready')
+            clearInterval(checkReady)
+          }
+        }, 100)
+        setTimeout(() => clearInterval(checkReady), 10000)
+      }
+    }
+
+    script.onerror = () => {
+      console.error('Failed to load reCAPTCHA script')
+      recaptchaLoaded.current = false
+    }
+
+    document.head.appendChild(script)
+
+    return () => {
+      // Don't remove script on unmount as it might be used elsewhere
+      // The browser will handle cleanup
+    }
+  }, [recaptchaSiteKey])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const getRecaptchaToken = async (): Promise<string | null> => {
+    if (!recaptchaSiteKey) {
+      console.error('reCAPTCHA Site Key is not configured')
+      return null
+    }
+
+    // Wait for grecaptcha to be available (with timeout)
+    let attempts = 0
+    const maxAttempts = 50 // 5 seconds total (50 * 100ms)
+
+    while (!window.grecaptcha && attempts < maxAttempts) {
+      await new Promise(resolve => setTimeout(resolve, 100))
+      attempts++
+    }
+
+    if (!window.grecaptcha || typeof window.grecaptcha.ready !== 'function') {
+      console.error('reCAPTCHA is not loaded. Please check your Site Key and network connection.')
+      return null
+    }
+
+    try {
+      return await new Promise((resolve) => {
+        // Use grecaptcha.ready to ensure it's fully initialized
+        window.grecaptcha.ready(async () => {
+          try {
+            const token = await window.grecaptcha.execute(recaptchaSiteKey, {
+              action: 'contact_form'
+            })
+            if (!token) {
+              console.error('reCAPTCHA returned empty token')
+              resolve(null)
+            } else {
+              console.log('reCAPTCHA token generated successfully')
+              resolve(token)
+            }
+          } catch (error: any) {
+            console.error('reCAPTCHA execution error:', error)
+            console.error('Error details:', {
+              message: error?.message,
+              siteKey: recaptchaSiteKey.substring(0, 10) + '...'
+            })
+            resolve(null)
+          }
+        })
+      })
+    } catch (error: any) {
+      console.error('reCAPTCHA error:', error)
+      console.error('Error message:', error?.message)
+      return null
+    }
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      // Skip reCAPTCHA for localhost in development mode
+      const isLocalhost = window.location.hostname === 'localhost' || 
+                         window.location.hostname === '127.0.0.1'
+      const skipRecaptcha = isLocalhost && process.env.NODE_ENV === 'development'
+
+      let recaptchaToken = null
+      if (!skipRecaptcha && recaptchaSiteKey) {
+        // Get reCAPTCHA token
+        console.log('Getting reCAPTCHA token...')
+        recaptchaToken = await getRecaptchaToken()
+        if (!recaptchaToken) {
+          console.error('Failed to get reCAPTCHA token')
+          setSubmitStatus('error')
+          setIsSubmitting(false)
+          return
+        }
+        console.log('reCAPTCHA token received, submitting form...')
+      } else if (skipRecaptcha) {
+        console.warn('⚠️ Skipping reCAPTCHA for localhost (development mode)')
+      } else if (!recaptchaSiteKey) {
+        console.warn('⚠️ reCAPTCHA Site Key not configured, submitting without token')
+      }
+
+      // Submit form with reCAPTCHA token (or without if skipped)
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          ...(recaptchaToken && { recaptchaToken }),
+        }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+      } else {
+        console.error('Form submission error:', {
+          status: response.status,
+          statusText: response.statusText,
+          error: data.error,
+          details: data.details
+        })
+        
+        // Check if it's a reCAPTCHA error specifically
+        if (data.error?.includes('reCAPTCHA') || response.status === 400) {
+          console.error('reCAPTCHA verification failed:', data.error)
+          if (data.details) {
+            console.error('reCAPTCHA error details:', data.details)
+            
+            // Log specific error codes if available
+            if (data.details.errorCodes) {
+              console.error('reCAPTCHA error codes:', data.details.errorCodes)
+              
+              // Provide helpful messages for common error codes
+              const errorCodeMessages: Record<string, string> = {
+                'missing-input-secret': 'reCAPTCHA secret key is missing',
+                'invalid-input-secret': 'reCAPTCHA secret key is invalid',
+                'missing-input-response': 'reCAPTCHA token is missing',
+                'invalid-input-response': 'reCAPTCHA token is invalid or expired',
+                'bad-request': 'Invalid request to reCAPTCHA API',
+                'timeout-or-duplicate': 'reCAPTCHA token has expired or was already used',
+              }
+              
+              data.details.errorCodes.forEach((code: string) => {
+                if (errorCodeMessages[code]) {
+                  console.error(`  - ${code}: ${errorCodeMessages[code]}`)
+                }
+              })
+            }
+            
+            if (data.details.score !== undefined) {
+              console.warn(`reCAPTCHA score: ${data.details.score} (may be too low for localhost testing)`)
+            }
+          }
+        }
+        
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.background}>
+        <div className={styles.gradient}></div>
+      </div>
+
+      <div className={styles.content}>
+        <div className={styles.header}>
+          <Link href="/" className={styles.homeLink}>
+            <img src="/guru-logo.png" alt="GuruForU Logo" className={styles.logoImage} />
+          </Link>
+        </div>
+
+        <div className={styles.pageContent}>
+          <h1 className={styles.title}>Contact Us</h1>
+          <p className={styles.subtitle}>
+            We&apos;d love to hear from you! Get in touch with us for any questions, feedback, or support.
+          </p>
+
+          <div className={styles.contactSection}>
+            <div className={styles.contactInfo}>
+              <div className={styles.infoItem}>
+                <h3 className={styles.infoTitle}>Email</h3>
+                <p className={styles.infoText}>support@guruforu.com</p>
+              </div>
+              <div className={styles.infoItem}>
+                <h3 className={styles.infoTitle}>Response Time</h3>
+                <p className={styles.infoText}>We typically respond within 24-48 hours</p>
+              </div>
+              <div className={styles.infoItem}>
+                <h3 className={styles.infoTitle}>Office Hours</h3>
+                <p className={styles.infoText}>Monday - Friday: 9:00 AM - 6:00 PM (IST)</p>
+              </div>
+            </div>
+
+            <form className={styles.contactForm} onSubmit={handleSubmit}>
+              <div className={styles.formGroup}>
+                <label htmlFor="name" className={styles.label}>
+                  Name <span className={styles.required}>*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className={styles.input}
+                  placeholder="Your full name"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label htmlFor="email" className={styles.label}>
+                  Email <span className={styles.required}>*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className={styles.input}
+                  placeholder="your.email@example.com"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label htmlFor="subject" className={styles.label}>
+                  Subject <span className={styles.required}>*</span>
+                </label>
+                <select
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
+                  className={styles.select}
+                >
+                  <option value="">Select a subject</option>
+                  <option value="general">General Inquiry</option>
+                  <option value="support">Technical Support</option>
+                  <option value="billing">Billing Question</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label htmlFor="message" className={styles.label}>
+                  Message <span className={styles.required}>*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={6}
+                  className={styles.textarea}
+                  placeholder="Tell us how we can help you..."
+                />
+              </div>
+
+              {submitStatus === 'success' && (
+                <div className={styles.successMessage}>
+                  Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className={styles.errorMessage}>
+                  <strong>Oops! Something went wrong.</strong>
+                  <br />
+                  Please check your browser console (F12) for detailed error information.
+                  <br />
+                  <small>If the issue persists, please email us directly at support@guruforu.com</small>
+                </div>
+              )}
+
+              {!recaptchaSiteKey && (
+                <div className={styles.warningMessage}>
+                  ⚠️ Warning: reCAPTCHA is not configured. Please set NEXT_PUBLIC_RECAPTCHA_SITE_KEY environment variable and restart your dev server.
+                </div>
+              )}
+
+              {recaptchaSiteKey && !recaptchaLoaded.current && (
+                <div className={styles.infoMessage}>
+                  ℹ️ Loading reCAPTCHA protection...
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={styles.submitButton}
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </button>
+            </form>
+          </div>
+
+          <div className={styles.additionalLinks}>
+            <p className={styles.linksText}>You may also find answers in our:</p>
+            <div className={styles.links}>
+              <Link href="/terms" className={styles.link}>Terms and Conditions</Link>
+              <Link href="/privacy" className={styles.link}>Privacy Policy</Link>
+              <Link href="/cancellation-refunds" className={styles.link}>Cancellation and Refunds</Link>
+            </div>
+          </div>
+        </div>
+
+        <footer className={styles.footer}>
+          <p>© 2026 GuruForU. All rights reserved.</p>
+        </footer>
+      </div>
+    </div>
+  )
+}

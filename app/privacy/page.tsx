@@ -1,0 +1,134 @@
+'use client'
+
+import styles from './page.module.css'
+import Link from 'next/link'
+
+export default function PrivacyPolicy() {
+  return (
+    <div className={styles.container}>
+      <div className={styles.background}>
+        <div className={styles.gradient}></div>
+      </div>
+
+      <div className={styles.content}>
+        <div className={styles.header}>
+          <Link href="/" className={styles.homeLink}>
+            <img src="/guru-logo.png" alt="GuruForU Logo" className={styles.logoImage} />
+          </Link>
+        </div>
+
+        <div className={styles.pageContent}>
+          <h1 className={styles.title}>Privacy Policy</h1>
+          <p className={styles.lastUpdated}>Last Updated: {new Date().toLocaleDateString()}</p>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>1. Introduction</h2>
+            <p className={styles.text}>
+              At GuruForU, we are committed to protecting your privacy. This Privacy Policy explains how we 
+              collect, use, disclose, and safeguard your information when you use our online education platform.
+            </p>
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>2. Information We Collect</h2>
+            <p className={styles.text}>We collect information that you provide directly to us, including:</p>
+            <ul className={styles.list}>
+              <li>Personal identification information (name, email address, phone number)</li>
+              <li>Account credentials and profile information</li>
+              <li>Payment information (processed through secure third-party payment processors)</li>
+              <li>Educational data and student progress information</li>
+              <li>Communication data when you contact us</li>
+            </ul>
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>3. How We Use Your Information</h2>
+            <p className={styles.text}>We use the collected information for various purposes:</p>
+            <ul className={styles.list}>
+              <li>To provide, maintain, and improve our services</li>
+              <li>To process transactions and send related information</li>
+              <li>To send you technical notices and support messages</li>
+              <li>To respond to your comments and questions</li>
+              <li>To provide personalized learning experiences and progress tracking</li>
+              <li>To detect, prevent, and address technical issues</li>
+            </ul>
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>4. Information Sharing and Disclosure</h2>
+            <p className={styles.text}>
+              We do not sell, trade, or rent your personal information to third parties. We may share your 
+              information only in the following circumstances:
+            </p>
+            <ul className={styles.list}>
+              <li>With your consent</li>
+              <li>To comply with legal obligations</li>
+              <li>To protect and defend our rights or property</li>
+              <li>With service providers who assist us in operating our platform</li>
+            </ul>
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>5. Data Security</h2>
+            <p className={styles.text}>
+              We implement appropriate technical and organizational security measures to protect your personal 
+              information against unauthorized access, alteration, disclosure, or destruction. However, no method 
+              of transmission over the internet is 100% secure.
+            </p>
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>6. Cookies and Tracking Technologies</h2>
+            <p className={styles.text}>
+              We use cookies and similar tracking technologies to track activity on our platform and hold certain 
+              information. You can instruct your browser to refuse all cookies or to indicate when a cookie is 
+              being sent.
+            </p>
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>7. Your Rights</h2>
+            <p className={styles.text}>You have the right to:</p>
+            <ul className={styles.list}>
+              <li>Access and receive a copy of your personal data</li>
+              <li>Rectify inaccurate personal data</li>
+              <li>Request deletion of your personal data</li>
+              <li>Object to processing of your personal data</li>
+              <li>Request restriction of processing your personal data</li>
+              <li>Data portability</li>
+            </ul>
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>8. Children&apos;s Privacy</h2>
+            <p className={styles.text}>
+              Our services are intended for users of all ages. We take special care to protect the privacy of 
+              minors. If you are a parent or guardian and believe your child has provided us with personal 
+              information, please contact us.
+            </p>
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>9. Changes to This Privacy Policy</h2>
+            <p className={styles.text}>
+              We may update our Privacy Policy from time to time. We will notify you of any changes by posting 
+              the new Privacy Policy on this page and updating the &quot;Last Updated&quot; date.
+            </p>
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>10. Contact Us</h2>
+            <p className={styles.text}>
+              If you have any questions about this Privacy Policy, please contact us through our 
+              <Link href="/contact" className={styles.link}> Contact Us</Link> page.
+            </p>
+          </div>
+        </div>
+
+        <footer className={styles.footer}>
+          <p>© 2026 GuruForU. All rights reserved.</p>
+        </footer>
+      </div>
+    </div>
+  )
+}
