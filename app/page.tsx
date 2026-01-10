@@ -5,13 +5,7 @@ import styles from './page.module.css'
 export default function ComingSoon() {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <img 
-          src="/guruforu-ai-education-logo.png" 
-          alt="GuruForU" 
-          className={styles.headerLogo}
-        />
-      </header>
+      
       
       <div className={styles.background}>
         <div className={styles.gradient}></div>

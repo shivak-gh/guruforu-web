@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description: 'Empowering independent teachers with AI-driven classroom insights, automated progress reports, and personalized student mastery tracking.',
   keywords: ['GuruForU', 'AI Teaching Assistant', 'Student Progress Insights', 'Personalized Learning Portal', 'Teacher Virtual Office'],
   icons: {
-    icon: '/guru-logo.jpg',
-    apple: '/guru-logo.jpg',
+    icon: '/guru-logo-bg.png',
+    apple: '/guru-logo-bg.png',
   },
   openGraph: {
     title: 'GuruForU - Elevate Your Teaching Experience',
