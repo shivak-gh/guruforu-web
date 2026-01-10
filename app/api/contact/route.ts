@@ -4,12 +4,19 @@ import { getSecret } from '@/lib/secret-manager'
 
 // Verify reCAPTCHA token and return detailed result
 async function verifyRecaptcha(token: string): Promise<{ valid: boolean; error?: string; details?: any }> {
-  // Try to get reCAPTCHA secret from Google Secret Manager first
-  let recaptchaSecret = await getSecret('RECAPTCHA_SECRET_KEY')
+  // In production, always use Secret Manager (never env vars for secrets)
+  // In development, allow fallback to env vars for easier local testing
+  let recaptchaSecret: string | null = null
   
-  // Fallback to environment variable if Secret Manager doesn't work
-  if (!recaptchaSecret) {
-    recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY || null
+  if (process.env.NODE_ENV === 'production') {
+    // Production: Only use Secret Manager for security
+    recaptchaSecret = await getSecret('RECAPTCHA_SECRET_KEY')
+  } else {
+    // Development: Try Secret Manager first, fallback to env var for convenience
+    recaptchaSecret = await getSecret('RECAPTCHA_SECRET_KEY')
+    if (!recaptchaSecret) {
+      recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY || null
+    }
   }
 
   if (!recaptchaSecret) {
