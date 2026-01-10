@@ -115,10 +115,17 @@
 }
 
 .logo {
-  font-size: 5rem;
   margin-bottom: 2rem;
   animation: bounce 2s infinite;
   display: inline-block;
+}
+
+.logoImage {
+  width: auto;
+  height: 120px;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
 @keyframes bounce {
@@ -210,8 +217,11 @@
   }
 
   .logo {
-    font-size: 4rem;
     margin-bottom: 1.5rem;
+  }
+
+  .logoImage {
+    height: 100px;
   }
 
   .title {
@@ -239,8 +249,8 @@
 }
 
 @media (max-width: 480px) {
-  .logo {
-    font-size: 3.5rem;
+  .logoImage {
+    height: 80px;
   }
 
   .subtitle {

@@ -6,12 +6,16 @@ export const metadata: Metadata = {
   title: 'GuruForU | AI-Powered Teaching Assistant & Learning Insights',
   description: 'Empowering independent teachers with AI-driven classroom insights, automated progress reports, and personalized student mastery tracking.',
   keywords: ['GuruForU', 'AI Teaching Assistant', 'Student Progress Insights', 'Personalized Learning Portal', 'Teacher Virtual Office'],
+  icons: {
+    icon: '/guru-logo.jpg',
+    apple: '/guru-logo.jpg',
+  },
   openGraph: {
     title: 'GuruForU - Elevate Your Teaching Experience',
     description: 'Provide professional learning insights and automated summaries for your students effortlessly.',
     url: 'https://guruforu.com',
     siteName: 'GuruForU',
-    images: [{ url: '/brand-banner.png' }],
+    images: [{ url: '/guruforu.png' }],
     type: 'website',
   },
 }

@@ -15,7 +15,9 @@ export default function ComingSoon() {
       </div>
 
       <div className={styles.content}>
-        <div className={styles.logo}>🚀</div>
+        <div className={styles.logo}>
+          <img src="/guru-logo.jpg" alt="GuruForU Logo" className={styles.logoImage} />
+        </div>
         <h1 className={styles.title}>Coming Soon</h1>
         <p className={styles.subtitle}>
           We&apos;re crafting something extraordinary. 
