@@ -6,6 +6,8 @@ steps:
       - 'build'
       - '--cache-from'
       - 'gcr.io/$PROJECT_ID/${_SERVICE_NAME}:latest'
+      - '--build-arg'
+      - 'NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6LfwKEYsAAAAAGScm2h15522_4x0a2-7FSLdX-Ob'
       - '-t'
       - 'gcr.io/$PROJECT_ID/${_SERVICE_NAME}:latest'
       - '.'
@@ -37,7 +39,7 @@ steps:
       - '--max-instances'
       - '${_MAX_INSTANCES}'
       - '--set-env-vars'
-      - 'NODE_ENV=production'
+      - 'NODE_ENV=production,NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6LfwKEYsAAAAAGScm2h15522_4x0a2-7FSLdX-Ob,CONTACT_EMAIL=support@guruforu.com,BREVO_FROM_EMAIL=noreply@guruforu.com,BREVO_FROM_NAME=GuruForU Contact Form'
       - '--ingress=all'
 
 substitutions:

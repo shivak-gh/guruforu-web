@@ -23,12 +23,17 @@ export default function ContactUs() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const recaptchaLoaded = useRef(false)
+  // Get reCAPTCHA site key from environment (embedded at build time in Next.js)
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''
 
   // Debug: Log site key on mount (only in development)
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
-      console.log('reCAPTCHA Site Key configured:', recaptchaSiteKey ? `${recaptchaSiteKey.substring(0, 10)}...` : 'NOT SET')
+      if (recaptchaSiteKey) {
+        console.log('reCAPTCHA Site Key configured:', `${recaptchaSiteKey.substring(0, 10)}...`)
+      } else {
+        console.warn('reCAPTCHA Site Key not set. Form will work without reCAPTCHA on localhost.')
+      }
     }
   }, [recaptchaSiteKey])
 
@@ -373,9 +378,10 @@ export default function ContactUs() {
                 </div>
               )}
 
-              {!recaptchaSiteKey && (
+              {!recaptchaSiteKey && process.env.NODE_ENV === 'development' && (
                 <div className={styles.warningMessage}>
-                  ⚠️ Warning: reCAPTCHA is not configured. Please set NEXT_PUBLIC_RECAPTCHA_SITE_KEY environment variable and restart your dev server.
+                  ⚠️ Note: reCAPTCHA is not configured for localhost. Form will work without reCAPTCHA verification. 
+                  To enable reCAPTCHA, set NEXT_PUBLIC_RECAPTCHA_SITE_KEY in .env.local and restart your dev server.
                 </div>
               )}
 

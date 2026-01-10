@@ -18,6 +18,10 @@ RUN mkdir -p ./public
 # Disable telemetry during build
 ENV NEXT_TELEMETRY_DISABLED 1
 
+# Accept build arguments for NEXT_PUBLIC_* variables
+ARG NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+ENV NEXT_PUBLIC_RECAPTCHA_SITE_KEY=$NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+
 RUN npm run build
 
 # Stage 3: Runner
