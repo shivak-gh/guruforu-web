@@ -195,8 +195,9 @@ export async function POST(request: NextRequest) {
 
     // Initialize Brevo API client
     const apiInstance = new TransactionalEmailsApi()
-    // Set API key using the authentication object structure
-    apiInstance.authentications.apiKey.apiKey = brevoApiKey
+    // Set API key using type assertion to access protected authentications property
+    // This is the correct way to set the API key for Brevo SDK
+    ;(apiInstance as any).authentications.apiKey.apiKey = brevoApiKey
 
     // Get recipient email from environment or use default
     const recipientEmail = process.env.CONTACT_EMAIL || 'support@guruforu.com'
@@ -277,12 +278,14 @@ ${message}
       const response = await apiInstance.sendTransacEmail(sendSmtpEmail)
       
       // Brevo API returns response.body with messageId
-      const messageId = response.body?.messageId || response.body?.data?.messageId
+      // The response body structure may vary, so we check multiple possible locations
+      const responseBody = response.body as any
+      const messageId = responseBody?.messageId || responseBody?.id || 'unknown'
 
       console.log('✅ Email sent successfully:', {
         messageId: messageId,
         to: recipientEmail,
-        response: response.body
+        responseBody: responseBody
       })
 
       return NextResponse.json(
