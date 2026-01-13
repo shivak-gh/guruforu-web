@@ -280,7 +280,11 @@ export default function ContactUs() {
             <div className={styles.contactInfo}>
               <div className={styles.infoItem}>
                 <h3 className={styles.infoTitle}>Email</h3>
-                <p className={styles.infoText}>support@guruforu.com</p>
+                <p className={styles.infoText}>
+                  <a href="mailto:support@guruforu.com" className={styles.emailLink}>
+                    support@guruforu.com
+                  </a>
+                </p>
               </div>
               <div className={styles.infoItem}>
                 <h3 className={styles.infoTitle}>Response Time</h3>
@@ -374,7 +378,7 @@ export default function ContactUs() {
                   <br />
                   Please check your browser console (F12) for detailed error information.
                   <br />
-                  <small>If the issue persists, please email us directly at support@guruforu.com</small>
+                  <small>If the issue persists, please email us directly at <a href="mailto:support@guruforu.com" className={styles.emailLink}>support@guruforu.com</a></small>
                 </div>
               )}
 

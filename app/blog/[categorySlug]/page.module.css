@@ -49,6 +49,11 @@
 
 .header {
   margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .homeLink {
@@ -67,12 +72,65 @@
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
-.blogListing {
+.navLinks {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.backLink {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.backLink:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(-3px);
+}
+
+.categoryListing {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
   padding: 3rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.breadcrumbLink {
+  color: #667eea;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumbLink:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+.breadcrumbSeparator {
+  color: #999;
+  user-select: none;
+}
+
+.breadcrumbCurrent {
+  color: #666;
+  font-weight: 500;
 }
 
 .pageHeader {
@@ -189,13 +247,6 @@
   transform: translateX(5px);
 }
 
-.emptyState {
-  text-align: center;
-  padding: 4rem 2rem;
-  color: #666;
-  font-size: 1.1rem;
-}
-
 .footer {
   margin-top: 3rem;
   text-align: center;
@@ -256,7 +307,7 @@
     padding: 1.5rem;
   }
 
-  .blogListing {
+  .categoryListing {
     padding: 2rem;
   }
 
@@ -269,10 +320,15 @@
     margin-bottom: 2rem;
     padding-bottom: 1.5rem;
   }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 480px) {
-  .blogListing {
+  .categoryListing {
     padding: 1.5rem;
   }
 

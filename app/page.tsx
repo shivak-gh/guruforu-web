@@ -1,5 +1,3 @@
-'use client'
-
 import styles from './page.module.css'
 import Link from 'next/link'
 
@@ -74,6 +72,7 @@ export default function ComingSoon() {
         <nav className={styles.footerLinks}>
           <Link href="/blog" className={styles.footerLink}>Blog</Link>
           <Link href="/contact" className={styles.footerLink}>Contact Us</Link>
+          <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>
           <Link href="/terms" className={styles.footerLink}>Terms and Conditions</Link>
           <Link href="/privacy" className={styles.footerLink}>Privacy Policy</Link>
           <Link href="/shipping" className={styles.footerLink}>Shipping Policy</Link>

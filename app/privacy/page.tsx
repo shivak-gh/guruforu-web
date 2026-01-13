@@ -1,5 +1,3 @@
-'use client'
-
 import styles from './page.module.css'
 import Link from 'next/link'
 
@@ -19,7 +17,7 @@ export default function PrivacyPolicy() {
 
         <div className={styles.pageContent}>
           <h1 className={styles.title}>Privacy Policy</h1>
-          <p className={styles.lastUpdated}>Last Updated: {new Date().toLocaleDateString()}</p>
+          <p className={styles.lastUpdated}>Last Updated: January 1, 2026</p>
 
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>1. Introduction</h2>

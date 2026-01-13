@@ -1,6 +1,7 @@
 {
   "title": "Your Blog Post Title Here",
   "slug": "your-blog-slug-here",
+  "category": "General",
   "meta": {
     "readTime": "X min read",
     "publishedDate": "YYYY-MM-DD"

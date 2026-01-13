@@ -125,6 +125,18 @@
   line-height: 1.6;
 }
 
+.emailLink {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.emailLink:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
 .contactForm {
   display: flex;
   flex-direction: column;
