@@ -1,0 +1,70 @@
+{
+  "title": "Your Blog Post Title Here",
+  "slug": "your-blog-slug-here",
+  "meta": {
+    "readTime": "X min read",
+    "publishedDate": "YYYY-MM-DD"
+  },
+  "lead": "Your lead paragraph that introduces the blog post topic. This should be engaging and provide a brief overview of what readers will learn.",
+  "sections": [
+    {
+      "title": "Section Title",
+      "content": [
+        "First paragraph of content for this section.",
+        "Second paragraph if needed."
+      ]
+    },
+    {
+      "title": "Section with Highlights",
+      "content": [
+        "Introduction paragraph explaining the highlights below."
+      ],
+      "highlights": [
+        {
+          "title": "Highlight Title 1",
+          "text": "Description of the highlight point."
+        },
+        {
+          "title": "Highlight Title 2",
+          "text": "Description of another highlight point."
+        }
+      ]
+    },
+    {
+      "title": "Section with Strategies",
+      "content": [
+        "Introduction paragraph explaining the strategies."
+      ],
+      "strategies": [
+        {
+          "title": "Strategy Title 1",
+          "text": "Detailed explanation of the strategy."
+        },
+        {
+          "title": "Strategy Title 2",
+          "text": "Detailed explanation of another strategy."
+        }
+      ]
+    },
+    {
+      "title": "Section with List",
+      "content": [
+        "Introduction paragraph before the list."
+      ],
+      "list": [
+        {
+          "item": "Bold Term: Description of the list item with bold term at the start."
+        },
+        {
+          "item": "Simple list item without bold formatting."
+        }
+      ]
+    }
+  ],
+  "cta": {
+    "title": "Call to Action Title",
+    "text": "Call to action description text.",
+    "buttonText": "Button Text",
+    "buttonLink": "/"
+  }
+}

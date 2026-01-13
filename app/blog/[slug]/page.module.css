@@ -1,0 +1,395 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.homeLink {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.homeLink:hover {
+  transform: scale(1.05);
+}
+
+.logoImage {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.backLink {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.backLink:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(-3px);
+}
+
+.article {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 3rem 4rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  color: #333;
+}
+
+.articleHeader {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #667eea;
+  line-height: 1.2;
+}
+
+.meta {
+  font-size: 0.95rem;
+  color: #666;
+  font-style: italic;
+}
+
+.readTime {
+  margin-left: 0.5rem;
+  color: #764ba2;
+}
+
+.articleContent {
+  line-height: 1.8;
+}
+
+.lead {
+  font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(102, 126, 234, 0.05);
+  border-left: 4px solid #667eea;
+  border-radius: 8px;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.sectionTitle {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  color: #764ba2;
+}
+
+.sectionTitle:first-of-type {
+  margin-top: 0;
+}
+
+.text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.highlightBox {
+  background: rgba(0, 212, 255, 0.08);
+  border-left: 4px solid #00d4ff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlightBox:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+}
+
+.highlightTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #00a8cc;
+  margin-bottom: 0.75rem;
+}
+
+.highlightText {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+.strategyBox {
+  background: rgba(118, 75, 162, 0.08);
+  border-left: 4px solid #764ba2;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.strategyBox:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(118, 75, 162, 0.2);
+}
+
+.strategyTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #764ba2;
+  margin-bottom: 0.75rem;
+}
+
+.strategyText {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+.list {
+  margin-left: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.list li {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 0.75rem;
+}
+
+.list li strong {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.ctaBox {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.ctaTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #667eea;
+  margin-bottom: 1rem;
+}
+
+.ctaText {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.ctaButton {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: white;
+  opacity: 0.9;
+  font-size: 0.875rem;
+  padding: 2rem 0;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footerLink {
+  color: white;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footerLink:hover {
+  opacity: 1;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.footerLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.footerLink:hover::after {
+  width: 100%;
+}
+
+.copyright {
+  margin-top: 1rem;
+  opacity: 0.7;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 1.5rem;
+  }
+
+  .article {
+    padding: 2rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section {
+    margin-bottom: 2rem;
+  }
+
+  .highlightBox,
+  .strategyBox {
+    padding: 1.25rem;
+  }
+
+  .ctaBox {
+    padding: 1.5rem;
+  }
+
+  .footerLinks {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .article {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .text,
+  .list li {
+    font-size: 0.95rem;
+  }
+
+  .highlightBox,
+  .strategyBox {
+    padding: 1rem;
+  }
+
+  .ctaBox {
+    padding: 1.25rem;
+  }
+
+  .ctaTitle {
+    font-size: 1.25rem;
+  }
+
+  .footerLinks {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}

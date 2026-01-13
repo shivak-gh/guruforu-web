@@ -72,10 +72,11 @@ export default function ComingSoon() {
 
       <footer className={styles.footer}>
         <nav className={styles.footerLinks}>
+          <Link href="/blog" className={styles.footerLink}>Blog</Link>
+          <Link href="/contact" className={styles.footerLink}>Contact Us</Link>
           <Link href="/terms" className={styles.footerLink}>Terms and Conditions</Link>
           <Link href="/privacy" className={styles.footerLink}>Privacy Policy</Link>
           <Link href="/shipping" className={styles.footerLink}>Shipping Policy</Link>
-          <Link href="/contact" className={styles.footerLink}>Contact Us</Link>
           <Link href="/cancellation-refunds" className={styles.footerLink}>Cancellation and Refunds</Link>
         </nav>
         <p className={styles.copyright}>© 2026 GuruForU. All rights reserved.</p>
