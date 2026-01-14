@@ -23,6 +23,7 @@ export default function BlogCategories({ categories }: BlogCategoriesProps) {
             key={category.slug}
             href={`/blog/${category.slug}`}
             className={styles.categoryCard}
+            prefetch={false}
           >
             <h3 className={styles.categoryName}>{category.name}</h3>
             <p className={styles.categoryCount}>{category.count} {category.count === 1 ? 'article' : 'articles'}</p>

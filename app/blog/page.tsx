@@ -5,6 +5,10 @@ import BlogCategoriesWrapper from '../components/BlogCategoriesWrapper'
 import styles from './page.module.css'
 import Script from 'next/script'
 
+// Optimize RSC caching to reduce duplicate requests
+export const revalidate = 3600 // Revalidate every hour
+export const dynamic = 'force-static' // Force static generation
+
 export const metadata = {
   title: 'Education Blog | GuruForU Learning Insights',
   description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning. Latest articles on student progress tracking and academic success.',
@@ -204,7 +208,7 @@ export default async function BlogListing() {
             <div className={styles.blogGrid}>
               {blogs.map((blog) => (
                 <article key={blog.slug} className={styles.blogCard}>
-                  <Link href={`/blog/${blog.categorySlug}/${blog.slug}`} className={styles.blogCardLink}>
+                  <Link href={`/blog/${blog.categorySlug}/${blog.slug}`} className={styles.blogCardLink} prefetch={false}>
                     <div className={styles.blogCardContent}>
                       <div className={styles.blogCardCategory}>{blog.category}</div>
                       <h2 className={styles.blogCardTitle}>{blog.title}</h2>
@@ -226,11 +230,11 @@ export default async function BlogListing() {
 
         <footer className={styles.footer}>
           <nav className={styles.footerLinks}>
-            <Link href="/" className={styles.footerLink}>Home</Link>
-            <Link href="/contact" className={styles.footerLink}>Contact Us</Link>
+            <Link href="/" className={styles.footerLink} prefetch={false}>Home</Link>
+            <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact Us</Link>
             <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>
-            <Link href="/terms" className={styles.footerLink}>Terms</Link>
-            <Link href="/privacy" className={styles.footerLink}>Privacy</Link>
+            <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms</Link>
+            <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy</Link>
           </nav>
           <p className={styles.copyright}>© 2026 GuruForU. All rights reserved.</p>
         </footer>

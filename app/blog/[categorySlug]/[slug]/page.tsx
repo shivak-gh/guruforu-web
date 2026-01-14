@@ -5,6 +5,10 @@ import { getBlogBySlug, getAllBlogs } from '../../lib/getBlogs'
 import styles from './page.module.css'
 import Script from 'next/script'
 
+// Optimize RSC caching to reduce duplicate requests
+export const revalidate = 3600 // Revalidate every hour
+export const dynamic = 'force-static' // Force static generation
+
 export async function generateStaticParams() {
   const blogs = await getAllBlogs()
   return blogs.map((blog) => ({
@@ -326,16 +330,16 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
               priority
             />
           </Link>
-          <Link href={`/blog/${categorySlug}`} className={styles.backLink}>← Back to {blog.category}</Link>
+          <Link href={`/blog/${categorySlug}`} className={styles.backLink} prefetch={false}>← Back to {blog.category}</Link>
         </div>
 
         <article className={styles.article}>
           <nav className={styles.breadcrumb} aria-label="Breadcrumb">
-            <Link href="/" className={styles.breadcrumbLink}>Home</Link>
+            <Link href="/" className={styles.breadcrumbLink} prefetch={false}>Home</Link>
             <span className={styles.breadcrumbSeparator}>/</span>
-            <Link href="/blog" className={styles.breadcrumbLink}>Blog</Link>
+            <Link href="/blog" className={styles.breadcrumbLink} prefetch={false}>Blog</Link>
             <span className={styles.breadcrumbSeparator}>/</span>
-            <Link href={`/blog/${categorySlug}`} className={styles.breadcrumbLink}>{blog.category}</Link>
+            <Link href={`/blog/${categorySlug}`} className={styles.breadcrumbLink} prefetch={false}>{blog.category}</Link>
             <span className={styles.breadcrumbSeparator}>/</span>
             <span className={styles.breadcrumbCurrent}>{blog.title}</span>
           </nav>
@@ -396,7 +400,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
               <div className={styles.ctaBox}>
                 <h3 className={styles.ctaTitle}>{blog.cta.title}</h3>
                 <p className={styles.ctaText}>{blog.cta.text}</p>
-                <Link href={blog.cta.buttonLink} className={styles.ctaButton}>
+                <Link href={blog.cta.buttonLink} className={styles.ctaButton} prefetch={false}>
                   {blog.cta.buttonText}
                 </Link>
               </div>
@@ -406,13 +410,13 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
 
         <footer className={styles.footer}>
           <nav className={styles.footerLinks}>
-            <Link href={`/blog/${categorySlug}`} className={styles.footerLink}>{blog.category}</Link>
-            <Link href="/blog" className={styles.footerLink}>All Blogs</Link>
-            <Link href="/" className={styles.footerLink}>Home</Link>
-            <Link href="/contact" className={styles.footerLink}>Contact Us</Link>
+            <Link href={`/blog/${categorySlug}`} className={styles.footerLink} prefetch={false}>{blog.category}</Link>
+            <Link href="/blog" className={styles.footerLink} prefetch={false}>All Blogs</Link>
+            <Link href="/" className={styles.footerLink} prefetch={false}>Home</Link>
+            <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact Us</Link>
             <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>
-            <Link href="/terms" className={styles.footerLink}>Terms</Link>
-            <Link href="/privacy" className={styles.footerLink}>Privacy</Link>
+            <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms</Link>
+            <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy</Link>
           </nav>
           <p className={styles.copyright}>© 2026 GuruForU. All rights reserved.</p>
         </footer>

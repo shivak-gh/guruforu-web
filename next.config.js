@@ -17,6 +17,10 @@ const nextConfig = {
   // Optimize for static generation
   experimental: {
     optimizePackageImports: ['next'],
+    // Reduce RSC payload size
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
   },
   // Allow external scripts for reCAPTCHA
   async headers() {

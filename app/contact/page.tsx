@@ -408,9 +408,9 @@ export default function ContactUs() {
           <div className={styles.additionalLinks}>
             <p className={styles.linksText}>You may also find answers in our:</p>
             <div className={styles.links}>
-              <Link href="/terms" className={styles.link}>Terms and Conditions</Link>
-              <Link href="/privacy" className={styles.link}>Privacy Policy</Link>
-              <Link href="/cancellation-refunds" className={styles.link}>Cancellation and Refunds</Link>
+              <Link href="/terms" className={styles.link} prefetch={false}>Terms and Conditions</Link>
+              <Link href="/privacy" className={styles.link} prefetch={false}>Privacy Policy</Link>
+              <Link href="/cancellation-refunds" className={styles.link} prefetch={false}>Cancellation and Refunds</Link>
             </div>
           </div>
         </div>
