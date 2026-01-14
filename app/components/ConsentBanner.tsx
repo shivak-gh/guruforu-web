@@ -30,6 +30,20 @@ export default function ConsentBanner() {
       }, 1000)
     } else {
       setIsLoading(false)
+      // If consent was already given, ensure analytics is enabled
+      if (consent === 'accepted' && typeof window !== 'undefined') {
+        // Wait a bit for gtag to be available
+        setTimeout(() => {
+          if (window.gtag) {
+            window.gtag('consent', 'update', {
+              analytics_storage: 'granted',
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+            })
+          }
+        }, 500)
+      }
     }
   }, [])
 
@@ -39,17 +53,36 @@ export default function ConsentBanner() {
     setShowBanner(false)
     
     // Enable Google Analytics
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('consent', 'update', {
-        analytics_storage: 'granted',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-      })
+    if (typeof window !== 'undefined') {
+      // Update consent immediately if gtag is available
+      if (window.gtag) {
+        window.gtag('consent', 'update', {
+          analytics_storage: 'granted',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+        })
+        // Send pageview after consent
+        window.gtag('event', 'page_view', {
+          send_to: 'G-ZGXL6MTDYY'
+        })
+      } else {
+        // If gtag not loaded yet, push to dataLayer
+        window.dataLayer = window.dataLayer || []
+        window.dataLayer.push({
+          'event': 'consent_update',
+          'analytics_storage': 'granted',
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+        })
+      }
     }
     
-    // Reload to apply consent
-    window.location.reload()
+    // Small delay before reload to ensure consent is saved
+    setTimeout(() => {
+      window.location.reload()
+    }, 100)
   }
 
   const handleReject = () => {

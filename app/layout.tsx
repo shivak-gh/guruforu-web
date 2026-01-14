@@ -96,12 +96,17 @@ export default function RootLayout({
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+            
+            // Check for existing consent before setting default
+            const existingConsent = typeof window !== 'undefined' ? localStorage.getItem('cookie-consent') : null;
+            const analyticsStorage = existingConsent === 'accepted' ? 'granted' : 'denied';
+            
             gtag('consent', 'default', {
-              'analytics_storage': 'denied',
+              'analytics_storage': analyticsStorage,
               'ad_storage': 'denied',
               'ad_user_data': 'denied',
               'ad_personalization': 'denied',
-              'wait_for_update': 500,
+              'wait_for_update': existingConsent ? 0 : 500,
             });
           `}
         </Script>
@@ -113,11 +118,14 @@ export default function RootLayout({
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             gtag('js', new Date());
+            
+            // Configure GA with anonymize IP
             gtag('config', 'G-ZGXL6MTDYY', {
               'anonymize_ip': true,
+              'send_page_view': true,
             });
             
-            // Check for existing consent
+            // Ensure consent is properly set after gtag loads
             if (typeof window !== 'undefined') {
               const consent = localStorage.getItem('cookie-consent');
               if (consent === 'accepted') {
@@ -126,6 +134,10 @@ export default function RootLayout({
                   'ad_storage': 'denied',
                   'ad_user_data': 'denied',
                   'ad_personalization': 'denied',
+                });
+                // Send a pageview after consent is granted
+                gtag('event', 'page_view', {
+                  'send_to': 'G-ZGXL6MTDYY'
                 });
               }
             }
