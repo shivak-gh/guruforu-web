@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import ConsentBanner from './components/ConsentBanner'
+import Analytics from './components/Analytics'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -127,9 +128,10 @@ export default function RootLayout({
                 const analyticsStorage = consent === 'accepted' ? 'granted' : 'denied';
                 
                 // Configure GA with consent parameters included (required for Consent Mode v2)
+                // Note: send_page_view is false here - we'll track it manually on route changes
                 gtag('config', 'G-ZGXL6MTDYY', {
                   'anonymize_ip': true,
-                  'send_page_view': true,
+                  'send_page_view': false, // Disable auto pageview - we track manually
                   // Include consent parameters in config (ensures signals are sent)
                   'analytics_storage': analyticsStorage,
                   'ad_storage': 'denied',
@@ -137,9 +139,19 @@ export default function RootLayout({
                   'ad_personalization': 'denied',
                 });
                 
-                // Update consent state if needed (for returning users)
+                // Send initial pageview if consent is granted
                 if (consent === 'accepted') {
                   gtag('consent', 'update', {
+                    'analytics_storage': 'granted',
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                  });
+                  
+                  // Send initial pageview using config (more reliable)
+                  gtag('config', 'G-ZGXL6MTDYY', {
+                    'page_path': window.location.pathname + window.location.search,
+                    'page_location': window.location.href,
                     'analytics_storage': 'granted',
                     'ad_storage': 'denied',
                     'ad_user_data': 'denied',
@@ -161,6 +173,7 @@ export default function RootLayout({
       <body>
         {children}
         <ConsentBanner />
+        <Analytics />
       </body>
     </html>
   )
