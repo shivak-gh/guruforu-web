@@ -1,5 +1,44 @@
 import styles from './page.module.css'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+import Image from 'next/image'
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | GuruForU',
+  description: 'GuruForU privacy policy. Learn how we protect your data, handle student information, and ensure secure online learning experiences.',
+  keywords: ['Privacy Policy', 'Data Protection', 'Student Privacy', 'Online Education Privacy'],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: 'Privacy Policy | GuruForU',
+    description: 'Learn how GuruForU protects your data and ensures secure online learning experiences.',
+    url: 'https://guruforu.com/privacy',
+    siteName: 'GuruForU',
+    type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: '/guruforu-ai-education-logo-dark.png',
+        width: 1200,
+        height: 630,
+        alt: 'GuruForU Privacy Policy',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy | GuruForU',
+    description: 'Learn how GuruForU protects your data and ensures secure online learning.',
+    images: ['/guruforu-ai-education-logo-dark.png'],
+    creator: '@guruforu',
+    site: '@guruforu',
+  },
+  alternates: {
+    canonical: 'https://guruforu.com/privacy',
+  },
+}
 
 export default function PrivacyPolicy() {
   return (
@@ -11,7 +50,13 @@ export default function PrivacyPolicy() {
       <div className={styles.content}>
         <div className={styles.header}>
           <Link href="/" className={styles.homeLink}>
-            <img src="/guru-logo.png" alt="GuruForU Logo" className={styles.logoImage} />
+            <Image 
+              src="/guruforu-ai-education-logo-dark.png" 
+              alt="GuruForU Logo" 
+              width={120}
+              height={60}
+              className={styles.logoImage}
+            />
           </Link>
         </div>
 
@@ -22,8 +67,9 @@ export default function PrivacyPolicy() {
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>1. Introduction</h2>
             <p className={styles.text}>
-              At GuruForU, we are committed to protecting your privacy. This Privacy Policy explains how we 
-              collect, use, disclose, and safeguard your information when you use our online education platform.
+              At <strong>GuruForU</strong>, we are committed to protecting your privacy. This Privacy Policy explains how we 
+              collect, use, disclose, and safeguard your information when you use our <strong>online education platform</strong>. 
+              For questions, visit our <Link href="/contact" className={styles.link}>contact page</Link>.
             </p>
           </div>
 
@@ -78,9 +124,10 @@ export default function PrivacyPolicy() {
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>6. Cookies and Tracking Technologies</h2>
             <p className={styles.text}>
-              We use cookies and similar tracking technologies to track activity on our platform and hold certain 
+              We use <strong>cookies and similar tracking technologies</strong> to track activity on our platform and hold certain 
               information. You can instruct your browser to refuse all cookies or to indicate when a cookie is 
-              being sent.
+              being sent. Our cookie consent banner allows you to control your preferences. Learn more about our 
+              <Link href="/terms" className={styles.link}> terms of service</Link>.
             </p>
           </div>
 

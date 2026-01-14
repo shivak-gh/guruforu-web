@@ -1,12 +1,13 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { getAllBlogs } from './lib/getBlogs'
 import BlogCategoriesWrapper from '../components/BlogCategoriesWrapper'
 import styles from './page.module.css'
 import Script from 'next/script'
 
 export const metadata = {
-  title: 'Blog | GuruForU - Educational Insights and Learning Tips',
-  description: 'Discover expert insights on child education, learning strategies, and AI-powered personalized learning. Read our latest blog posts on student progress tracking and academic success.',
+  title: 'Education Blog | GuruForU Learning Insights',
+  description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning. Latest articles on student progress tracking and academic success.',
   keywords: [
     'GuruForU Blog',
     'Education Blog',
@@ -30,14 +31,32 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Blog | GuruForU - Educational Insights and Learning Tips',
-    description: 'Discover expert insights on child education, learning strategies, and AI-powered personalized learning.',
+    title: 'Education Blog | GuruForU Learning Insights',
+    description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning.',
     url: 'https://guruforu.com/blog',
     siteName: 'GuruForU',
     type: 'website',
+    images: [
+      {
+        url: '/guruforu-ai-education-logo-dark.png',
+        width: 1200,
+        height: 630,
+        alt: 'GuruForU Blog',
+      },
+    ],
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Education Blog | GuruForU Learning Insights',
+    description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning.',
+    images: ['/guruforu-ai-education-logo-dark.png'],
   },
   alternates: {
     canonical: 'https://guruforu.com/blog',
+    types: {
+      'application/rss+xml': 'https://guruforu.com/feed.xml',
+    },
   },
 }
 
@@ -60,7 +79,7 @@ export default async function BlogListing() {
     url: 'https://guruforu.com',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://guruforu.com/guruforu-ai-education-logo.png',
+      url: 'https://guruforu.com/guruforu-ai-education-logo-dark.png',
       width: 512,
       height: 512,
     },
@@ -83,7 +102,7 @@ export default async function BlogListing() {
       name: 'GuruForU',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://guruforu.com/guruforu-ai-education-logo.png',
+        url: 'https://guruforu.com/guruforu-ai-education-logo-dark.png',
         width: 512,
         height: 512,
       },
@@ -156,7 +175,14 @@ export default async function BlogListing() {
         <div className={styles.content}>
         <div className={styles.header}>
           <Link href="/" className={styles.homeLink}>
-            <img src="/guruforu-ai-education-logo.png" alt="GuruForU Logo" className={styles.logoImage} />
+            <Image 
+              src="/guruforu-ai-education-logo-dark.png" 
+              alt="GuruForU Logo" 
+              width={120}
+              height={60}
+              className={styles.logoImage}
+              priority
+            />
           </Link>
         </div>
 

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getAllCategories, getBlogsByCategory, categoryToSlug } from '../lib/getBlogs'
 import styles from './page.module.css'
@@ -46,10 +47,25 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     },
     openGraph: {
       title: `${category.name} | GuruForU Blog`,
-      description: `Explore ${category.count} ${category.count === 1 ? 'article' : 'articles'} in ${category.name} category.`,
+      description: `Explore ${category.count} ${category.count === 1 ? 'article' : 'articles'} in ${category.name} category. Expert insights on child education and learning.`,
       url: `https://guruforu.com/blog/${categorySlug}`,
       siteName: 'GuruForU',
       type: 'website',
+      images: [
+        {
+          url: '/guruforu-ai-education-logo-dark.png',
+          width: 1200,
+          height: 630,
+          alt: `${category.name} Category`,
+        },
+      ],
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${category.name} | GuruForU Blog`,
+      description: `Explore ${category.count} ${category.count === 1 ? 'article' : 'articles'} in ${category.name} category.`,
+      images: ['/guruforu-ai-education-logo-dark.png'],
     },
     alternates: {
       canonical: `https://guruforu.com/blog/${categorySlug}`,
@@ -89,7 +105,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     url: 'https://guruforu.com',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://guruforu.com/guruforu-ai-education-logo.png',
+      url: 'https://guruforu.com/guruforu-ai-education-logo-dark.png',
       width: 512,
       height: 512,
     },
@@ -112,7 +128,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
       name: 'GuruForU',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://guruforu.com/guruforu-ai-education-logo.png',
+        url: 'https://guruforu.com/guruforu-ai-education-logo-dark.png',
         width: 512,
         height: 512,
       },
@@ -189,7 +205,14 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         <div className={styles.content}>
         <div className={styles.header}>
           <Link href="/" className={styles.homeLink}>
-            <img src="/guruforu-ai-education-logo.png" alt="GuruForU Logo" className={styles.logoImage} />
+            <Image 
+              src="/guruforu-ai-education-logo-dark.png" 
+              alt="GuruForU Logo" 
+              width={120}
+              height={60}
+              className={styles.logoImage}
+              priority
+            />
           </Link>
           <div className={styles.navLinks}>
             <Link href="/blog" className={styles.backLink}>← All Blogs</Link>

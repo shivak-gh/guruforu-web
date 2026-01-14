@@ -1,5 +1,44 @@
 import styles from './page.module.css'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+import Image from 'next/image'
+
+export const metadata: Metadata = {
+  title: 'Cancellation and Refunds | GuruForU',
+  description: 'GuruForU cancellation and refund policy. Learn about refund eligibility, processing times, and how to cancel online tutoring subscriptions.',
+  keywords: ['Refund Policy', 'Cancellation Policy', 'Online Tutoring Refunds', 'Subscription Cancellation'],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: 'Cancellation and Refunds | GuruForU',
+    description: 'Learn about GuruForU refund eligibility, processing times, and subscription cancellation policies.',
+    url: 'https://guruforu.com/cancellation-refunds',
+    siteName: 'GuruForU',
+    type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: '/guruforu-ai-education-logo-dark.png',
+        width: 1200,
+        height: 630,
+        alt: 'GuruForU Cancellation and Refunds Policy',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Cancellation and Refunds | GuruForU',
+    description: 'Learn about GuruForU refund eligibility and cancellation policies.',
+    images: ['/guruforu-ai-education-logo-dark.png'],
+    creator: '@guruforu',
+    site: '@guruforu',
+  },
+  alternates: {
+    canonical: 'https://guruforu.com/cancellation-refunds',
+  },
+}
 
 export default function CancellationAndRefunds() {
   return (
@@ -11,7 +50,13 @@ export default function CancellationAndRefunds() {
       <div className={styles.content}>
         <div className={styles.header}>
           <Link href="/" className={styles.homeLink}>
-            <img src="/guru-logo.png" alt="GuruForU Logo" className={styles.logoImage} />
+            <Image 
+              src="/guruforu-ai-education-logo-dark.png" 
+              alt="GuruForU Logo" 
+              width={120}
+              height={60}
+              className={styles.logoImage}
+            />
           </Link>
         </div>
 
@@ -22,9 +67,9 @@ export default function CancellationAndRefunds() {
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>1. Cancellation Policy</h2>
             <p className={styles.text}>
-              You may cancel your subscription or service enrollment at any time. Cancellations can be 
+              You may <strong>cancel your subscription or service enrollment</strong> at any time. Cancellations can be 
               requested through your account settings or by contacting our support team through our 
-              <Link href="/contact" className={styles.link}> Contact Us</Link> page.
+              <Link href="/contact" className={styles.link}> Contact Us</Link> page. For questions about our services, visit our <Link href="/" className={styles.link}>home page</Link>.
             </p>
           </div>
 
@@ -35,16 +80,16 @@ export default function CancellationAndRefunds() {
             </p>
             <ul className={styles.list}>
               <li>
-                <strong>Full Refund:</strong> Cancellations made within 7 days of initial purchase are 
+                <strong>Full Refund:</strong> Cancellations made within <strong>7 days</strong> of initial purchase are 
                 eligible for a full refund, provided no substantial services have been utilized.
               </li>
               <li>
-                <strong>Partial Refund:</strong> Cancellations made after 7 days but within 30 days may 
+                <strong>Partial Refund:</strong> Cancellations made after 7 days but within <strong>30 days</strong> may 
                 receive a prorated refund based on unused services.
               </li>
               <li>
-                <strong>No Refund:</strong> Cancellations made after 30 days or after substantial service 
-                utilization may not be eligible for a refund.
+                <strong>No Refund:</strong> Cancellations made after 30 days or after <strong>substantial service 
+                utilization</strong> may not be eligible for a refund.
               </li>
             </ul>
           </div>

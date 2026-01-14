@@ -1,5 +1,44 @@
 import styles from './page.module.css'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+import Image from 'next/image'
+
+export const metadata: Metadata = {
+  title: 'Terms and Conditions | GuruForU',
+  description: 'Read GuruForU terms and conditions. Learn about our service agreement, user responsibilities, and platform policies for online education services.',
+  keywords: ['Terms and Conditions', 'GuruForU Terms', 'Service Agreement', 'Online Education Terms'],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: 'Terms and Conditions | GuruForU',
+    description: 'Read GuruForU terms and conditions. Learn about our service agreement and platform policies.',
+    url: 'https://guruforu.com/terms',
+    siteName: 'GuruForU',
+    type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: '/guruforu-ai-education-logo-dark.png',
+        width: 1200,
+        height: 630,
+        alt: 'GuruForU Terms and Conditions',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Terms and Conditions | GuruForU',
+    description: 'Read GuruForU terms and conditions and service agreement.',
+    images: ['/guruforu-ai-education-logo-dark.png'],
+    creator: '@guruforu',
+    site: '@guruforu',
+  },
+  alternates: {
+    canonical: 'https://guruforu.com/terms',
+  },
+}
 
 export default function TermsAndConditions() {
   return (
@@ -11,7 +50,13 @@ export default function TermsAndConditions() {
       <div className={styles.content}>
         <div className={styles.header}>
           <Link href="/" className={styles.homeLink}>
-            <img src="/guru-logo.png" alt="GuruForU Logo" className={styles.logoImage} />
+            <Image 
+              src="/guruforu-ai-education-logo-dark.png" 
+              alt="GuruForU Logo" 
+              width={120}
+              height={60}
+              className={styles.logoImage}
+            />
           </Link>
         </div>
 
@@ -22,8 +67,8 @@ export default function TermsAndConditions() {
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>1. Acceptance of Terms</h2>
             <p className={styles.text}>
-              By accessing and using GuruForU, you accept and agree to be bound by the terms and provision of this agreement.
-              If you do not agree to these Terms and Conditions, please do not use our services.
+              By accessing and using <strong>GuruForU</strong>, you accept and agree to be bound by the terms and provision of this agreement.
+              If you do not agree to these Terms and Conditions, please do not use our services. For questions about our terms, visit our <Link href="/contact" className={styles.link}>contact page</Link>.
             </p>
           </div>
 
@@ -44,8 +89,9 @@ export default function TermsAndConditions() {
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>3. Service Description</h2>
             <p className={styles.text}>
-              GuruForU provides an online platform connecting students with independent teachers for personalized 
-              learning experiences. We offer AI-powered tools to track student progress and provide insights.
+              <strong>GuruForU</strong> provides an online platform connecting students with independent teachers for personalized 
+              learning experiences. We offer <strong>AI-powered tools</strong> to track student progress and provide insights. 
+              Learn more about our <Link href="/" className={styles.link}>online classes</Link> and <Link href="/blog" className={styles.link}>educational resources</Link>.
             </p>
           </div>
 

@@ -1,5 +1,44 @@
 import styles from './page.module.css'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+import Image from 'next/image'
+
+export const metadata: Metadata = {
+  title: 'Shipping Policy | GuruForU',
+  description: 'GuruForU shipping and delivery policy. Learn about our digital service delivery, access timelines, and technical requirements for online classes.',
+  keywords: ['Shipping Policy', 'Digital Delivery', 'Online Service Access', 'Service Delivery'],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: 'Shipping Policy | GuruForU',
+    description: 'Learn about GuruForU digital service delivery and access timelines for online classes.',
+    url: 'https://guruforu.com/shipping',
+    siteName: 'GuruForU',
+    type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: '/guruforu-ai-education-logo-dark.png',
+        width: 1200,
+        height: 630,
+        alt: 'GuruForU Shipping Policy',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shipping Policy | GuruForU',
+    description: 'Learn about GuruForU digital service delivery and access timelines.',
+    images: ['/guruforu-ai-education-logo-dark.png'],
+    creator: '@guruforu',
+    site: '@guruforu',
+  },
+  alternates: {
+    canonical: 'https://guruforu.com/shipping',
+  },
+}
 
 export default function ShippingPolicy() {
   return (
@@ -11,7 +50,13 @@ export default function ShippingPolicy() {
       <div className={styles.content}>
         <div className={styles.header}>
           <Link href="/" className={styles.homeLink}>
-            <img src="/guru-logo.png" alt="GuruForU Logo" className={styles.logoImage} />
+            <Image 
+              src="/guruforu-ai-education-logo-dark.png" 
+              alt="GuruForU Logo" 
+              width={120}
+              height={60}
+              className={styles.logoImage}
+            />
           </Link>
         </div>
 
@@ -22,9 +67,9 @@ export default function ShippingPolicy() {
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>1. Digital Services</h2>
             <p className={styles.text}>
-              GuruForU provides digital educational services and content. As such, there are no physical 
-              products that require shipping. All services, including online classes, learning materials, 
-              and progress reports, are delivered digitally through our platform.
+              <strong>GuruForU</strong> provides <strong>digital educational services</strong> and content. As such, there are no physical 
+              products that require shipping. All services, including <Link href="/" className={styles.link}>online classes</Link>, learning materials, 
+              and progress reports, are delivered digitally through our platform. Explore our <Link href="/blog" className={styles.link}>education blog</Link> for more information.
             </p>
           </div>
 

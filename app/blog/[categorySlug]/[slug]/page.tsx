@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { getBlogBySlug, getAllBlogs } from '../../lib/getBlogs'
 import styles from './page.module.css'
 import Script from 'next/script'
@@ -34,9 +35,19 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     ...blog.title.toLowerCase().split(' ').filter((word: string) => word.length > 3),
   ]
 
+  // Optimize title length (max 60 chars recommended)
+  const optimizedTitle = blog.title.length > 55 
+    ? `${blog.title.substring(0, 52)}... | GuruForU`
+    : `${blog.title} | GuruForU`
+  
+  // Optimize description length (150-160 chars recommended)
+  const optimizedDescription = blog.lead.length > 160
+    ? `${blog.lead.substring(0, 157)}...`
+    : blog.lead
+
   return {
-    title: `${blog.title} | GuruForU Blog`,
-    description: blog.lead,
+    title: optimizedTitle,
+    description: optimizedDescription,
     keywords: keywords,
     robots: {
       index: true,
@@ -50,18 +61,31 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       },
     },
     openGraph: {
-      title: `${blog.title} | GuruForU Blog`,
-      description: blog.lead,
+      title: optimizedTitle,
+      description: optimizedDescription,
       url: `https://guruforu.com/blog/${categorySlug}/${slug}`,
       siteName: 'GuruForU',
       type: 'article',
       publishedTime: blog.meta.publishedDate,
+      modifiedTime: blog.meta.publishedDate,
       authors: ['GuruForU'],
+      images: [
+        {
+          url: '/guruforu-ai-education-logo-dark.png',
+          width: 1200,
+          height: 630,
+          alt: blog.title,
+        },
+      ],
+      locale: 'en_US',
     },
     twitter: {
       card: 'summary_large_image',
-      title: blog.title,
-      description: blog.lead,
+      title: blog.title.length > 70 ? `${blog.title.substring(0, 67)}...` : blog.title,
+      description: optimizedDescription,
+      images: ['/guruforu-ai-education-logo-dark.png'],
+      creator: '@guruforu',
+      site: '@guruforu',
     },
     alternates: {
       canonical: `https://guruforu.com/blog/${categorySlug}/${slug}`,
@@ -72,10 +96,16 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
 export default async function BlogDetail({ params }: { params: Promise<{ categorySlug: string; slug: string }> }) {
   const { categorySlug, slug } = await params
   const blog = await getBlogBySlug(slug)
+  const allBlogs = await getAllBlogs()
 
   if (!blog || blog.categorySlug !== categorySlug) {
     notFound()
   }
+
+  // Get related posts (same category, excluding current post, limit to 3)
+  const relatedPosts = allBlogs
+    .filter(b => b.categorySlug === categorySlug && b.slug !== slug)
+    .slice(0, 3)
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', { 
@@ -173,7 +203,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
     url: 'https://guruforu.com',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://guruforu.com/guruforu-ai-education-logo.png',
+      url: 'https://guruforu.com/guruforu-ai-education-logo-dark.png',
       width: 512,
       height: 512,
     },
@@ -192,7 +222,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
     image: [
       {
         '@type': 'ImageObject',
-        url: 'https://guruforu.com/guruforu-ai-education-logo.png',
+        url: 'https://guruforu.com/guruforu-ai-education-logo-dark.png',
         width: 1200,
         height: 630,
       },
@@ -209,7 +239,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
       name: 'GuruForU',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://guruforu.com/guruforu-ai-education-logo.png',
+        url: 'https://guruforu.com/guruforu-ai-education-logo-dark.png',
         width: 512,
         height: 512,
       },
@@ -287,7 +317,14 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
         <div className={styles.content}>
         <div className={styles.header}>
           <Link href="/" className={styles.homeLink}>
-            <img src="/guruforu-ai-education-logo.png" alt="GuruForU Logo" className={styles.logoImage} />
+            <Image 
+              src="/guruforu-ai-education-logo-dark.png" 
+              alt="GuruForU Logo" 
+              width={120}
+              height={60}
+              className={styles.logoImage}
+              priority
+            />
           </Link>
           <Link href={`/blog/${categorySlug}`} className={styles.backLink}>← Back to {blog.category}</Link>
         </div>
