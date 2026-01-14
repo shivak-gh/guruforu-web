@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://guruforu.com'),
   title: 'GuruForU | Best Online Classes with AI-Powered Student Progress Tracker',
   description: 'Find the best online classes for your child with AI-powered personalized learning. Get comprehensive student progress tracking and mastery reports that show exactly how your child is advancing. Expert online tutors with AI-driven insights.',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
   keywords: [
     'Best Online Classes',
     'Best Online Classes for Students',
@@ -80,6 +86,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Performance: Preconnect to external domains */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google.com" />
         {/* Google Consent Mode - Initialize with denied by default */}
         <Script id="google-consent-mode" strategy="beforeInteractive">
           {`

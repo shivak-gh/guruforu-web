@@ -318,7 +318,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
         <div className={styles.header}>
           <Link href="/" className={styles.homeLink}>
             <Image 
-              src="/guruforu-ai-education-logo-dark.png" 
+              src="/guruforu-ai-education-logo.png" 
               alt="GuruForU Logo" 
               width={120}
               height={60}

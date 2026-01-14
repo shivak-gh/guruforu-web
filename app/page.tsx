@@ -125,58 +125,62 @@ export default function ComingSoon() {
       </div>
 
       <div className={styles.content}>
+        <a href="#main-content" className={styles.skipLink}>Skip to main content</a>
         <div className={styles.logo}>
           <Image 
-            src="/guruforu-ai-education-logo-dark.png" 
-            alt="GuruForU Logo" 
+            src="/guruforu-ai-education-logo.png" 
+            alt="GuruForU - AI-Powered Online Education Platform Logo" 
             width={200}
             height={200}
             className={styles.logoImage}
             priority
           />
         </div>
-        <div className={styles.comingSoonBadge}>Coming Soon</div>
-        <h1 className={styles.title}>Premium Online Tuitions Powered by AI</h1>
+        <div className={styles.comingSoonBadge} aria-label="Status: Coming Soon">Coming Soon</div>
+        <main id="main-content">
+          <h1 className={styles.title}>Premium Online Tuitions Powered by AI</h1>
         <p className={styles.subtitle}>
           The best online classes for your child, enhanced with AI-powered personalized learning. 
           Get real-time student progress tracking and mastery reports that show exactly how your child is advancing.
         </p>
         <div className={styles.divider}></div>
         
-        <h2 className={styles.featuresHeading}>Why Choose GuruForU for Your Child&apos;s Education?</h2>
-        <div className={styles.features}>
-          <div className={styles.feature}>
-            <div className={styles.featureIcon}>✓</div>
-            <div className={styles.featureContent}>
-              <h3 className={styles.featureTitle}>AI Mastery Tracking</h3>
-              <p className={styles.featureDescription}><strong>Comprehensive student progress tracker</strong> that monitors your child&apos;s learning journey in real-time, providing detailed insights into their academic performance.</p>
-            </div>
+        <section aria-labelledby="features-heading">
+          <h2 id="features-heading" className={styles.featuresHeading}>Why Choose GuruForU for Your Child&apos;s Education?</h2>
+          <div className={styles.features} role="list">
+            <article className={styles.feature} role="listitem">
+              <div className={styles.featureIcon} aria-hidden="true">✓</div>
+              <div className={styles.featureContent}>
+                <h3 className={styles.featureTitle}>AI Mastery Tracking</h3>
+                <p className={styles.featureDescription}><strong>Comprehensive student progress tracker</strong> that monitors your child&apos;s learning journey in real-time, providing detailed insights into their academic performance.</p>
+              </div>
+            </article>
+            <article className={styles.feature} role="listitem">
+              <div className={styles.featureIcon} aria-hidden="true">✓</div>
+              <div className={styles.featureContent}>
+                <h3 className={styles.featureTitle}>Personalized Learning</h3>
+                <p className={styles.featureDescription}><strong>AI-driven personalized learning paths</strong> tailored to your child&apos;s unique strengths and learning style, ensuring optimal educational outcomes.</p>
+              </div>
+            </article>
+            <article className={styles.feature} role="listitem">
+              <div className={styles.featureIcon} aria-hidden="true">✓</div>
+              <div className={styles.featureContent}>
+                <h3 className={styles.featureTitle}>Expert Online Tutors</h3>
+                <p className={styles.featureDescription}><strong>Connect with qualified independent teachers</strong> dedicated to your child&apos;s academic success, carefully selected for their expertise and teaching excellence.</p>
+              </div>
+            </article>
+            <article className={styles.feature} role="listitem">
+              <div className={styles.featureIcon} aria-hidden="true">✓</div>
+              <div className={styles.featureContent}>
+                <h3 className={styles.featureTitle}>Interactive Learning Sessions</h3>
+                <p className={styles.featureDescription}><strong>Engaging live classes</strong> with interactive tools and multimedia content to keep your child motivated and learning effectively.</p>
+              </div>
+            </article>
           </div>
-          <div className={styles.feature}>
-            <div className={styles.featureIcon}>✓</div>
-            <div className={styles.featureContent}>
-              <h3 className={styles.featureTitle}>Personalized Learning</h3>
-              <p className={styles.featureDescription}><strong>AI-driven personalized learning paths</strong> tailored to your child&apos;s unique strengths and learning style, ensuring optimal educational outcomes.</p>
-            </div>
-          </div>
-          <div className={styles.feature}>
-            <div className={styles.featureIcon}>✓</div>
-            <div className={styles.featureContent}>
-              <h3 className={styles.featureTitle}>Expert Online Tutors</h3>
-              <p className={styles.featureDescription}><strong>Connect with qualified independent teachers</strong> dedicated to your child&apos;s academic success, carefully selected for their expertise and teaching excellence.</p>
-            </div>
-          </div>
-          <div className={styles.feature}>
-            <div className={styles.featureIcon}>✓</div>
-            <div className={styles.featureContent}>
-              <h3 className={styles.featureTitle}>Interactive Learning Sessions</h3>
-              <p className={styles.featureDescription}><strong>Engaging live classes</strong> with interactive tools and multimedia content to keep your child motivated and learning effectively.</p>
-            </div>
-          </div>
-        </div>
+        </section>
         
-        <div className={styles.benefitsList}>
-          <h2 className={styles.benefitsHeading}>Key Benefits of Online Learning with GuruForU</h2>
+        <section aria-labelledby="benefits-heading" className={styles.benefitsList}>
+          <h2 id="benefits-heading" className={styles.benefitsHeading}>Key Benefits of Online Learning with GuruForU</h2>
           <ul className={styles.benefitsUl}>
             <li><strong>Flexible scheduling</strong> - Learn at your own pace and convenience</li>
             <li><strong>Personalized attention</strong> - One-on-one or small group sessions</li>
@@ -185,11 +189,12 @@ export default function ComingSoon() {
             <li><strong>Comprehensive reports</strong> - Detailed analytics and mastery insights</li>
             <li><strong>Safe learning environment</strong> - Secure platform with parental controls</li>
           </ul>
-        </div>
+        </section>
 
         <p className={styles.message}>
           Join thousands of parents who trust GuruForU for their children&apos;s online education journey.
         </p>
+        </main>
       </div>
 
       <footer className={styles.footer}>
