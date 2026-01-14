@@ -30,12 +30,20 @@ export default function ConsentBanner() {
       }, 1000)
     } else {
       setIsLoading(false)
-      // If consent was already given, ensure analytics is enabled
+      // If consent was already given, ensure analytics is enabled with consent signals
       if (consent === 'accepted' && typeof window !== 'undefined') {
         // Wait a bit for gtag to be available
         setTimeout(() => {
           if (window.gtag) {
+            // Update consent to ensure signals are sent
             window.gtag('consent', 'update', {
+              analytics_storage: 'granted',
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+            })
+            // Reconfigure to ensure consent parameters are included
+            window.gtag('config', 'G-ZGXL6MTDYY', {
               analytics_storage: 'granted',
               ad_storage: 'denied',
               ad_user_data: 'denied',
@@ -52,19 +60,24 @@ export default function ConsentBanner() {
     localStorage.setItem('cookie-consent-date', new Date().toISOString())
     setShowBanner(false)
     
-    // Enable Google Analytics
+    // Enable Google Analytics with proper consent signals
     if (typeof window !== 'undefined') {
       // Update consent immediately if gtag is available
       if (window.gtag) {
+        // Update consent state (required for Consent Mode v2)
         window.gtag('consent', 'update', {
           analytics_storage: 'granted',
           ad_storage: 'denied',
           ad_user_data: 'denied',
           ad_personalization: 'denied',
         })
-        // Send pageview after consent
-        window.gtag('event', 'page_view', {
-          send_to: 'G-ZGXL6MTDYY'
+        
+        // Reconfigure GA with granted consent to ensure signals are sent
+        window.gtag('config', 'G-ZGXL6MTDYY', {
+          analytics_storage: 'granted',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
         })
       } else {
         // If gtag not loaded yet, push to dataLayer
@@ -79,10 +92,10 @@ export default function ConsentBanner() {
       }
     }
     
-    // Small delay before reload to ensure consent is saved
+    // Small delay before reload to ensure consent is saved and signals sent
     setTimeout(() => {
       window.location.reload()
-    }, 100)
+    }, 200)
   }
 
   const handleReject = () => {

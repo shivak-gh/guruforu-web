@@ -91,7 +91,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.google.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google.com" />
-        {/* Google Consent Mode - Initialize with denied by default */}
+        {/* Google Consent Mode v2 - Initialize with denied by default */}
         <Script id="google-consent-mode" strategy="beforeInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -101,6 +101,7 @@ export default function RootLayout({
             const existingConsent = typeof window !== 'undefined' ? localStorage.getItem('cookie-consent') : null;
             const analyticsStorage = existingConsent === 'accepted' ? 'granted' : 'denied';
             
+            // Set default consent state (required for Consent Mode v2)
             gtag('consent', 'default', {
               'analytics_storage': analyticsStorage,
               'ad_storage': 'denied',
@@ -119,27 +120,29 @@ export default function RootLayout({
           {`
             gtag('js', new Date());
             
-            // Configure GA with anonymize IP
+            // Get current consent state
+            const consent = typeof window !== 'undefined' ? localStorage.getItem('cookie-consent') : null;
+            const analyticsStorage = consent === 'accepted' ? 'granted' : 'denied';
+            
+            // Configure GA with consent parameters included (required for Consent Mode v2)
             gtag('config', 'G-ZGXL6MTDYY', {
               'anonymize_ip': true,
               'send_page_view': true,
+              // Include consent parameters in config (ensures signals are sent)
+              'analytics_storage': analyticsStorage,
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied',
             });
             
-            // Ensure consent is properly set after gtag loads
-            if (typeof window !== 'undefined') {
-              const consent = localStorage.getItem('cookie-consent');
-              if (consent === 'accepted') {
-                gtag('consent', 'update', {
-                  'analytics_storage': 'granted',
-                  'ad_storage': 'denied',
-                  'ad_user_data': 'denied',
-                  'ad_personalization': 'denied',
-                });
-                // Send a pageview after consent is granted
-                gtag('event', 'page_view', {
-                  'send_to': 'G-ZGXL6MTDYY'
-                });
-              }
+            // Update consent state if needed (for returning users)
+            if (consent === 'accepted') {
+              gtag('consent', 'update', {
+                'analytics_storage': 'granted',
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+              });
             }
           `}
         </Script>
