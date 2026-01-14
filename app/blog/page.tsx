@@ -75,62 +75,29 @@ export default async function BlogListing() {
     })
   }
 
-  // Organization schema for better entity recognition
+  // Organization schema (minimized)
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'GuruForU',
     url: 'https://guruforu.com',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://guruforu.com/guruforu-ai-education-logo-dark.png',
-      width: 512,
-      height: 512,
-    },
-    sameAs: [
-      'https://guruforu.com',
-    ],
-    description: 'Best Online Classes with AI-Powered Student Progress Tracker. Expert online tutors with AI-driven insights for personalized learning.',
   }
 
-  // Generate JSON-LD structured data for Blog schema
+  // Generate JSON-LD structured data for Blog schema (minimized)
   const blogSchema = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     name: 'GuruForU Blog',
-    description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning',
     url: 'https://guruforu.com/blog',
-    inLanguage: 'en-US',
     publisher: {
       '@type': 'Organization',
       name: 'GuruForU',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://guruforu.com/guruforu-ai-education-logo-dark.png',
-        width: 512,
-        height: 512,
-      },
     },
     blogPost: blogs.map((blog) => ({
       '@type': 'BlogPosting',
       headline: blog.title,
-      description: blog.lead,
       url: `https://guruforu.com/blog/${blog.categorySlug}/${blog.slug}`,
       datePublished: blog.meta.publishedDate,
-      dateModified: blog.meta.publishedDate,
-      author: {
-        '@type': 'Organization',
-        name: 'GuruForU',
-        url: 'https://guruforu.com',
-      },
-      articleSection: blog.category,
-      keywords: [
-        'GuruForU',
-        'Online Classes',
-        'Online Tuitions',
-        'AI-Powered Learning',
-        blog.category,
-      ].join(', '),
     })),
   }
 

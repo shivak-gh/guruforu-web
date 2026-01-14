@@ -199,67 +199,28 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
   const wordCount = calculateWordCount()
   const articleBody = generateArticleBody()
 
-  // Organization schema for better entity recognition
+  // Organization schema (minimized)
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'GuruForU',
     url: 'https://guruforu.com',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://guruforu.com/guruforu-ai-education-logo-dark.png',
-      width: 512,
-      height: 512,
-    },
-    sameAs: [
-      'https://guruforu.com',
-    ],
-    description: 'Best Online Classes with AI-Powered Student Progress Tracker. Expert online tutors with AI-driven insights for personalized learning.',
   }
 
-  // Generate JSON-LD structured data for BlogPosting schema (more specific than Article)
+  // Generate JSON-LD structured data for BlogPosting schema (minimized for better text-to-HTML ratio)
   const blogPostingSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: blog.title,
     description: blog.lead,
-    image: [
-      {
-        '@type': 'ImageObject',
-        url: 'https://guruforu.com/guruforu-ai-education-logo-dark.png',
-        width: 1200,
-        height: 630,
-      },
-    ],
     datePublished: blog.meta.publishedDate,
-    dateModified: blog.meta.publishedDate,
     author: {
       '@type': 'Organization',
       name: 'GuruForU',
-      url: 'https://guruforu.com',
     },
     publisher: {
       '@type': 'Organization',
       name: 'GuruForU',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://guruforu.com/guruforu-ai-education-logo-dark.png',
-        width: 512,
-        height: 512,
-      },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://guruforu.com/blog/${categorySlug}/${slug}`,
-    },
-    articleSection: blog.category,
-    keywords: keywords.join(', '),
-    articleBody: articleBody,
-    wordCount: wordCount,
-    inLanguage: 'en-US',
-    about: {
-      '@type': 'Thing',
-      name: blog.category,
     },
     url: `https://guruforu.com/blog/${categorySlug}/${slug}`,
   }

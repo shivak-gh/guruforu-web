@@ -26,6 +26,7 @@ const nextConfig = {
   async headers() {
     return [
       {
+        // Security headers for all pages
         source: '/:path*',
         headers: [
           {
@@ -52,14 +53,75 @@ const nextConfig = {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
           },
-          // Performance headers
+        ],
+      },
+      {
+        // HTML pages: CDN cache for 1 hour, browser cache for 5 minutes, stale-while-revalidate
+        // Note: Next.js handles HTML caching via revalidate, but we add headers for CDN/browser
+        source: '/',
+        headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
           },
         ],
       },
       {
+        source: '/blog/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      {
+        source: '/contact',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      {
+        source: '/terms',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      {
+        source: '/privacy',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      {
+        source: '/shipping',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      {
+        source: '/cancellation-refunds',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      {
+        // Static assets: Long-term caching (1 year, immutable)
         source: '/:path*\\.(jpg|jpeg|png|gif|ico|svg|webp|avif)',
         headers: [
           {
@@ -69,7 +131,18 @@ const nextConfig = {
         ],
       },
       {
+        // CSS/JS bundles: Long-term caching (1 year, immutable)
         source: '/:path*\\.(css|js)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Next.js static files (_next/static): Long-term caching
+        source: '/_next/static/:path*',
         headers: [
           {
             key: 'Cache-Control',

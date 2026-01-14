@@ -101,42 +101,20 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     })
   }
 
-  // Organization schema for better entity recognition
+  // Organization schema (minimized)
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'GuruForU',
     url: 'https://guruforu.com',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://guruforu.com/guruforu-ai-education-logo-dark.png',
-      width: 512,
-      height: 512,
-    },
-    sameAs: [
-      'https://guruforu.com',
-    ],
-    description: 'Best Online Classes with AI-Powered Student Progress Tracker. Expert online tutors with AI-driven insights for personalized learning.',
   }
 
-  // Generate JSON-LD structured data for CollectionPage
+  // Generate JSON-LD structured data for CollectionPage (minimized)
   const collectionPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: `${category.name} | GuruForU Blog`,
-    description: `Explore ${category.count} ${category.count === 1 ? 'article' : 'articles'} in ${category.name} category. Expert insights on child education and learning.`,
     url: `https://guruforu.com/blog/${categorySlug}`,
-    inLanguage: 'en-US',
-    publisher: {
-      '@type': 'Organization',
-      name: 'GuruForU',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://guruforu.com/guruforu-ai-education-logo-dark.png',
-        width: 512,
-        height: 512,
-      },
-    },
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: category.count,
@@ -146,13 +124,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         item: {
           '@type': 'BlogPosting',
           headline: blog.title,
-          description: blog.lead,
           url: `https://guruforu.com/blog/${categorySlug}/${blog.slug}`,
-          datePublished: blog.meta.publishedDate,
-          author: {
-            '@type': 'Organization',
-            name: 'GuruForU',
-          },
         },
       })),
     },

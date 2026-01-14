@@ -57,7 +57,7 @@ export const metadata: Metadata = {
 }
 
 export default function ComingSoon() {
-  // FAQ Schema for SEO
+  // FAQ Schema for SEO (minimized for better text-to-HTML ratio)
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -67,7 +67,7 @@ export default function ComingSoon() {
         name: 'What is GuruForU?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'GuruForU is an AI-powered online education platform that provides personalized learning experiences for children. We connect students with expert tutors and offer comprehensive student progress tracking with AI-driven insights.',
+          text: 'GuruForU is an AI-powered online education platform providing personalized learning for children with expert tutors and comprehensive progress tracking.',
         },
       },
       {
@@ -75,15 +75,15 @@ export default function ComingSoon() {
         name: 'How does AI-powered learning work?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Our AI system adapts to each child\'s unique learning style, pace, and needs. It provides real-time progress tracking, identifies strengths and weaknesses, and creates personalized learning paths tailored to help your child succeed.',
+          text: 'Our AI adapts to each child\'s learning style and pace, providing real-time tracking and personalized learning paths for success.',
         },
       },
       {
         '@type': 'Question',
-        name: 'What makes GuruForU different from other online tutoring platforms?',
+        name: 'What makes GuruForU different?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'GuruForU combines expert online tutors with advanced AI technology to provide comprehensive student progress tracking, mastery reports, and personalized learning experiences. Our platform offers real-time insights that show exactly how your child is advancing.',
+          text: 'GuruForU combines expert tutors with AI technology for comprehensive progress tracking, mastery reports, and personalized learning experiences.',
         },
       },
       {
@@ -91,7 +91,7 @@ export default function ComingSoon() {
         name: 'How do I track my child\'s progress?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Parents receive detailed progress reports and mastery tracking through our AI-powered dashboard. You can see real-time analytics, learning patterns, and predictive insights about your child\'s academic performance.',
+          text: 'Parents receive detailed progress reports through our AI-powered dashboard with real-time analytics and learning insights.',
         },
       },
       {
@@ -99,7 +99,7 @@ export default function ComingSoon() {
         name: 'Are the tutors qualified?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, all our tutors are qualified independent teachers who are carefully vetted. You can review tutor profiles, qualifications, and student feedback before selecting the perfect match for your child.',
+          text: 'Yes, all tutors are qualified independent teachers who are carefully vetted with profiles and qualifications available for review.',
         },
       },
     ],
