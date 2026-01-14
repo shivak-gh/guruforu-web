@@ -118,32 +118,43 @@ export default function RootLayout({
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
-            gtag('js', new Date());
-            
-            // Get current consent state
-            const consent = typeof window !== 'undefined' ? localStorage.getItem('cookie-consent') : null;
-            const analyticsStorage = consent === 'accepted' ? 'granted' : 'denied';
-            
-            // Configure GA with consent parameters included (required for Consent Mode v2)
-            gtag('config', 'G-ZGXL6MTDYY', {
-              'anonymize_ip': true,
-              'send_page_view': true,
-              // Include consent parameters in config (ensures signals are sent)
-              'analytics_storage': analyticsStorage,
-              'ad_storage': 'denied',
-              'ad_user_data': 'denied',
-              'ad_personalization': 'denied',
-            });
-            
-            // Update consent state if needed (for returning users)
-            if (consent === 'accepted') {
-              gtag('consent', 'update', {
-                'analytics_storage': 'granted',
-                'ad_storage': 'denied',
-                'ad_user_data': 'denied',
-                'ad_personalization': 'denied',
-              });
-            }
+            (function() {
+              try {
+                gtag('js', new Date());
+                
+                // Get current consent state
+                const consent = typeof window !== 'undefined' ? localStorage.getItem('cookie-consent') : null;
+                const analyticsStorage = consent === 'accepted' ? 'granted' : 'denied';
+                
+                // Configure GA with consent parameters included (required for Consent Mode v2)
+                gtag('config', 'G-ZGXL6MTDYY', {
+                  'anonymize_ip': true,
+                  'send_page_view': true,
+                  // Include consent parameters in config (ensures signals are sent)
+                  'analytics_storage': analyticsStorage,
+                  'ad_storage': 'denied',
+                  'ad_user_data': 'denied',
+                  'ad_personalization': 'denied',
+                });
+                
+                // Update consent state if needed (for returning users)
+                if (consent === 'accepted') {
+                  gtag('consent', 'update', {
+                    'analytics_storage': 'granted',
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                  });
+                }
+                
+                // Debug logging (only in development)
+                if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+                  console.log('Google Analytics initialized with consent:', analyticsStorage);
+                }
+              } catch (error) {
+                console.error('Error initializing Google Analytics:', error);
+              }
+            })();
           `}
         </Script>
       </head>
