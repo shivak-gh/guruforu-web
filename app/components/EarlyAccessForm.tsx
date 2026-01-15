@@ -71,7 +71,7 @@ export default function EarlyAccessForm() {
     }
   }, [recaptchaSiteKey])
 
-  const getRecaptchaToken = async (): Promise<string | null> => {
+  const getRecaptchaToken = async (retryCount = 0): Promise<string | null> => {
     if (!recaptchaSiteKey) {
       return null
     }
@@ -96,13 +96,41 @@ export default function EarlyAccessForm() {
       return await new Promise((resolve) => {
         window.grecaptcha.ready(async () => {
           try {
+            // Generate token with current timestamp to ensure freshness
             const token = await window.grecaptcha.execute(recaptchaSiteKey, {
               action: 'early_access_form'
             })
-            resolve(token || null)
+            if (!token) {
+              console.error('reCAPTCHA returned empty token')
+              // Retry once if we get an empty token
+              if (retryCount < 1) {
+                console.log('Retrying reCAPTCHA token generation...')
+                setTimeout(async () => {
+                  const retryToken = await getRecaptchaToken(retryCount + 1)
+                  resolve(retryToken)
+                }, 500)
+              } else {
+                resolve(null)
+              }
+            } else {
+              console.log('reCAPTCHA token generated successfully', {
+                tokenLength: token.length,
+                timestamp: new Date().toISOString()
+              })
+              resolve(token)
+            }
           } catch (error: any) {
             console.error('reCAPTCHA execution error:', error)
-            resolve(null)
+            // Retry once on error
+            if (retryCount < 1) {
+              console.log('Retrying reCAPTCHA token generation after error...')
+              setTimeout(async () => {
+                const retryToken = await getRecaptchaToken(retryCount + 1)
+                resolve(retryToken)
+              }, 1000)
+            } else {
+              resolve(null)
+            }
           }
         })
       })
@@ -142,10 +170,24 @@ export default function EarlyAccessForm() {
 
       let recaptchaToken = null
       if (!skipRecaptcha && recaptchaSiteKey) {
-        recaptchaToken = await getRecaptchaToken()
-        if (!recaptchaToken) {
+        // Get reCAPTCHA token right before submission to avoid expiration
+        // Generate token as late as possible to minimize expiration risk
+        console.log('Getting fresh reCAPTCHA token...')
+        try {
+          recaptchaToken = await getRecaptchaToken()
+          if (!recaptchaToken) {
+            console.error('Failed to get reCAPTCHA token after retries')
+            setSubmitStatus('error')
+            setErrorMessage('reCAPTCHA verification failed. Please refresh the page and try again. If the problem persists, your domain may need to be registered in the reCAPTCHA console.')
+            setIsSubmitting(false)
+            return
+          }
+          console.log('reCAPTCHA token received, submitting immediately...')
+          // Submit immediately after getting token to avoid expiration
+        } catch (error: any) {
+          console.error('Error getting reCAPTCHA token:', error)
           setSubmitStatus('error')
-          setErrorMessage('Security verification failed. Please try again.')
+          setErrorMessage('reCAPTCHA verification failed. Please refresh the page and try again.')
           setIsSubmitting(false)
           return
         }

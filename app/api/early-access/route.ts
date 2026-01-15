@@ -32,11 +32,52 @@ async function verifyRecaptcha(token: string): Promise<{ valid: boolean; error?:
 
     const data = await response.json()
     
+    // Log reCAPTCHA response for debugging
+    console.log('reCAPTCHA verification response:', {
+      success: data.success,
+      score: data.score,
+      action: data.action,
+      hostname: data.hostname,
+      'error-codes': data['error-codes'],
+      'challenge_ts': data['challenge_ts']
+    })
+    
     if (!data.success) {
       const errorCodes = data['error-codes'] || []
+      
+      // Provide user-friendly error messages for common error codes
+      let userFriendlyError = `reCAPTCHA verification failed: ${errorCodes.join(', ')}`
+      if (errorCodes.includes('invalid-input-response')) {
+        // Most common cause: domain not registered in reCAPTCHA console
+        userFriendlyError = `reCAPTCHA verification failed. The domain "${data.hostname || 'your domain'}" may not be registered in the reCAPTCHA console. Please contact support if this issue persists.`
+        console.error('❌ reCAPTCHA invalid-input-response - DIAGNOSIS:', {
+          'Most Common Cause': `Domain "${data.hostname}" is NOT registered in reCAPTCHA console`,
+          'Fix Required': `1. Go to https://www.google.com/recaptcha/admin
+2. Find site with key: 6LfwKEYsAAAAAGScm2h15522_4x0a2-7FSLdX-Ob
+3. Add domain to "Domains" list: ${data.hostname}
+4. Save and wait 2-5 minutes for propagation`,
+          'Other Possible Causes': {
+            'Token expired': 'reCAPTCHA tokens expire after ~2 minutes',
+            'Token already used': 'Tokens can only be used once',
+            'Secret key mismatch': 'Ensure RECAPTCHA_SECRET_KEY matches the site key'
+          }
+        })
+      } else if (errorCodes.includes('missing-input-response')) {
+        userFriendlyError = 'reCAPTCHA token is missing. Please try again.'
+      } else if (errorCodes.includes('timeout-or-duplicate')) {
+        userFriendlyError = 'reCAPTCHA token has expired. Please refresh the page and try again.'
+      }
+      
+      console.error('reCAPTCHA verification failed:', {
+        errorCodes,
+        hostname: data.hostname,
+        tokenLength: token.length,
+        userFriendlyError
+      })
+      
       return { 
         valid: false, 
-        error: `reCAPTCHA verification failed: ${errorCodes.join(', ')}`,
+        error: userFriendlyError,
         details: { errorCodes, hostname: data.hostname }
       }
     }
@@ -88,19 +129,45 @@ export async function POST(request: NextRequest) {
     if (isLocalhost && process.env.SKIP_RECAPTCHA_LOCALHOST !== 'false') {
       console.warn('⚠️ Skipping reCAPTCHA verification for localhost (development mode)')
     } else {
+      // Verify reCAPTCHA token is provided
       if (!recaptchaToken) {
+        console.error('reCAPTCHA token is missing in request')
         return NextResponse.json(
-          { error: 'reCAPTCHA token is required' },
+          { 
+            error: 'reCAPTCHA token is required. Please refresh the page and try again.',
+            details: { 
+              message: 'Token was not provided in the request',
+              suggestion: 'This may indicate the reCAPTCHA script failed to load. Check browser console for errors.'
+            }
+          },
           { status: 400 }
         )
       }
 
+      // Verify reCAPTCHA
       const recaptchaResult = await verifyRecaptcha(recaptchaToken)
       if (!recaptchaResult.valid) {
+        console.error('reCAPTCHA verification failed:', {
+          error: recaptchaResult.error,
+          details: recaptchaResult.details,
+          hostname: request.headers.get('host'),
+          userAgent: request.headers.get('user-agent')?.substring(0, 50)
+        })
+        
+        // Provide more helpful error message
+        let userMessage = recaptchaResult.error || 'reCAPTCHA verification failed. Please refresh the page and try again.'
+        if (recaptchaResult.details?.errorCodes?.includes('invalid-input-response')) {
+          const hostname = request.headers.get('host') || 'your domain'
+          userMessage = `reCAPTCHA verification failed. The domain "${hostname}" may not be registered in the reCAPTCHA console. Please contact support if this issue persists.`
+        }
+        
         return NextResponse.json(
           { 
-            error: recaptchaResult.error || 'reCAPTCHA verification failed. Please try again.',
-            details: recaptchaResult.details
+            error: userMessage,
+            details: {
+              ...recaptchaResult.details,
+              troubleshooting: 'If this error persists, verify that your production domain is registered in the reCAPTCHA console and that RECAPTCHA_SECRET_KEY matches your site key.'
+            }
           },
           { status: 400 }
         )

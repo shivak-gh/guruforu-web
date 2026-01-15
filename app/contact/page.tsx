@@ -23,6 +23,7 @@ export default function ContactUs() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState<string>('')
   const recaptchaLoaded = useRef(false)
   // Get reCAPTCHA site key from environment (embedded at build time in Next.js)
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''
@@ -165,6 +166,7 @@ export default function ContactUs() {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus('idle')
+    setErrorMessage('')
 
     try {
       // Skip reCAPTCHA for localhost in development mode
@@ -226,6 +228,13 @@ export default function ContactUs() {
           details: data.details
         })
         
+        // Store error message for display
+        if (data.error) {
+          setErrorMessage(data.error)
+        } else {
+          setErrorMessage('Something went wrong. Please try again.')
+        }
+        
         // Check if it's a reCAPTCHA error specifically
         if (data.error?.includes('reCAPTCHA') || response.status === 400) {
           console.error('reCAPTCHA verification failed:', data.error)
@@ -263,6 +272,7 @@ export default function ContactUs() {
       }
     } catch (error) {
       console.error('Form submission error:', error)
+      setErrorMessage('Network error. Please check your connection and try again.')
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -384,7 +394,7 @@ export default function ContactUs() {
                 <div className={styles.errorMessage} role="alert">
                   <strong>Oops! Something went wrong.</strong>
                   <br />
-                  <span id="error-details">Please check your browser console (F12) for detailed error information.</span>
+                  {errorMessage || 'Please check your browser console (F12) for detailed error information.'}
                   <br />
                   <small>If the issue persists, please email us directly at <a href="mailto:support@guruforu.com" className={styles.emailLink}>support@guruforu.com</a></small>
                 </div>
