@@ -50,7 +50,7 @@ export default function NavMenu() {
             <Link href="/blog" className={styles.navLink}>Blog</Link>
           </li>
           <li>
-            <Link href="/free-consultation" className={styles.navLink}>Free Consultation</Link>
+            <Link href="/free-session" className={styles.navLink}>Free Session</Link>
           </li>
           <li>
             <Link href="/contact" className={styles.navLink}>Contact</Link>
@@ -82,7 +82,7 @@ export default function NavMenu() {
             <Link href="/blog" className={styles.mobileNavLink} onClick={closeMenu}>Blog</Link>
           </li>
           <li>
-            <Link href="/free-consultation" className={styles.mobileNavLink} onClick={closeMenu}>Free Consultation</Link>
+            <Link href="/free-session" className={styles.mobileNavLink} onClick={closeMenu}>Free Session</Link>
           </li>
           <li>
             <Link href="/contact" className={styles.mobileNavLink} onClick={closeMenu}>Contact</Link>

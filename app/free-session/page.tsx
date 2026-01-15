@@ -168,7 +168,7 @@ export default function FreeConsultation() {
 
   // Generate summary message for email/WhatsApp
   const generateSummary = (data: typeof formData) => {
-    return `FREE CONSULTATION REQUEST
+    return `FREE SESSION REQUEST
 ---------------------------
 Parent: ${data.name}
 Email: ${data.email}
@@ -250,7 +250,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
         console.warn('⚠️ reCAPTCHA Site Key not configured, submitting without token')
       }
 
-      // Submit via free consultation API
+      // Submit via free session API
       const response = await fetch('/api/free-consultation', {
         method: 'POST',
         headers: {
@@ -324,7 +324,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
           <div className={styles.mainContent}>
             {/* Form Section */}
             <div className={styles.formSection}>
-              <h2 className={styles.formTitle}>Book Your Free Consultation</h2>
+              <h2 className={styles.formTitle}>Book Your Free Session</h2>
               
               <form className={styles.consultationForm} onSubmit={handleEmailSubmit}>
                 <div className={styles.formGroup}>
@@ -480,7 +480,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
 
                 {submitStatus === 'success' && (
                   <div className={styles.successMessage} role="alert">
-                    ✓ Thank you! We&apos;ll contact you soon to schedule your free consultation.
+                    ✓ Thank you! We&apos;ll contact you soon to schedule your free session.
                   </div>
                 )}
 
@@ -564,7 +564,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                   <div className={styles.roadmapStep}>
                     <div className={styles.stepNumber}>1</div>
                     <div className={styles.stepContent}>
-                      <h4 className={styles.stepTitle}>Free Consultation</h4>
+                      <h4 className={styles.stepTitle}>Free Session</h4>
                       <p className={styles.stepDescription}>15-minute strategy session to understand your child&apos;s needs</p>
                     </div>
                   </div>

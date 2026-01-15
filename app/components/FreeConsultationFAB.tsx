@@ -7,15 +7,15 @@ import styles from './FreeConsultationFAB.module.css'
 export default function FreeConsultationFAB() {
   const pathname = usePathname()
 
-  // Don't show on the free consultation page itself
-  if (pathname === '/free-consultation') {
+  // Don't show on the free session page itself
+  if (pathname === '/free-session') {
     return null
   }
 
   return (
-    <Link href="/free-consultation" className={styles.fab} aria-label="Book Free Consultation">
+    <Link href="/free-session" className={styles.fab} aria-label="Book Free Session">
       <span className={styles.fabIcon}>💬</span>
-      <span className={styles.fabText}>Free Consultation</span>
+      <span className={styles.fabText}>Free Session</span>
     </Link>
   )
 }
