@@ -137,7 +137,12 @@ export default function ComingSoon() {
             priority
           />
         </div>
-        <div className={styles.comingSoonBadge} aria-label="Status: Coming Soon">Coming Soon</div>
+        <div className={styles.comingSoonBadge} aria-label="Now accepting early access">Now Accepting Early Access</div>
+        <div className={styles.earlyAccessLink}>
+          <Link href="/early-access" className={styles.notifyButton}>
+            Notify Me
+          </Link>
+        </div>
         <main id="main-content">
           <h1 className={styles.title}>Premium Online Tuitions Powered by AI</h1>
         <p className={styles.subtitle}>

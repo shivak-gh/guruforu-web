@@ -166,35 +166,33 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Get Brevo API key - check environment variable first for local development
+    // Get Brevo API key - prioritize Secret Manager, fallback to environment variable
     let brevoApiKey: string | null = null
     
-    // In development mode, try environment variable first (faster, no Secret Manager call)
-    if (process.env.NODE_ENV === 'development') {
+    // Try Secret Manager first (works in both development and production)
+    brevoApiKey = await getSecret('BREVO_API_KEY')
+    
+    if (brevoApiKey) {
+      console.log('✅ Using BREVO_API_KEY from Google Secret Manager')
+    } else {
+      // Fallback to environment variable if Secret Manager is unavailable
       brevoApiKey = process.env.BREVO_API_KEY || null
       if (brevoApiKey) {
-        console.log('Using BREVO_API_KEY from environment variable (development mode)')
-      }
-    }
-    
-    // If not found in env, try Secret Manager (or fallback to env if Secret Manager fails)
-    if (!brevoApiKey) {
-      brevoApiKey = await getSecret('BREVO_API_KEY')
-      
-      // If Secret Manager failed, try environment variable as final fallback
-      if (!brevoApiKey) {
-        brevoApiKey = process.env.BREVO_API_KEY || null
+        console.log('⚠️ Using BREVO_API_KEY from environment variable (Secret Manager unavailable)')
       }
     }
     
     if (!brevoApiKey) {
-      console.error('BREVO_API_KEY is not configured')
-      console.error('Please set BREVO_API_KEY in .env.local for local development')
-      console.error('Or configure BREVO_API_KEY in Google Secret Manager for production')
+      console.error('❌ BREVO_API_KEY is not configured')
+      console.error('   Options to fix:')
+      console.error('   1. Set GOOGLE_CLOUD_PROJECT in .env.local and authenticate:')
+      console.error('      gcloud auth application-default login')
+      console.error('      Then ensure BREVO_API_KEY exists in Secret Manager')
+      console.error('   2. Or set BREVO_API_KEY in .env.local as fallback')
       return NextResponse.json(
         { 
           error: 'Email service is not configured. BREVO_API_KEY is missing.',
-          details: 'Please set BREVO_API_KEY in .env.local for local development, or configure it in Google Secret Manager for production.'
+          details: 'Please configure BREVO_API_KEY in Google Secret Manager (preferred) or set it in .env.local for local development.'
         },
         { status: 500 }
       )

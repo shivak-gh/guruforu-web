@@ -379,7 +379,8 @@ export default function ContactUs() {
                 </div>
               )}
 
-              {!recaptchaSiteKey && process.env.NODE_ENV === 'development' && (
+              {!recaptchaSiteKey && typeof window !== 'undefined' && 
+               (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && (
                 <div className={styles.warningMessage}>
                   ⚠️ Note: reCAPTCHA is not configured for localhost. Form will work without reCAPTCHA verification. 
                   To enable reCAPTCHA, set NEXT_PUBLIC_RECAPTCHA_SITE_KEY in .env.local and restart your dev server.
