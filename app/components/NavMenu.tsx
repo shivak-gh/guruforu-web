@@ -50,6 +50,9 @@ export default function NavMenu() {
             <Link href="/blog" className={styles.navLink}>Blog</Link>
           </li>
           <li>
+            <Link href="/free-consultation" className={styles.navLink}>Free Consultation</Link>
+          </li>
+          <li>
             <Link href="/contact" className={styles.navLink}>Contact</Link>
           </li>
         </ul>
@@ -77,6 +80,9 @@ export default function NavMenu() {
           </li>
           <li>
             <Link href="/blog" className={styles.mobileNavLink} onClick={closeMenu}>Blog</Link>
+          </li>
+          <li>
+            <Link href="/free-consultation" className={styles.mobileNavLink} onClick={closeMenu}>Free Consultation</Link>
           </li>
           <li>
             <Link href="/contact" className={styles.mobileNavLink} onClick={closeMenu}>Contact</Link>

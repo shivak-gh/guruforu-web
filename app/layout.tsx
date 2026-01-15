@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import ConsentBanner from './components/ConsentBanner'
 import Analytics from './components/Analytics'
+import FreeConsultationFAB from './components/FreeConsultationFAB'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -199,11 +200,12 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body>
-        {children}
-        <ConsentBanner />
-        <Analytics />
-      </body>
+          <body>
+            {children}
+            <ConsentBanner />
+            <Analytics />
+            <FreeConsultationFAB />
+          </body>
     </html>
   )
 }
