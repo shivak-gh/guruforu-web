@@ -2,7 +2,7 @@ import { getAllBlogs, getAllCategories } from './blog/lib/getBlogs'
 import { MetadataRoute } from 'next'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://guruforu.com'
+  const baseUrl = 'https://www.guruforu.com'
   
   // Get all blog posts and categories
   const blogs = await getAllBlogs()
