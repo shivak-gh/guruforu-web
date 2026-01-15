@@ -57,15 +57,33 @@ async function verifyRecaptcha(token: string): Promise<{ valid: boolean; error?:
     // Check for errors first
     if (!data.success) {
       const errorCodes = data['error-codes'] || []
-      const errorMsg = `reCAPTCHA verification failed: ${errorCodes.join(', ')}`
-      console.error(errorMsg, {
+      
+      // Provide user-friendly error messages for common error codes
+      let userFriendlyError = `reCAPTCHA verification failed: ${errorCodes.join(', ')}`
+      if (errorCodes.includes('invalid-input-response')) {
+        userFriendlyError = 'reCAPTCHA token is invalid or expired. Please refresh the page and try again.'
+        console.error('reCAPTCHA invalid-input-response - possible causes:', {
+          'Token expired': 'reCAPTCHA tokens expire after ~2 minutes',
+          'Token already used': 'Tokens can only be used once',
+          'Domain mismatch': `Verify domain ${data.hostname} is registered in reCAPTCHA console`,
+          'Secret key mismatch': 'Ensure RECAPTCHA_SECRET_KEY matches the site key'
+        })
+      } else if (errorCodes.includes('missing-input-response')) {
+        userFriendlyError = 'reCAPTCHA token is missing. Please try again.'
+      } else if (errorCodes.includes('timeout-or-duplicate')) {
+        userFriendlyError = 'reCAPTCHA token has expired. Please refresh the page and try again.'
+      }
+      
+      console.error('reCAPTCHA verification failed:', {
         errorCodes,
         hostname: data.hostname,
-        token: token.substring(0, 20) + '...'
+        tokenLength: token.length,
+        userFriendlyError
       })
+      
       return { 
         valid: false, 
-        error: errorMsg,
+        error: userFriendlyError,
         details: {
           errorCodes,
           hostname: data.hostname
@@ -146,8 +164,15 @@ export async function POST(request: NextRequest) {
     } else {
       // Verify reCAPTCHA token is provided
       if (!recaptchaToken) {
+        console.error('reCAPTCHA token is missing in request')
         return NextResponse.json(
-          { error: 'reCAPTCHA token is required' },
+          { 
+            error: 'reCAPTCHA token is required. Please refresh the page and try again.',
+            details: { 
+              message: 'Token was not provided in the request',
+              suggestion: 'This may indicate the reCAPTCHA script failed to load. Check browser console for errors.'
+            }
+          },
           { status: 400 }
         )
       }
@@ -155,11 +180,26 @@ export async function POST(request: NextRequest) {
       // Verify reCAPTCHA
       const recaptchaResult = await verifyRecaptcha(recaptchaToken)
       if (!recaptchaResult.valid) {
-        console.error('reCAPTCHA verification failed:', recaptchaResult.error, recaptchaResult.details)
+        console.error('reCAPTCHA verification failed:', {
+          error: recaptchaResult.error,
+          details: recaptchaResult.details,
+          hostname: request.headers.get('host'),
+          userAgent: request.headers.get('user-agent')?.substring(0, 50)
+        })
+        
+        // Provide more helpful error message
+        let userMessage = recaptchaResult.error || 'reCAPTCHA verification failed. Please refresh the page and try again.'
+        if (recaptchaResult.details?.errorCodes?.includes('invalid-input-response')) {
+          userMessage = 'reCAPTCHA verification failed. This usually means your domain needs to be registered in the reCAPTCHA console. Please refresh the page and try again, or contact support if the issue persists.'
+        }
+        
         return NextResponse.json(
           { 
-            error: recaptchaResult.error || 'reCAPTCHA verification failed. Please try again.',
-            details: recaptchaResult.details
+            error: userMessage,
+            details: {
+              ...recaptchaResult.details,
+              troubleshooting: 'If this error persists, verify that your production domain is registered in the reCAPTCHA console and that RECAPTCHA_SECRET_KEY matches your site key.'
+            }
           },
           { status: 400 }
         )

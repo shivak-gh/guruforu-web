@@ -174,16 +174,27 @@ export default function ContactUs() {
 
       let recaptchaToken = null
       if (!skipRecaptcha && recaptchaSiteKey) {
-        // Get reCAPTCHA token
-        console.log('Getting reCAPTCHA token...')
-        recaptchaToken = await getRecaptchaToken()
-        if (!recaptchaToken) {
-          console.error('Failed to get reCAPTCHA token')
+        // Get reCAPTCHA token right before submission to avoid expiration
+        // Generate token as late as possible to minimize expiration risk
+        console.log('Getting fresh reCAPTCHA token...')
+        try {
+          recaptchaToken = await getRecaptchaToken()
+          if (!recaptchaToken) {
+            console.error('Failed to get reCAPTCHA token after retries')
+            setSubmitStatus('error')
+            setIsSubmitting(false)
+            // Error message will be shown from the error status
+            return
+          }
+          console.log('reCAPTCHA token received, submitting immediately...')
+          // Submit immediately after getting token to avoid expiration
+        } catch (error: any) {
+          console.error('Error getting reCAPTCHA token:', error)
           setSubmitStatus('error')
           setIsSubmitting(false)
+          // Error message will be shown from the error status
           return
         }
-        console.log('reCAPTCHA token received, submitting form...')
       } else if (skipRecaptcha) {
         console.warn('⚠️ Skipping reCAPTCHA for localhost (development mode)')
       } else if (!recaptchaSiteKey) {
@@ -370,10 +381,10 @@ export default function ContactUs() {
               )}
 
               {submitStatus === 'error' && (
-                <div className={styles.errorMessage}>
+                <div className={styles.errorMessage} role="alert">
                   <strong>Oops! Something went wrong.</strong>
                   <br />
-                  Please check your browser console (F12) for detailed error information.
+                  <span id="error-details">Please check your browser console (F12) for detailed error information.</span>
                   <br />
                   <small>If the issue persists, please email us directly at <a href="mailto:support@guruforu.com" className={styles.emailLink}>support@guruforu.com</a></small>
                 </div>
