@@ -4,7 +4,7 @@ export default function robots() {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://guruforu.com/sitemap.xml',
+    sitemap: 'https://www.guruforu.com/sitemap.xml',
   }
 }
 

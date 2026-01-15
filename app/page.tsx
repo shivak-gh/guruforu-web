@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'GuruForU - AI-Powered Online Classes & Student Progress Tracker',
     description: 'Best online classes for children with AI-powered personalized learning. Expert tutors, real-time progress tracking, and mastery reports.',
-    url: 'https://guruforu.com',
+    url: 'https://www.guruforu.com',
     siteName: 'GuruForU',
     images: [
       {
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     site: '@guruforu',
   },
   alternates: {
-    canonical: 'https://guruforu.com',
+    canonical: 'https://www.guruforu.com',
   },
 }
 

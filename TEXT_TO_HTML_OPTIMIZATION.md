@@ -37,14 +37,14 @@ Text-to-HTML ratio measures the percentage of visible text content compared to t
 {
   "@type": "Organization",
   "name": "GuruForU",
-  "url": "https://guruforu.com",
+  "url": "https://www.guruforu.com",
   "logo": {
     "@type": "ImageObject",
     "url": "...",
     "width": 512,
     "height": 512
   },
-  "sameAs": ["https://guruforu.com"],
+  "sameAs": ["https://www.guruforu.com"],
   "description": "Best Online Classes..."
 }
 ```
@@ -54,7 +54,7 @@ Text-to-HTML ratio measures the percentage of visible text content compared to t
 {
   "@type": "Organization",
   "name": "GuruForU",
-  "url": "https://guruforu.com"
+  "url": "https://www.guruforu.com"
 }
 ```
 

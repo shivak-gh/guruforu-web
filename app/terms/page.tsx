@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Terms and Conditions | GuruForU',
     description: 'Read GuruForU terms and conditions. Learn about our service agreement and platform policies.',
-    url: 'https://guruforu.com/terms',
+    url: 'https://www.guruforu.com/terms',
     siteName: 'GuruForU',
     type: 'website',
     locale: 'en_US',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     site: '@guruforu',
   },
   alternates: {
-    canonical: 'https://guruforu.com/terms',
+    canonical: 'https://www.guruforu.com/terms',
   },
 }
 

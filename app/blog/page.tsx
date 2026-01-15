@@ -37,7 +37,7 @@ export const metadata = {
   openGraph: {
     title: 'Education Blog | GuruForU Learning Insights',
     description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning.',
-    url: 'https://guruforu.com/blog',
+    url: 'https://www.guruforu.com/blog',
     siteName: 'GuruForU',
     type: 'website',
     images: [
@@ -57,9 +57,9 @@ export const metadata = {
     images: ['/guruforu-ai-education-logo-dark.png'],
   },
   alternates: {
-    canonical: 'https://guruforu.com/blog',
+    canonical: 'https://www.guruforu.com/blog',
     types: {
-      'application/rss+xml': 'https://guruforu.com/feed.xml',
+      'application/rss+xml': 'https://www.guruforu.com/feed.xml',
     },
   },
 }
@@ -80,7 +80,7 @@ export default async function BlogListing() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'GuruForU',
-    url: 'https://guruforu.com',
+    url: 'https://www.guruforu.com',
   }
 
   // Generate JSON-LD structured data for Blog schema (minimized)
@@ -88,7 +88,7 @@ export default async function BlogListing() {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     name: 'GuruForU Blog',
-    url: 'https://guruforu.com/blog',
+    url: 'https://www.guruforu.com/blog',
     publisher: {
       '@type': 'Organization',
       name: 'GuruForU',
@@ -96,7 +96,7 @@ export default async function BlogListing() {
     blogPost: blogs.map((blog) => ({
       '@type': 'BlogPosting',
       headline: blog.title,
-      url: `https://guruforu.com/blog/${blog.categorySlug}/${blog.slug}`,
+      url: `https://www.guruforu.com/blog/${blog.categorySlug}/${blog.slug}`,
       datePublished: blog.meta.publishedDate,
     })),
   }
@@ -110,13 +110,13 @@ export default async function BlogListing() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://guruforu.com',
+        item: 'https://www.guruforu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Blog',
-        item: 'https://guruforu.com/blog',
+        item: 'https://www.guruforu.com/blog',
       },
     ],
   }

@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     openGraph: {
       title: `${category.name} | GuruForU Blog`,
       description: `Explore ${category.count} ${category.count === 1 ? 'article' : 'articles'} in ${category.name} category. Expert insights on child education and learning.`,
-      url: `https://guruforu.com/blog/${categorySlug}`,
+      url: `https://www.guruforu.com/blog/${categorySlug}`,
       siteName: 'GuruForU',
       type: 'website',
       images: [
@@ -72,7 +72,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       images: ['/guruforu-ai-education-logo-dark.png'],
     },
     alternates: {
-      canonical: `https://guruforu.com/blog/${categorySlug}`,
+      canonical: `https://www.guruforu.com/blog/${categorySlug}`,
     },
   }
 }
@@ -106,7 +106,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'GuruForU',
-    url: 'https://guruforu.com',
+    url: 'https://www.guruforu.com',
   }
 
   // Generate JSON-LD structured data for CollectionPage (minimized)
@@ -114,7 +114,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: `${category.name} | GuruForU Blog`,
-    url: `https://guruforu.com/blog/${categorySlug}`,
+    url: `https://www.guruforu.com/blog/${categorySlug}`,
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: category.count,
@@ -124,7 +124,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         item: {
           '@type': 'BlogPosting',
           headline: blog.title,
-          url: `https://guruforu.com/blog/${categorySlug}/${blog.slug}`,
+          url: `https://www.guruforu.com/blog/${categorySlug}/${blog.slug}`,
         },
       })),
     },
@@ -139,19 +139,19 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://guruforu.com',
+        item: 'https://www.guruforu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Blog',
-        item: 'https://guruforu.com/blog',
+        item: 'https://www.guruforu.com/blog',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: category.name,
-        item: `https://guruforu.com/blog/${categorySlug}`,
+        item: `https://www.guruforu.com/blog/${categorySlug}`,
       },
     ],
   }

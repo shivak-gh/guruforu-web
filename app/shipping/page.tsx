@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Shipping Policy | GuruForU',
     description: 'Learn about GuruForU digital service delivery and access timelines for online classes.',
-    url: 'https://guruforu.com/shipping',
+    url: 'https://www.guruforu.com/shipping',
     siteName: 'GuruForU',
     type: 'website',
     locale: 'en_US',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     site: '@guruforu',
   },
   alternates: {
-    canonical: 'https://guruforu.com/shipping',
+    canonical: 'https://www.guruforu.com/shipping',
   },
 }
 

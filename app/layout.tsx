@@ -5,7 +5,7 @@ import Analytics from './components/Analytics'
 import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://guruforu.com'),
+  metadataBase: new URL('https://www.guruforu.com'),
   title: 'GuruForU | Best Online Classes with AI-Powered Student Progress Tracker',
   description: 'Find the best online classes for your child with AI-powered personalized learning. Get comprehensive student progress tracking and mastery reports that show exactly how your child is advancing. Expert online tutors with AI-driven insights.',
   viewport: {
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'GuruForU - Best Online Classes with AI Student Progress Tracker',
     description: 'Premium online tuitions powered by AI. Get personalized learning with AI mastery tracking and expert online tutors. Comprehensive student progress reports for parents.',
-    url: 'https://guruforu.com',
+    url: 'https://www.guruforu.com',
     siteName: 'GuruForU',
     images: [
       {
@@ -72,9 +72,9 @@ export const metadata: Metadata = {
     site: '@guruforu',
   },
   alternates: {
-    canonical: 'https://guruforu.com',
+    canonical: 'https://www.guruforu.com',
     types: {
-      'application/rss+xml': 'https://guruforu.com/feed.xml',
+      'application/rss+xml': 'https://www.guruforu.com/feed.xml',
     },
   },
 }

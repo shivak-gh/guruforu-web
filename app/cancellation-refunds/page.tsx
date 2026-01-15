@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Cancellation and Refunds | GuruForU',
     description: 'Learn about GuruForU refund eligibility, processing times, and subscription cancellation policies.',
-    url: 'https://guruforu.com/cancellation-refunds',
+    url: 'https://www.guruforu.com/cancellation-refunds',
     siteName: 'GuruForU',
     type: 'website',
     locale: 'en_US',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     site: '@guruforu',
   },
   alternates: {
-    canonical: 'https://guruforu.com/cancellation-refunds',
+    canonical: 'https://www.guruforu.com/cancellation-refunds',
   },
 }
 

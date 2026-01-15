@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact Us | GuruForU - Get in Touch',
     description: 'Contact GuruForU for questions about online classes, AI-powered learning, or student progress tracking.',
-    url: 'https://guruforu.com/contact',
+    url: 'https://www.guruforu.com/contact',
     siteName: 'GuruForU',
     images: [
       {
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     images: ['/guruforu-ai-education-logo-dark.png'],
   },
   alternates: {
-    canonical: 'https://guruforu.com/contact',
+    canonical: 'https://www.guruforu.com/contact',
   },
 }
 

@@ -34,7 +34,7 @@
 #### 1. **Submit to Search Engines**
 ```bash
 # Google Search Console
-- Submit sitemap: https://guruforu.com/sitemap.xml
+- Submit sitemap: https://www.guruforu.com/sitemap.xml
 - Request indexing for key pages
 - Monitor search performance
 
@@ -132,10 +132,10 @@
 
 ## 🔗 Important Links
 
-- **Sitemap**: https://guruforu.com/sitemap.xml
-- **RSS Feed**: https://guruforu.com/feed.xml
-- **Robots.txt**: https://guruforu.com/robots.txt
-- **Blog**: https://guruforu.com/blog
+- **Sitemap**: https://www.guruforu.com/sitemap.xml
+- **RSS Feed**: https://www.guruforu.com/feed.xml
+- **Robots.txt**: https://www.guruforu.com/robots.txt
+- **Blog**: https://www.guruforu.com/blog
 
 ## 🚀 Quick Wins Checklist
 

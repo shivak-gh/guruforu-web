@@ -42,7 +42,7 @@ The server will start at `http://localhost:3000`
 - Visit: `http://localhost:3000/`
 - Right-click → "View Page Source"
 - Search for `og:image`
-- ✅ Should see: `<meta property="og:image" content="https://guruforu.com/guruforu-ai-education-logo-dark.png" />`
+- ✅ Should see: `<meta property="og:image" content="https://www.guruforu.com/guruforu-ai-education-logo-dark.png" />`
 
 #### Test with Facebook Debugger
 1. Go to: https://developers.facebook.com/tools/debug/

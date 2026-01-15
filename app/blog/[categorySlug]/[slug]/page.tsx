@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     openGraph: {
       title: optimizedTitle,
       description: optimizedDescription,
-      url: `https://guruforu.com/blog/${categorySlug}/${slug}`,
+      url: `https://www.guruforu.com/blog/${categorySlug}/${slug}`,
       siteName: 'GuruForU',
       type: 'article',
       publishedTime: blog.meta.publishedDate,
@@ -92,7 +92,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       site: '@guruforu',
     },
     alternates: {
-      canonical: `https://guruforu.com/blog/${categorySlug}/${slug}`,
+      canonical: `https://www.guruforu.com/blog/${categorySlug}/${slug}`,
     },
   }
 }
@@ -204,7 +204,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'GuruForU',
-    url: 'https://guruforu.com',
+    url: 'https://www.guruforu.com',
   }
 
   // Generate JSON-LD structured data for BlogPosting schema (minimized for better text-to-HTML ratio)
@@ -222,7 +222,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
       '@type': 'Organization',
       name: 'GuruForU',
     },
-    url: `https://guruforu.com/blog/${categorySlug}/${slug}`,
+    url: `https://www.guruforu.com/blog/${categorySlug}/${slug}`,
   }
 
   // Breadcrumb structured data
@@ -234,25 +234,25 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://guruforu.com',
+        item: 'https://www.guruforu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Blog',
-        item: 'https://guruforu.com/blog',
+        item: 'https://www.guruforu.com/blog',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: blog.category,
-        item: `https://guruforu.com/blog/${categorySlug}`,
+        item: `https://www.guruforu.com/blog/${categorySlug}`,
       },
       {
         '@type': 'ListItem',
         position: 4,
         name: blog.title,
-        item: `https://guruforu.com/blog/${categorySlug}/${slug}`,
+        item: `https://www.guruforu.com/blog/${categorySlug}/${slug}`,
       },
     ],
   }

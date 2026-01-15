@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Privacy Policy | GuruForU',
     description: 'Learn how GuruForU protects your data and ensures secure online learning experiences.',
-    url: 'https://guruforu.com/privacy',
+    url: 'https://www.guruforu.com/privacy',
     siteName: 'GuruForU',
     type: 'website',
     locale: 'en_US',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     site: '@guruforu',
   },
   alternates: {
-    canonical: 'https://guruforu.com/privacy',
+    canonical: 'https://www.guruforu.com/privacy',
   },
 }
 
