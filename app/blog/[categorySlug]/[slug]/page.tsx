@@ -4,10 +4,13 @@ import Image from 'next/image'
 import { getBlogBySlug, getAllBlogs } from '../../lib/getBlogs'
 import styles from './page.module.css'
 import Script from 'next/script'
+import NavMenu from '../../../components/NavMenu'
 
 // Optimize RSC caching to reduce duplicate requests
-export const revalidate = 3600 // Revalidate every hour
-export const dynamic = 'force-static' // Force static generation
+// Disable caching during development/stabilization
+// Set DISABLE_CACHE=false in environment to enable caching (revalidate=3600, dynamic='force-static')
+export const revalidate = 0 // Disabled for stability - set to 3600 when ready
+export const dynamic = 'force-dynamic' // Force dynamic rendering - set to 'force-static' when ready
 
 export async function generateStaticParams() {
   const blogs = await getAllBlogs()
@@ -274,26 +277,13 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
       />
+      <NavMenu />
       <div className={styles.container}>
         <div className={styles.background}>
           <div className={styles.gradient}></div>
         </div>
 
         <div className={styles.content}>
-        <div className={styles.header}>
-          <Link href="/" className={styles.homeLink}>
-            <Image 
-              src="/guruforu-ai-education-logo.png" 
-              alt="GuruForU Logo" 
-              width={120}
-              height={60}
-              className={styles.logoImage}
-              priority
-            />
-          </Link>
-          <Link href={`/blog/${categorySlug}`} className={styles.backLink} prefetch={false}>← Back to {blog.category}</Link>
-        </div>
-
         <article className={styles.article}>
           <nav className={styles.breadcrumb} aria-label="Breadcrumb">
             <Link href="/" className={styles.breadcrumbLink} prefetch={false}>Home</Link>
@@ -371,9 +361,9 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
 
         <footer className={styles.footer}>
           <nav className={styles.footerLinks}>
-            <Link href={`/blog/${categorySlug}`} className={styles.footerLink} prefetch={false}>{blog.category}</Link>
-            <Link href="/blog" className={styles.footerLink} prefetch={false}>All Blogs</Link>
             <Link href="/" className={styles.footerLink} prefetch={false}>Home</Link>
+            <Link href="/blog" className={styles.footerLink} prefetch={false}>Blog</Link>
+            <Link href={`/blog/${categorySlug}`} className={styles.footerLink} prefetch={false}>{blog.category}</Link>
             <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact Us</Link>
             <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>
             <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms</Link>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Script from 'next/script'
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import NavMenu from './components/NavMenu'
 
 export const metadata: Metadata = {
   title: 'GuruForU - AI-Powered Online Classes & Student Progress Tracker',
@@ -112,6 +113,7 @@ export default function ComingSoon() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+      <NavMenu />
       <div className={styles.container}>
       
       

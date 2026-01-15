@@ -4,6 +4,7 @@
   flex-direction: column;
   position: relative;
   overflow-x: hidden;
+  padding-top: 4.5rem;
 }
 
 .background {
@@ -45,6 +46,7 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem;
+  padding-top: 1.5rem;
 }
 
 .header {
@@ -74,6 +76,7 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   color: #333;
+  margin-top: 2rem;
 }
 
 .title {
@@ -289,8 +292,13 @@
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding-top: 4rem;
+  }
+
   .content {
     padding: 1.5rem;
+    padding-top: 1.5rem;
   }
 
   .pageContent {
@@ -317,6 +325,14 @@
 }
 
 @media (max-width: 480px) {
+  .container {
+    padding-top: 3.5rem;
+  }
+
+  .content {
+    padding-top: 1rem;
+  }
+
   .pageContent {
     padding: 1.5rem;
   }

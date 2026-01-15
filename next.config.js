@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
+// Cache control flag - set DISABLE_CACHE=true to disable caching, or leave unset/false to enable
+// Currently disabled for stability - set DISABLE_CACHE=false in environment to enable caching
+const DISABLE_CACHE = process.env.DISABLE_CACHE !== 'false' // Default to true (disabled) unless explicitly set to false
+
 const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
@@ -21,10 +25,14 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '2mb',
     },
+    // Disable ISR memory cache when caching is disabled
+    ...(DISABLE_CACHE && {
+      isrMemoryCacheSize: 0,
+    }),
   },
   // Allow external scripts for reCAPTCHA
   async headers() {
-    return [
+    const headers = [
       {
         // Security headers for all pages
         source: '/:path*',
@@ -55,102 +63,185 @@ const nextConfig = {
           },
         ],
       },
-      {
-        // HTML pages: CDN cache for 1 hour, browser cache for 5 minutes, stale-while-revalidate
-        // Note: Next.js handles HTML caching via revalidate, but we add headers for CDN/browser
-        source: '/',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
-          },
-        ],
-      },
-      {
-        source: '/blog/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
-          },
-        ],
-      },
-      {
-        source: '/contact',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
-          },
-        ],
-      },
-      {
-        source: '/terms',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
-          },
-        ],
-      },
-      {
-        source: '/privacy',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
-          },
-        ],
-      },
-      {
-        source: '/shipping',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
-          },
-        ],
-      },
-      {
-        source: '/cancellation-refunds',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
-          },
-        ],
-      },
-      {
-        // Static assets: Long-term caching (1 year, immutable)
-        source: '/:path*\\.(jpg|jpeg|png|gif|ico|svg|webp|avif)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        // CSS/JS bundles: Long-term caching (1 year, immutable)
-        source: '/:path*\\.(css|js)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        // Next.js static files (_next/static): Long-term caching
-        source: '/_next/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
     ]
+
+    // Add cache headers only if caching is enabled
+    if (!DISABLE_CACHE) {
+      headers.push(
+        {
+          // HTML pages: CDN cache for 1 hour, browser cache for 5 minutes, stale-while-revalidate
+          source: '/',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
+            },
+          ],
+        },
+        {
+          source: '/blog/:path*',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
+            },
+          ],
+        },
+        {
+          source: '/contact',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
+            },
+          ],
+        },
+        {
+          source: '/terms',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
+            },
+          ],
+        },
+        {
+          source: '/privacy',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
+            },
+          ],
+        },
+        {
+          source: '/shipping',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
+            },
+          ],
+        },
+        {
+          source: '/cancellation-refunds',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
+            },
+          ],
+        },
+        {
+          // Static assets: Long-term caching (1 year, immutable)
+          source: '/:path*\\.(jpg|jpeg|png|gif|ico|svg|webp|avif)',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'public, max-age=31536000, immutable',
+            },
+          ],
+        },
+        {
+          // CSS/JS bundles: Long-term caching (1 year, immutable)
+          source: '/:path*\\.(css|js)',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'public, max-age=31536000, immutable',
+            },
+          ],
+        },
+        {
+          // Next.js static files (_next/static): Long-term caching
+          source: '/_next/static/:path*',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'public, max-age=31536000, immutable',
+            },
+          ],
+        }
+      )
+    } else {
+      // Disable caching - no-cache, no-store, must-revalidate for all routes
+      const noCacheHeaders = [
+        {
+          key: 'Cache-Control',
+          value: 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
+        },
+        {
+          key: 'Pragma',
+          value: 'no-cache',
+        },
+        {
+          key: 'Expires',
+          value: '0',
+        },
+      ]
+
+      // Apply no-cache to all HTML pages
+      headers.push(
+        {
+          source: '/',
+          headers: noCacheHeaders,
+        },
+        {
+          source: '/blog/:path*',
+          headers: noCacheHeaders,
+        },
+        {
+          source: '/contact',
+          headers: noCacheHeaders,
+        },
+        {
+          source: '/terms',
+          headers: noCacheHeaders,
+        },
+        {
+          source: '/privacy',
+          headers: noCacheHeaders,
+        },
+        {
+          source: '/shipping',
+          headers: noCacheHeaders,
+        },
+        {
+          source: '/cancellation-refunds',
+          headers: noCacheHeaders,
+        },
+        {
+          // Also disable caching for static assets when cache is disabled
+          source: '/:path*\\.(jpg|jpeg|png|gif|ico|svg|webp|avif)',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'no-cache, no-store, must-revalidate, max-age=0',
+            },
+          ],
+        },
+        {
+          source: '/:path*\\.(css|js)',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'no-cache, no-store, must-revalidate, max-age=0',
+            },
+          ],
+        },
+        {
+          source: '/_next/static/:path*',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'no-cache, no-store, must-revalidate, max-age=0',
+            },
+          ],
+        }
+      )
+    }
+
+    return headers
   },
 }
 

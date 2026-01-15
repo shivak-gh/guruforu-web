@@ -2,12 +2,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getAllBlogs } from './lib/getBlogs'
 import BlogCategoriesWrapper from '../components/BlogCategoriesWrapper'
+import NavMenu from '../components/NavMenu'
 import styles from './page.module.css'
 import Script from 'next/script'
 
 // Optimize RSC caching to reduce duplicate requests
-export const revalidate = 3600 // Revalidate every hour
-export const dynamic = 'force-static' // Force static generation
+// Disable caching during development/stabilization
+// Set DISABLE_CACHE=false in environment to enable caching (revalidate=3600, dynamic='force-static')
+export const revalidate = 0 // Disabled for stability - set to 3600 when ready
+export const dynamic = 'force-dynamic' // Force dynamic rendering - set to 'force-static' when ready
 
 export const metadata = {
   title: 'Education Blog | GuruForU Learning Insights',
@@ -138,25 +141,13 @@ export default async function BlogListing() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
       />
+      <NavMenu />
       <div className={styles.container}>
         <div className={styles.background}>
           <div className={styles.gradient}></div>
         </div>
 
         <div className={styles.content}>
-        <div className={styles.header}>
-          <Link href="/" className={styles.homeLink}>
-            <Image 
-              src="/guruforu-ai-education-logo.png" 
-              alt="GuruForU Logo" 
-              width={120}
-              height={60}
-              className={styles.logoImage}
-              priority
-            />
-          </Link>
-        </div>
-
         <div className={styles.blogListing}>
           <header className={styles.pageHeader}>
             <h1 className={styles.pageTitle}>Our Blog</h1>

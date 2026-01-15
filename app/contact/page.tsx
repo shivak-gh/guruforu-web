@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styles from './page.module.css'
 import Link from 'next/link'
+import NavMenu from '../components/NavMenu'
 
 declare global {
   interface Window {
@@ -258,18 +259,14 @@ export default function ContactUs() {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.background}>
-        <div className={styles.gradient}></div>
-      </div>
-
-      <div className={styles.content}>
-        <div className={styles.header}>
-          <Link href="/" className={styles.homeLink}>
-            <img src="/guru-logo.png" alt="GuruForU Logo" className={styles.logoImage} />
-          </Link>
+    <>
+      <NavMenu />
+      <div className={styles.container}>
+        <div className={styles.background}>
+          <div className={styles.gradient}></div>
         </div>
 
+        <div className={styles.content}>
         <div className={styles.pageContent}>
           <h1 className={styles.title}>Contact Us</h1>
           <p className={styles.subtitle}>
@@ -420,5 +417,6 @@ export default function ContactUs() {
         </footer>
       </div>
     </div>
+    </>
   )
 }

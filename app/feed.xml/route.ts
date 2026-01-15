@@ -1,5 +1,8 @@
 import { getAllBlogs } from '../blog/lib/getBlogs'
 
+// Disable caching during development/stabilization - set DISABLE_CACHE=false to enable
+const DISABLE_CACHE = process.env.DISABLE_CACHE !== 'false' // Default to true (disabled) unless explicitly set to false
+
 export async function GET() {
   const blogs = await getAllBlogs()
   const baseUrl = 'https://www.guruforu.com'
@@ -39,7 +42,13 @@ export async function GET() {
   return new Response(rss, {
     headers: {
       'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+      'Cache-Control': DISABLE_CACHE 
+        ? 'no-cache, no-store, must-revalidate, max-age=0'
+        : 'public, s-maxage=3600, stale-while-revalidate=86400',
+      ...(DISABLE_CACHE && {
+        'Pragma': 'no-cache',
+        'Expires': '0',
+      }),
     },
   })
 }

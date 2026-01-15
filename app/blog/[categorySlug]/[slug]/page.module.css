@@ -4,6 +4,19 @@
   flex-direction: column;
   position: relative;
   overflow-x: hidden;
+  padding-top: 4.5rem; /* Desktop: 72px */
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-top: 4rem; /* Tablet: 64px */
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-top: 3.5rem; /* Mobile: 56px */
+  }
 }
 
 .background {
@@ -45,6 +58,21 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  padding-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 1.5rem;
+    padding-top: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 1.5rem;
+    padding-top: 1rem;
+  }
 }
 
 .header {
