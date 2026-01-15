@@ -95,21 +95,36 @@ export default function RootLayout({
         {/* Google Consent Mode v2 - Initialize with denied by default */}
         <Script id="google-consent-mode" strategy="beforeInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            
-            // Check for existing consent before setting default
-            const existingConsent = typeof window !== 'undefined' ? localStorage.getItem('cookie-consent') : null;
-            const analyticsStorage = existingConsent === 'accepted' ? 'granted' : 'denied';
-            
-            // Set default consent state (required for Consent Mode v2)
-            gtag('consent', 'default', {
-              'analytics_storage': analyticsStorage,
-              'ad_storage': 'denied',
-              'ad_user_data': 'denied',
-              'ad_personalization': 'denied',
-              'wait_for_update': existingConsent ? 0 : 500,
-            });
+            (function() {
+              try {
+                if (typeof window === 'undefined') return;
+                
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                
+                // Check for existing consent before setting default
+                let existingConsent = null;
+                try {
+                  existingConsent = localStorage.getItem('cookie-consent');
+                } catch (e) {
+                  // localStorage might not be available
+                  console.warn('localStorage not available:', e);
+                }
+                
+                const analyticsStorage = existingConsent === 'accepted' ? 'granted' : 'denied';
+                
+                // Set default consent state (required for Consent Mode v2)
+                gtag('consent', 'default', {
+                  'analytics_storage': analyticsStorage,
+                  'ad_storage': 'denied',
+                  'ad_user_data': 'denied',
+                  'ad_personalization': 'denied',
+                  'wait_for_update': existingConsent ? 0 : 500,
+                });
+              } catch (error) {
+                console.error('Error initializing consent mode:', error);
+              }
+            })();
           `}
         </Script>
         {/* Google tag (gtag.js) - Load but respect consent */}
@@ -121,10 +136,20 @@ export default function RootLayout({
           {`
             (function() {
               try {
+                if (typeof window === 'undefined' || typeof gtag === 'undefined') {
+                  return;
+                }
+                
                 gtag('js', new Date());
                 
-                // Get current consent state
-                const consent = typeof window !== 'undefined' ? localStorage.getItem('cookie-consent') : null;
+                // Get current consent state with error handling
+                let consent = null;
+                try {
+                  consent = localStorage.getItem('cookie-consent');
+                } catch (e) {
+                  console.warn('localStorage not available:', e);
+                }
+                
                 const analyticsStorage = consent === 'accepted' ? 'granted' : 'denied';
                 
                 // Configure GA with consent parameters included (required for Consent Mode v2)
@@ -140,27 +165,31 @@ export default function RootLayout({
                 });
                 
                 // Send initial pageview if consent is granted
-                if (consent === 'accepted') {
-                  gtag('consent', 'update', {
-                    'analytics_storage': 'granted',
-                    'ad_storage': 'denied',
-                    'ad_user_data': 'denied',
-                    'ad_personalization': 'denied',
-                  });
-                  
-                  // Send initial pageview using config (more reliable)
-                  gtag('config', 'G-ZGXL6MTDYY', {
-                    'page_path': window.location.pathname + window.location.search,
-                    'page_location': window.location.href,
-                    'analytics_storage': 'granted',
-                    'ad_storage': 'denied',
-                    'ad_user_data': 'denied',
-                    'ad_personalization': 'denied',
-                  });
+                if (consent === 'accepted' && window.location) {
+                  try {
+                    gtag('consent', 'update', {
+                      'analytics_storage': 'granted',
+                      'ad_storage': 'denied',
+                      'ad_user_data': 'denied',
+                      'ad_personalization': 'denied',
+                    });
+                    
+                    // Send initial pageview using config (more reliable)
+                    gtag('config', 'G-ZGXL6MTDYY', {
+                      'page_path': window.location.pathname + window.location.search,
+                      'page_location': window.location.href,
+                      'analytics_storage': 'granted',
+                      'ad_storage': 'denied',
+                      'ad_user_data': 'denied',
+                      'ad_personalization': 'denied',
+                    });
+                  } catch (e) {
+                    console.error('Error sending initial pageview:', e);
+                  }
                 }
                 
                 // Debug logging (only in development)
-                if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+                if (window.location && window.location.hostname === 'localhost') {
                   console.log('Google Analytics initialized with consent:', analyticsStorage);
                 }
               } catch (error) {
