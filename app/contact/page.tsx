@@ -309,8 +309,8 @@ export default function ContactUs() {
                 <p className={styles.infoText}>We typically respond within 24-48 hours</p>
               </div>
               <div className={styles.infoItem}>
-                <h3 className={styles.infoTitle}>Office Hours</h3>
-                <p className={styles.infoText}>Monday - Friday: 9:00 AM - 6:00 PM (IST)</p>
+                <h3 className={styles.infoTitle}>Support Availability</h3>
+                <p className={styles.infoText}>We&apos;re here to help! Reach out anytime and we&apos;ll get back to you as soon as possible.</p>
               </div>
             </div>
 
