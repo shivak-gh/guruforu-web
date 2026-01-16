@@ -42,6 +42,8 @@ export const metadata: Metadata = {
     title: 'Contact Us | GuruForU',
     description: 'Contact GuruForU for questions about online classes, AI-powered learning, or student progress tracking.',
     images: ['/guruforu-ai-education-logo-dark.png'],
+    creator: '@guruforu_official',
+    site: '@guruforu_official',
   },
   alternates: {
     canonical: 'https://www.guruforu.com/contact',

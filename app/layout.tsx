@@ -15,7 +15,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.guruforu.com'),
   title: 'GuruForU | Best Online Classes with AI-Powered Student Progress Tracker',
-  description: 'Find the best online classes for your child with AI-powered personalized learning. Get comprehensive student progress tracking and mastery reports that show exactly how your child is advancing. Expert online tutors with AI-driven insights.',
+  description: 'Best online classes with AI-powered personalized learning. Expert tutors, real-time student progress tracking, and mastery reports for your child\'s success.',
   keywords: [
     'Best Online Classes',
     'Best Online Classes for Students',
@@ -70,8 +70,8 @@ export const metadata: Metadata = {
     title: 'GuruForU - Best Online Classes with AI Student Progress Tracker',
     description: 'Premium online tuitions powered by AI. Get personalized learning with AI mastery tracking and expert online tutors.',
     images: ['/guruforu-ai-education-logo-dark.png'],
-    creator: '@guruforu',
-    site: '@guruforu',
+    creator: '@guruforu_official',
+    site: '@guruforu_official',
   },
   alternates: {
     canonical: 'https://www.guruforu.com',
@@ -94,6 +94,36 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.google.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google.com" />
+        {/* Structured Data (JSON-LD) for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "EducationalService",
+              "name": "GuruForU",
+              "description": "Premium Online Tuitions enhanced with AI-powered personalized learning and real-time mastery reports.",
+              "provider": {
+                "@type": "Organization",
+                "name": "GuruForU",
+                "url": "https://www.guruforu.com"
+              },
+              "serviceType": "Online Tutoring",
+              "areaServed": "Global",
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Academic Courses",
+                "itemListElement": [
+                  {
+                    "@type": "Course",
+                    "name": "AI-Powered Personalized Learning",
+                    "description": "Tailored learning paths for students using advanced AI tracking."
+                  }
+                ]
+              }
+            })
+          }}
+        />
         {/* Google Consent Mode v2 - Initialize with denied by default */}
         <Script id="google-consent-mode" strategy="beforeInteractive">
           {`

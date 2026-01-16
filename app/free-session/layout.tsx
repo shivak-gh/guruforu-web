@@ -46,6 +46,8 @@ export const metadata: Metadata = {
     title: 'Free Online Tuition Session & Student Assessment | GuruForU',
     description: 'Get a free 1-on-1 educational counseling session. Our AI diagnostics identify learning gaps.',
     images: ['/guruforu-ai-education-logo-dark.png'],
+    creator: '@guruforu_official',
+    site: '@guruforu_official',
   },
   alternates: {
     canonical: 'https://www.guruforu.com/free-session',

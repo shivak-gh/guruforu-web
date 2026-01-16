@@ -2,6 +2,7 @@ import styles from './page.module.css'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | GuruForU',
@@ -32,8 +33,8 @@ export const metadata: Metadata = {
     title: 'Privacy Policy | GuruForU',
     description: 'Learn how GuruForU protects your data and ensures secure online learning.',
     images: ['/guruforu-ai-education-logo-dark.png'],
-    creator: '@guruforu',
-    site: '@guruforu',
+    creator: '@guruforu_official',
+    site: '@guruforu_official',
   },
   alternates: {
     canonical: 'https://www.guruforu.com/privacy',
@@ -41,7 +42,29 @@ export const metadata: Metadata = {
 }
 
 export default function PrivacyPolicy() {
+  // WebPage structured data for SEO
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    'name': 'Privacy Policy | GuruForU',
+    'description': 'GuruForU privacy policy. Learn how we protect your data, handle student information, and ensure secure online learning experiences.',
+    'url': 'https://www.guruforu.com/privacy',
+    'dateModified': '2026-01-01',
+    'inLanguage': 'en-US',
+    'isPartOf': {
+      '@type': 'WebSite',
+      'name': 'GuruForU',
+      'url': 'https://www.guruforu.com'
+    }
+  }
+
   return (
+    <>
+      <Script
+        id="privacy-webpage-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
     <div className={styles.container}>
       <div className={styles.background}>
         <div className={styles.gradient}></div>
@@ -175,5 +198,6 @@ export default function PrivacyPolicy() {
         </footer>
       </div>
     </div>
+    </>
   )
 }

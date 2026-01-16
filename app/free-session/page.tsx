@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import styles from './page.module.css'
 import Link from 'next/link'
+import Script from 'next/script'
 import NavMenu from '../components/NavMenu'
 
 declare global {
@@ -302,8 +303,35 @@ Learning Challenges: ${data.details || 'Not specified'}`;
     }
   }
 
+  // Service structured data for SEO
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'name': 'Free Online Tuition Session & Student Assessment',
+    'description': 'Get a free 1-on-1 educational session. Our AI diagnostics identify learning gaps in any subject to help your child succeed.',
+    'provider': {
+      '@type': 'EducationalOrganization',
+      'name': 'GuruForU',
+      'url': 'https://www.guruforu.com'
+    },
+    'serviceType': 'Educational Consultation',
+    'areaServed': 'Global',
+    'offers': {
+      '@type': 'Offer',
+      'price': '0',
+      'priceCurrency': 'USD',
+      'availability': 'https://schema.org/InStock',
+      'description': 'Free consultation session with AI-powered learning assessment'
+    }
+  }
+
   return (
     <>
+      <Script
+        id="free-session-service-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <NavMenu />
       <div className={styles.container}>
         <div className={styles.background}>

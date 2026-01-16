@@ -49,8 +49,8 @@ export const metadata: Metadata = {
     title: 'GuruForU - AI-Powered Online Classes & Student Progress Tracker',
     description: 'Best online classes for children with AI-powered personalized learning. Expert tutors, real-time progress tracking.',
     images: ['/guruforu-ai-education-logo-dark.png'],
-    creator: '@guruforu',
-    site: '@guruforu',
+    creator: '@guruforu_official',
+    site: '@guruforu_official',
   },
   alternates: {
     canonical: 'https://www.guruforu.com',
@@ -58,6 +58,31 @@ export const metadata: Metadata = {
 }
 
 export default function ComingSoon() {
+  // Organization Schema for SEO
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    'name': 'GuruForU',
+    'url': 'https://www.guruforu.com',
+    'logo': 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+    'description': 'Premium Online Tuitions enhanced with AI-powered personalized learning and real-time mastery reports.',
+    'sameAs': [
+      'https://twitter.com/guruforu_official',
+      'https://www.instagram.com/guruforu_official/'
+    ],
+    'contactPoint': {
+      '@type': 'ContactPoint',
+      'contactType': 'Customer Service',
+      'email': 'support@guruforu.com',
+      'availableLanguage': 'English'
+    },
+    'address': {
+      '@type': 'PostalAddress',
+      'addressCountry': 'Global'
+    },
+    'areaServed': 'Global'
+  }
+
   // FAQ Schema for SEO (minimized for better text-to-HTML ratio)
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -108,6 +133,11 @@ export default function ComingSoon() {
 
   return (
     <>
+      <Script
+        id="organization-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
       <Script
         id="faq-schema"
         type="application/ld+json"

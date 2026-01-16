@@ -2,6 +2,7 @@ import styles from './page.module.css'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: 'Terms and Conditions | GuruForU',
@@ -32,8 +33,8 @@ export const metadata: Metadata = {
     title: 'Terms and Conditions | GuruForU',
     description: 'Read GuruForU terms and conditions and service agreement.',
     images: ['/guruforu-ai-education-logo-dark.png'],
-    creator: '@guruforu',
-    site: '@guruforu',
+    creator: '@guruforu_official',
+    site: '@guruforu_official',
   },
   alternates: {
     canonical: 'https://www.guruforu.com/terms',
@@ -41,7 +42,29 @@ export const metadata: Metadata = {
 }
 
 export default function TermsAndConditions() {
+  // WebPage structured data for SEO
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    'name': 'Terms and Conditions | GuruForU',
+    'description': 'Read GuruForU terms and conditions. Learn about our service agreement, user responsibilities, and platform policies for online education services.',
+    'url': 'https://www.guruforu.com/terms',
+    'dateModified': '2026-01-01',
+    'inLanguage': 'en-US',
+    'isPartOf': {
+      '@type': 'WebSite',
+      'name': 'GuruForU',
+      'url': 'https://www.guruforu.com'
+    }
+  }
+
   return (
+    <>
+      <Script
+        id="terms-webpage-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
     <div className={styles.container}>
       <div className={styles.background}>
         <div className={styles.gradient}></div>
@@ -151,5 +174,6 @@ export default function TermsAndConditions() {
         </footer>
       </div>
     </div>
+    </>
   )
 }

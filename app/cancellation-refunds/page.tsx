@@ -2,6 +2,7 @@ import styles from './page.module.css'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: 'Cancellation and Refunds | GuruForU',
@@ -32,8 +33,8 @@ export const metadata: Metadata = {
     title: 'Cancellation and Refunds | GuruForU',
     description: 'Learn about GuruForU refund eligibility and cancellation policies.',
     images: ['/guruforu-ai-education-logo-dark.png'],
-    creator: '@guruforu',
-    site: '@guruforu',
+    creator: '@guruforu_official',
+    site: '@guruforu_official',
   },
   alternates: {
     canonical: 'https://www.guruforu.com/cancellation-refunds',
@@ -41,7 +42,29 @@ export const metadata: Metadata = {
 }
 
 export default function CancellationAndRefunds() {
+  // WebPage structured data for SEO
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    'name': 'Cancellation and Refunds | GuruForU',
+    'description': 'GuruForU cancellation and refund policy. Learn about refund eligibility, processing times, and how to cancel online tutoring subscriptions.',
+    'url': 'https://www.guruforu.com/cancellation-refunds',
+    'dateModified': '2026-01-01',
+    'inLanguage': 'en-US',
+    'isPartOf': {
+      '@type': 'WebSite',
+      'name': 'GuruForU',
+      'url': 'https://www.guruforu.com'
+    }
+  }
+
   return (
+    <>
+      <Script
+        id="cancellation-refunds-webpage-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
     <div className={styles.container}>
       <div className={styles.background}>
         <div className={styles.gradient}></div>
@@ -198,5 +221,6 @@ export default function CancellationAndRefunds() {
         </footer>
       </div>
     </div>
+    </>
   )
 }

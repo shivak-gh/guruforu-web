@@ -84,6 +84,10 @@ export default async function BlogListing() {
     '@type': 'Organization',
     name: 'GuruForU',
     url: 'https://www.guruforu.com',
+    sameAs: [
+      'https://twitter.com/guruforu_official',
+      'https://www.instagram.com/guruforu_official/'
+    ],
   }
 
   // Generate JSON-LD structured data for Blog schema (minimized)

@@ -2,6 +2,7 @@ import styles from './page.module.css'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Script from 'next/script'
 import NavMenu from '../components/NavMenu'
 import EarlyAccessForm from '../components/EarlyAccessForm'
 
@@ -47,6 +48,8 @@ export const metadata: Metadata = {
     title: 'Early Access - GuruForU | Get Notified When We Launch',
     description: 'Join GuruForU early access program. Be the first to experience AI-powered online classes.',
     images: ['/guruforu-ai-education-logo-dark.png'],
+    creator: '@guruforu_official',
+    site: '@guruforu_official',
   },
   alternates: {
     canonical: 'https://www.guruforu.com/early-access',
@@ -54,8 +57,27 @@ export const metadata: Metadata = {
 }
 
 export default function EarlyAccessPage() {
+  // WebPage structured data for SEO
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    'name': 'Early Access - GuruForU',
+    'description': 'Join GuruForU early access program. Be the first to experience AI-powered online classes with personalized learning and student progress tracking.',
+    'url': 'https://www.guruforu.com/early-access',
+    'mainEntity': {
+      '@type': 'Organization',
+      'name': 'GuruForU',
+      'url': 'https://www.guruforu.com'
+    }
+  }
+
   return (
     <>
+      <Script
+        id="early-access-webpage-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
       <NavMenu />
       <div className={styles.container}>
         <div className={styles.background}>

@@ -91,8 +91,8 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       title: blog.title.length > 70 ? `${blog.title.substring(0, 67)}...` : blog.title,
       description: optimizedDescription,
       images: ['/guruforu-ai-education-logo-dark.png'],
-      creator: '@guruforu',
-      site: '@guruforu',
+      creator: '@guruforu_official',
+      site: '@guruforu_official',
     },
     alternates: {
       canonical: `https://www.guruforu.com/blog/${categorySlug}/${slug}`,
@@ -208,6 +208,10 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
     '@type': 'Organization',
     name: 'GuruForU',
     url: 'https://www.guruforu.com',
+    sameAs: [
+      'https://twitter.com/guruforu_official',
+      'https://www.instagram.com/guruforu_official/'
+    ],
   }
 
   // Generate JSON-LD structured data for BlogPosting schema (minimized for better text-to-HTML ratio)

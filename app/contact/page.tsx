@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styles from './page.module.css'
 import Link from 'next/link'
+import Script from 'next/script'
 import NavMenu from '../components/NavMenu'
 
 declare global {
@@ -279,8 +280,33 @@ export default function ContactUs() {
     }
   }
 
+  // ContactPage structured data for SEO
+  const contactPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    'name': 'Contact GuruForU',
+    'description': 'Contact GuruForU for questions about online classes, AI-powered learning, or student progress tracking.',
+    'url': 'https://www.guruforu.com/contact',
+    'mainEntity': {
+      '@type': 'Organization',
+      'name': 'GuruForU',
+      'url': 'https://www.guruforu.com',
+      'contactPoint': {
+        '@type': 'ContactPoint',
+        'contactType': 'Customer Service',
+        'email': 'support@guruforu.com',
+        'availableLanguage': 'English'
+      }
+    }
+  }
+
   return (
     <>
+      <Script
+        id="contact-page-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
       <NavMenu />
       <div className={styles.container}>
         <div className={styles.background}>
