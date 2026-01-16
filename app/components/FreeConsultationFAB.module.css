@@ -18,6 +18,11 @@
   animation: slideUp 0.3s ease;
 }
 
+/* Adjust position when consent banner is visible */
+body.consent-banner-visible .fab {
+  bottom: calc(2rem + 140px); /* Banner height + spacing */
+}
+
 .fab:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
@@ -55,6 +60,11 @@
   .fabIcon {
     font-size: 1.2rem;
   }
+
+  /* Adjust position when consent banner is visible on mobile */
+  body.consent-banner-visible .fab {
+    bottom: calc(1.5rem + 180px); /* Banner height + spacing on mobile */
+  }
 }
 
 @media (max-width: 480px) {
@@ -79,5 +89,10 @@
 
   .fabIcon {
     font-size: 1.5rem;
+  }
+
+  /* Adjust position when consent banner is visible on small mobile */
+  body.consent-banner-visible .fab {
+    bottom: calc(1rem + 200px); /* Banner height + spacing on small mobile */
   }
 }

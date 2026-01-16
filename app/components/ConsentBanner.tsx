@@ -70,6 +70,22 @@ export default function ConsentBanner() {
     }
   }, [])
 
+  // Add/remove body class when banner is shown/hidden
+  useEffect(() => {
+    if (typeof document === 'undefined') return
+
+    if (showBanner && !isLoading) {
+      document.body.classList.add('consent-banner-visible')
+    } else {
+      document.body.classList.remove('consent-banner-visible')
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('consent-banner-visible')
+    }
+  }, [showBanner, isLoading])
+
   const handleAccept = () => {
     try {
       if (typeof window === 'undefined') return

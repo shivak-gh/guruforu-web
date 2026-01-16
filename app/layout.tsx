@@ -1,20 +1,21 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import ConsentBanner from './components/ConsentBanner'
 import Analytics from './components/Analytics'
 import FreeConsultationFAB from './components/FreeConsultationFAB'
 import './globals.css'
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.guruforu.com'),
   title: 'GuruForU | Best Online Classes with AI-Powered Student Progress Tracker',
   description: 'Find the best online classes for your child with AI-powered personalized learning. Get comprehensive student progress tracking and mastery reports that show exactly how your child is advancing. Expert online tutors with AI-driven insights.',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-  },
   keywords: [
     'Best Online Classes',
     'Best Online Classes for Students',
