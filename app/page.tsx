@@ -233,14 +233,14 @@ export default function ComingSoon() {
         </section>
 
         <p className={styles.message}>
-          Join thousands of parents who trust GuruForU for their children&apos;s online education journey.
+          Join thousands of parents who trust GuruForU for their children&apos;s online education journey. Learn more about our <Link href="/blog" className={styles.notifyButton}>educational resources</Link>, <Link href="/free-session" className={styles.notifyButton}>book a free session</Link>, or <Link href="/contact" className={styles.notifyButton}>contact us</Link> for more information.
         </p>
         </main>
       </div>
 
       <footer className={styles.footer}>
         <nav className={styles.footerLinks}>
-          <Link href="/blog" className={styles.footerLink} prefetch={false}>Blog</Link>
+          <Link href="/blog" className={styles.footerLink} prefetch={false}>Education Blog</Link>
           <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact Us</Link>
           <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>
           <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>

@@ -370,13 +370,13 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
 
         <footer className={styles.footer}>
           <nav className={styles.footerLinks}>
-            <Link href="/" className={styles.footerLink} prefetch={false}>Home</Link>
-            <Link href="/blog" className={styles.footerLink} prefetch={false}>Blog</Link>
+            <Link href="/" className={styles.footerLink} prefetch={false}>GuruForU Home</Link>
+            <Link href="/blog" className={styles.footerLink} prefetch={false}>Education Blog</Link>
             <Link href={`/blog/${categorySlug}`} className={styles.footerLink} prefetch={false}>{blog.category}</Link>
             <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact Us</Link>
             <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>
-            <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms</Link>
-            <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy</Link>
+            <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>
+            <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy Policy</Link>
           </nav>
           <p className={styles.copyright}>© 2026 GuruForU. All rights reserved.</p>
         </footer>

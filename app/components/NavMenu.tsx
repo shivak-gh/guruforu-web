@@ -44,16 +44,16 @@ export default function NavMenu() {
         {/* Desktop Menu */}
         <ul className={styles.desktopMenu}>
           <li>
-            <Link href="/" className={styles.navLink}>Home</Link>
+            <Link href="/" className={styles.navLink} aria-label="GuruForU Home Page">Home</Link>
           </li>
           <li>
-            <Link href="/blog" className={styles.navLink}>Blog</Link>
+            <Link href="/blog" className={styles.navLink} aria-label="Education Blog Articles">Blog</Link>
           </li>
           <li>
             <Link href="/free-session" className={styles.navLink}>Free Session</Link>
           </li>
           <li>
-            <Link href="/contact" className={styles.navLink}>Contact</Link>
+            <Link href="/contact" className={styles.navLink} aria-label="Contact GuruForU">Contact</Link>
           </li>
         </ul>
 
@@ -76,16 +76,16 @@ export default function NavMenu() {
       <div className={`${styles.mobileMenu} ${isOpen ? styles.open : ''}`}>
         <ul className={styles.mobileMenuList}>
           <li>
-            <Link href="/" className={styles.mobileNavLink} onClick={closeMenu}>Home</Link>
+            <Link href="/" className={styles.mobileNavLink} onClick={closeMenu} aria-label="GuruForU Home Page">Home</Link>
           </li>
           <li>
-            <Link href="/blog" className={styles.mobileNavLink} onClick={closeMenu}>Blog</Link>
+            <Link href="/blog" className={styles.mobileNavLink} onClick={closeMenu} aria-label="Education Blog Articles">Blog</Link>
           </li>
           <li>
             <Link href="/free-session" className={styles.mobileNavLink} onClick={closeMenu}>Free Session</Link>
           </li>
           <li>
-            <Link href="/contact" className={styles.mobileNavLink} onClick={closeMenu}>Contact</Link>
+            <Link href="/contact" className={styles.mobileNavLink} onClick={closeMenu} aria-label="Contact GuruForU">Contact</Link>
           </li>
         </ul>
       </div>
