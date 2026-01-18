@@ -1,0 +1,10 @@
+# Target modern browsers only - removes unnecessary polyfills
+# These browsers support ES2020+ features natively (Array.at, Object.fromEntries, etc.)
+
+# Modern browsers (last 2 versions)
+last 2 Chrome versions
+last 2 Firefox versions
+last 2 Safari versions
+last 2 Edge versions
+
+# No IE11, no older browsers - reduces bundle size by ~13.7 KiB

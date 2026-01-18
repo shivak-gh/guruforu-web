@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "ES2022", // Modern target - supports Array.at, Object.hasOwn, etc. natively
     "lib": [
       "dom",
       "dom.iterable",

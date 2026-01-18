@@ -89,11 +89,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Performance: Preconnect to external domains */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.google.com" />
+        {/* Performance: Preconnect to external domains - Critical for reducing latency */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.google.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.gstatic.com" />
         {/* Structured Data (JSON-LD) for SEO */}
         <script
           type="application/ld+json"
