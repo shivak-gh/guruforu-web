@@ -1,10 +1,20 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
-import ConsentBanner from './components/ConsentBanner'
-import Analytics from './components/Analytics'
-import FreeConsultationFAB from './components/FreeConsultationFAB'
 import './globals.css'
+
+// Lazy load client components to reduce initial bundle size
+const ConsentBanner = dynamic(() => import('./components/ConsentBanner'), {
+  ssr: true, // Keep SSR for GDPR compliance and SEO
+})
+
+const Analytics = dynamic(() => import('./components/Analytics'), {
+  ssr: true, // Must be true for Server Components - Analytics has 'use client' so it only runs on client
+})
+
+const FreeConsultationFAB = dynamic(() => import('./components/FreeConsultationFAB'), {
+  ssr: true, // Keep SSR for better UX (shows immediately)
+})
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -89,15 +99,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Performance: Preconnect to external domains - Critical for reducing latency */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.google.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.gstatic.com" crossOrigin="anonymous" />
+        {/* Performance: Preconnect to external domains - Only for critical resources */}
+        {/* Note: Removed preconnect for Google Analytics/Tag Manager to reduce early connection overhead */}
+        {/* Analytics scripts load lazily, so preconnect isn't needed immediately */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.google.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <link rel="dns-prefetch" href="https://www.gstatic.com" />
         {/* Structured Data (JSON-LD) for SEO */}
         <script
           type="application/ld+json"
@@ -128,9 +134,9 @@ export default function RootLayout({
             })
           }}
         />
-        {/* Google Consent Mode v2 - Initialize with denied by default */}
-        {/* Changed to afterInteractive to improve FCP/LCP - consent mode will initialize quickly after hydration */}
-        <Script id="google-consent-mode" strategy="afterInteractive">
+        {/* Google Consent Mode v2 - Initialize lazily for better performance */}
+        {/* Changed to lazyOnload to improve FCP/LCP - consent mode initializes after page load */}
+        <Script id="google-consent-mode" strategy="lazyOnload">
           {`
             (function() {
               try {
@@ -154,12 +160,15 @@ export default function RootLayout({
             })();
           `}
         </Script>
-        {/* Google tag (gtag.js) - Load after interactive for better performance */}
+        {/* Google tag (gtag.js) - Load lazily for better performance (non-blocking) */}
+        {/* Using fetchpriority="low" to deprioritize analytics script */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ZGXL6MTDYY"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
+          // @ts-ignore - fetchpriority is a valid HTML attribute
+          fetchPriority="low"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             (function() {
               // Wait for gtag.js to fully load

@@ -263,7 +263,7 @@
 .highlightTitle {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #667eea;
+  color: #4c5dc4; /* Darker shade of #667eea for better contrast (WCAG AA: 4.5:1 on white) */
   margin-bottom: 0.75rem;
 }
 

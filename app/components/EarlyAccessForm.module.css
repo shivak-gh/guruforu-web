@@ -24,6 +24,14 @@
   backdrop-filter: blur(10px);
 }
 
+/* Disable expensive backdrop-filter on mobile for better performance */
+@media (max-width: 768px) {
+  .input {
+    backdrop-filter: none;
+    background: rgba(255, 255, 255, 1); /* Solid background on mobile */
+  }
+}
+
 .input:focus {
   border-color: rgba(0, 212, 255, 0.8);
   background: rgba(255, 255, 255, 1);

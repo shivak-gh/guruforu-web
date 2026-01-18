@@ -12,6 +12,14 @@
   animation: slideUp 0.3s ease-out;
 }
 
+/* Disable expensive backdrop-filter on mobile for better performance */
+@media (max-width: 768px) {
+  .banner {
+    backdrop-filter: none;
+    background: rgba(255, 255, 255, 1); /* Solid background on mobile */
+  }
+}
+
 @keyframes slideUp {
   from {
     transform: translateY(100%);
