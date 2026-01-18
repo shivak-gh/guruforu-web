@@ -26,7 +26,13 @@ const nextConfig = {
   },
   // Optimize for static generation
   experimental: {
-    optimizePackageImports: ['next', 'react', 'react-dom'],
+    // Optimize package imports to reduce bundle size (tree-shaking)
+    optimizePackageImports: [
+      'next',
+      'react',
+      'react-dom',
+      '@getbrevo/brevo', // Only import what's needed
+    ],
     // Reduce RSC payload size
     serverActions: {
       bodySizeLimit: '2mb',
