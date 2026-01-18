@@ -48,6 +48,15 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
+  will-change: background-position;
+}
+
+/* Reduce animation complexity on mobile */
+@media (max-width: 768px) {
+  .gradient {
+    animation-duration: 30s;
+    background-size: 200% 200%;
+  }
 }
 
 @keyframes gradientShift {
@@ -76,6 +85,61 @@
   background: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
   animation: float 20s infinite linear;
+  will-change: transform, opacity;
+  /* Hide particles on mobile for better performance - show only every 3rd particle */
+}
+
+/* On mobile, hide most particles to improve performance - show only every 3rd particle (~17 visible) */
+@media (max-width: 768px) {
+  .particle {
+    display: none;
+  }
+  /* Show particles at indices 0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48 */
+  .particle[data-particle-index="0"],
+  .particle[data-particle-index="3"],
+  .particle[data-particle-index="6"],
+  .particle[data-particle-index="9"],
+  .particle[data-particle-index="12"],
+  .particle[data-particle-index="15"],
+  .particle[data-particle-index="18"],
+  .particle[data-particle-index="21"],
+  .particle[data-particle-index="24"],
+  .particle[data-particle-index="27"],
+  .particle[data-particle-index="30"],
+  .particle[data-particle-index="33"],
+  .particle[data-particle-index="36"],
+  .particle[data-particle-index="39"],
+  .particle[data-particle-index="42"],
+  .particle[data-particle-index="45"],
+  .particle[data-particle-index="48"] {
+    display: block;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .particle {
+    animation: none;
+    opacity: 0.3;
+  }
+  .gradient {
+    animation: none;
+  }
+  .logo {
+    animation: none;
+  }
+  .comingSoonBadge {
+    animation: none;
+  }
+  .divider::after {
+    animation: none;
+  }
+  .content {
+    animation: none;
+  }
+  .feature {
+    animation: none;
+  }
 }
 
 @keyframes float {
@@ -141,6 +205,14 @@
   margin-bottom: 2rem;
   animation: bounce 2s infinite;
   display: inline-block;
+  will-change: transform;
+}
+
+/* Disable logo bounce on mobile for better performance */
+@media (max-width: 768px) {
+  .logo {
+    animation: none;
+  }
 }
 
 .logoImage {
@@ -174,6 +246,16 @@
   margin-bottom: 1.5rem;
   animation: pulse 2s ease-in-out infinite;
   box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+  will-change: transform, opacity;
+}
+
+/* Disable expensive backdrop-filter and animations on mobile for better performance */
+@media (max-width: 768px) {
+  .comingSoonBadge {
+    backdrop-filter: none;
+    background: rgba(0, 212, 255, 0.25);
+    animation: none;
+  }
 }
 
 @keyframes pulse {
@@ -291,6 +373,14 @@
   color: white;
 }
 
+/* Disable expensive backdrop-filter on mobile */
+@media (max-width: 768px) {
+  .benefitsUl li {
+    backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
 .benefitsUl li strong {
   color: #00d4ff;
   font-weight: 600;
@@ -355,8 +445,16 @@
   backdrop-filter: blur(10px);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
   animation: fadeInUp 1s ease-out;
+}
+
+/* Disable expensive backdrop-filter on mobile */
+@media (max-width: 768px) {
+  .feature {
+    backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.15);
+  }
 }
 
 .feature:nth-child(1) {

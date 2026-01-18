@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
-// Cache control flag - set DISABLE_CACHE=true to disable caching, or leave unset/false to enable
-// Currently disabled for stability - set DISABLE_CACHE=false in environment to enable caching
+// Cache control flag - CACHING IS DISABLED BY DEFAULT
+// Set DISABLE_CACHE=false in environment to enable caching (not recommended for now)
 const DISABLE_CACHE = process.env.DISABLE_CACHE !== 'false' // Default to true (disabled) unless explicitly set to false
 
 const nextConfig = {
@@ -186,7 +186,7 @@ const nextConfig = {
         },
       ]
 
-      // Apply no-cache to all HTML pages
+      // Apply no-cache to all HTML pages (caching disabled for all routes)
       headers.push(
         {
           source: '/',
@@ -198,6 +198,14 @@ const nextConfig = {
         },
         {
           source: '/contact',
+          headers: noCacheHeaders,
+        },
+        {
+          source: '/early-access',
+          headers: noCacheHeaders,
+        },
+        {
+          source: '/free-session',
           headers: noCacheHeaders,
         },
         {

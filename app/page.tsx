@@ -155,8 +155,9 @@ export default function ComingSoon() {
       <div className={styles.background}>
         <div className={styles.gradient}></div>
         <div className={styles.particles}>
+          {/* Reduced particle count for better mobile performance: 50 on desktop, ~15 visible on mobile via CSS */}
           {[...Array(50)].map((_, i) => (
-            <div key={i} className={styles.particle}></div>
+            <div key={i} className={styles.particle} data-particle-index={i}></div>
           ))}
         </div>
       </div>
