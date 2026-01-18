@@ -181,7 +181,7 @@ export default function ConsentBanner() {
           <p className={styles.bannerDescription}>
             We use cookies to enhance your browsing experience and analyze site traffic. 
             By clicking &quot;Accept All&quot;, you consent to our use of cookies. 
-            <Link href="/privacy" className={styles.privacyLink}> Learn more</Link>
+            <Link href="/privacy" className={styles.privacyLink}> Learn more about our privacy policy and cookie usage</Link>
           </p>
         </div>
         <div className={styles.bannerActions}>
