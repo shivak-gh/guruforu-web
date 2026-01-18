@@ -347,7 +347,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
           {/* Hero Section */}
           <div className={styles.hero}>
             <h1 className={styles.heroTitle}>
-              Unlock Your Child&apos;s Potential with a Free AI Learning Diagnostic
+              Free AI Learning Diagnostic Session
             </h1>
             <p className={styles.heroSubtitle}>
               Book a 15-minute strategy session. We&apos;ll analyze learning gaps and build a custom subject roadmap for your child—at no cost.

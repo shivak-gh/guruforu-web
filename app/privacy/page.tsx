@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | GuruForU',
+  title: 'Privacy Policy & Data Protection | GuruForU',
   description: 'GuruForU privacy policy. Learn how we protect your data, handle student information, and ensure secure online learning experiences.',
   keywords: ['Privacy Policy', 'Data Protection', 'Student Privacy', 'Online Education Privacy'],
   robots: {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: 'Privacy Policy | GuruForU',
+    title: 'Privacy Policy & Data Protection | GuruForU',
     description: 'Learn how GuruForU protects your data and ensures secure online learning experiences.',
     url: 'https://www.guruforu.com/privacy',
     siteName: 'GuruForU',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Privacy Policy | GuruForU',
+    title: 'Privacy Policy & Data Protection | GuruForU',
     description: 'Learn how GuruForU protects your data and ensures secure online learning.',
     images: ['/guruforu-ai-education-logo-dark.png'],
     creator: '@guruforu_official',

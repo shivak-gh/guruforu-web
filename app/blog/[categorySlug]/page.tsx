@@ -78,6 +78,8 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       title: `${category.name} | GuruForU Blog`,
       description: `Explore ${category.count} ${category.count === 1 ? 'article' : 'articles'} in ${category.name} category.`,
       images: ['/guruforu-ai-education-logo-dark.png'],
+      creator: '@guruforu_official',
+      site: '@guruforu_official',
     },
     alternates: {
       canonical: `https://www.guruforu.com/blog/${categorySlug}`,

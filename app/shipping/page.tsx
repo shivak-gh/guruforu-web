@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Shipping Policy | GuruForU',
+  title: 'Digital Service Delivery & Shipping Policy | GuruForU',
   description: 'GuruForU shipping and delivery policy. Learn about our digital service delivery, access timelines, and technical requirements for online classes.',
   keywords: ['Shipping Policy', 'Digital Delivery', 'Online Service Access', 'Service Delivery'],
   robots: {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: 'Shipping Policy | GuruForU',
+    title: 'Digital Service Delivery & Shipping Policy | GuruForU',
     description: 'Learn about GuruForU digital service delivery and access timelines for online classes.',
     url: 'https://www.guruforu.com/shipping',
     siteName: 'GuruForU',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shipping Policy | GuruForU',
+    title: 'Digital Service Delivery & Shipping Policy | GuruForU',
     description: 'Learn about GuruForU digital service delivery and access timelines.',
     images: ['/guruforu-ai-education-logo-dark.png'],
     creator: '@guruforu_official',

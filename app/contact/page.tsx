@@ -325,6 +325,8 @@ export default function ContactUs() {
             We&apos;d love to hear from you! Get in touch with us for any questions, feedback, or support.
           </p>
 
+          <h2 className={styles.sectionTitle}>Get in Touch</h2>
+
           <div className={styles.contactSection}>
             <div className={styles.contactInfo}>
               <div className={styles.infoItem}>

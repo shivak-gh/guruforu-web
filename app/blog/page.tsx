@@ -65,6 +65,8 @@ export const metadata = {
     title: 'Education Blog | GuruForU Learning Insights',
     description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning.',
     images: ['/guruforu-ai-education-logo-dark.png'],
+    creator: '@guruforu_official',
+    site: '@guruforu_official',
   },
   alternates: {
     canonical: 'https://www.guruforu.com/blog',

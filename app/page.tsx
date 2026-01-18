@@ -179,7 +179,7 @@ export default function ComingSoon() {
           </Link>
         </div>
         <main id="main-content">
-          <h1 className={styles.title}>Premium Online Tuitions Powered by AI</h1>
+          <h1 className={styles.title}>AI-Powered Online Classes</h1>
         <p className={styles.subtitle}>
           The best online classes for your child, enhanced with AI-powered personalized learning. 
           Get real-time student progress tracking and mastery reports that show exactly how your child is advancing.
