@@ -322,7 +322,7 @@ export default function ContactUs() {
         <div className={styles.pageContent}>
           <h1 className={styles.title}>Contact Us</h1>
           <p className={styles.subtitle}>
-            We&apos;d love to hear from you! Get in touch with us for any questions, feedback, or support.
+            We&apos;d love to hear from you! Get in touch with us for any <strong>questions, feedback, or support</strong> about our <strong>online education platform</strong>.
           </p>
 
           <h2 className={styles.sectionTitle}>Get in Touch</h2>
@@ -339,11 +339,11 @@ export default function ContactUs() {
               </div>
               <div className={styles.infoItem}>
                 <h3 className={styles.infoTitle}>Response Time</h3>
-                <p className={styles.infoText}>We typically respond within 24-48 hours</p>
+                <p className={styles.infoText}>We typically respond within <strong>24-48 hours</strong> during business days</p>
               </div>
               <div className={styles.infoItem}>
                 <h3 className={styles.infoTitle}>Support Availability</h3>
-                <p className={styles.infoText}>We&apos;re here to help! Reach out anytime and we&apos;ll get back to you as soon as possible.</p>
+                <p className={styles.infoText}>We&apos;re here to help! Reach out anytime and we&apos;ll get back to you <strong>as soon as possible</strong>.</p>
               </div>
             </div>
 
@@ -468,7 +468,7 @@ export default function ContactUs() {
         </div>
 
         <footer className={styles.footer}>
-          <p>© 2026 GuruForU. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
         </footer>
       </div>
     </div>

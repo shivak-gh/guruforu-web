@@ -378,7 +378,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
             <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>
             <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy Policy</Link>
           </nav>
-          <p className={styles.copyright}>© 2026 GuruForU. All rights reserved.</p>
+          <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
         </footer>
       </div>
     </div>

@@ -110,8 +110,8 @@ export default function EarlyAccessPage() {
           <main id="main-content">
             <h1 className={styles.title}>Get Early Access to GuruForU</h1>
             <p className={styles.subtitle}>
-              Be among the first to experience premium online tuitions powered by AI. 
-              Get notified when we launch and receive exclusive early access benefits.
+              Be among the first to experience <strong>premium online tuitions powered by AI</strong>. 
+              Get notified when we launch and receive <strong>exclusive early access benefits</strong>.
             </p>
 
             <div className={styles.formSection}>
@@ -121,10 +121,10 @@ export default function EarlyAccessPage() {
             <div className={styles.benefits}>
               <h2 className={styles.benefitsTitle}>Early Access Benefits</h2>
               <ul className={styles.benefitsList}>
-                <li>✓ Priority access to the platform</li>
-                <li>✓ Special launch pricing</li>
-                <li>✓ Exclusive onboarding support</li>
-                <li>✓ Early feature previews</li>
+                <li>✓ <strong>Priority access</strong> to the platform</li>
+                <li>✓ <strong>Special launch pricing</strong> for early adopters</li>
+                <li>✓ <strong>Exclusive onboarding support</strong> from our team</li>
+                <li>✓ <strong>Early feature previews</strong> before public release</li>
               </ul>
             </div>
 
@@ -145,7 +145,7 @@ export default function EarlyAccessPage() {
             <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>
             <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy Policy</Link>
           </nav>
-          <p className={styles.copyright}>© 2026 GuruForU. All rights reserved.</p>
+          <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
         </footer>
       </div>
     </>

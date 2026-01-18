@@ -165,7 +165,7 @@ export default async function BlogListing() {
           <header className={styles.pageHeader}>
             <h1 className={styles.pageTitle}>Our Blog</h1>
             <p className={styles.pageSubtitle}>
-              Expert insights on child education, learning strategies, and AI-powered personalized learning
+              Expert insights on <strong>child education</strong>, <strong>learning strategies</strong>, and <strong>AI-powered personalized learning</strong>
             </p>
           </header>
 
@@ -207,7 +207,7 @@ export default async function BlogListing() {
             <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>
             <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy Policy</Link>
           </nav>
-          <p className={styles.copyright}>© 2026 GuruForU. All rights reserved.</p>
+          <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
         </footer>
       </div>
     </div>

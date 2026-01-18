@@ -205,7 +205,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
           <header className={styles.pageHeader}>
             <h1 className={styles.pageTitle}>{category.name}</h1>
             <p className={styles.pageSubtitle}>
-              {category.count} {category.count === 1 ? 'article' : 'articles'} in this category
+              <strong>{category.count}</strong> {category.count === 1 ? 'article' : 'articles'} in this category covering <strong>educational topics and learning strategies</strong>
             </p>
           </header>
 
@@ -240,7 +240,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
             <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>
             <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy Policy</Link>
           </nav>
-          <p className={styles.copyright}>© 2026 GuruForU. All rights reserved.</p>
+          <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
         </footer>
       </div>
     </div>

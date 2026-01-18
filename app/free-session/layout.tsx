@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Free Online Tuition Session & Student Assessment | GuruForU',
-  description: 'Get a free 1-on-1 educational session. Our AI diagnostics identify learning gaps in any subject to help your child succeed. Book your free session today.',
+  title: 'Free Online Tuition Consultation & Student Assessment | GuruForU',
+  description: 'Get a free 1-on-1 educational counseling session. Our AI diagnostics identify learning gaps in any subject to help your child succeed. Book your free consultation today.',
   keywords: [
     'Free Online Tuition Consultation',
     'Free Student Assessment',
@@ -26,16 +26,16 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Free Online Tuition Session & Student Assessment | GuruForU',
-    description: 'Get a free 1-on-1 educational session. Our AI diagnostics identify learning gaps in any subject to help your child succeed.',
-    url: 'https://www.guruforu.com/free-session',
+    title: 'Free Online Tuition Consultation & Student Assessment | GuruForU',
+    description: 'Get a free 1-on-1 educational counseling session. Our AI diagnostics identify learning gaps in any subject to help your child succeed.',
+    url: 'https://www.guruforu.com/free-consultation',
     siteName: 'GuruForU',
     images: [
       {
         url: '/guruforu-ai-education-logo-dark.png',
         width: 1200,
         height: 630,
-        alt: 'GuruForU Free Session',
+        alt: 'GuruForU Free Consultation',
       },
     ],
     type: 'website',
@@ -43,14 +43,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Online Tuition Session & Student Assessment | GuruForU',
+    title: 'Free Online Tuition Consultation & Student Assessment | GuruForU',
     description: 'Get a free 1-on-1 educational counseling session. Our AI diagnostics identify learning gaps.',
     images: ['/guruforu-ai-education-logo-dark.png'],
-    creator: '@guruforu_official',
-    site: '@guruforu_official',
   },
   alternates: {
-    canonical: 'https://www.guruforu.com/free-session',
+    canonical: 'https://www.guruforu.com/free-consultation',
   },
 }
 

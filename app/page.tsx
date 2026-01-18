@@ -181,8 +181,8 @@ export default function ComingSoon() {
         <main id="main-content">
           <h1 className={styles.title}>AI-Powered Online Classes</h1>
         <p className={styles.subtitle}>
-          The best online classes for your child, enhanced with AI-powered personalized learning. 
-          Get real-time student progress tracking and mastery reports that show exactly how your child is advancing.
+          The <strong>best online classes</strong> for your child, enhanced with <strong>AI-powered personalized learning</strong>. 
+          Get <strong>real-time student progress tracking</strong> and mastery reports that show exactly how your child is advancing.
         </p>
         <div className={styles.divider}></div>
         
@@ -248,7 +248,7 @@ export default function ComingSoon() {
           <Link href="/shipping" className={styles.footerLink} prefetch={false}>Shipping Policy</Link>
           <Link href="/cancellation-refunds" className={styles.footerLink} prefetch={false}>Cancellation and Refunds</Link>
         </nav>
-        <p className={styles.copyright}>© 2026 GuruForU. All rights reserved.</p>
+        <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
       </footer>
     </div>
     </>

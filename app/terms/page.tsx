@@ -170,7 +170,7 @@ export default function TermsAndConditions() {
         </div>
 
         <footer className={styles.footer}>
-          <p>© 2026 GuruForU. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
         </footer>
       </div>
     </div>

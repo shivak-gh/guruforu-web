@@ -350,7 +350,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
               Free AI Learning Diagnostic Session
             </h1>
             <p className={styles.heroSubtitle}>
-              Book a 15-minute strategy session. We&apos;ll analyze learning gaps and build a custom subject roadmap for your child—at no cost.
+              Book a <strong>15-minute strategy session</strong>. We&apos;ll analyze <strong>learning gaps</strong> and build a <strong>custom subject roadmap</strong> for your child—at no cost.
             </p>
           </div>
 
@@ -664,7 +664,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
               <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>
               <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy Policy</Link>
             </nav>
-            <p className={styles.copyright}>© 2026 GuruForU. All rights reserved.</p>
+            <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
           </footer>
         </div>
       </div>
