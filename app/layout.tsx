@@ -132,26 +132,16 @@ export default function RootLayout({
                 if (typeof window === 'undefined') return;
                 
                 window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
+                window.gtag = window.gtag || function(){window.dataLayer.push(arguments);}
                 
-                // Check for existing consent before setting default
-                let existingConsent = null;
-                try {
-                  existingConsent = localStorage.getItem('cookie-consent');
-                } catch (e) {
-                  // localStorage might not be available
-                  console.warn('localStorage not available:', e);
-                }
-                
-                const analyticsStorage = existingConsent === 'accepted' ? 'granted' : 'denied';
-                
-                // Set default consent state (required for Consent Mode v2)
-                gtag('consent', 'default', {
-                  'analytics_storage': analyticsStorage,
+                // Set default consent state - always grant analytics_storage for tracking
+                // Note: This allows analytics to track even without explicit consent
+                window.gtag('consent', 'default', {
+                  'analytics_storage': 'granted', // Always grant for tracking
                   'ad_storage': 'denied',
                   'ad_user_data': 'denied',
                   'ad_personalization': 'denied',
-                  'wait_for_update': existingConsent ? 0 : 500,
+                  'wait_for_update': 0,
                 });
               } catch (error) {
                 console.error('Error initializing consent mode:', error);
@@ -167,66 +157,53 @@ export default function RootLayout({
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             (function() {
-              try {
-                if (typeof window === 'undefined' || typeof gtag === 'undefined') {
-                  return;
-                }
-                
-                gtag('js', new Date());
-                
-                // Get current consent state with error handling
-                let consent = null;
+              // Wait for gtag.js to fully load
+              function initGA() {
                 try {
-                  consent = localStorage.getItem('cookie-consent');
-                } catch (e) {
-                  console.warn('localStorage not available:', e);
-                }
-                
-                const analyticsStorage = consent === 'accepted' ? 'granted' : 'denied';
-                
-                // Configure GA with consent parameters included (required for Consent Mode v2)
-                // Note: send_page_view is false here - we'll track it manually on route changes
-                gtag('config', 'G-ZGXL6MTDYY', {
-                  'anonymize_ip': true,
-                  'send_page_view': false, // Disable auto pageview - we track manually
-                  // Include consent parameters in config (ensures signals are sent)
-                  'analytics_storage': analyticsStorage,
-                  'ad_storage': 'denied',
-                  'ad_user_data': 'denied',
-                  'ad_personalization': 'denied',
-                });
-                
-                // Send initial pageview if consent is granted
-                if (consent === 'accepted' && window.location) {
-                  try {
-                    gtag('consent', 'update', {
-                      'analytics_storage': 'granted',
-                      'ad_storage': 'denied',
-                      'ad_user_data': 'denied',
-                      'ad_personalization': 'denied',
-                    });
-                    
-                    // Send initial pageview using config (more reliable)
-                    gtag('config', 'G-ZGXL6MTDYY', {
-                      'page_path': window.location.pathname + window.location.search,
-                      'page_location': window.location.href,
-                      'analytics_storage': 'granted',
-                      'ad_storage': 'denied',
-                      'ad_user_data': 'denied',
-                      'ad_personalization': 'denied',
-                    });
-                  } catch (e) {
-                    console.error('Error sending initial pageview:', e);
+                  if (typeof window === 'undefined' || !window.gtag) {
+                    setTimeout(initGA, 50);
+                    return;
                   }
+                  
+                  window.gtag('js', new Date());
+                  
+                  // Track analytics regardless of consent status
+                  // Note: This may have privacy/legal implications depending on your jurisdiction
+                  const isLocalhost = window.location && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+                  
+                  // Configure GA - always grant analytics_storage for tracking
+                  window.gtag('config', 'G-ZGXL6MTDYY', {
+                    'anonymize_ip': true,
+                    'send_page_view': true, // Enable auto pageview
+                    'analytics_storage': 'granted', // Always grant analytics storage
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'debug_mode': isLocalhost,
+                  });
+                  
+                  // Ensure consent is granted for analytics
+                  window.gtag('consent', 'update', {
+                    'analytics_storage': 'granted',
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                  });
+                  
+                  // Debug logging for localhost
+                  if (isLocalhost) {
+                    console.log('✅ Google Analytics initialized');
+                    console.log('✅ Analytics tracking is ENABLED (regardless of consent)');
+                    console.log('GA ID: G-ZGXL6MTDYY');
+                    console.log('Page:', window.location.href);
+                  }
+                } catch (error) {
+                  console.error('❌ Error initializing Google Analytics:', error);
                 }
-                
-                // Debug logging (only in development)
-                if (window.location && window.location.hostname === 'localhost') {
-                  console.log('Google Analytics initialized with consent:', analyticsStorage);
-                }
-              } catch (error) {
-                console.error('Error initializing Google Analytics:', error);
               }
+              
+              // Start initialization (will retry until gtag is available)
+              initGA();
             })();
           `}
         </Script>

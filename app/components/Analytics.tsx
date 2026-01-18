@@ -27,11 +27,16 @@ function AnalyticsTracker() {
 
     try {
       // Track page view on route change (client-side navigation)
-      // Skip initial mount to avoid duplicate with initial pageview
+      // Skip initial mount to avoid duplicate with initial pageview (since send_page_view is true)
       const isInitialMount = !window.__analyticsInitialized
       window.__analyticsInitialized = true
       
       if (isInitialMount) {
+        // Debug logging for localhost
+        const isLocalhost = window.location && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        if (isLocalhost) {
+          console.log('🔍 Analytics: Skipping initial mount (auto pageview will fire)')
+        }
         return // Skip first render, let initial pageview handle it
       }
 

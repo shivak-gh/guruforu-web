@@ -26,3 +26,8 @@ body {
   height: 100%;
 }
 
+/* Google Tag Manager noscript iframe - hidden by default */
+.gtm-noscript {
+  display: none;
+  visibility: hidden;
+}
