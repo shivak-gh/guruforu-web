@@ -26,7 +26,6 @@ function AnalyticsTracker() {
     }
 
     try {
-      // Track page view on route change (client-side navigation)
       // Skip initial mount to avoid duplicate with initial pageview (since send_page_view is true)
       const isInitialMount = !window.__analyticsInitialized
       window.__analyticsInitialized = true
@@ -40,69 +39,41 @@ function AnalyticsTracker() {
         return // Skip first render, let initial pageview handle it
       }
 
-      // Get consent with error handling
-      let consent = null
-      try {
-        consent = localStorage.getItem('cookie-consent')
-      } catch (e) {
-        console.warn('localStorage not available:', e)
-        return
-      }
+      // Get current URL immediately (no async delays for fast navigation)
+      const url = window.location?.href || ''
+      const queryString = searchParams?.toString() ? `?${searchParams.toString()}` : ''
+      const pagePath = (pathname || '') + queryString
       
-      // Only track if consent is granted
-      if (consent === 'accepted') {
+      // Track immediately without any delays to catch fast navigation
+      const trackPageView = () => {
         try {
-          // Get current URL
-          const url = window.location?.href || ''
-          const queryString = searchParams?.toString() ? `?${searchParams.toString()}` : ''
-          const pagePath = (pathname || '') + queryString
-          
-          // Use requestIdleCallback for non-blocking tracking, but with timeout for fast navigation
-          const trackPageView = () => {
-            try {
-              if (window.gtag) {
-                // Ensure consent is granted before sending
-                window.gtag('consent', 'update', {
-                  analytics_storage: 'granted',
-                  ad_storage: 'denied',
-                  ad_user_data: 'denied',
-                  ad_personalization: 'denied',
-                })
-                
-                // Send pageview with consent parameters immediately
-                window.gtag('config', 'G-ZGXL6MTDYY', {
-                  page_path: pagePath,
-                  page_location: url,
-                  analytics_storage: 'granted',
-                  ad_storage: 'denied',
-                  ad_user_data: 'denied',
-                  ad_personalization: 'denied',
-                })
-              } else {
-                // If gtag not loaded yet, queue the pageview
-                window.dataLayer = window.dataLayer || []
-                window.dataLayer.push({
-                  event: 'page_view',
-                  page_path: pagePath,
-                  page_location: url,
-                })
-              }
-            } catch (error) {
-              console.error('Error tracking pageview:', error)
-            }
-          }
-          
-          // Track immediately (don't wait for idle) to catch fast navigation
-          if (typeof window.requestIdleCallback === 'function') {
-            window.requestIdleCallback(trackPageView, { timeout: 100 })
+          if (window.gtag) {
+            // Send pageview immediately - analytics_storage is always granted
+            window.gtag('event', 'page_view', {
+              page_path: pagePath,
+              page_location: url,
+              analytics_storage: 'granted',
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+            })
           } else {
-            // Fallback for browsers without requestIdleCallback
-            setTimeout(trackPageView, 0)
+            // If gtag not loaded yet, queue the pageview in dataLayer
+            window.dataLayer = window.dataLayer || []
+            window.dataLayer.push({
+              event: 'page_view',
+              page_path: pagePath,
+              page_location: url,
+            })
           }
         } catch (error) {
-          console.error('Error in analytics tracking:', error)
+          console.error('Error tracking pageview:', error)
         }
       }
+      
+      // Track immediately - no delays for fast navigation
+      // Use microtask queue for non-blocking execution, but immediate
+      Promise.resolve().then(() => trackPageView())
     } catch (error) {
       console.error('Error in Analytics useEffect:', error)
     }
