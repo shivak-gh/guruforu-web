@@ -85,7 +85,13 @@ export default function CancellationAndRefunds() {
 
         <div className={styles.pageContent}>
           <h1 className={styles.title}>Cancellation and Refunds</h1>
-          <p className={styles.lastUpdated}>Last Updated: January 1, 2026</p>
+          <p className={styles.lastUpdated}>Last Updated: January 1, {new Date().getFullYear()}</p>
+          <p className={styles.text}>
+            At <strong>GuruForU</strong>, we want to ensure you have a positive experience with our <strong>online education services</strong>. 
+            This Cancellation and Refunds Policy explains your rights regarding subscription cancellations and refund requests. 
+            We understand that circumstances may change, and we are committed to providing fair and transparent refund processes. 
+            This policy applies to all our services, including online classes, tutoring sessions, and subscription plans.
+          </p>
 
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>1. Cancellation Policy</h2>
@@ -217,7 +223,7 @@ export default function CancellationAndRefunds() {
         </div>
 
         <footer className={styles.footer}>
-          <p>© 2026 GuruForU. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
         </footer>
       </div>
     </div>

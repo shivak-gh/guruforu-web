@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Free Online Tuition Consultation & Student Assessment | GuruForU',
-  description: 'Get a free 1-on-1 educational counseling session. Our AI diagnostics identify learning gaps in any subject to help your child succeed. Book your free consultation today.',
+  description: 'Get a free 1-on-1 educational counseling session. Our AI diagnostics identify learning gaps in any subject to help your child succeed.',
   keywords: [
     'Free Online Tuition Consultation',
     'Free Student Assessment',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Free Online Tuition Consultation & Student Assessment | GuruForU',
-    description: 'Get a free 1-on-1 educational counseling session. Our AI diagnostics identify learning gaps in any subject to help your child succeed.',
+    description: 'Get a free 1-on-1 educational counseling session. Our AI diagnostics identify learning gaps to help your child succeed.',
     url: 'https://www.guruforu.com/free-consultation',
     siteName: 'GuruForU',
     images: [

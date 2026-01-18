@@ -15,7 +15,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.guruforu.com'),
   title: 'GuruForU | Best Online Classes with AI-Powered Student Progress Tracker',
-  description: 'Best online classes with AI-powered personalized learning. Expert tutors, real-time student progress tracking, and mastery reports for your child\'s success.',
+  description: 'Best online classes with AI-powered personalized learning. Expert tutors, real-time student progress tracking, and mastery reports.',
   keywords: [
     'Best Online Classes',
     'Best Online Classes for Students',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'GuruForU - Best Online Classes with AI Student Progress Tracker',
-    description: 'Premium online tuitions powered by AI. Get personalized learning with AI mastery tracking and expert online tutors. Comprehensive student progress reports for parents.',
+    description: 'Premium online tuitions powered by AI. Get personalized learning with AI mastery tracking and expert online tutors.',
     url: 'https://www.guruforu.com',
     siteName: 'GuruForU',
     images: [

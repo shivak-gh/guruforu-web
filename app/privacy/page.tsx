@@ -85,7 +85,14 @@ export default function PrivacyPolicy() {
 
         <div className={styles.pageContent}>
           <h1 className={styles.title}>Privacy Policy</h1>
-          <p className={styles.lastUpdated}>Last Updated: January 1, 2026</p>
+          <p className={styles.lastUpdated}>Last Updated: January 1, {new Date().getFullYear()}</p>
+          <p className={styles.text}>
+            At <strong>GuruForU</strong>, we are committed to protecting your privacy and ensuring the security of your personal information. 
+            This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our 
+            <strong> online education platform</strong>. We understand the importance of privacy, especially when it comes to student data, 
+            and we take our responsibility to protect your information seriously. This policy applies to all users of our services, 
+            including students, parents, and educators.
+          </p>
 
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>1. Introduction</h2>

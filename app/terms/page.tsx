@@ -85,7 +85,13 @@ export default function TermsAndConditions() {
 
         <div className={styles.pageContent}>
           <h1 className={styles.title}>Terms and Conditions</h1>
-          <p className={styles.lastUpdated}>Last Updated: January 1, 2026</p>
+          <p className={styles.lastUpdated}>Last Updated: January 1, {new Date().getFullYear()}</p>
+          <p className={styles.text}>
+            Welcome to <strong>GuruForU</strong>, your trusted platform for <strong>AI-powered online education</strong>. 
+            These Terms and Conditions govern your use of our services, including our online classes, student progress tracking, 
+            and educational resources. By accessing or using our platform, you agree to comply with and be bound by these terms. 
+            Please read this document carefully to understand your rights and responsibilities as a user of our services.
+          </p>
 
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>1. Acceptance of Terms</h2>

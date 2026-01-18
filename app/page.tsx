@@ -12,7 +12,7 @@ const NavMenu = dynamic(() => import('./components/NavMenu'), {
 
 export const metadata: Metadata = {
   title: 'GuruForU - AI-Powered Online Classes & Student Progress Tracker',
-  description: 'Best online classes for children with AI-powered personalized learning. Expert tutors, real-time progress tracking, and mastery reports. Start your child\'s success journey today.',
+  description: 'Best online classes for children with AI-powered personalized learning. Expert tutors, real-time progress tracking, and mastery reports.',
   keywords: [
     'Best Online Classes',
     'AI Student Progress Tracker',
