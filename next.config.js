@@ -13,6 +13,12 @@ const nextConfig = {
   // Optimize images
   images: {
     formats: ['image/avif', 'image/webp'],
+    // Enable image optimization
+    minimumCacheTTL: 60,
+    // Lazy load images by default
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   // Reduce JavaScript bundle size
   compiler: {
@@ -20,15 +26,11 @@ const nextConfig = {
   },
   // Optimize for static generation
   experimental: {
-    optimizePackageImports: ['next'],
+    optimizePackageImports: ['next', 'react', 'react-dom'],
     // Reduce RSC payload size
     serverActions: {
       bodySizeLimit: '2mb',
     },
-    // Disable ISR memory cache when caching is disabled
-    ...(DISABLE_CACHE && {
-      isrMemoryCacheSize: 0,
-    }),
   },
   // Allow external scripts for reCAPTCHA
   async headers() {
@@ -60,6 +62,10 @@ const nextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains',
           },
         ],
       },

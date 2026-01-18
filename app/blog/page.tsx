@@ -1,10 +1,17 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { getAllBlogs } from './lib/getBlogs'
-import BlogCategoriesWrapper from '../components/BlogCategoriesWrapper'
-import NavMenu from '../components/NavMenu'
+import dynamicImport from 'next/dynamic'
 import styles from './page.module.css'
 import Script from 'next/script'
+
+// Lazy load client components to reduce initial bundle size
+const BlogCategoriesWrapper = dynamicImport(() => import('../components/BlogCategoriesWrapper'), {
+  ssr: true,
+})
+const NavMenu = dynamicImport(() => import('../components/NavMenu'), {
+  ssr: true,
+})
 
 // Optimize RSC caching to reduce duplicate requests
 // Disable caching during development/stabilization

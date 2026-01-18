@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
+import dynamic from 'next/dynamic'
 import ConsentBanner from './components/ConsentBanner'
 import Analytics from './components/Analytics'
 import FreeConsultationFAB from './components/FreeConsultationFAB'
@@ -159,7 +160,7 @@ export default function RootLayout({
             })();
           `}
         </Script>
-        {/* Google tag (gtag.js) - Load but respect consent */}
+        {/* Google tag (gtag.js) - Load after interactive for better performance */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ZGXL6MTDYY"
           strategy="afterInteractive"

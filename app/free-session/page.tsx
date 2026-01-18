@@ -1,10 +1,15 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import dynamic from 'next/dynamic'
 import styles from './page.module.css'
 import Link from 'next/link'
 import Script from 'next/script'
-import NavMenu from '../components/NavMenu'
+
+// Lazy load NavMenu to reduce initial bundle size
+const NavMenu = dynamic(() => import('../components/NavMenu'), {
+  ssr: true,
+})
 
 declare global {
   interface Window {

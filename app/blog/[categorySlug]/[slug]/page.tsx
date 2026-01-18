@@ -2,9 +2,14 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getBlogBySlug, getAllBlogs } from '../../lib/getBlogs'
+import dynamicImport from 'next/dynamic'
 import styles from './page.module.css'
 import Script from 'next/script'
-import NavMenu from '../../../components/NavMenu'
+
+// Lazy load NavMenu to reduce initial bundle size
+const NavMenu = dynamicImport(() => import('../../../components/NavMenu'), {
+  ssr: true,
+})
 
 // Optimize RSC caching to reduce duplicate requests
 // Disable caching during development/stabilization

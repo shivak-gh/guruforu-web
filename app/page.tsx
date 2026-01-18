@@ -3,7 +3,12 @@ import Link from 'next/link'
 import Script from 'next/script'
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import NavMenu from './components/NavMenu'
+import dynamic from 'next/dynamic'
+
+// Lazy load NavMenu to reduce initial bundle size
+const NavMenu = dynamic(() => import('./components/NavMenu'), {
+  ssr: true, // Keep SSR for SEO and initial render
+})
 
 export const metadata: Metadata = {
   title: 'GuruForU - AI-Powered Online Classes & Student Progress Tracker',

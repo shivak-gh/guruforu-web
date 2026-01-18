@@ -3,8 +3,15 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Script from 'next/script'
-import NavMenu from '../components/NavMenu'
-import EarlyAccessForm from '../components/EarlyAccessForm'
+import dynamic from 'next/dynamic'
+
+// Lazy load client components to reduce initial bundle size
+const NavMenu = dynamic(() => import('../components/NavMenu'), {
+  ssr: true,
+})
+const EarlyAccessForm = dynamic(() => import('../components/EarlyAccessForm'), {
+  ssr: true,
+})
 
 export const metadata: Metadata = {
   title: 'Early Access - GuruForU | Get Notified When We Launch',
