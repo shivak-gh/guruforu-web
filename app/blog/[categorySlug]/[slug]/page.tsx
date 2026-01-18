@@ -6,6 +6,53 @@ import dynamicImport from 'next/dynamic'
 import styles from './page.module.css'
 import Script from 'next/script'
 
+// Helper function to convert URLs in text to clickable links
+function linkify(text: string) {
+  // Match URLs (http, https, www, or khanacademy.org)
+  const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+|khanacademy\.org[^\s]*)/gi
+  const parts: (string | JSX.Element)[] = []
+  let lastIndex = 0
+  let match
+  
+  // Reset regex lastIndex
+  urlRegex.lastIndex = 0
+  
+  while ((match = urlRegex.exec(text)) !== null) {
+    // Add text before the match
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index))
+    }
+    
+    // Process the URL match
+    let url = match[0]
+    // Add https:// if URL starts with www or khanacademy.org
+    if (url.startsWith('www.') || url.startsWith('khanacademy.org')) {
+      url = 'https://' + url
+    }
+    
+    parts.push(
+      <a 
+        key={match.index}
+        href={url} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className={styles.externalLink}
+      >
+        {match[0]}
+      </a>
+    )
+    
+    lastIndex = match.index + match[0].length
+  }
+  
+  // Add remaining text after last match
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex))
+  }
+  
+  return parts.length > 0 ? parts : text
+}
+
 // Lazy load NavMenu to reduce initial bundle size
 const NavMenu = dynamicImport(() => import('../../../components/NavMenu'), {
   ssr: true,
@@ -313,7 +360,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
 
           <div className={styles.articleContent}>
             <section className={styles.section}>
-              <p className={styles.lead}>{blog.lead}</p>
+              <p className={styles.lead}>{linkify(blog.lead)}</p>
             </section>
 
             {blog.sections && blog.sections.map((section: any, index: number) => (
@@ -321,20 +368,20 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
                 <h2 className={styles.sectionTitle}>{section.title}</h2>
                 
                 {section.content && section.content.map((paragraph: string, pIndex: number) => (
-                  <p key={pIndex} className={styles.text}>{paragraph}</p>
+                  <p key={pIndex} className={styles.text}>{linkify(paragraph)}</p>
                 ))}
 
                 {section.highlights && section.highlights.map((highlight: any, hIndex: number) => (
                   <div key={hIndex} className={styles.highlightBox}>
                     <h3 className={styles.highlightTitle}>{highlight.title}</h3>
-                    <p className={styles.highlightText}>{highlight.text}</p>
+                    <p className={styles.highlightText}>{linkify(highlight.text)}</p>
                   </div>
                 ))}
 
                 {section.strategies && section.strategies.map((strategy: any, sIndex: number) => (
                   <div key={sIndex} className={styles.strategyBox}>
                     <h3 className={styles.strategyTitle}>{strategy.title}</h3>
-                    <p className={styles.strategyText}>{strategy.text}</p>
+                    <p className={styles.strategyText}>{linkify(strategy.text)}</p>
                   </div>
                 ))}
 
@@ -345,11 +392,11 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
                       if (parts.length > 1) {
                         return (
                           <li key={lIndex}>
-                            <strong>{parts[0]}:</strong> {parts.slice(1).join(':')}
+                            <strong>{parts[0]}:</strong> {linkify(parts.slice(1).join(':'))}
                           </li>
                         )
                       }
-                      return <li key={lIndex}>{item.item}</li>
+                      return <li key={lIndex}>{linkify(item.item)}</li>
                     })}
                   </ul>
                 )}

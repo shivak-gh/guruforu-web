@@ -311,6 +311,20 @@
   font-weight: 600;
 }
 
+.externalLink {
+  color: #667eea;
+  text-decoration: underline;
+  text-decoration-color: rgba(102, 126, 234, 0.4);
+  text-underline-offset: 2px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.externalLink:hover {
+  color: #764ba2;
+  text-decoration-color: #764ba2;
+}
+
 .ctaBox {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 12px;
