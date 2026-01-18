@@ -125,7 +125,8 @@ export default function RootLayout({
           }}
         />
         {/* Google Consent Mode v2 - Initialize with denied by default */}
-        <Script id="google-consent-mode" strategy="beforeInteractive">
+        {/* Changed to afterInteractive to improve FCP/LCP - consent mode will initialize quickly after hydration */}
+        <Script id="google-consent-mode" strategy="afterInteractive">
           {`
             (function() {
               try {

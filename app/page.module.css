@@ -185,9 +185,15 @@
   color: white;
   max-width: 900px;
   width: 100%;
-  animation: fadeInUp 1s ease-out;
   margin-top: 1rem;
   margin-bottom: 2rem;
+}
+
+/* Disable fade-in animation on mobile for faster FCP/LCP */
+@media (min-width: 769px) {
+  .content {
+    animation: fadeInUp 1s ease-out;
+  }
 }
 
 @keyframes fadeInUp {

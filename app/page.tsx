@@ -171,6 +171,8 @@ export default function ComingSoon() {
             height={200}
             className={styles.logoImage}
             priority
+            sizes="(max-width: 768px) 120px, 200px"
+            quality={85}
           />
         </div>
         <div className={styles.comingSoonBadge} aria-label="Now accepting early access">Now Accepting Early Access</div>
