@@ -69,7 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: 'GuruForU',
       images: [
         {
-          url: '/guruforu-ai-education-logo-dark.png',
+          url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
           width: 1200,
           height: 630,
           alt: 'GuruForU - AI-Powered Online Education Platform',
@@ -82,7 +82,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: 'summary_large_image',
       title: seoContent.openGraphTitle,
       description: seoContent.openGraphDescription,
-      images: ['/guruforu-ai-education-logo-dark.png'],
+      images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
       creator: '@guruforu_official',
       site: '@guruforu_official',
     },

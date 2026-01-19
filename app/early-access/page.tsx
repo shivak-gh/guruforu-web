@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     siteName: 'GuruForU',
     images: [
       {
-        url: '/guruforu-ai-education-logo-dark.png',
+        url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
         width: 1200,
         height: 630,
         alt: 'GuruForU Early Access',
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Early Access - GuruForU | Get Notified When We Launch',
     description: 'Join GuruForU early access program. Be the first to experience AI-powered online classes.',
-    images: ['/guruforu-ai-education-logo-dark.png'],
+    images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
     creator: '@guruforu_official',
     site: '@guruforu_official',
   },

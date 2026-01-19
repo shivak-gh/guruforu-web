@@ -54,7 +54,7 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: '/guruforu-ai-education-logo-dark.png',
+        url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
         width: 1200,
         height: 630,
         alt: 'GuruForU Blog',
@@ -66,7 +66,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Education Blog | GuruForU Learning Insights',
     description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning.',
-    images: ['/guruforu-ai-education-logo-dark.png'],
+    images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
     creator: '@guruforu_official',
     site: '@guruforu_official',
   },

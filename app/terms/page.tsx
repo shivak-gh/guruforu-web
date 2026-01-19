@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     images: [
       {
-        url: '/guruforu-ai-education-logo-dark.png',
+        url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
         width: 1200,
         height: 630,
         alt: 'GuruForU Terms and Conditions',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Terms of Service & Conditions | GuruForU',
     description: 'Read GuruForU terms and conditions and service agreement.',
-    images: ['/guruforu-ai-education-logo-dark.png'],
+    images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
     creator: '@guruforu_official',
     site: '@guruforu_official',
   },

@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       type: 'website',
       images: [
         {
-          url: '/guruforu-ai-education-logo-dark.png',
+          url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
           width: 1200,
           height: 630,
           alt: `${category.name} Category`,
@@ -77,7 +77,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       card: 'summary_large_image',
       title: `${category.name} | GuruForU Blog`,
       description: `Explore ${category.count} ${category.count === 1 ? 'article' : 'articles'} in ${category.name} category.`,
-      images: ['/guruforu-ai-education-logo-dark.png'],
+      images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
       creator: '@guruforu_official',
       site: '@guruforu_official',
     },

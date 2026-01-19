@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: 'GuruForU',
     images: [
       {
-        url: '/guruforu-ai-education-logo-dark.png',
+        url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
         width: 1200,
         height: 630,
         alt: 'GuruForU Free Consultation',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Free Online Tuition Consultation & Student Assessment | GuruForU',
     description: 'Get a free 1-on-1 educational counseling session. Our AI diagnostics identify learning gaps.',
-    images: ['/guruforu-ai-education-logo-dark.png'],
+    images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
   },
   alternates: {
     canonical: 'https://www.guruforu.com/free-consultation',
