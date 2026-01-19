@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { detectLocale, localizeText, type Region } from '../../lib/locale'
 import styles from './EarlyAccessForm.module.css'
 
 declare global {
@@ -17,8 +18,16 @@ export default function EarlyAccessForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [region, setRegion] = useState<Region>('DEFAULT')
   const recaptchaLoaded = useRef(false)
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''
+  
+  useEffect(() => {
+    const localeInfo = detectLocale()
+    setRegion(localeInfo.region)
+  }, [])
+  
+  const localized = (text: string) => localizeText(text, region)
 
   // Load reCAPTCHA script
   useEffect(() => {
@@ -158,7 +167,7 @@ export default function EarlyAccessForm() {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
       if (!emailRegex.test(email)) {
         setSubmitStatus('error')
-        setErrorMessage('Please enter a valid email address.')
+        setErrorMessage(localized('Please enter a valid email address.'))
         setIsSubmitting(false)
         return
       }
@@ -178,7 +187,7 @@ export default function EarlyAccessForm() {
           if (!recaptchaToken) {
             console.error('Failed to get reCAPTCHA token after retries')
             setSubmitStatus('error')
-            setErrorMessage('reCAPTCHA verification failed. Please refresh the page and try again. If the problem persists, your domain may need to be registered in the reCAPTCHA console.')
+            setErrorMessage(localized('reCAPTCHA verification failed. Please refresh the page and try again. If the problem persists, your domain may need to be registered in the reCAPTCHA console.'))
             setIsSubmitting(false)
             return
           }
@@ -187,7 +196,7 @@ export default function EarlyAccessForm() {
         } catch (error: any) {
           console.error('Error getting reCAPTCHA token:', error)
           setSubmitStatus('error')
-          setErrorMessage('reCAPTCHA verification failed. Please refresh the page and try again.')
+          setErrorMessage(localized('reCAPTCHA verification failed. Please refresh the page and try again.'))
           setIsSubmitting(false)
           return
         }
@@ -216,17 +225,17 @@ export default function EarlyAccessForm() {
         if (data.error) {
           setErrorMessage(data.error)
         } else if (response.status === 400) {
-          setErrorMessage('Invalid request. Please check your email address and try again.')
+          setErrorMessage(localized('Invalid request. Please check your email address and try again.'))
         } else if (response.status === 500) {
-          setErrorMessage('Server error. Please try again later or contact support@guruforu.com')
+          setErrorMessage(localized('Server error. Please try again later or contact support@guruforu.com'))
         } else {
-          setErrorMessage('Something went wrong. Please try again.')
+          setErrorMessage(localized('Something went wrong. Please try again.'))
         }
       }
     } catch (error) {
       console.error('Form submission error:', error)
       setSubmitStatus('error')
-      setErrorMessage('Network error. Please check your connection and try again.')
+      setErrorMessage(localized('Network error. Please check your connection and try again.'))
     } finally {
       setIsSubmitting(false)
     }
@@ -239,7 +248,7 @@ export default function EarlyAccessForm() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email address"
+          placeholder={localized('Enter your email address')}
           className={styles.input}
           required
           disabled={isSubmitting}
@@ -251,23 +260,23 @@ export default function EarlyAccessForm() {
           className={styles.button}
           aria-label="Submit early access request"
         >
-          {isSubmitting ? 'Submitting...' : 'Notify Me'}
+          {isSubmitting ? localized('Submitting...') : localized('Notify Me')}
         </button>
       </div>
       
       {submitStatus === 'success' && (
         <div className={styles.successMessage} role="alert">
-          ✓ Thank you! We&apos;ll notify you when we launch.
+          ✓ {localized('Thank you! We\'ll notify you when we launch.')}
         </div>
       )}
 
       {submitStatus === 'error' && errorMessage && (
         <div className={styles.errorMessage} role="alert">
-          <strong>Oops! Something went wrong.</strong>
+          <strong>{localized('Oops! Something went wrong.')}</strong>
           <br />
           {errorMessage}
           <br />
-          <small>If the issue persists, please email us directly at <a href="mailto:support@guruforu.com" className={styles.emailLink}>support@guruforu.com</a></small>
+          <small>{localized('If the issue persists, please email us directly at')} <a href="mailto:support@guruforu.com" className={styles.emailLink}>support@guruforu.com</a></small>
         </div>
       )}
 
@@ -289,16 +298,16 @@ export default function EarlyAccessForm() {
               rel="noopener noreferrer"
               className={styles.captchaLink}
             >
-              Privacy Policy
+              {localized('Privacy Policy')}
             </a>
-            {' '}and{' '}
+            {' '}{localized('and')}{' '}
             <a 
               href="https://policies.google.com/terms" 
               target="_blank" 
               rel="noopener noreferrer"
               className={styles.captchaLink}
             >
-              Terms of Service
+              {localized('Terms of Service')}
             </a>
             {' '}apply.
           </small>

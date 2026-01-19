@@ -4,65 +4,70 @@ import Script from 'next/script'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
+import { headers } from 'next/headers'
+import { detectLocale, getSEOContent, localizeText } from '../lib/locale'
 
 // Lazy load NavMenu to reduce initial bundle size
 const NavMenu = dynamic(() => import('./components/NavMenu'), {
   ssr: true, // Keep SSR for SEO and initial render
 })
 
-export const metadata: Metadata = {
-  title: 'GuruForU - AI-Powered Online Classes & Student Progress Tracker',
-  description: 'Best online classes for children with AI-powered personalized learning. Expert tutors, real-time progress tracking, and mastery reports.',
-  keywords: [
-    'Best Online Classes',
-    'AI Student Progress Tracker',
-    'Online Tuitions',
-    'Personalized Learning',
-    'Online Classes for Kids',
-    'AI-Powered Education',
-    'GuruForU'
-  ],
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers()
+  const localeInfo = detectLocale(headersList)
+  const seoContent = getSEOContent(localeInfo.region)
+  const baseUrl = 'https://www.guruforu.com'
+
+  return {
+    title: seoContent.title,
+    description: seoContent.description,
+    keywords: seoContent.keywords,
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  openGraph: {
-    title: 'GuruForU - AI-Powered Online Classes & Student Progress Tracker',
-    description: 'Best online classes for children with AI-powered personalized learning. Expert tutors, real-time progress tracking, and mastery reports.',
-    url: 'https://www.guruforu.com',
-    siteName: 'GuruForU',
-    images: [
-      {
-        url: '/guruforu-ai-education-logo-dark.png',
-        width: 1200,
-        height: 630,
-        alt: 'GuruForU - AI-Powered Online Education Platform',
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
       },
-    ],
-    type: 'website',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'GuruForU - AI-Powered Online Classes & Student Progress Tracker',
-    description: 'Best online classes for children with AI-powered personalized learning. Expert tutors, real-time progress tracking.',
-    images: ['/guruforu-ai-education-logo-dark.png'],
-    creator: '@guruforu_official',
-    site: '@guruforu_official',
-  },
-  alternates: {
-    canonical: 'https://www.guruforu.com',
-  },
+    },
+    openGraph: {
+      title: seoContent.openGraphTitle,
+      description: seoContent.openGraphDescription,
+      url: baseUrl,
+      siteName: 'GuruForU',
+      images: [
+        {
+          url: '/guruforu-ai-education-logo-dark.png',
+          width: 1200,
+          height: 630,
+          alt: 'GuruForU - AI-Powered Online Education Platform',
+        },
+      ],
+      type: 'website',
+      locale: localeInfo.openGraphLocale,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: seoContent.openGraphTitle,
+      description: seoContent.openGraphDescription,
+      images: ['/guruforu-ai-education-logo-dark.png'],
+      creator: '@guruforu_official',
+      site: '@guruforu_official',
+    },
+    alternates: {
+      canonical: baseUrl,
+    },
+  }
 }
 
-export default function ComingSoon() {
+export default async function ComingSoon() {
+  const headersList = await headers()
+  const localeInfo = detectLocale(headersList)
+  const localized = (text: string) => localizeText(text, localeInfo.region)
+
   // Organization Schema for SEO
   const organizationSchema = {
     '@context': 'https://schema.org',
@@ -70,7 +75,7 @@ export default function ComingSoon() {
     'name': 'GuruForU',
     'url': 'https://www.guruforu.com',
     'logo': 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
-    'description': 'Premium Online Tuitions enhanced with AI-powered personalized learning and real-time mastery reports.',
+    'description': localized('Premium Online Tutoring enhanced with AI-powered personalized learning and real-time mastery reports.'),
     'sameAs': [
       'https://twitter.com/guruforu_official',
       'https://www.instagram.com/guruforu_official/'
@@ -175,16 +180,16 @@ export default function ComingSoon() {
             quality={85}
           />
         </div>
-        <div className={styles.comingSoonBadge} aria-label="Now accepting early access">Now Accepting Early Access</div>
+        <div className={styles.comingSoonBadge} aria-label="Now accepting early access">{localized('Now Accepting Early Access')}</div>
         <div className={styles.earlyAccessLink}>
           <Link href="/early-access" className={styles.notifyButton}>
-            Notify Me
+            {localized('Notify Me')}
           </Link>
         </div>
         <main id="main-content">
           <h1 className={styles.title}>AI-Powered Online Classes</h1>
         <p className={styles.subtitle}>
-          The <strong>best online classes</strong> for your child, enhanced with <strong>AI-powered personalized learning</strong>. 
+          The <strong>best online classes</strong> for your child, enhanced with <strong>AI-powered {localized('Personalized Learning')}</strong>. 
           Get <strong>real-time student progress tracking</strong> and mastery reports that show exactly how your child is advancing.
         </p>
         <div className={styles.divider}></div>
@@ -202,8 +207,8 @@ export default function ComingSoon() {
             <article className={styles.feature} role="listitem">
               <div className={styles.featureIcon} aria-hidden="true">✓</div>
               <div className={styles.featureContent}>
-                <h3 className={styles.featureTitle}>Personalized Learning</h3>
-                <p className={styles.featureDescription}><strong>AI-driven personalized learning paths</strong> tailored to your child&apos;s unique strengths and learning style, ensuring optimal educational outcomes.</p>
+                <h3 className={styles.featureTitle}>{localized('Personalized Learning')}</h3>
+                <p className={styles.featureDescription}><strong>AI-driven {localized('personalized learning paths')}</strong> tailored to your child&apos;s unique strengths and learning style, ensuring optimal educational outcomes.</p>
               </div>
             </article>
             <article className={styles.feature} role="listitem">
@@ -227,7 +232,7 @@ export default function ComingSoon() {
           <h2 id="benefits-heading" className={styles.benefitsHeading}>Key Benefits of Online Learning with GuruForU</h2>
           <ul className={styles.benefitsUl}>
             <li><strong>Flexible scheduling</strong> - Learn at your own pace and convenience</li>
-            <li><strong>Personalized attention</strong> - One-on-one or small group sessions</li>
+            <li><strong>{localized('Personalized attention')}</strong> - One-on-one or small group sessions</li>
             <li><strong>Real-time progress tracking</strong> - See your child&apos;s improvement instantly</li>
             <li><strong>Expert guidance</strong> - Qualified tutors with proven track records</li>
             <li><strong>Comprehensive reports</strong> - Detailed analytics and mastery insights</li>
@@ -236,22 +241,22 @@ export default function ComingSoon() {
         </section>
 
         <p className={styles.message}>
-          Join thousands of parents who trust GuruForU for their children&apos;s online education journey. Learn more about our <Link href="/blog" className={styles.notifyButton}>educational resources</Link>, <Link href="/free-session" className={styles.notifyButton}>book a free session</Link>, or <Link href="/contact" className={styles.notifyButton}>contact us</Link> for more information.
+          {localized('Join thousands of parents who trust GuruForU for their children\'s online education journey. Learn more about our')} <Link href="/blog" className={styles.notifyButton}>{localized('educational resources')}</Link>, <Link href="/free-session" className={styles.notifyButton}>{localized('book a free session')}</Link>, {localized('or')} <Link href="/contact" className={styles.notifyButton}>{localized('contact us')}</Link> {localized('for more information.')}
         </p>
         </main>
       </div>
 
       <footer className={styles.footer}>
         <nav className={styles.footerLinks}>
-          <Link href="/blog" className={styles.footerLink} prefetch={false}>Education Blog</Link>
-          <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact Us</Link>
-          <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>
-          <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>
-          <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy Policy</Link>
-          <Link href="/shipping" className={styles.footerLink} prefetch={false}>Shipping Policy</Link>
-          <Link href="/cancellation-refunds" className={styles.footerLink} prefetch={false}>Cancellation and Refunds</Link>
+          <Link href="/blog" className={styles.footerLink} prefetch={false}>{localized('Education Blog')}</Link>
+          <Link href="/contact" className={styles.footerLink} prefetch={false}>{localized('Contact Us')}</Link>
+          <a href="mailto:support@guruforu.com" className={styles.footerLink}>{localized('Email Support')}</a>
+          <Link href="/terms" className={styles.footerLink} prefetch={false}>{localized('Terms and Conditions')}</Link>
+          <Link href="/privacy" className={styles.footerLink} prefetch={false}>{localized('Privacy Policy')}</Link>
+          <Link href="/shipping" className={styles.footerLink} prefetch={false}>{localized('Shipping Policy')}</Link>
+          <Link href="/cancellation-refunds" className={styles.footerLink} prefetch={false}>{localized('Cancellation and Refunds')}</Link>
         </nav>
-        <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
+        <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. {localized('All rights reserved.')}</p>
       </footer>
     </div>
     </>

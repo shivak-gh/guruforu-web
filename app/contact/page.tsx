@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import styles from './page.module.css'
 import Link from 'next/link'
 import Script from 'next/script'
+import { detectLocale, localizeText, type Region } from '../../lib/locale'
 
 // Lazy load NavMenu to reduce initial bundle size
 const NavMenu = dynamic(() => import('../components/NavMenu'), {
@@ -30,9 +31,17 @@ export default function ContactUs() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState<string>('')
+  const [region, setRegion] = useState<Region>('DEFAULT')
   const recaptchaLoaded = useRef(false)
   // Get reCAPTCHA site key from environment (embedded at build time in Next.js)
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''
+  
+  useEffect(() => {
+    const localeInfo = detectLocale()
+    setRegion(localeInfo.region)
+  }, [])
+  
+  const localized = (text: string) => localizeText(text, region)
 
   // Debug: Log site key on mount (only in development)
   useEffect(() => {
@@ -320,17 +329,17 @@ export default function ContactUs() {
 
         <div className={styles.content}>
         <div className={styles.pageContent}>
-          <h1 className={styles.title}>Contact Us</h1>
+          <h1 className={styles.title}>{localized('Contact Us')}</h1>
           <p className={styles.subtitle}>
-            We&apos;d love to hear from you! Get in touch with us for any <strong>questions, feedback, or support</strong> about our <strong>online education platform</strong>.
+            {localized('We\'d love to hear from you! Get in touch with us for any')} <strong>{localized('questions, feedback, or support')}</strong> {localized('about our')} <strong>{localized('online education platform')}</strong>.
           </p>
 
-          <h2 className={styles.sectionTitle}>Get in Touch</h2>
+          <h2 className={styles.sectionTitle}>{localized('Get in Touch')}</h2>
 
           <div className={styles.contactSection}>
             <div className={styles.contactInfo}>
               <div className={styles.infoItem}>
-                <h3 className={styles.infoTitle}>Email</h3>
+                <h3 className={styles.infoTitle}>{localized('Email')}</h3>
                 <p className={styles.infoText}>
                   <a href="mailto:support@guruforu.com" className={styles.emailLink}>
                     support@guruforu.com
@@ -338,19 +347,19 @@ export default function ContactUs() {
                 </p>
               </div>
               <div className={styles.infoItem}>
-                <h3 className={styles.infoTitle}>Response Time</h3>
-                <p className={styles.infoText}>We typically respond within <strong>24-48 hours</strong> during business days</p>
+                <h3 className={styles.infoTitle}>{localized('Response Time')}</h3>
+                <p className={styles.infoText}>{localized('We typically respond within')} <strong>24-48 hours</strong> {localized('during business days')}</p>
               </div>
               <div className={styles.infoItem}>
-                <h3 className={styles.infoTitle}>Support Availability</h3>
-                <p className={styles.infoText}>We&apos;re here to help! Reach out anytime and we&apos;ll get back to you <strong>as soon as possible</strong>.</p>
+                <h3 className={styles.infoTitle}>{localized('Support Availability')}</h3>
+                <p className={styles.infoText}>{localized('We\'re here to help! Reach out anytime and we\'ll get back to you')} <strong>{localized('as soon as possible')}</strong>.</p>
               </div>
             </div>
 
             <form className={styles.contactForm} onSubmit={handleSubmit}>
               <div className={styles.formGroup}>
                 <label htmlFor="name" className={styles.label}>
-                  Name <span className={styles.required}>*</span>
+                  {localized('Name')} <span className={styles.required}>*</span>
                 </label>
                 <input
                   type="text"
@@ -360,13 +369,13 @@ export default function ContactUs() {
                   onChange={handleChange}
                   required
                   className={styles.input}
-                  placeholder="Your full name"
+                  placeholder={localized('Your full name')}
                 />
               </div>
 
               <div className={styles.formGroup}>
                 <label htmlFor="email" className={styles.label}>
-                  Email <span className={styles.required}>*</span>
+                  {localized('Email')} <span className={styles.required}>*</span>
                 </label>
                 <input
                   type="email"
@@ -376,13 +385,13 @@ export default function ContactUs() {
                   onChange={handleChange}
                   required
                   className={styles.input}
-                  placeholder="your.email@example.com"
+                  placeholder={localized('your.email@example.com')}
                 />
               </div>
 
               <div className={styles.formGroup}>
                 <label htmlFor="subject" className={styles.label}>
-                  Subject <span className={styles.required}>*</span>
+                  {localized('Subject')} <span className={styles.required}>*</span>
                 </label>
                 <select
                   id="subject"
@@ -392,18 +401,18 @@ export default function ContactUs() {
                   required
                   className={styles.select}
                 >
-                  <option value="">Select a subject</option>
-                  <option value="general">General Inquiry</option>
-                  <option value="support">Technical Support</option>
-                  <option value="billing">Billing Question</option>
-                  <option value="feedback">Feedback</option>
-                  <option value="other">Other</option>
+                  <option value="">{localized('Select a subject')}</option>
+                  <option value="general">{localized('General Inquiry')}</option>
+                  <option value="support">{localized('Technical Support')}</option>
+                  <option value="billing">{localized('Billing Question')}</option>
+                  <option value="feedback">{localized('Feedback')}</option>
+                  <option value="other">{localized('Other')}</option>
                 </select>
               </div>
 
               <div className={styles.formGroup}>
                 <label htmlFor="message" className={styles.label}>
-                  Message <span className={styles.required}>*</span>
+                  {localized('Message')} <span className={styles.required}>*</span>
                 </label>
                 <textarea
                   id="message"
@@ -413,23 +422,23 @@ export default function ContactUs() {
                   required
                   rows={6}
                   className={styles.textarea}
-                  placeholder="Tell us how we can help you..."
+                  placeholder={localized('Tell us how we can help you...')}
                 />
               </div>
 
               {submitStatus === 'success' && (
                 <div className={styles.successMessage}>
-                  Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
+                  {localized('Thank you! Your message has been sent successfully. We\'ll get back to you soon.')}
                 </div>
               )}
 
               {submitStatus === 'error' && (
                 <div className={styles.errorMessage} role="alert">
-                  <strong>Oops! Something went wrong.</strong>
+                  <strong>{localized('Oops! Something went wrong.')}</strong>
                   <br />
-                  {errorMessage || 'Please check your browser console (F12) for detailed error information.'}
+                  {errorMessage || localized('Please check your browser console (F12) for detailed error information.')}
                   <br />
-                  <small>If the issue persists, please email us directly at <a href="mailto:support@guruforu.com" className={styles.emailLink}>support@guruforu.com</a></small>
+                  <small>{localized('If the issue persists, please email us directly at')} <a href="mailto:support@guruforu.com" className={styles.emailLink}>support@guruforu.com</a></small>
                 </div>
               )}
 
@@ -452,23 +461,23 @@ export default function ContactUs() {
                 disabled={isSubmitting}
                 className={styles.submitButton}
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                {isSubmitting ? localized('Sending...') : localized('Send Message')}
               </button>
             </form>
           </div>
 
           <div className={styles.additionalLinks}>
-            <p className={styles.linksText}>You may also find answers in our:</p>
+            <p className={styles.linksText}>{localized('You may also find answers in our:')}</p>
             <div className={styles.links}>
-              <Link href="/terms" className={styles.link} prefetch={false}>Terms and Conditions</Link>
-              <Link href="/privacy" className={styles.link} prefetch={false}>Privacy Policy</Link>
-              <Link href="/cancellation-refunds" className={styles.link} prefetch={false}>Cancellation and Refunds</Link>
+              <Link href="/terms" className={styles.link} prefetch={false}>{localized('Terms and Conditions')}</Link>
+              <Link href="/privacy" className={styles.link} prefetch={false}>{localized('Privacy Policy')}</Link>
+              <Link href="/cancellation-refunds" className={styles.link} prefetch={false}>{localized('Cancellation and Refunds')}</Link>
             </div>
           </div>
         </div>
 
         <footer className={styles.footer}>
-          <p>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} GuruForU. {localized('All rights reserved.')}</p>
         </footer>
       </div>
     </div>

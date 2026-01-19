@@ -1,0 +1,119 @@
+{
+  "supportedLocales": [
+    {
+      "code": "en-US",
+      "hreflang": "en-US",
+      "region": "US",
+      "countryCode": "US",
+      "countryName": "United States",
+      "currency": "USD",
+      "currencySymbol": "$",
+      "openGraphLocale": "en_US",
+      "htmlLang": "en"
+    },
+    {
+      "code": "en-GB",
+      "hreflang": "en-GB",
+      "region": "UK",
+      "countryCode": "GB",
+      "countryName": "United Kingdom",
+      "currency": "GBP",
+      "currencySymbol": "£",
+      "openGraphLocale": "en_GB",
+      "htmlLang": "en"
+    },
+    {
+      "code": "en-CA",
+      "hreflang": "en-CA",
+      "region": "CA",
+      "countryCode": "CA",
+      "countryName": "Canada",
+      "currency": "CAD",
+      "currencySymbol": "$",
+      "openGraphLocale": "en_CA",
+      "htmlLang": "en"
+    },
+    {
+      "code": "en-AU",
+      "hreflang": "en-AU",
+      "region": "AU",
+      "countryCode": "AU",
+      "countryName": "Australia",
+      "currency": "AUD",
+      "currencySymbol": "$",
+      "openGraphLocale": "en_AU",
+      "htmlLang": "en"
+    },
+    {
+      "code": "en-NZ",
+      "hreflang": "en-NZ",
+      "region": "NZ",
+      "countryCode": "NZ",
+      "countryName": "New Zealand",
+      "currency": "NZD",
+      "currencySymbol": "$",
+      "openGraphLocale": "en_NZ",
+      "htmlLang": "en"
+    },
+    {
+      "code": "en-QA",
+      "hreflang": "en-QA",
+      "region": "QA",
+      "countryCode": "QA",
+      "countryName": "Qatar",
+      "currency": "QAR",
+      "currencySymbol": "ر.ق",
+      "openGraphLocale": "en_QA",
+      "htmlLang": "en"
+    },
+    {
+      "code": "en-AE",
+      "hreflang": "en-AE",
+      "region": "AE",
+      "countryCode": "AE",
+      "countryName": "United Arab Emirates",
+      "currency": "AED",
+      "currencySymbol": "د.إ",
+      "openGraphLocale": "en_AE",
+      "htmlLang": "en"
+    },
+    {
+      "code": "x-default",
+      "hreflang": "x-default",
+      "region": "DEFAULT",
+      "countryCode": null,
+      "countryName": "Global",
+      "currency": "USD",
+      "currencySymbol": "$",
+      "openGraphLocale": "en_US",
+      "htmlLang": "en"
+    }
+  ],
+  "defaultLocale": "x-default",
+  "detection": {
+    "headerKeys": [
+      "cf-ipcountry",
+      "x-vercel-ip-country",
+      "x-country-code",
+      "accept-language"
+    ],
+    "countryCodeMapping": {
+      "US": "en-US",
+      "GB": "en-GB",
+      "CA": "en-CA",
+      "AU": "en-AU",
+      "NZ": "en-NZ",
+      "QA": "en-QA",
+      "AE": "en-AE"
+    },
+    "languageMapping": {
+      "en-gb": "en-GB",
+      "en-ca": "en-CA",
+      "en-us": "en-US",
+      "en-au": "en-AU",
+      "en-nz": "en-NZ",
+      "en-qa": "en-QA",
+      "en-ae": "en-AE"
+    }
+  }
+}

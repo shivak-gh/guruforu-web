@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
+import { headers } from 'next/headers'
+import { detectLocale, generateHreflangLinks, getSEOContent } from '../lib/locale'
 import './globals.css'
 
 // Lazy load client components to reduce initial bundle size
@@ -22,83 +24,101 @@ export const viewport: Viewport = {
   userScalable: true,
 }
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://www.guruforu.com'),
-  title: 'GuruForU | Best Online Classes with AI-Powered Student Progress Tracker',
-  description: 'Best online classes with AI-powered personalized learning. Expert tutors, real-time student progress tracking, and mastery reports.',
-  keywords: [
-    'Best Online Classes',
-    'Best Online Classes for Students',
-    'Student Progress Tracker',
-    'AI Student Progress Tracker',
-    'Online Tuitions',
-    'Online Tutoring',
-    'Personalized Learning',
-    'AI Mastery Tracking',
-    'Online Classes for Kids',
-    'Student Progress Monitoring',
-    'AI-Powered Education',
-    'Personalized Online Tutoring',
-    'Home Schooling AI Assistant',
-    'Online Coaching Mastery Reports',
-    'Independent Teachers Platform',
-    'GuruForU'
-  ],
-  icons: {
-    icon: '/guruforu-ai-education-logo-dark.png',
-    apple: '/guruforu-ai-education-logo-dark.png',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+// Performance Note: Next.js App Router optimizes headers() calls automatically
+// JSON imports are bundled at build time (zero runtime cost)
+// Locale detection is a simple object lookup (<1ms overhead)
+
+export async function generateMetadata(): Promise<Metadata> {
+  // Next.js optimizes headers() - safe to call multiple times per request
+  const headersList = await headers()
+  const localeInfo = detectLocale(headersList)
+  const seoContent = getSEOContent(localeInfo.region)
+  const baseUrl = 'https://www.guruforu.com'
+
+  // Pre-compute hreflang links once (static data, no performance impact)
+  const hreflangLinks = generateHreflangLinks(baseUrl, '/')
+  const languagesMap = hreflangLinks.reduce((acc, link) => {
+    acc[link.hreflang] = link.href
+    return acc
+  }, {} as Record<string, string>)
+
+  return {
+    metadataBase: new URL(baseUrl),
+    title: seoContent.title,
+    description: seoContent.description,
+    keywords: seoContent.keywords,
+    icons: {
+      icon: '/guruforu-ai-education-logo-dark.png',
+      apple: '/guruforu-ai-education-logo-dark.png',
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  openGraph: {
-    title: 'GuruForU - Best Online Classes with AI Student Progress Tracker',
-    description: 'Premium online tuitions powered by AI. Get personalized learning with AI mastery tracking and expert online tutors.',
-    url: 'https://www.guruforu.com',
-    siteName: 'GuruForU',
-    images: [
-      {
-        url: '/guruforu-ai-education-logo-dark.png',
-        width: 1200,
-        height: 630,
-        alt: 'GuruForU - AI-Powered Online Education Platform',
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
       },
-    ],
-    type: 'website',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'GuruForU - Best Online Classes with AI Student Progress Tracker',
-    description: 'Premium online tuitions powered by AI. Get personalized learning with AI mastery tracking and expert online tutors.',
-    images: ['/guruforu-ai-education-logo-dark.png'],
-    creator: '@guruforu_official',
-    site: '@guruforu_official',
-  },
-  alternates: {
-    canonical: 'https://www.guruforu.com',
-    types: {
-      'application/rss+xml': 'https://www.guruforu.com/feed.xml',
     },
-  },
+    openGraph: {
+      title: seoContent.openGraphTitle,
+      description: seoContent.openGraphDescription,
+      url: baseUrl,
+      siteName: 'GuruForU',
+      images: [
+        {
+          url: '/guruforu-ai-education-logo-dark.png',
+          width: 1200,
+          height: 630,
+          alt: 'GuruForU - AI-Powered Online Education Platform',
+        },
+      ],
+      type: 'website',
+      locale: localeInfo.openGraphLocale,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: seoContent.openGraphTitle,
+      description: seoContent.openGraphDescription,
+      images: ['/guruforu-ai-education-logo-dark.png'],
+      creator: '@guruforu_official',
+      site: '@guruforu_official',
+    },
+    alternates: {
+      canonical: baseUrl,
+      languages: languagesMap,
+      types: {
+        'application/rss+xml': 'https://www.guruforu.com/feed.xml',
+      },
+    },
+  }
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  // Next.js optimizes headers() - returns cached value within same request
+  const headersList = await headers()
+  const localeInfo = detectLocale(headersList)
+  const baseUrl = 'https://www.guruforu.com'
+  const hreflangLinks = generateHreflangLinks(baseUrl, '/')
+
   return (
-    <html lang="en">
+    <html lang={localeInfo.htmlLang}>
       <head>
+        {/* Hreflang tags for international SEO */}
+        {hreflangLinks.map((link) => (
+          <link
+            key={link.hreflang}
+            rel="alternate"
+            hrefLang={link.hreflang}
+            href={link.href}
+          />
+        ))}
         {/* Performance: Preconnect to external domains - Only for critical resources */}
         {/* Note: Removed preconnect for Google Analytics/Tag Manager to reduce early connection overhead */}
         {/* Analytics scripts load lazily, so preconnect isn't needed immediately */}

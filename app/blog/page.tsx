@@ -4,6 +4,8 @@ import { getAllBlogs } from './lib/getBlogs'
 import dynamicImport from 'next/dynamic'
 import styles from './page.module.css'
 import Script from 'next/script'
+import { headers } from 'next/headers'
+import { detectLocale, localizeText } from '../../lib/locale'
 
 // Lazy load client components to reduce initial bundle size
 const BlogCategoriesWrapper = dynamicImport(() => import('../components/BlogCategoriesWrapper'), {
@@ -78,6 +80,9 @@ export const metadata = {
 
 export default async function BlogListing() {
   const blogs = await getAllBlogs()
+  const headersList = await headers()
+  const localeInfo = detectLocale(headersList)
+  const localized = (text: string) => localizeText(text, localeInfo.region)
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', { 
@@ -163,9 +168,9 @@ export default async function BlogListing() {
         <div className={styles.content}>
         <div className={styles.blogListing}>
           <header className={styles.pageHeader}>
-            <h1 className={styles.pageTitle}>Our Blog</h1>
+            <h1 className={styles.pageTitle}>{localized('Our Blog')}</h1>
             <p className={styles.pageSubtitle}>
-              Expert insights on <strong>child education</strong>, <strong>learning strategies</strong>, and <strong>AI-powered personalized learning</strong>
+              {localized('Expert insights on')} <strong>{localized('child education')}</strong>, <strong>{localized('learning strategies')}</strong>, {localized('and')} <strong>{localized('AI-powered personalized learning')}</strong>
             </p>
           </header>
 
@@ -173,7 +178,7 @@ export default async function BlogListing() {
 
           {blogs.length === 0 ? (
             <div className={styles.emptyState}>
-              <p>No blog posts available yet. Check back soon!</p>
+              <p>{localized('No blog posts available yet. Check back soon!')}</p>
             </div>
           ) : (
             <div className={styles.blogGrid}>
@@ -201,13 +206,13 @@ export default async function BlogListing() {
 
         <footer className={styles.footer}>
           <nav className={styles.footerLinks}>
-            <Link href="/" className={styles.footerLink} prefetch={false}>GuruForU Home</Link>
-            <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact Us</Link>
-            <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>
-            <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>
-            <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy Policy</Link>
+            <Link href="/" className={styles.footerLink} prefetch={false}>{localized('GuruForU Home')}</Link>
+            <Link href="/contact" className={styles.footerLink} prefetch={false}>{localized('Contact Us')}</Link>
+            <a href="mailto:support@guruforu.com" className={styles.footerLink}>{localized('Email Support')}</a>
+            <Link href="/terms" className={styles.footerLink} prefetch={false}>{localized('Terms and Conditions')}</Link>
+            <Link href="/privacy" className={styles.footerLink} prefetch={false}>{localized('Privacy Policy')}</Link>
           </nav>
-          <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
+          <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. {localized('All rights reserved.')}</p>
         </footer>
       </div>
     </div>

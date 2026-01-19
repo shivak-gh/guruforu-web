@@ -4,6 +4,8 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
+import { headers } from 'next/headers'
+import { detectLocale, localizeText } from '../../lib/locale'
 
 // Lazy load client components to reduce initial bundle size
 const NavMenu = dynamic(() => import('../components/NavMenu'), {
@@ -63,7 +65,11 @@ export const metadata: Metadata = {
   },
 }
 
-export default function EarlyAccessPage() {
+export default async function EarlyAccessPage() {
+  const headersList = await headers()
+  const localeInfo = detectLocale(headersList)
+  const localized = (text: string) => localizeText(text, localeInfo.region)
+  
   // WebPage structured data for SEO
   const webPageSchema = {
     '@context': 'https://schema.org',
@@ -104,14 +110,14 @@ export default function EarlyAccessPage() {
           </div>
           
           <div className={styles.badge} aria-label="Now accepting early access">
-            Now Accepting Early Access
+            {localized('Now Accepting Early Access')}
           </div>
 
           <main id="main-content">
-            <h1 className={styles.title}>Get Early Access to GuruForU</h1>
+            <h1 className={styles.title}>{localized('Get Early Access to GuruForU')}</h1>
             <p className={styles.subtitle}>
-              Be among the first to experience <strong>premium online tuitions powered by AI</strong>. 
-              Get notified when we launch and receive <strong>exclusive early access benefits</strong>.
+              {localized('Be among the first to experience')} <strong>{localized('premium online tuitions powered by AI')}</strong>. 
+              {localized('Get notified when we launch and receive')} <strong>{localized('exclusive early access benefits')}</strong>.
             </p>
 
             <div className={styles.formSection}>
@@ -119,18 +125,18 @@ export default function EarlyAccessPage() {
             </div>
 
             <div className={styles.benefits}>
-              <h2 className={styles.benefitsTitle}>Early Access Benefits</h2>
+              <h2 className={styles.benefitsTitle}>{localized('Early Access Benefits')}</h2>
               <ul className={styles.benefitsList}>
-                <li>✓ <strong>Priority access</strong> to the platform</li>
-                <li>✓ <strong>Special launch pricing</strong> for early adopters</li>
-                <li>✓ <strong>Exclusive onboarding support</strong> from our team</li>
-                <li>✓ <strong>Early feature previews</strong> before public release</li>
+                <li>✓ <strong>{localized('Priority access')}</strong> {localized('to the platform')}</li>
+                <li>✓ <strong>{localized('Special launch pricing')}</strong> {localized('for early adopters')}</li>
+                <li>✓ <strong>{localized('Exclusive onboarding support')}</strong> {localized('from our team')}</li>
+                <li>✓ <strong>{localized('Early feature previews')}</strong> {localized('before public release')}</li>
               </ul>
             </div>
 
             <div className={styles.backLink}>
               <Link href="/" className={styles.link}>
-                ← Back to Home
+                ← {localized('Back to Home')}
               </Link>
             </div>
           </main>
@@ -138,14 +144,14 @@ export default function EarlyAccessPage() {
 
         <footer className={styles.footer}>
           <nav className={styles.footerLinks}>
-            <Link href="/" className={styles.footerLink} prefetch={false}>GuruForU Home</Link>
-            <Link href="/blog" className={styles.footerLink} prefetch={false}>Education Blog</Link>
-            <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact Us</Link>
-            <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>
-            <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>
-            <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy Policy</Link>
+            <Link href="/" className={styles.footerLink} prefetch={false}>{localized('GuruForU Home')}</Link>
+            <Link href="/blog" className={styles.footerLink} prefetch={false}>{localized('Education Blog')}</Link>
+            <Link href="/contact" className={styles.footerLink} prefetch={false}>{localized('Contact Us')}</Link>
+            <a href="mailto:support@guruforu.com" className={styles.footerLink}>{localized('Email Support')}</a>
+            <Link href="/terms" className={styles.footerLink} prefetch={false}>{localized('Terms and Conditions')}</Link>
+            <Link href="/privacy" className={styles.footerLink} prefetch={false}>{localized('Privacy Policy')}</Link>
           </nav>
-          <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
+          <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. {localized('All rights reserved.')}</p>
         </footer>
       </div>
     </>
