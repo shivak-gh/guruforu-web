@@ -106,7 +106,8 @@ export function localizeText(text: string, region: Region): string {
   const sortedKeys = Object.keys(replacements).sort((a, b) => b.length - a.length)
   
   for (const key of sortedKeys) {
-    const value = replacements[key] as string
+    const value = replacements[key as keyof typeof replacements] as string
+    if (!value) continue
     // For multi-word phrases, use exact match with case-insensitive flag
     // For single words, use word boundaries
     if (key.includes(' ')) {
