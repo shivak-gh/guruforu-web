@@ -115,16 +115,19 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "EducationalService",
-              "name": "GuruForU",
+              "@type": "Service",
+              "name": "GuruForU Online Tutoring",
               "description": "Premium Online Tuitions enhanced with AI-powered personalized learning and real-time mastery reports.",
+              "serviceType": "Educational Service",
               "provider": {
-                "@type": "Organization",
+                "@type": "EducationalOrganization",
                 "name": "GuruForU",
                 "url": "https://www.guruforu.com"
               },
-              "serviceType": "Online Tutoring",
-              "areaServed": "Global",
+              "areaServed": {
+                "@type": "Place",
+                "name": "Worldwide"
+              },
               "hasOfferCatalog": {
                 "@type": "OfferCatalog",
                 "name": "Academic Courses",
