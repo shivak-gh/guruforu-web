@@ -5,7 +5,8 @@ import dynamicImport from 'next/dynamic'
 import styles from './page.module.css'
 import Script from 'next/script'
 import { headers } from 'next/headers'
-import { detectLocale, localizeText } from '../../lib/locale'
+import { detectLocale, localizeText, generateHreflangLinks } from '../../lib/locale'
+import type { Metadata } from 'next'
 
 // Lazy load client components to reduce initial bundle size
 const BlogCategoriesWrapper = dynamicImport(() => import('../components/BlogCategoriesWrapper'), {
@@ -21,61 +22,74 @@ const NavMenu = dynamicImport(() => import('../components/NavMenu'), {
 export const revalidate = 0 // Disabled for stability - set to 3600 when ready
 export const dynamic = 'force-dynamic' // Force dynamic rendering - set to 'force-static' when ready
 
-export const metadata = {
-  title: 'Education Blog | GuruForU Learning Insights',
-  description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning. Latest articles on student progress tracking and academic success.',
-  keywords: [
-    'GuruForU Blog',
-    'Education Blog',
-    'Online Learning Tips',
-    'Child Education',
-    'AI-Powered Learning',
-    'Student Progress Tracking',
-    'Personalized Learning',
-    'Online Tuitions',
-    'Parenting Education',
-  ],
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = 'https://www.guruforu.com'
+  const currentPath = '/blog'
+  
+  // Generate hreflang links for this page (all locales point to same URL for single-URL site)
+  const hreflangLinks = generateHreflangLinks(baseUrl, currentPath)
+  const languagesMap = hreflangLinks.reduce((acc, link) => {
+    acc[link.hreflang] = link.href
+    return acc
+  }, {} as Record<string, string>)
+
+  return {
+    title: 'Education Blog | GuruForU Learning Insights',
+    description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning. Latest articles on student progress tracking and academic success.',
+    keywords: [
+      'GuruForU Blog',
+      'Education Blog',
+      'Online Learning Tips',
+      'Child Education',
+      'AI-Powered Learning',
+      'Student Progress Tracking',
+      'Personalized Learning',
+      'Online Tuitions',
+      'Parenting Education',
+    ],
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  openGraph: {
-    title: 'Education Blog | GuruForU Learning Insights',
-    description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning.',
-    url: 'https://www.guruforu.com/blog',
-    siteName: 'GuruForU',
-    type: 'website',
-    images: [
-      {
-        url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
-        width: 1200,
-        height: 630,
-        alt: 'GuruForU Blog',
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
       },
-    ],
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Education Blog | GuruForU Learning Insights',
-    description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning.',
-    images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
-    creator: '@guruforu_official',
-    site: '@guruforu_official',
-  },
-  alternates: {
-    canonical: 'https://www.guruforu.com/blog',
-    types: {
-      'application/rss+xml': 'https://www.guruforu.com/feed.xml',
     },
-  },
+    openGraph: {
+      title: 'Education Blog | GuruForU Learning Insights',
+      description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning.',
+      url: 'https://www.guruforu.com/blog',
+      siteName: 'GuruForU',
+      type: 'website',
+      images: [
+        {
+          url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+          width: 1200,
+          height: 630,
+          alt: 'GuruForU Blog',
+        },
+      ],
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Education Blog | GuruForU Learning Insights',
+      description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning.',
+      images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
+      creator: '@guruforu_official',
+      site: '@guruforu_official',
+    },
+    alternates: {
+      canonical: 'https://www.guruforu.com/blog',
+      languages: languagesMap,
+      types: {
+        'application/rss+xml': 'https://www.guruforu.com/feed.xml',
+      },
+    },
+  }
 }
 
 export default async function BlogListing() {
@@ -104,21 +118,32 @@ export default async function BlogListing() {
     ],
   }
 
-  // Generate JSON-LD structured data for Blog schema (minimized)
+  // Generate comprehensive JSON-LD structured data for Blog schema
   const blogSchema = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     name: 'GuruForU Blog',
+    description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning.',
     url: 'https://www.guruforu.com/blog',
+    inLanguage: 'en-US',
     publisher: {
       '@type': 'Organization',
       name: 'GuruForU',
+      url: 'https://www.guruforu.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+        width: 1200,
+        height: 630,
+      },
     },
     blogPost: blogs.map((blog) => ({
       '@type': 'BlogPosting',
       headline: blog.title,
+      description: blog.lead,
       url: `https://www.guruforu.com/blog/${blog.categorySlug}/${blog.slug}`,
       datePublished: blog.meta.publishedDate,
+      image: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
     })),
   }
 

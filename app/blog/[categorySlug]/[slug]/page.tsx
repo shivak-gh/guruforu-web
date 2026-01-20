@@ -5,6 +5,7 @@ import { getBlogBySlug, getAllBlogs } from '../../lib/getBlogs'
 import dynamicImport from 'next/dynamic'
 import styles from './page.module.css'
 import Script from 'next/script'
+import { generateHreflangLinks } from '../../../../lib/locale'
 
 // Helper function to convert URLs in text to clickable links
 function linkify(text: string) {
@@ -104,6 +105,15 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     ? `${blog.lead.substring(0, 157)}...`
     : blog.lead
 
+  // Generate hreflang links for this page (all locales point to same URL for single-URL site)
+  const baseUrl = 'https://www.guruforu.com'
+  const currentPath = `/blog/${categorySlug}/${slug}`
+  const hreflangLinks = generateHreflangLinks(baseUrl, currentPath)
+  const languagesMap = hreflangLinks.reduce((acc, link) => {
+    acc[link.hreflang] = link.href
+    return acc
+  }, {} as Record<string, string>)
+
   return {
     title: optimizedTitle,
     description: optimizedDescription,
@@ -148,6 +158,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     },
     alternates: {
       canonical: `https://www.guruforu.com/blog/${categorySlug}/${slug}`,
+      languages: languagesMap,
     },
   }
 }
@@ -266,22 +277,46 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
     ],
   }
 
-  // Generate JSON-LD structured data for BlogPosting schema (minimized for better text-to-HTML ratio)
+  // Generate comprehensive JSON-LD structured data for BlogPosting/Article schema
   const blogPostingSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: blog.title,
     description: blog.lead,
+    image: {
+      '@type': 'ImageObject',
+      url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+      width: 1200,
+      height: 630,
+    },
     datePublished: blog.meta.publishedDate,
+    dateModified: blog.meta.publishedDate, // Update this if you track modified dates
     author: {
       '@type': 'Organization',
       name: 'GuruForU',
+      url: 'https://www.guruforu.com',
     },
     publisher: {
       '@type': 'Organization',
       name: 'GuruForU',
+      url: 'https://www.guruforu.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+        width: 1200,
+        height: 630,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.guruforu.com/blog/${categorySlug}/${slug}`,
     },
     url: `https://www.guruforu.com/blog/${categorySlug}/${slug}`,
+    ...(articleBody && { articleBody: articleBody }),
+    ...(wordCount > 0 && { wordCount: wordCount }),
+    keywords: keywords.join(', '),
+    inLanguage: 'en-US',
+    articleSection: blog.category,
   }
 
   // Breadcrumb structured data

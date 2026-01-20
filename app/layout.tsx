@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import { headers } from 'next/headers'
-import { detectLocale, generateHreflangLinks, getSEOContent } from '../lib/locale'
+import { detectLocale, getSEOContent } from '../lib/locale'
 import './globals.css'
 
 // Lazy load client components to reduce initial bundle size
@@ -35,12 +35,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const seoContent = getSEOContent(localeInfo.region)
   const baseUrl = 'https://www.guruforu.com'
 
-  // Pre-compute hreflang links once (static data, no performance impact)
-  const hreflangLinks = generateHreflangLinks(baseUrl, '/')
-  const languagesMap = hreflangLinks.reduce((acc, link) => {
-    acc[link.hreflang] = link.href
-    return acc
-  }, {} as Record<string, string>)
+  // Note: Hreflang tags are generated per-page in each page's generateMetadata function
+  // The root layout doesn't know the current path, so hreflang is handled by individual pages
 
   return {
     metadataBase: new URL(baseUrl),
@@ -88,7 +84,6 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     alternates: {
       canonical: baseUrl,
-      languages: languagesMap,
       types: {
         'application/rss+xml': 'https://www.guruforu.com/feed.xml',
       },
@@ -104,21 +99,11 @@ export default async function RootLayout({
   // Next.js optimizes headers() - returns cached value within same request
   const headersList = await headers()
   const localeInfo = detectLocale(headersList)
-  const baseUrl = 'https://www.guruforu.com'
-  const hreflangLinks = generateHreflangLinks(baseUrl, '/')
 
   return (
     <html lang={localeInfo.htmlLang}>
       <head>
-        {/* Hreflang tags for international SEO */}
-        {hreflangLinks.map((link) => (
-          <link
-            key={link.hreflang}
-            rel="alternate"
-            hrefLang={link.hreflang}
-            href={link.href}
-          />
-        ))}
+        {/* Hreflang tags are generated via metadata.alternates.languages in each page */}
         {/* Performance: Preconnect to external domains - Only for critical resources */}
         {/* Note: Removed preconnect for Google Analytics/Tag Manager to reduce early connection overhead */}
         {/* Analytics scripts load lazily, so preconnect isn't needed immediately */}

@@ -5,6 +5,7 @@ import { getAllCategories, getBlogsByCategory, categoryToSlug } from '../lib/get
 import dynamicImport from 'next/dynamic'
 import styles from './page.module.css'
 import Script from 'next/script'
+import { generateHreflangLinks } from '../../../lib/locale'
 
 // Lazy load NavMenu to reduce initial bundle size
 const NavMenu = dynamicImport(() => import('../../components/NavMenu'), {
@@ -35,6 +36,15 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       description: 'The requested blog category could not be found.',
     }
   }
+
+  // Generate hreflang links for this page (all locales point to same URL for single-URL site)
+  const baseUrl = 'https://www.guruforu.com'
+  const currentPath = `/blog/${categorySlug}`
+  const hreflangLinks = generateHreflangLinks(baseUrl, currentPath)
+  const languagesMap = hreflangLinks.reduce((acc, link) => {
+    acc[link.hreflang] = link.href
+    return acc
+  }, {} as Record<string, string>)
 
   return {
     title: `${category.name} | GuruForU Blog`,
@@ -83,6 +93,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     },
     alternates: {
       canonical: `https://www.guruforu.com/blog/${categorySlug}`,
+      languages: languagesMap,
     },
   }
 }
@@ -123,12 +134,14 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     ],
   }
 
-  // Generate JSON-LD structured data for CollectionPage (minimized)
+  // Generate comprehensive JSON-LD structured data for CollectionPage
   const collectionPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: `${category.name} | GuruForU Blog`,
+    description: `Explore ${category.count} ${category.count === 1 ? 'article' : 'articles'} in ${category.name} category. Expert insights on child education and learning.`,
     url: `https://www.guruforu.com/blog/${categorySlug}`,
+    inLanguage: 'en-US',
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: category.count,
@@ -138,7 +151,10 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         item: {
           '@type': 'BlogPosting',
           headline: blog.title,
+          description: blog.lead,
           url: `https://www.guruforu.com/blog/${categorySlug}/${blog.slug}`,
+          datePublished: blog.meta.publishedDate,
+          image: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
         },
       })),
     },

@@ -160,12 +160,29 @@ export function getSEOContent(region: Region) {
 
 /**
  * Generates hreflang links for all supported locales
+ * All locales point to the same URL (single-URL site with locale detection)
+ * Each page must include a self-referencing hreflang tag
  */
 export function generateHreflangLinks(baseUrl: string, currentPath: string = ''): Array<{ hreflang: string; href: string }> {
-  const path = currentPath || '/'
+  // Normalize path: ensure it starts with / and doesn't have trailing slash (except root)
+  let path = currentPath.trim()
+  if (!path || path === '') {
+    path = '/'
+  } else if (!path.startsWith('/')) {
+    path = '/' + path
+  }
+  // Remove trailing slash for non-root paths
+  if (path !== '/' && path.endsWith('/')) {
+    path = path.slice(0, -1)
+  }
+  
+  // For single-URL sites, all hreflang tags point to the same URL (current page)
+  // This is correct for sites that detect locale but use the same URL structure
+  const fullUrl = `${baseUrl}${path}`
+  
   return localesConfig.supportedLocales.map(locale => ({
     hreflang: locale.hreflang,
-    href: `${baseUrl}${path}`,
+    href: fullUrl,
   }))
 }
 

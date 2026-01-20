@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { headers } from 'next/headers'
-import { detectLocale, getSEOContent, localizeText } from '../lib/locale'
+import { detectLocale, getSEOContent, localizeText, generateHreflangLinks } from '../lib/locale'
 
 // Lazy load NavMenu to reduce initial bundle size
 const NavMenu = dynamic(() => import('./components/NavMenu'), {
@@ -17,6 +17,14 @@ export async function generateMetadata(): Promise<Metadata> {
   const localeInfo = detectLocale(headersList)
   const seoContent = getSEOContent(localeInfo.region)
   const baseUrl = 'https://www.guruforu.com'
+  const currentPath = '/'
+
+  // Generate hreflang links for this page (all locales point to same URL for single-URL site)
+  const hreflangLinks = generateHreflangLinks(baseUrl, currentPath)
+  const languagesMap = hreflangLinks.reduce((acc, link) => {
+    acc[link.hreflang] = link.href
+    return acc
+  }, {} as Record<string, string>)
 
   return {
     title: seoContent.title,
@@ -59,6 +67,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     alternates: {
       canonical: baseUrl,
+      languages: languagesMap,
     },
   }
 }
@@ -68,29 +77,67 @@ export default async function ComingSoon() {
   const localeInfo = detectLocale(headersList)
   const localized = (text: string) => localizeText(text, localeInfo.region)
 
-  // Organization Schema for SEO
+  // Enhanced Organization Schema for SEO
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'EducationalOrganization',
-    'name': 'GuruForU',
-    'url': 'https://www.guruforu.com',
-    'logo': 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
-    'description': localized('Premium Online Tutoring enhanced with AI-powered personalized learning and real-time mastery reports.'),
-    'sameAs': [
+    name: 'GuruForU',
+    url: 'https://www.guruforu.com',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+      width: 1200,
+      height: 630,
+    },
+    description: localized('Premium Online Tutoring enhanced with AI-powered personalized learning and real-time mastery reports.'),
+    sameAs: [
       'https://twitter.com/guruforu_official',
       'https://www.instagram.com/guruforu_official/'
     ],
-    'contactPoint': {
+    contactPoint: {
       '@type': 'ContactPoint',
-      'contactType': 'Customer Service',
-      'email': 'support@guruforu.com',
-      'availableLanguage': 'English'
+      contactType: 'Customer Service',
+      email: 'support@guruforu.com',
+      availableLanguage: 'English',
+      areaServed: 'Worldwide',
     },
-    'address': {
+    address: {
       '@type': 'PostalAddress',
-      'addressCountry': 'Global'
+      addressCountry: 'Global',
     },
-    'areaServed': 'Global'
+    areaServed: {
+      '@type': 'Place',
+      name: 'Worldwide',
+    },
+    foundingDate: '2024', // Update with actual founding date
+    knowsAbout: [
+      'Online Education',
+      'AI-Powered Learning',
+      'Personalized Tutoring',
+      'Student Progress Tracking',
+      'K-12 Education',
+    ],
+  }
+
+  // WebSite Schema with SearchAction for better SEO
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'GuruForU',
+    url: 'https://www.guruforu.com',
+    description: localized('Premium Online Tutoring enhanced with AI-powered personalized learning and real-time mastery reports.'),
+    publisher: {
+      '@type': 'Organization',
+      name: 'GuruForU',
+    },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://www.guruforu.com/blog?q={search_term_string}',
+      },
+      'query-input': 'required name=search_term_string',
+    },
   }
 
   // FAQ Schema for SEO (minimized for better text-to-HTML ratio)
@@ -147,6 +194,11 @@ export default async function ComingSoon() {
         id="organization-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <Script
+        id="website-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
       <Script
         id="faq-schema"
