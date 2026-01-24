@@ -84,15 +84,25 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     }
   }
 
-  // Extract keywords from title and lead
+  // Extract and enhance keywords from title and lead
+  const titleWords = blog.title.toLowerCase().split(' ').filter((word: string) => word.length > 3)
+  const categoryKeywords = blog.category.toLowerCase() === 'math' 
+    ? ['online math tutoring', 'math tutoring online', 'math help online']
+    : blog.category.toLowerCase() === 'science'
+    ? ['online science tutoring', 'science tutoring online', 'science help online']
+    : []
+  
   const keywords = [
-    'GuruForU',
-    'Online Classes',
-    'Online Tuitions',
-    'AI-Powered Learning',
-    'Student Progress Tracker',
-    'Personalized Learning',
-    ...blog.title.toLowerCase().split(' ').filter((word: string) => word.length > 3),
+    `${blog.category.toLowerCase()} online tutoring`,
+    `online ${blog.category.toLowerCase()} classes`,
+    `${blog.category.toLowerCase()} learning tips`,
+    'online tutoring blog',
+    'AI-powered learning',
+    'student progress tracking',
+    'personalized learning',
+    'online education',
+    ...titleWords,
+    ...categoryKeywords,
   ]
 
   // Optimize title length (max 60 chars recommended)
@@ -351,6 +361,46 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
     ],
   }
 
+  // FAQPage structured data for SEO
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': [
+      {
+        '@type': 'Question',
+        'name': `How can GuruForU help with ${blog.category.toLowerCase()} learning?`,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': `GuruForU provides AI-powered online tutoring for ${blog.category.toLowerCase()} with personalized learning paths, real-time progress tracking, and expert tutors. Our platform adapts to your child's learning style and provides detailed mastery reports to identify strengths and areas for improvement.`
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'What makes GuruForU different from other online tutoring platforms?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'GuruForU combines expert human tutors with AI-powered learning analytics. Our platform provides comprehensive student progress tracking, personalized learning paths tailored to each student\'s needs, and detailed mastery reports that help parents and students understand learning progress in real-time.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': `Can I track my child's progress in ${blog.category.toLowerCase()}?`,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': `Yes! GuruForU's AI-powered student progress tracker monitors your child's learning journey in real-time. You'll receive detailed insights into their academic performance, mastery levels, and areas that need additional support. Our comprehensive reports help you stay informed about your child's educational progress.`
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'How do I get started with GuruForU online tutoring?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Getting started is easy! Book a free consultation session to discuss your child\'s learning needs. Our AI diagnostics will identify learning gaps and create a personalized roadmap. You can also contact us for more information about our online tutoring services.'
+        }
+      }
+    ]
+  }
+
   return (
     <>
       <Script
@@ -367,6 +417,11 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
         id="breadcrumb-structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
+      />
+      <Script
+        id="faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <NavMenu />
       <div className={styles.container}>
@@ -437,6 +492,48 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
                 )}
               </section>
             ))}
+
+            {/* FAQ Section */}
+            <section className={styles.faqSection}>
+              <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
+              
+              <div className={styles.faqItem}>
+                <h3 className={styles.faqQuestion}>How can GuruForU help with {blog.category.toLowerCase()} learning?</h3>
+                <p className={styles.text}>
+                  GuruForU provides AI-powered online tutoring for {blog.category.toLowerCase()} with personalized learning paths, 
+                  real-time progress tracking, and expert tutors. Our platform adapts to your child&apos;s learning style and 
+                  provides detailed mastery reports to identify strengths and areas for improvement.
+                </p>
+              </div>
+
+              <div className={styles.faqItem}>
+                <h3 className={styles.faqQuestion}>What makes GuruForU different from other online tutoring platforms?</h3>
+                <p className={styles.text}>
+                  GuruForU combines expert human tutors with AI-powered learning analytics. Our platform provides 
+                  comprehensive student progress tracking, personalized learning paths tailored to each student&apos;s needs, 
+                  and detailed mastery reports that help parents and students understand learning progress in real-time.
+                </p>
+              </div>
+
+              <div className={styles.faqItem}>
+                <h3 className={styles.faqQuestion}>Can I track my child&apos;s progress in {blog.category.toLowerCase()}?</h3>
+                <p className={styles.text}>
+                  Yes! GuruForU&apos;s AI-powered student progress tracker monitors your child&apos;s learning journey in real-time. 
+                  You&apos;ll receive detailed insights into their academic performance, mastery levels, and areas that need 
+                  additional support. Our comprehensive reports help you stay informed about your child&apos;s educational progress.
+                </p>
+              </div>
+
+              <div className={styles.faqItem}>
+                <h3 className={styles.faqQuestion}>How do I get started with GuruForU online tutoring?</h3>
+                <p className={styles.text}>
+                  Getting started is easy! <Link href="/free-session" className={styles.link}>Book a free consultation session</Link> to 
+                  discuss your child&apos;s learning needs. Our AI diagnostics will identify learning gaps and create a personalized 
+                  roadmap. You can also <Link href="/contact" className={styles.link}>contact us</Link> for more information about our 
+                  online tutoring services.
+                </p>
+              </div>
+            </section>
 
             {blog.cta && (
               <div className={styles.ctaBox}>

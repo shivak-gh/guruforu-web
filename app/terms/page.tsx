@@ -5,16 +5,25 @@ import Image from 'next/image'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service & Conditions | GuruForU',
-  description: 'Read GuruForU terms and conditions. Learn about our service agreement, user responsibilities, and platform policies for online education services.',
-  keywords: ['Terms and Conditions', 'GuruForU Terms', 'Service Agreement', 'Online Education Terms'],
+  title: 'Terms of Service & Conditions | GuruForU Online Tutoring',
+  description: 'GuruForU terms of service for online tutoring and AI-powered education. Understand user agreements, service policies, payment terms, and platform rules for students and parents.',
+  keywords: [
+    'GuruForU terms of service',
+    'online tutoring terms and conditions',
+    'online education service agreement',
+    'AI tutoring platform terms',
+    'student learning platform policies',
+    'online class terms and conditions',
+    'education platform user agreement',
+    'tutoring service terms'
+  ],
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: 'Terms of Service & Conditions | GuruForU',
-    description: 'Read GuruForU terms and conditions. Learn about our service agreement and platform policies.',
+    title: 'Terms of Service & Conditions | GuruForU Online Tutoring',
+    description: 'GuruForU terms of service for online tutoring. Understand user agreements, service policies, payment terms, and platform rules for students and parents.',
     url: 'https://www.guruforu.com/terms',
     siteName: 'GuruForU',
     type: 'website',
@@ -42,12 +51,12 @@ export const metadata: Metadata = {
 }
 
 export default function TermsAndConditions() {
-  // WebPage structured data for SEO
+  // WebPage and FAQPage structured data for SEO
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     'name': 'Terms and Conditions | GuruForU',
-    'description': 'Read GuruForU terms and conditions. Learn about our service agreement, user responsibilities, and platform policies for online education services.',
+    'description': 'GuruForU terms of service for online tutoring. Understand user agreements, service policies, payment terms, and platform rules for students and parents.',
     'url': 'https://www.guruforu.com/terms',
     'dateModified': '2026-01-01',
     'inLanguage': 'en-US',
@@ -58,12 +67,56 @@ export default function TermsAndConditions() {
     }
   }
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': [
+      {
+        '@type': 'Question',
+        'name': 'What are the terms of service for GuruForU online tutoring?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Our terms of service outline the rules and guidelines for using GuruForU\'s online tutoring platform, including user responsibilities, payment terms, intellectual property rights, and service limitations. By using our platform, you agree to comply with these terms.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'Can I cancel my online tutoring subscription?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Yes, you can cancel your subscription at any time. Please refer to our Cancellation and Refunds Policy for detailed information about cancellation procedures and refund eligibility.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'What happens if I violate the terms of service?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Violations of our terms of service may result in suspension or termination of your account. We reserve the right to take appropriate action to protect our platform and other users.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'How do I accept the terms of service?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'By creating an account, making a payment, or using any of GuruForU\'s services, you automatically accept and agree to be bound by these terms and conditions. We recommend reading the full terms before using our platform.'
+        }
+      }
+    ]
+  }
+
   return (
     <>
       <Script
         id="terms-webpage-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
+      <Script
+        id="terms-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
     <div className={styles.container}>
       <div className={styles.background}>
@@ -172,6 +225,42 @@ export default function TermsAndConditions() {
               If you have any questions about these Terms and Conditions, please contact us through our 
               <Link href="/contact" className={styles.link}> Contact Us</Link> page.
             </p>
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>What are the terms of service for GuruForU online tutoring?</h3>
+              <p className={styles.text}>
+                Our terms of service outline the rules and guidelines for using GuruForU&apos;s online tutoring platform, 
+                including user responsibilities, payment terms, intellectual property rights, and service limitations. 
+                By using our platform, you agree to comply with these terms.
+              </p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>Can I cancel my online tutoring subscription?</h3>
+              <p className={styles.text}>
+                Yes, you can cancel your subscription at any time. Please refer to our 
+                <Link href="/cancellation-refunds" className={styles.link}> Cancellation and Refunds Policy</Link> for 
+                detailed information about cancellation procedures and refund eligibility.
+              </p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>What happens if I violate the terms of service?</h3>
+              <p className={styles.text}>
+                Violations of our terms of service may result in suspension or termination of your account. 
+                We reserve the right to take appropriate action to protect our platform and other users. 
+                For specific concerns, please <Link href="/contact" className={styles.link}>contact us</Link>.
+              </p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>How do I accept the terms of service?</h3>
+              <p className={styles.text}>
+                By creating an account, making a payment, or using any of GuruForU&apos;s services, you automatically 
+                accept and agree to be bound by these terms and conditions. We recommend reading the full terms 
+                before using our platform.
+              </p>
+            </div>
           </div>
         </div>
 

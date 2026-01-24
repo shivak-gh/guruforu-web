@@ -34,18 +34,21 @@ export async function generateMetadata(): Promise<Metadata> {
   }, {} as Record<string, string>)
 
   return {
-    title: 'Education Blog | GuruForU Learning Insights',
-    description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning. Latest articles on student progress tracking and academic success.',
+    title: 'Education Blog | GuruForU - Online Tutoring & Learning Tips',
+    description: 'Expert education blog with articles on online tutoring, AI-powered learning, student progress tracking, and personalized learning strategies. Tips for parents and students.',
     keywords: [
-      'GuruForU Blog',
-      'Education Blog',
-      'Online Learning Tips',
-      'Child Education',
-      'AI-Powered Learning',
-      'Student Progress Tracking',
-      'Personalized Learning',
-      'Online Tuitions',
-      'Parenting Education',
+      'online tutoring blog',
+      'education blog for parents',
+      'online learning tips',
+      'student progress tracking guide',
+      'AI-powered learning articles',
+      'personalized learning strategies',
+      'online tutoring advice',
+      'child education resources',
+      'homeschooling tips',
+      'online class best practices',
+      'student success strategies',
+      'parenting education blog'
     ],
     robots: {
       index: true,
@@ -59,8 +62,8 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: 'Education Blog | GuruForU Learning Insights',
-      description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning.',
+      title: 'Education Blog | GuruForU - Online Tutoring & Learning Tips',
+      description: 'Expert education blog with articles on online tutoring, AI-powered learning, student progress tracking, and personalized learning strategies. Tips for parents and students.',
       url: 'https://www.guruforu.com/blog',
       siteName: 'GuruForU',
       type: 'website',
@@ -76,8 +79,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Education Blog | GuruForU Learning Insights',
-      description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning.',
+      title: 'Education Blog | GuruForU - Online Tutoring & Learning Tips',
+      description: 'Expert education blog with articles on online tutoring, AI-powered learning, student progress tracking, and personalized learning strategies.',
       images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
       creator: '@guruforu_official',
       site: '@guruforu_official',

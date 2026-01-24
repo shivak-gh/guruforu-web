@@ -195,6 +195,25 @@
   }
 }
 
+.faqItem {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(102, 126, 234, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.faqQuestion {
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #667eea;
+}
+
+.faqItem .text {
+  margin-bottom: 0;
+}
+
 @media (max-width: 480px) {
   .pageContent {
     padding: 1.5rem;
@@ -207,5 +226,9 @@
   .text,
   .list li {
     font-size: 0.95rem;
+  }
+
+  .faqItem {
+    padding: 1rem;
   }
 }

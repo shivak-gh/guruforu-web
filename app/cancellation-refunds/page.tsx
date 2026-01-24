@@ -5,16 +5,25 @@ import Image from 'next/image'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Cancellation and Refunds | GuruForU',
-  description: 'GuruForU cancellation and refund policy. Learn about refund eligibility, processing times, and how to cancel online tutoring subscriptions.',
-  keywords: ['Refund Policy', 'Cancellation Policy', 'Online Tutoring Refunds', 'Subscription Cancellation'],
+  title: 'Cancellation and Refunds Policy | GuruForU Online Tutoring',
+  description: 'GuruForU cancellation and refund policy for online tutoring. Learn refund eligibility, how to cancel subscriptions, processing times, and money-back guarantee for online classes.',
+  keywords: [
+    'GuruForU refund policy',
+    'online tutoring cancellation',
+    'tutoring subscription refund',
+    'online class refund policy',
+    'cancel online tutoring',
+    'tutoring money back guarantee',
+    'online education refund',
+    'how to cancel tutoring subscription'
+  ],
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: 'Cancellation and Refunds | GuruForU',
-    description: 'Learn about GuruForU refund eligibility, processing times, and subscription cancellation policies.',
+    title: 'Cancellation and Refunds Policy | GuruForU Online Tutoring',
+    description: 'GuruForU cancellation and refund policy for online tutoring. Learn refund eligibility, how to cancel subscriptions, processing times, and money-back guarantee for online classes.',
     url: 'https://www.guruforu.com/cancellation-refunds',
     siteName: 'GuruForU',
     type: 'website',
@@ -42,12 +51,12 @@ export const metadata: Metadata = {
 }
 
 export default function CancellationAndRefunds() {
-  // WebPage structured data for SEO
+  // WebPage and FAQPage structured data for SEO
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     'name': 'Cancellation and Refunds | GuruForU',
-    'description': 'GuruForU cancellation and refund policy. Learn about refund eligibility, processing times, and how to cancel online tutoring subscriptions.',
+    'description': 'GuruForU cancellation and refund policy for online tutoring. Learn refund eligibility, how to cancel subscriptions, processing times, and money-back guarantee for online classes.',
     'url': 'https://www.guruforu.com/cancellation-refunds',
     'dateModified': '2026-01-01',
     'inLanguage': 'en-US',
@@ -58,12 +67,56 @@ export default function CancellationAndRefunds() {
     }
   }
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': [
+      {
+        '@type': 'Question',
+        'name': 'How do I cancel my online tutoring subscription?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'You can cancel your subscription at any time from your account settings or by contacting our support team. Cancellation takes effect at the end of your current billing period, and you\'ll continue to have access until then.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'Can I get a refund for online tutoring classes?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Refunds are available within 7 days of purchase if you haven\'t used the service. For subscription cancellations, refunds may be available for unused portions depending on the circumstances. Please contact us for specific refund eligibility.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'What is the refund processing time?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Approved refunds are typically processed within 5-10 business days. The refund will appear in your original payment method. Processing times may vary depending on your payment provider.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'Can I cancel a scheduled tutoring session?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Yes, you can cancel or reschedule sessions at least 24 hours in advance without penalty. Cancellations made less than 24 hours before the session may be subject to a cancellation fee. No-shows are not eligible for refunds.'
+        }
+      }
+    ]
+  }
+
   return (
     <>
       <Script
         id="cancellation-refunds-webpage-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
+      <Script
+        id="cancellation-refunds-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
     <div className={styles.container}>
       <div className={styles.background}>
@@ -219,6 +272,41 @@ export default function CancellationAndRefunds() {
               <Link href="/contact" className={styles.link}> Contact Us</Link> page. Our support team 
               is available to assist you with any inquiries.
             </p>
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>How do I cancel my online tutoring subscription?</h3>
+              <p className={styles.text}>
+                You can cancel your subscription at any time from your account settings or by contacting our 
+                support team. Cancellation takes effect at the end of your current billing period, and you&apos;ll 
+                continue to have access until then.
+              </p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>Can I get a refund for online tutoring classes?</h3>
+              <p className={styles.text}>
+                Refunds are available within 7 days of purchase if you haven&apos;t used the service. For subscription 
+                cancellations, refunds may be available for unused portions depending on the circumstances. 
+                Please contact us for specific refund eligibility.
+              </p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>What is the refund processing time?</h3>
+              <p className={styles.text}>
+                Approved refunds are typically processed within 5-10 business days. The refund will appear in 
+                your original payment method. Processing times may vary depending on your payment provider.
+              </p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>Can I cancel a scheduled tutoring session?</h3>
+              <p className={styles.text}>
+                Yes, you can cancel or reschedule sessions at least 24 hours in advance without penalty. 
+                Cancellations made less than 24 hours before the session may be subject to a cancellation fee. 
+                No-shows are not eligible for refunds.
+              </p>
+            </div>
           </div>
         </div>
 

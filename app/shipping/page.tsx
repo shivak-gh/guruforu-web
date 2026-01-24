@@ -5,16 +5,25 @@ import Image from 'next/image'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Digital Service Delivery & Shipping Policy | GuruForU',
-  description: 'GuruForU shipping and delivery policy. Learn about our digital service delivery, access timelines, and technical requirements for online classes.',
-  keywords: ['Shipping Policy', 'Digital Delivery', 'Online Service Access', 'Service Delivery'],
+  title: 'Digital Service Delivery & Shipping Policy | GuruForU Online Tutoring',
+  description: 'GuruForU digital service delivery policy for online tutoring. Learn how to access online classes, technical requirements, account activation timelines, and service availability.',
+  keywords: [
+    'GuruForU service delivery',
+    'online tutoring access',
+    'digital education delivery',
+    'online class activation',
+    'tutoring platform access',
+    'virtual learning service delivery',
+    'online education technical requirements',
+    'how to access online tutoring'
+  ],
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: 'Digital Service Delivery & Shipping Policy | GuruForU',
-    description: 'Learn about GuruForU digital service delivery and access timelines for online classes.',
+    title: 'Digital Service Delivery & Shipping Policy | GuruForU Online Tutoring',
+    description: 'GuruForU digital service delivery policy for online tutoring. Learn how to access online classes, technical requirements, account activation timelines, and service availability.',
     url: 'https://www.guruforu.com/shipping',
     siteName: 'GuruForU',
     type: 'website',
@@ -42,12 +51,12 @@ export const metadata: Metadata = {
 }
 
 export default function ShippingPolicy() {
-  // WebPage structured data for SEO
+  // WebPage and FAQPage structured data for SEO
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     'name': 'Shipping Policy | GuruForU',
-    'description': 'GuruForU shipping and delivery policy. Learn about our digital service delivery, access timelines, and technical requirements for online classes.',
+    'description': 'GuruForU digital service delivery policy for online tutoring. Learn how to access online classes, technical requirements, account activation timelines, and service availability.',
     'url': 'https://www.guruforu.com/shipping',
     'dateModified': '2026-01-01',
     'inLanguage': 'en-US',
@@ -58,12 +67,56 @@ export default function ShippingPolicy() {
     }
   }
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': [
+      {
+        '@type': 'Question',
+        'name': 'How do I access my online tutoring classes?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Once your payment is confirmed, you\'ll receive an email with login credentials and instructions to access your account. Classes are delivered digitally through our online platform, accessible immediately after account activation.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'What are the technical requirements for online classes?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'You need a stable internet connection, a computer or tablet, and a web browser (Chrome, Firefox, Safari, or Edge). Some classes may require a microphone and webcam for interactive sessions. We recommend a minimum internet speed of 5 Mbps for optimal experience.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'How quickly can I start my online tutoring sessions?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Digital service delivery is instant. Once your account is activated and payment is confirmed, you can immediately access your online classes and schedule sessions with tutors. Account activation typically takes less than 24 hours.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'Do you ship physical materials for online tutoring?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'GuruForU operates as a digital-only platform. All learning materials, class recordings, and resources are delivered electronically through our online platform. No physical shipping is required for our services.'
+        }
+      }
+    ]
+  }
+
   return (
     <>
       <Script
         id="shipping-webpage-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
+      <Script
+        id="shipping-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
     <div className={styles.container}>
       <div className={styles.background}>
@@ -180,6 +233,42 @@ export default function ShippingPolicy() {
               If you have any questions about our shipping policy or service delivery, please contact us 
               through our <Link href="/contact" className={styles.link}> Contact Us</Link> page.
             </p>
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>How do I access my online tutoring classes?</h3>
+              <p className={styles.text}>
+                Once your payment is confirmed, you&apos;ll receive an email with login credentials and instructions 
+                to access your account. Classes are delivered digitally through our online platform, accessible 
+                immediately after account activation.
+              </p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>What are the technical requirements for online classes?</h3>
+              <p className={styles.text}>
+                You need a stable internet connection, a computer or tablet, and a web browser (Chrome, Firefox, 
+                Safari, or Edge). Some classes may require a microphone and webcam for interactive sessions. 
+                We recommend a minimum internet speed of 5 Mbps for optimal experience.
+              </p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>How quickly can I start my online tutoring sessions?</h3>
+              <p className={styles.text}>
+                Digital service delivery is instant. Once your account is activated and payment is confirmed, 
+                you can immediately access your online classes and schedule sessions with tutors. Account 
+                activation typically takes less than 24 hours.
+              </p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>Do you ship physical materials for online tutoring?</h3>
+              <p className={styles.text}>
+                GuruForU operates as a digital-only platform. All learning materials, class recordings, and 
+                resources are delivered electronically through our online platform. No physical shipping is 
+                required for our services.
+              </p>
+            </div>
           </div>
         </div>
 

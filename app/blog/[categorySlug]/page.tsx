@@ -47,14 +47,18 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
   }, {} as Record<string, string>)
 
   return {
-    title: `${category.name} | GuruForU Blog`,
-    description: `Explore ${category.count} ${category.count === 1 ? 'article' : 'articles'} in ${category.name} category. Expert insights on child education and learning.`,
+    title: `${category.name} Articles | GuruForU Online Tutoring Blog`,
+    description: `Read ${category.count} ${category.count === 1 ? 'article' : 'expert articles'} about ${category.name} for online tutoring and education. Tips, guides, and strategies for students and parents.`,
     keywords: [
-      'GuruForU Blog',
-      category.name,
-      'Education Blog',
-      'Online Learning',
-      'Child Education',
+      `${category.name} online tutoring`,
+      `${category.name} education blog`,
+      `${category.name} learning tips`,
+      `${category.name} for students`,
+      'online tutoring blog',
+      'education articles',
+      'learning strategies',
+      'student success tips',
+      category.name.toLowerCase()
     ],
     robots: {
       index: true,
@@ -68,8 +72,8 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       },
     },
     openGraph: {
-      title: `${category.name} | GuruForU Blog`,
-      description: `Explore ${category.count} ${category.count === 1 ? 'article' : 'articles'} in ${category.name} category. Expert insights on child education and learning.`,
+      title: `${category.name} Articles | GuruForU Online Tutoring Blog`,
+      description: `Read ${category.count} ${category.count === 1 ? 'article' : 'expert articles'} about ${category.name} for online tutoring and education. Tips, guides, and strategies for students and parents.`,
       url: `https://www.guruforu.com/blog/${categorySlug}`,
       siteName: 'GuruForU',
       type: 'website',
@@ -85,8 +89,8 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${category.name} | GuruForU Blog`,
-      description: `Explore ${category.count} ${category.count === 1 ? 'article' : 'articles'} in ${category.name} category.`,
+      title: `${category.name} Articles | GuruForU Online Tutoring Blog`,
+      description: `Read ${category.count} ${category.count === 1 ? 'article' : 'expert articles'} about ${category.name} for online tutoring and education.`,
       images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
       creator: '@guruforu_official',
       site: '@guruforu_official',

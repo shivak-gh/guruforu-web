@@ -21,13 +21,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogs = await getAllBlogs()
   const categories = await getAllCategories()
   
-  // Static pages - Main pages
+  // Static pages - Main pages (updated recently for better crawling)
+  const now = new Date()
   const staticPages = [
-    createSitemapEntry('/', new Date(), 'monthly', 1.0),
-    createSitemapEntry('/blog', new Date(), 'weekly', 0.9),
-    createSitemapEntry('/contact', new Date(), 'monthly', 0.8),
-    createSitemapEntry('/free-session', new Date(), 'weekly', 0.9),
-    createSitemapEntry('/early-access', new Date(), 'monthly', 0.8),
+    createSitemapEntry('/', now, 'weekly', 1.0), // Homepage updated more frequently
+    createSitemapEntry('/blog', now, 'daily', 0.9), // Blog updated daily
+    createSitemapEntry('/contact', now, 'monthly', 0.8),
+    createSitemapEntry('/free-session', now, 'weekly', 0.9),
+    createSitemapEntry('/early-access', now, 'weekly', 0.8),
   ]
 
   // Static pages - Legal/Policy pages
@@ -38,9 +39,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createSitemapEntry('/cancellation-refunds', new Date(), 'yearly', 0.5),
   ]
 
-  // Create blog category URLs
+  // Create blog category URLs (updated when new posts are added)
   const categoryUrls = categories.map((category) =>
-    createSitemapEntry(`/blog/${category.slug}`, new Date(), 'weekly', 0.7)
+    createSitemapEntry(`/blog/${category.slug}`, now, 'daily', 0.8) // Categories updated daily
   )
 
   // Create blog post URLs

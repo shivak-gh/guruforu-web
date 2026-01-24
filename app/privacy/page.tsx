@@ -5,16 +5,25 @@ import Image from 'next/image'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy & Data Protection | GuruForU',
-  description: 'GuruForU privacy policy. Learn how we protect your data, handle student information, and ensure secure online learning experiences.',
-  keywords: ['Privacy Policy', 'Data Protection', 'Student Privacy', 'Online Education Privacy'],
+  title: 'Privacy Policy & Data Protection | GuruForU Online Tutoring',
+  description: 'GuruForU privacy policy for online tutoring. Learn how we protect student data, handle personal information, comply with COPPA and GDPR, and ensure secure online learning.',
+  keywords: [
+    'GuruForU privacy policy',
+    'online tutoring privacy',
+    'student data protection',
+    'COPPA compliance online education',
+    'GDPR student privacy',
+    'online learning data security',
+    'tutoring platform privacy policy',
+    'children online privacy protection'
+  ],
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: 'Privacy Policy & Data Protection | GuruForU',
-    description: 'Learn how GuruForU protects your data and ensures secure online learning experiences.',
+    title: 'Privacy Policy & Data Protection | GuruForU Online Tutoring',
+    description: 'GuruForU privacy policy for online tutoring. Learn how we protect student data, handle personal information, comply with COPPA and GDPR, and ensure secure online learning.',
     url: 'https://www.guruforu.com/privacy',
     siteName: 'GuruForU',
     type: 'website',
@@ -42,12 +51,12 @@ export const metadata: Metadata = {
 }
 
 export default function PrivacyPolicy() {
-  // WebPage structured data for SEO
+  // WebPage and FAQPage structured data for SEO
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     'name': 'Privacy Policy | GuruForU',
-    'description': 'GuruForU privacy policy. Learn how we protect your data, handle student information, and ensure secure online learning experiences.',
+    'description': 'GuruForU privacy policy for online tutoring. Learn how we protect student data, handle personal information, comply with COPPA and GDPR, and ensure secure online learning.',
     'url': 'https://www.guruforu.com/privacy',
     'dateModified': '2026-01-01',
     'inLanguage': 'en-US',
@@ -58,12 +67,56 @@ export default function PrivacyPolicy() {
     }
   }
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': [
+      {
+        '@type': 'Question',
+        'name': 'How does GuruForU protect student privacy?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'GuruForU implements comprehensive data protection measures including encryption, secure servers, and compliance with COPPA (Children\'s Online Privacy Protection Act) and GDPR. We never sell student data and only use it to provide educational services.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'What student information does GuruForU collect?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'We collect information necessary to provide online tutoring services, including name, email, grade level, learning progress data, and class participation records. Payment information is processed securely through third-party payment processors.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'Is GuruForU COPPA compliant?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Yes, GuruForU is fully compliant with COPPA regulations. We obtain parental consent before collecting information from children under 13 and provide parents with access to review, delete, or refuse further collection of their child\'s information.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'Can I delete my child\'s data from GuruForU?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Yes, parents can request deletion of their child\'s data at any time by contacting us. We will process deletion requests within 30 days in accordance with applicable privacy laws.'
+        }
+      }
+    ]
+  }
+
   return (
     <>
       <Script
         id="privacy-webpage-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
+      <Script
+        id="privacy-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
     <div className={styles.container}>
       <div className={styles.background}>
@@ -197,6 +250,42 @@ export default function PrivacyPolicy() {
               If you have any questions about this Privacy Policy, please contact us through our 
               <Link href="/contact" className={styles.link}> Contact Us</Link> page.
             </p>
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>How does GuruForU protect student privacy?</h3>
+              <p className={styles.text}>
+                GuruForU implements comprehensive data protection measures including encryption, secure servers, 
+                and compliance with COPPA (Children&apos;s Online Privacy Protection Act) and GDPR. We never sell 
+                student data and only use it to provide educational services.
+              </p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>What student information does GuruForU collect?</h3>
+              <p className={styles.text}>
+                We collect information necessary to provide online tutoring services, including name, email, 
+                grade level, learning progress data, and class participation records. Payment information is 
+                processed securely through third-party payment processors.
+              </p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>Is GuruForU COPPA compliant?</h3>
+              <p className={styles.text}>
+                Yes, GuruForU is fully compliant with COPPA regulations. We obtain parental consent before 
+                collecting information from children under 13 and provide parents with access to review, delete, 
+                or refuse further collection of their child&apos;s information.
+              </p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3 className={styles.faqQuestion}>Can I delete my child&apos;s data from GuruForU?</h3>
+              <p className={styles.text}>
+                Yes, parents can request deletion of their child&apos;s data at any time by contacting us through 
+                our <Link href="/contact" className={styles.link}>Contact Us</Link> page. We will process 
+                deletion requests within 30 days in accordance with applicable privacy laws.
+              </p>
+            </div>
           </div>
         </div>
 

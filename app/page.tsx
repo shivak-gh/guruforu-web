@@ -140,6 +140,36 @@ export default async function ComingSoon() {
     },
   }
 
+  // Service Schema for better SEO - Region-specific for all supported countries
+  // areaServed is set based on detected locale (US, UK, CA, AU, NZ, QA, AE, or Worldwide for DEFAULT)
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Online Tutoring Services',
+    description: 'AI-powered online tutoring with personalized learning, expert tutors, and real-time student progress tracking for K-12 students.',
+    provider: {
+      '@type': 'EducationalOrganization',
+      name: 'GuruForU',
+      url: 'https://www.guruforu.com',
+    },
+    areaServed: localeInfo.countryCode ? {
+      '@type': 'Place',
+      name: localeInfo.countryName,
+      addressCountry: localeInfo.countryCode,
+    } : {
+      '@type': 'Place',
+      name: 'Worldwide',
+    },
+    serviceType: 'Online Education',
+    category: 'Educational Services',
+    offers: {
+      '@type': 'Offer',
+      description: 'Online tutoring classes with AI-powered learning and progress tracking',
+      availabilityStarts: '2024-01-01',
+    },
+    // Removed aggregateRating - no actual reviews on Google Business Profile to avoid misleading search engines
+  }
+
   // FAQ Schema for SEO (minimized for better text-to-HTML ratio)
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -185,6 +215,22 @@ export default async function ComingSoon() {
           text: 'Yes, all tutors are qualified independent teachers who are carefully vetted with profiles and qualifications available for review.',
         },
       },
+      {
+        '@type': 'Question',
+        name: 'What subjects does GuruForU offer?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'GuruForU offers online tutoring for Math, Science, and other K-12 subjects with curriculum support for US, UK, Canada, Australia, New Zealand, Qatar, and UAE.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I get started with online tutoring?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Getting started is easy! Book a free consultation session to discuss your child\'s learning needs. Our AI diagnostics will identify learning gaps and create a personalized roadmap.',
+        },
+      },
     ],
   }
 
@@ -199,6 +245,11 @@ export default async function ComingSoon() {
         id="website-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <Script
+        id="service-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <Script
         id="faq-schema"
@@ -292,9 +343,20 @@ export default async function ComingSoon() {
           </ul>
         </section>
 
-        <p className={styles.message}>
-          {localized('Join thousands of parents who trust GuruForU for their children\'s online education journey. Learn more about our')} <Link href="/blog" className={styles.notifyButton}>{localized('educational resources')}</Link>, <Link href="/free-session" className={styles.notifyButton}>{localized('book a free session')}</Link>, {localized('or')} <Link href="/contact" className={styles.notifyButton}>{localized('contact us')}</Link> {localized('for more information.')}
-        </p>
+        <section aria-labelledby="cta-heading" className={styles.ctaSection}>
+          <h2 id="cta-heading" className={styles.ctaHeading}>Ready to Transform Your Child&apos;s Learning?</h2>
+          <p className={styles.message}>
+            {localized('Join thousands of parents who trust GuruForU for their children\'s online education journey. Learn more about our')} <Link href="/blog" className={styles.notifyButton}>{localized('educational resources')}</Link>, <Link href="/free-session" className={styles.notifyButton}>{localized('book a free session')}</Link>, {localized('or')} <Link href="/contact" className={styles.notifyButton}>{localized('contact us')}</Link> {localized('for more information.')}
+          </p>
+          <div className={styles.ctaButtons}>
+            <Link href="/free-session" className={styles.primaryButton} prefetch={false}>
+              {localized('Book Free Consultation')}
+            </Link>
+            <Link href="/blog" className={styles.secondaryButton} prefetch={false}>
+              {localized('Read Education Blog')}
+            </Link>
+          </div>
+        </section>
         </main>
       </div>
 
