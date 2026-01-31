@@ -6,6 +6,7 @@ import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { headers } from 'next/headers'
 import { detectLocale, getSEOContent, localizeText, generateHreflangLinks } from '../lib/locale'
+import { getAllCategories } from './blog/lib/getBlogs'
 
 // Lazy load NavMenu to reduce initial bundle size
 const NavMenu = dynamic(() => import('./components/NavMenu'), {
@@ -76,6 +77,7 @@ export default async function ComingSoon() {
   const headersList = await headers()
   const localeInfo = detectLocale(headersList)
   const localized = (text: string) => localizeText(text, localeInfo.region)
+  const categories = await getAllCategories()
 
   // Enhanced Organization Schema for SEO
   const organizationSchema = {
@@ -357,6 +359,15 @@ export default async function ComingSoon() {
             </Link>
           </div>
         </section>
+
+        <section aria-label={localized('Explore by topic')} className={styles.exploreSection}>
+          <h2 className={styles.benefitsHeading}>{localized('Explore by topic')}</h2>
+          <nav className={styles.footerLinks}>
+            {categories.map((cat) => (
+              <Link key={cat.slug} href={`/blog/${cat.slug}`} className={styles.footerLink} prefetch={false}>{cat.name}</Link>
+            ))}
+          </nav>
+        </section>
         </main>
       </div>
 
@@ -364,6 +375,7 @@ export default async function ComingSoon() {
         <nav className={styles.footerLinks}>
           <Link href="/blog" className={styles.footerLink} prefetch={false}>{localized('Education Blog')}</Link>
           <Link href="/contact" className={styles.footerLink} prefetch={false}>{localized('Contact Us')}</Link>
+          <Link href="/free-session" className={styles.footerLink} prefetch={false}>{localized('Free Session')}</Link>
           <a href="mailto:support@guruforu.com" className={styles.footerLink}>{localized('Email Support')}</a>
           <Link href="/terms" className={styles.footerLink} prefetch={false}>{localized('Terms and Conditions')}</Link>
           <Link href="/privacy" className={styles.footerLink} prefetch={false}>{localized('Privacy Policy')}</Link>
