@@ -392,6 +392,12 @@
   font-weight: 600;
 }
 
+.latestBlogMeta {
+  font-size: 0.875rem;
+  opacity: 0.85;
+  font-weight: 400;
+}
+
 .divider {
   width: 80px;
   height: 3px;

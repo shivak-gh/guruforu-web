@@ -325,6 +325,53 @@
   text-decoration-color: #764ba2;
 }
 
+/* Author box for EEAT */
+.authorBox {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  background: rgba(102, 126, 234, 0.08);
+  border-radius: 12px;
+  border-left: 4px solid #4c5dc4;
+}
+
+.authorBoxInner {
+  max-width: 100%;
+}
+
+.authorRole {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4c5dc4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.authorName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+}
+
+.authorBio {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 0.75rem;
+}
+
+.authorLink {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4c5dc4;
+  text-decoration: none;
+}
+
+.authorLink:hover {
+  text-decoration: underline;
+}
+
 .ctaBox {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 12px;
