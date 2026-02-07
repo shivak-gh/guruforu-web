@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getBlogBySlug, getAllBlogs } from '../../lib/getBlogs'
+import { getAuthor } from '../../../../lib/authors'
 import dynamicImport from 'next/dynamic'
 import styles from './page.module.css'
 import Script from 'next/script'
@@ -105,15 +106,19 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     ...categoryKeywords,
   ]
 
-  // Optimize title length (max 60 chars recommended)
-  const optimizedTitle = blog.title.length > 55 
-    ? `${blog.title.substring(0, 52)}... | GuruForU`
-    : `${blog.title} | GuruForU`
-  
-  // Optimize description length (150-160 chars recommended)
-  const optimizedDescription = blog.lead.length > 160
-    ? `${blog.lead.substring(0, 157)}...`
-    : blog.lead
+  // Use optional CTR-focused meta overrides; otherwise optimize defaults
+  const metaTitle = (blog as { metaTitle?: string }).metaTitle
+  const metaDescription = (blog as { metaDescription?: string }).metaDescription
+  const optimizedTitle = metaTitle
+    ? (metaTitle.length > 55 ? `${metaTitle.substring(0, 52)}... | GuruForU` : `${metaTitle} | GuruForU`)
+    : blog.title.length > 55
+      ? `${blog.title.substring(0, 52)}... | GuruForU`
+      : `${blog.title} | GuruForU`
+  const optimizedDescription = metaDescription
+    ? (metaDescription.length > 160 ? `${metaDescription.substring(0, 157)}...` : metaDescription)
+    : blog.lead.length > 160
+      ? `${blog.lead.substring(0, 157)}...`
+      : blog.lead
 
   // Generate hreflang links for this page (all locales point to same URL for single-URL site)
   const baseUrl = 'https://www.guruforu.com'
@@ -147,7 +152,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       type: 'article',
       publishedTime: blog.meta.publishedDate,
       modifiedTime: blog.meta.publishedDate,
-      authors: ['GuruForU'],
+      authors: [getAuthor((blog as { author?: string }).author).name],
       images: [
         {
           url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
@@ -301,11 +306,14 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
     },
     datePublished: blog.meta.publishedDate,
     dateModified: blog.meta.publishedDate, // Update this if you track modified dates
-    author: {
-      '@type': 'Organization',
-      name: 'GuruForU',
-      url: 'https://www.guruforu.com',
-    },
+    author: (() => {
+      const a = getAuthor((blog as { author?: string }).author)
+      return {
+        '@type': 'Organization' as const,
+        name: a.name,
+        ...(a.url && { url: a.url }),
+      }
+    })(),
     publisher: {
       '@type': 'Organization',
       name: 'GuruForU',
@@ -492,6 +500,25 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
                 )}
               </section>
             ))}
+
+            {/* Author box for EEAT */}
+            {(() => {
+              const author = getAuthor((blog as { author?: string }).author)
+              return (
+                <section className={styles.authorBox} aria-label="About the author">
+                  <div className={styles.authorBoxInner}>
+                    <p className={styles.authorRole}>{author.role}</p>
+                    <h3 className={styles.authorName}>{author.name}</h3>
+                    <p className={styles.authorBio}>{author.bio}</p>
+                    {author.url && (
+                      <Link href={author.url} className={styles.authorLink} prefetch={false}>
+                        Learn more about our team
+                      </Link>
+                    )}
+                  </div>
+                </section>
+              )
+            })()}
 
             {/* FAQ Section */}
             <section className={styles.faqSection}>

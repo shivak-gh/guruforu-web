@@ -6,6 +6,7 @@ import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { headers } from 'next/headers'
 import { detectLocale, getSEOContent, localizeText, generateHreflangLinks } from '../lib/locale'
+import { getAllCategories, getAllBlogs } from './blog/lib/getBlogs'
 
 // Lazy load NavMenu to reduce initial bundle size
 const NavMenu = dynamic(() => import('./components/NavMenu'), {
@@ -76,6 +77,8 @@ export default async function ComingSoon() {
   const headersList = await headers()
   const localeInfo = detectLocale(headersList)
   const localized = (text: string) => localizeText(text, localeInfo.region)
+  const [categories, allBlogs] = await Promise.all([getAllCategories(), getAllBlogs()])
+  const latestBlogs = allBlogs.slice(0, 5)
 
   // Enhanced Organization Schema for SEO
   const organizationSchema = {
@@ -357,13 +360,43 @@ export default async function ComingSoon() {
             </Link>
           </div>
         </section>
+
+        {latestBlogs.length > 0 && (
+          <section aria-labelledby="latest-blog-heading" className={styles.benefitsList}>
+            <h2 id="latest-blog-heading" className={styles.benefitsHeading}>{localized('Latest from the blog')}</h2>
+            <ul className={styles.benefitsUl}>
+              {latestBlogs.map((post) => (
+                <li key={post.slug}>
+                  <Link href={`/blog/${post.categorySlug}/${post.slug}`} className={styles.footerLink} prefetch={false}>
+                    {post.title}
+                  </Link>
+                  <span className={styles.latestBlogMeta}> — {post.category}</span>
+                </li>
+              ))}
+            </ul>
+            <p>
+              <Link href="/blog" className={styles.notifyButton} prefetch={false}>{localized('View all articles')}</Link>
+            </p>
+          </section>
+        )}
+
+        <section aria-label={localized('Explore by topic')} className={styles.exploreSection}>
+          <h2 className={styles.benefitsHeading}>{localized('Explore by topic')}</h2>
+          <nav className={styles.footerLinks}>
+            {categories.map((cat) => (
+              <Link key={cat.slug} href={`/blog/${cat.slug}`} className={styles.footerLink} prefetch={false}>{cat.name}</Link>
+            ))}
+          </nav>
+        </section>
         </main>
       </div>
 
       <footer className={styles.footer}>
         <nav className={styles.footerLinks}>
+          <Link href="/about" className={styles.footerLink} prefetch={false}>{localized('About Us')}</Link>
           <Link href="/blog" className={styles.footerLink} prefetch={false}>{localized('Education Blog')}</Link>
           <Link href="/contact" className={styles.footerLink} prefetch={false}>{localized('Contact Us')}</Link>
+          <Link href="/free-session" className={styles.footerLink} prefetch={false}>{localized('Free Session')}</Link>
           <a href="mailto:support@guruforu.com" className={styles.footerLink}>{localized('Email Support')}</a>
           <Link href="/terms" className={styles.footerLink} prefetch={false}>{localized('Terms and Conditions')}</Link>
           <Link href="/privacy" className={styles.footerLink} prefetch={false}>{localized('Privacy Policy')}</Link>
