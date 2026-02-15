@@ -135,7 +135,22 @@ export default async function RootLayout({
                   {
                     "@type": "Course",
                     "name": "AI-Powered Personalized Learning",
-                    "description": "Tailored learning paths for students using advanced AI tracking."
+                    "description": "Tailored learning paths for students using advanced AI tracking.",
+                    "provider": {
+                      "@type": "Organization",
+                      "name": "GuruForU",
+                      "url": "https://www.guruforu.com"
+                    },
+                    "offers": {
+                      "@type": "Offer",
+                      "category": "Online Tutoring",
+                      "url": "https://www.guruforu.com"
+                    },
+                    "hasCourseInstance": {
+                      "@type": "CourseInstance",
+                      "courseMode": "online",
+                      "courseWorkload": "PT1H"
+                    }
                   }
                 ]
               }
