@@ -333,6 +333,9 @@ export default function ContactUs() {
           <p className={styles.subtitle}>
             {localized('We\'d love to hear from you! Get in touch with us for any')} <strong>{localized('questions, feedback, or support')}</strong> {localized('about our')} <strong>{localized('online education platform')}</strong>.
           </p>
+          <p className={styles.subtitle}>
+            Whether you have questions about our online classes, need help with your account, or want to learn more about AI-powered learning and progress tracking, our team is here to help. Fill out the form below and we&apos;ll get back to you within 24–48 hours on business days.
+          </p>
 
           <h2 className={styles.sectionTitle}>{localized('Get in Touch')}</h2>
 

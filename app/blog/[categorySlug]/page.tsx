@@ -227,6 +227,9 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
             <p className={styles.pageSubtitle}>
               <strong>{category.count}</strong> {category.count === 1 ? 'article' : 'articles'} in this category covering <strong>educational topics and learning strategies</strong>
             </p>
+            <p className={styles.pageSubtitle}>
+              Articles in this category offer practical advice and insights for parents and students. Read on for expert tips, curriculum guides, and strategies to support your child&apos;s learning.
+            </p>
           </header>
 
           <div className={styles.blogGrid}>

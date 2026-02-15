@@ -361,6 +361,9 @@ Learning Challenges: ${data.details || 'Not specified'}`;
             <p className={styles.heroSubtitle}>
               {localized('Book a')} <strong>{localized('15-minute strategy session')}</strong>. {localized('We\'ll analyze')} <strong>{localized('learning gaps')}</strong> {localized('and build a')} <strong>{localized('custom subject roadmap')}</strong> {localized('for your child—at no cost.')}
             </p>
+            <p className={styles.heroSubtitle}>
+              During your free session we&apos;ll discuss your child&apos;s goals, identify any learning gaps, and outline a personalized roadmap. No obligation—just a chance to see how GuruForU can support your child&apos;s success in math, science, and beyond.
+            </p>
           </div>
 
           <div className={styles.mainContent}>

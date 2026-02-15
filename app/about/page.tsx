@@ -74,6 +74,9 @@ export default function AboutUs() {
                 GuruForU provides premium online tuition enhanced with AI-powered personalized learning and detailed mastery reports.
                 Our platform helps parents and students see exactly where they excel and where to focus—so learning is transparent and effective.
               </p>
+              <p className={styles.text}>
+                We believe every child learns differently. Our platform uses AI to adapt to each student&apos;s strengths and gaps while keeping expert teachers at the center of the experience—so your child gets both personalized pacing and human support.
+              </p>
             </section>
 
             <section className={styles.section}>

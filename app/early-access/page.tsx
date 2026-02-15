@@ -119,6 +119,9 @@ export default async function EarlyAccessPage() {
               {localized('Be among the first to experience')} <strong>{localized('premium online tuitions powered by AI')}</strong>. 
               {localized('Get notified when we launch and receive')} <strong>{localized('exclusive early access benefits')}</strong>.
             </p>
+            <p className={styles.subtitle}>
+              Join our waitlist to be notified at launch. Early access members get priority onboarding, special pricing, and direct support from our team as we roll out new features for AI-powered tutoring and student progress tracking.
+            </p>
 
             <div className={styles.formSection}>
               <EarlyAccessForm />

@@ -298,6 +298,9 @@ export default async function ComingSoon() {
           The <strong>best online classes</strong> for your child, enhanced with <strong>AI-powered {localized('Personalized Learning')}</strong>. 
           Get <strong>real-time student progress tracking</strong> and mastery reports that show exactly how your child is advancing.
         </p>
+        <p className={styles.subtitle}>
+          GuruForU combines live online tutoring with AI-powered progress tracking. Our platform helps parents see exactly how their child is doing in math, science, and other subjects, while expert tutors provide personalized support. Whether you need help with homework, exam preparation, or building long-term skills, we tailor learning to your child&apos;s pace and goals.
+        </p>
         <div className={styles.divider}></div>
         
         <section aria-labelledby="features-heading">

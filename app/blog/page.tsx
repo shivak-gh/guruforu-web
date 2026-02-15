@@ -200,6 +200,9 @@ export default async function BlogListing() {
             <p className={styles.pageSubtitle}>
               {localized('Expert insights on')} <strong>{localized('child education')}</strong>, <strong>{localized('learning strategies')}</strong>, {localized('and')} <strong>{localized('AI-powered personalized learning')}</strong>
             </p>
+            <p className={styles.pageSubtitle}>
+              We publish articles on online tutoring, math and science learning, study tips, and parenting guides. Browse by topic below or explore the latest posts to find practical advice for your child&apos;s education.
+            </p>
           </header>
 
           <BlogCategoriesWrapper />
