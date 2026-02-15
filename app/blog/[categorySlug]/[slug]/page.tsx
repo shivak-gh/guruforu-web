@@ -85,14 +85,16 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     }
   }
 
-  // Extract and enhance keywords from title and lead
+  // Extract and enhance keywords from title and lead; use optional blog.keywords for SEO
   const titleWords = blog.title.toLowerCase().split(' ').filter((word: string) => word.length > 3)
   const categoryKeywords = blog.category.toLowerCase() === 'math' 
     ? ['online math tutoring', 'math tutoring online', 'math help online']
     : blog.category.toLowerCase() === 'science'
     ? ['online science tutoring', 'science tutoring online', 'science help online']
+    : blog.category.toLowerCase() === 'technology'
+    ? ['online technology tutoring', 'coding tutoring online', 'SQL tutoring', 'programming for students']
     : []
-  
+  const blogKeywords = (blog as { keywords?: string[] }).keywords || []
   const keywords = [
     `${blog.category.toLowerCase()} online tutoring`,
     `online ${blog.category.toLowerCase()} classes`,
@@ -104,6 +106,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     'online education',
     ...titleWords,
     ...categoryKeywords,
+    ...blogKeywords,
   ]
 
   // Use optional CTR-focused meta overrides; otherwise optimize defaults
