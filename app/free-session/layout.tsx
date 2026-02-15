@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Free Online Tuition Consultation & Student Assessment | GuruForU',
     description: 'Get a free 1-on-1 educational counseling session. Our AI diagnostics identify learning gaps to help your child succeed.',
-    url: 'https://www.guruforu.com/free-consultation',
+    url: 'https://www.guruforu.com/free-session',
     siteName: 'GuruForU',
     images: [
       {
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
   },
   alternates: {
-    canonical: 'https://www.guruforu.com/free-consultation',
+    canonical: 'https://www.guruforu.com/free-session',
   },
 }
 

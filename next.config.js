@@ -265,6 +265,15 @@ const nextConfig = {
 
     return headers
   },
+  async redirects() {
+    return [
+      {
+        source: '/free-consultation',
+        destination: '/free-session',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
