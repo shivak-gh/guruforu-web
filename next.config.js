@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
-// Cache control flag - CACHING IS DISABLED BY DEFAULT
-// Set DISABLE_CACHE=false in environment to enable caching (not recommended for now)
-const DISABLE_CACHE = process.env.DISABLE_CACHE !== 'false' // Default to true (disabled) unless explicitly set to false
+// Cache control: enabled by default so JS/CSS and static assets are cached (fixes uncached asset issues).
+// Set DISABLE_CACHE=true in environment to disable caching (e.g. for debugging).
+const DISABLE_CACHE = process.env.DISABLE_CACHE === 'true'
 
 const nextConfig = {
   output: 'standalone',
@@ -81,70 +81,48 @@ const nextConfig = {
 
     // Add cache headers only if caching is enabled
     if (!DISABLE_CACHE) {
+      const oneHour = 'public, s-maxage=3600, max-age=3600, stale-while-revalidate=86400'
       headers.push(
         {
-          // HTML pages: CDN cache for 1 hour, browser cache for 5 minutes, stale-while-revalidate
+          // HTML pages: cache for 1 hour (CDN and browser)
           source: '/',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
-            },
-          ],
+          headers: [{ key: 'Cache-Control', value: oneHour }],
         },
         {
           source: '/blog/:path*',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
-            },
-          ],
+          headers: [{ key: 'Cache-Control', value: oneHour }],
         },
         {
           source: '/contact',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
-            },
-          ],
+          headers: [{ key: 'Cache-Control', value: oneHour }],
         },
         {
           source: '/terms',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
-            },
-          ],
+          headers: [{ key: 'Cache-Control', value: oneHour }],
         },
         {
           source: '/privacy',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
-            },
-          ],
+          headers: [{ key: 'Cache-Control', value: oneHour }],
         },
         {
           source: '/shipping',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
-            },
-          ],
+          headers: [{ key: 'Cache-Control', value: oneHour }],
         },
         {
           source: '/cancellation-refunds',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'public, s-maxage=3600, max-age=300, stale-while-revalidate=86400',
-            },
-          ],
+          headers: [{ key: 'Cache-Control', value: oneHour }],
+        },
+        {
+          source: '/about',
+          headers: [{ key: 'Cache-Control', value: oneHour }],
+        },
+        {
+          source: '/early-access',
+          headers: [{ key: 'Cache-Control', value: oneHour }],
+        },
+        {
+          source: '/free-session',
+          headers: [{ key: 'Cache-Control', value: oneHour }],
         },
         {
           // Static assets: Long-term caching (1 year, immutable)
