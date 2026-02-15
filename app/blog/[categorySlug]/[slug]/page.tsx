@@ -8,50 +8,90 @@ import styles from './page.module.css'
 import Script from 'next/script'
 import { generateHreflangLinks } from '../../../../lib/locale'
 
-// Helper function to convert URLs in text to clickable links
+// Descriptive anchor text for external links (SEO: avoid URL-only anchor text)
+function getAnchorTextForUrl(url: string): string {
+  try {
+    const normalized = url.startsWith('http') ? url : 'https://' + url
+    const u = new URL(normalized)
+    const host = u.hostname.replace(/^www\./, '')
+    const path = u.pathname.toLowerCase()
+
+    if (host.includes('khanacademy.org')) {
+      if (path.includes('fraction') || path.includes('arith-review-fractions')) return 'Khan Academy fractions'
+      if (path.includes('decimal') || path.includes('arith-decimals')) return 'Khan Academy decimals'
+      if (path.includes('algebra')) return 'Khan Academy algebra'
+      if (path.includes('geometry') || path.includes('area-perimeter') || path.includes('volume')) return 'Khan Academy geometry'
+      if (path.includes('order-of-operations') || path.includes('exponents-and-order')) return 'Khan Academy order of operations'
+      if (path.includes('fifth-grade') || path.includes('cc-fifth-grade')) return 'Khan Academy Grade 5 math'
+      if (path.includes('sixth-grade') || path.includes('cc-sixth-grade')) return 'Khan Academy Grade 6 math'
+      if (path.includes('seventh-grade') || path.includes('cc-seventh-grade')) return 'Khan Academy Grade 7 math'
+      if (path.includes('eighth-grade') || path.includes('cc-eighth-grade')) return 'Khan Academy Grade 8 math'
+      if (path.includes('third-grade') || path.includes('cc-third-grade')) return 'Khan Academy Grade 3 math'
+      if (path.includes('fourth-grade') || path.includes('cc-fourth-grade')) return 'Khan Academy Grade 4 math'
+      if (path.includes('k-8-grades') || path.includes('k-8')) return 'Khan Academy K–8 math'
+      if (path.includes('measurement-and-data') || path.includes('imp-measurement')) return 'Khan Academy measurement and data'
+      if (path.includes('multiply') || path.includes('multi-digit')) return 'Khan Academy multiplication and division'
+      if (path.includes('long-division') || path.includes('remainder')) return 'Khan Academy long division'
+      if (path.includes('multiplying-fractions')) return 'Khan Academy multiplying fractions'
+      if (path.includes('unlike-denominators') || path.includes('add-sub-fractions')) return 'Khan Academy adding fractions with unlike denominators'
+      if (path.includes('place-value') || path.includes('decimals-intro')) return 'Khan Academy decimal place value'
+      if (path.includes('adding-decimals') || path.includes('add-decimals')) return 'Khan Academy adding and subtracting decimals'
+      if (path.includes('perimeter-and-area') || path.includes('area-basics')) return 'Khan Academy area and perimeter'
+      if (path.includes('rectangular-prism') || path.includes('volume-of-a-rectangular')) return 'Khan Academy volume'
+      if (path.includes('order-of-operations')) return 'Khan Academy order of operations'
+      return 'Khan Academy math'
+    }
+
+    // Other domains: use hostname as descriptive text
+    return `Open on ${host}`
+  } catch {
+    return 'Learn more'
+  }
+}
+
+// Helper function to convert URLs in text to clickable links (with descriptive anchor text for SEO)
 function linkify(text: string) {
-  // Match URLs (http, https, www, or khanacademy.org)
-  const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+|khanacademy\.org[^\s]*)/gi
+  const urlRegex = /(https?:\/\/[^\s)]+|www\.[^\s)]+|khanacademy\.org[^\s)]*)/gi
   const parts: (string | JSX.Element)[] = []
   let lastIndex = 0
   let match
-  
-  // Reset regex lastIndex
+
   urlRegex.lastIndex = 0
-  
+
   while ((match = urlRegex.exec(text)) !== null) {
-    // Add text before the match
     if (match.index > lastIndex) {
       parts.push(text.substring(lastIndex, match.index))
     }
-    
-    // Process the URL match
+
     let url = match[0]
-    // Add https:// if URL starts with www or khanacademy.org
+    const trailing = url.match(/[.,;:!?)]+$/)
+    if (trailing) url = url.slice(0, -trailing[0].length)
     if (url.startsWith('www.') || url.startsWith('khanacademy.org')) {
       url = 'https://' + url
     }
-    
+
+    const anchorText = getAnchorTextForUrl(url)
     parts.push(
-      <a 
+      <a
         key={match.index}
-        href={url} 
-        target="_blank" 
+        href={url}
+        target="_blank"
         rel="noopener noreferrer"
         className={styles.externalLink}
+        title={url}
       >
-        {match[0]}
+        {anchorText}
       </a>
     )
-    
+    if (trailing) parts.push(trailing[0])
+
     lastIndex = match.index + match[0].length
   }
-  
-  // Add remaining text after last match
+
   if (lastIndex < text.length) {
     parts.push(text.substring(lastIndex))
   }
-  
+
   return parts.length > 0 ? parts : text
 }
 
