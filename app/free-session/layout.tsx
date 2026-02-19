@@ -1,4 +1,36 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is the free consultation?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The free consultation is a 1-on-1 educational counseling session where our AI diagnostics identify your child\'s learning gaps in any subject. We provide a personalized learning roadmap to help your child succeed.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Is the free session really free?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. There is no charge for the free consultation and student assessment. It is designed to help parents understand their child\'s learning needs before committing to tuition.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What happens during the free session?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'During the session, we assess your child\'s current level, identify gaps in understanding, and discuss a personalized learning plan. You can choose to book via the form or WhatsApp.'
+      }
+    }
+  ]
+}
 
 export const metadata: Metadata = {
   title: 'Free Online Tuition Consultation & Student Assessment | GuruForU',
@@ -57,5 +89,14 @@ export default function FreeConsultationLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return (
+    <>
+      <Script
+        id="free-session-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      {children}
+    </>
+  )
 }

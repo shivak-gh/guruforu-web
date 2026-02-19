@@ -1,4 +1,49 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How can I contact GuruForU?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'You can contact GuruForU through the contact form on this page, by email at support@guruforu.com, or via WhatsApp. We typically respond within 24-48 hours.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What is GuruForU\'s response time?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We respond to inquiries within 24-48 hours during business days. For urgent matters, WhatsApp may provide a faster response.'
+      }
+    }
+  ]
+}
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  name: 'GuruForU',
+  url: 'https://www.guruforu.com',
+  description: 'AI-powered online tuition with personalized learning and student progress tracking.',
+  email: 'support@guruforu.com',
+  sameAs: [
+    'https://twitter.com/guruforu_official',
+    'https://www.instagram.com/guruforu_official/'
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    email: 'support@guruforu.com',
+    availableLanguage: 'English',
+    areaServed: 'Worldwide',
+    url: 'https://www.guruforu.com/contact'
+  }
+}
 
 export const metadata: Metadata = {
   title: 'Contact Us | GuruForU - Get in Touch',
@@ -55,5 +100,19 @@ export default function ContactLayout({
 }: {
   children: React.ReactNode
 }) {
-  return children
+  return (
+    <>
+      <Script
+        id="contact-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <Script
+        id="contact-localbusiness-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      {children}
+    </>
+  )
 }

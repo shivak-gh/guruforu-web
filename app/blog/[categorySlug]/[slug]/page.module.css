@@ -436,6 +436,88 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
+.relatedArticles {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.relatedArticlesList {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .relatedArticlesList {
+    grid-template-columns: 1fr;
+  }
+}
+
+.relatedArticleCard {
+  margin: 0;
+}
+
+.relatedArticleCardLink {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(102, 126, 234, 0.06);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(102, 126, 234, 0.15);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.relatedArticleCardLink:hover {
+  border-color: rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
+}
+
+.relatedArticleImageWrap {
+  display: block;
+  aspect-ratio: 280 / 160;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.relatedArticleImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.relatedArticleCardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem;
+}
+
+.relatedArticleCardTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.relatedArticleCardLink:hover .relatedArticleCardTitle {
+  color: #667eea;
+}
+
+.relatedArticleCardMeta {
+  font-size: 0.85rem;
+  color: #888;
+}
+
 .footer {
   margin-top: 3rem;
   text-align: center;

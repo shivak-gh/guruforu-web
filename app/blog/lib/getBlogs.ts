@@ -1,4 +1,4 @@
-import { readdir, readFile } from 'fs/promises'
+import { readdir, readFile, stat } from 'fs/promises'
 import { join } from 'path'
 
 export interface BlogMeta {
@@ -121,4 +121,27 @@ export async function getAllCategories(): Promise<CategoryInfo[]> {
 export async function getBlogsByCategory(categorySlug: string): Promise<BlogMeta[]> {
   const blogs = await getAllBlogs()
   return blogs.filter(blog => blog.categorySlug === categorySlug)
+}
+
+/** Get related blogs (same category, excluding current) for internal linking */
+export async function getRelatedBlogs(
+  currentSlug: string,
+  categorySlug: string,
+  limit: number = 4
+): Promise<BlogMeta[]> {
+  const blogs = await getBlogsByCategory(categorySlug)
+  return blogs
+    .filter(blog => blog.slug !== currentSlug)
+    .slice(0, limit)
+}
+
+/** Get file modified date for BlogPosting dateModified (fallback: publishedDate) */
+export async function getBlogModifiedDate(slug: string): Promise<string | null> {
+  try {
+    const contentPath = join(process.cwd(), 'app', 'blog', 'content', `${slug}.json`)
+    const statResult = await stat(contentPath)
+    return statResult.mtime.toISOString().split('T')[0]
+  } catch {
+    return null
+  }
 }

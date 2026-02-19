@@ -48,12 +48,48 @@ export default function AboutUs() {
     },
   }
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Who is GuruForU?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'GuruForU is a team of educators and technologists building AI-powered online tutoring. We provide premium online tuition enhanced with personalized learning, detailed mastery reports, and expert teacher support so every student can learn at their own pace.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'What does GuruForU offer?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'GuruForU offers K-12 online tutoring with AI-driven progress tracking, curriculum-aligned learning paths for math and science, one-on-one expert instruction, and parent and student support resources. Our platform helps families see exactly where students excel and where to focus.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'How can I get started with GuruForU?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Book a free consultation session to discuss your child\'s learning needs. Our AI diagnostics identify learning gaps and create a personalized roadmap. You can also explore our education blog for tips and guides, or contact us for more information.'
+        }
+      }
+    ]
+  }
+
   return (
     <>
       <Script
         id="about-organization-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <Script
+        id="about-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <NavMenu />
       <div className={styles.container}>
@@ -114,6 +150,30 @@ export default function AboutUs() {
                 support your child&apos;s learning, or explore our <Link href="/blog" className={styles.link}>education blog</Link> for
                 tips and guides.
               </p>
+            </section>
+
+            <section className={styles.faqSection}>
+              <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
+              <dl className={styles.faqList}>
+                <div className={styles.faqItem}>
+                  <dt className={styles.faqQuestion}>Who is GuruForU?</dt>
+                  <dd className={styles.faqAnswer}>
+                    GuruForU is a team of educators and technologists building AI-powered online tutoring. We provide premium online tuition enhanced with personalized learning, detailed mastery reports, and expert teacher support so every student can learn at their own pace.
+                  </dd>
+                </div>
+                <div className={styles.faqItem}>
+                  <dt className={styles.faqQuestion}>What does GuruForU offer?</dt>
+                  <dd className={styles.faqAnswer}>
+                    GuruForU offers K-12 online tutoring with AI-driven progress tracking, curriculum-aligned learning paths for math and science, one-on-one expert instruction, and parent and student support resources. Our platform helps families see exactly where students excel and where to focus.
+                  </dd>
+                </div>
+                <div className={styles.faqItem}>
+                  <dt className={styles.faqQuestion}>How can I get started with GuruForU?</dt>
+                  <dd className={styles.faqAnswer}>
+                    Book a <Link href="/free-session" className={styles.link}>free consultation session</Link> to discuss your child&apos;s learning needs. Our AI diagnostics identify learning gaps and create a personalized roadmap. You can also explore our <Link href="/blog" className={styles.link}>education blog</Link> for tips and guides, or <Link href="/contact" className={styles.link}>contact us</Link> for more information.
+                  </dd>
+                </div>
+              </dl>
             </section>
           </article>
 

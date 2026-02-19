@@ -84,12 +84,49 @@ export default async function EarlyAccessPage() {
     }
   }
 
+  // FAQ schema for early access page
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is GuruForU early access?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Early access lets you join the waitlist and be notified when GuruForU launches. Early access members get priority onboarding, special launch pricing, and exclusive support as we roll out AI-powered online tuitions and student progress tracking.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I get early access?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sign up using the form on this page with your email. We will notify you as soon as GuruForU is ready to launch.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'What benefits do early access members get?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Early access members receive priority access to the platform, special launch pricing for early adopters, exclusive onboarding support from our team, and early feature previews before public release.'
+        }
+      }
+    ]
+  }
+
   return (
     <>
       <Script
         id="early-access-webpage-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
+      <Script
+        id="early-access-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <NavMenu />
       <div className={styles.container}>

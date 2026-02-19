@@ -195,6 +195,11 @@ export default async function BlogListing() {
 
         <div className={styles.content}>
         <div className={styles.blogListing}>
+          <nav className={styles.breadcrumb} aria-label="Breadcrumb">
+            <Link href="/" className={styles.breadcrumbLink} prefetch={false}>Home</Link>
+            <span className={styles.breadcrumbSeparator}>/</span>
+            <span className={styles.breadcrumbCurrent}>{localized('Blog')}</span>
+          </nav>
           <header className={styles.pageHeader}>
             <h1 className={styles.pageTitle}>{localized('Our Blog')}</h1>
             <p className={styles.pageSubtitle}>

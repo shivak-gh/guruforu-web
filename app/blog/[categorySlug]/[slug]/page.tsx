@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getBlogBySlug, getAllBlogs } from '../../lib/getBlogs'
+import { getBlogBySlug, getAllBlogs, getRelatedBlogs, getBlogModifiedDate } from '../../lib/getBlogs'
 import { defaultBlogImage } from '../../lib/categoryImages'
 import BlogImage from '../../../components/BlogImage'
 import { getAuthor } from '../../../../lib/authors'
@@ -323,6 +323,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
 
   const wordCount = calculateWordCount()
   const articleBody = generateArticleBody()
+  const relatedBlogs = await getRelatedBlogs(slug, categorySlug, 4)
 
   // Organization schema (minimized)
   const organizationSchema = {
@@ -338,6 +339,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
 
   // Generate comprehensive JSON-LD structured data for BlogPosting/Article schema
   const blogFeaturedImage = (blog as { image?: string }).image || defaultBlogImage
+  const dateModified = (await getBlogModifiedDate(slug)) || blog.meta.publishedDate
   const blogPostingSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -350,7 +352,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
       height: 630,
     },
     datePublished: blog.meta.publishedDate,
-    dateModified: blog.meta.publishedDate, // Update this if you track modified dates
+    dateModified,
     author: (() => {
       const a = getAuthor((blog as { author?: string }).author)
       return {
@@ -381,6 +383,22 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
     inLanguage: 'en-US',
     articleSection: blog.category,
   }
+
+  // Related articles ItemList schema for SEO
+  const relatedArticlesSchema = relatedBlogs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Related Articles',
+    itemListElement: relatedBlogs.map((b, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Article',
+        name: b.title,
+        url: `https://www.guruforu.com/blog/${b.categorySlug}/${b.slug}`,
+      },
+    })),
+  } : null
 
   // Breadcrumb structured data
   const breadcrumbStructuredData = {
@@ -471,6 +489,13 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
       />
+      {relatedArticlesSchema && (
+        <Script
+          id="related-articles-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(relatedArticlesSchema) }}
+        />
+      )}
       <Script
         id="faq-schema"
         type="application/ld+json"
@@ -628,6 +653,37 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
                   {blog.cta.buttonText}
                 </Link>
               </div>
+            )}
+
+            {relatedBlogs.length > 0 && (
+              <section className={styles.relatedArticles} aria-label="Related articles">
+                <h2 className={styles.sectionTitle}>Related Articles</h2>
+                <ul className={styles.relatedArticlesList}>
+                  {relatedBlogs.map((related) => {
+                    const relatedImage = (related as { image?: string }).image || defaultBlogImage
+                    return (
+                      <li key={related.slug} className={styles.relatedArticleCard}>
+                        <Link href={`/blog/${related.categorySlug}/${related.slug}`} className={styles.relatedArticleCardLink} prefetch={false}>
+                          <span className={styles.relatedArticleImageWrap}>
+                            <BlogImage
+                              src={relatedImage}
+                              alt=""
+                              width={280}
+                              height={160}
+                              className={styles.relatedArticleImage}
+                              sizes="(max-width: 600px) 100vw, 280px"
+                            />
+                          </span>
+                          <span className={styles.relatedArticleCardContent}>
+                            <span className={styles.relatedArticleCardTitle}>{related.title}</span>
+                            <span className={styles.relatedArticleCardMeta}>{related.meta.readTime}</span>
+                          </span>
+                        </Link>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </section>
             )}
           </div>
         </article>
