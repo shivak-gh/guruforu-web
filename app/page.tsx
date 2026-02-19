@@ -305,7 +305,7 @@ export default async function ComingSoon() {
         </p>
         <div className={styles.heroImageWrap}>
           <Image
-            src="/blog-images/online-education-category.jpg"
+            src="/homepage-hero.jpg"
             alt="AI-powered online tutoring and personalized learning for your child"
             width={800}
             height={500}
