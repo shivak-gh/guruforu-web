@@ -34,8 +34,9 @@ Located in `/public/blog-images/`:
 - **Pixabay** (https://pixabay.com) - Free images and vectors
 
 **Image Requirements:**
-- Category images: 800x500px (16:10 aspect ratio)
-- Blog post featured images: 1200x630px (1.91:1 aspect ratio, optimal for social sharing)
+- Category images: 800x500px (16:10 aspect ratio); may include text/labels (exception)
+- Blog post featured images: 1200x630px (1.91:1) or 16:9; **no embedded text, titles, or overlays**
+- **Indian context**: All article-specific images should feature Indian parents, students, or teachers
 - Format: JPG or PNG
 - File size: Keep under 500KB for optimal performance
 
@@ -80,9 +81,11 @@ The SVG placeholders use your brand colors:
 
 They display a gradient background with an icon and text label, making them visually appealing until real images are added.
 
-### Optional: Real-world blog image (parents and students)
+### Article-specific images (all posts)
 
-The post **Indian Parents and Math Challenges** is configured to use a dedicated image:
+Each blog post has a dedicated image. Guidelines: **No embedded text** (pure photographic). **Indian context** (parents, students, teachers). Exception: category images may include text.
+
+The post **Indian Parents and Math Challenges** uses:
 
 - **Path:** `public/blog-images/indian-parents-math-challenges.jpg`
 - **Suggested theme:** Parents and children studying together (real-world, family/homework).
