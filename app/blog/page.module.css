@@ -149,6 +149,8 @@
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid rgba(102, 126, 234, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
 .blogCard:hover {
@@ -162,12 +164,31 @@
   height: 100%;
   text-decoration: none;
   color: inherit;
-  padding: 2rem;
   transition: all 0.3s ease;
+}
+
+.blogCardImageWrapper {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.blogCardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.blogCard:hover .blogCardImage {
+  transform: scale(1.05);
 }
 
 .blogCardContent {
   flex: 1;
+  padding: 2rem;
 }
 
 .blogCardCategory {

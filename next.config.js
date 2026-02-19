@@ -21,6 +21,7 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     // Configure allowed image qualities
     qualities: [75, 85],
+    
   },
   // Reduce JavaScript bundle size
   compiler: {

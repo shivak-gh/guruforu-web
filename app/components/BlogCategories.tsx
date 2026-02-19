@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { headers } from 'next/headers'
 import { detectLocale, localizeText } from '../../lib/locale'
+import { getCategoryImage } from '../blog/lib/categoryImages'
+import CategoryImage from './CategoryImage'
 import styles from './BlogCategories.module.css'
 
 interface BlogCategoriesProps {
@@ -31,8 +33,19 @@ export default async function BlogCategories({ categories }: BlogCategoriesProps
             className={styles.categoryCard}
             prefetch={false}
           >
-            <h3 className={styles.categoryName}>{category.name}</h3>
-            <p className={styles.categoryCount}>{category.count} {category.count === 1 ? localized('article') : localized('articles')}</p>
+            <div className={styles.categoryImageWrapper}>
+              <CategoryImage
+                src={getCategoryImage(category.slug)}
+                alt={`${category.name} category`}
+                width={400}
+                height={250}
+                className={styles.categoryImage}
+              />
+            </div>
+            <div className={styles.categoryContent}>
+              <h3 className={styles.categoryName}>{category.name}</h3>
+              <p className={styles.categoryCount}>{category.count} {category.count === 1 ? localized('article') : localized('articles')}</p>
+            </div>
           </Link>
         ))}
       </div>

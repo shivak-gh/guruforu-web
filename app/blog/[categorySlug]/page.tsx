@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import BlogImage from '../../components/BlogImage'
 import { getAllCategories, getBlogsByCategory, categoryToSlug } from '../lib/getBlogs'
 import dynamicImport from 'next/dynamic'
 import styles from './page.module.css'
@@ -233,24 +233,37 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
           </header>
 
           <div className={styles.blogGrid}>
-            {blogsList.map((blog) => (
-              <article key={blog.slug} className={styles.blogCard}>
-                <Link href={`/blog/${categorySlug}/${blog.slug}`} className={styles.blogCardLink} prefetch={false}>
-                  <div className={styles.blogCardContent}>
-                    <div className={styles.blogCardCategory}>{blog.category}</div>
-                    <h2 className={styles.blogCardTitle}>{blog.title}</h2>
-                    <p className={styles.blogCardLead}>{blog.lead}</p>
-                    <div className={styles.blogCardMeta}>
-                      <span className={styles.blogDate}>
-                        {formatDate(blog.meta.publishedDate)}
-                      </span>
-                      <span className={styles.blogReadTime}>{blog.meta.readTime}</span>
+            {blogsList.map((blog) => {
+              const blogImage = blog.image || `/blog-images/online-education-category.jpg`
+              return (
+                <article key={blog.slug} className={styles.blogCard}>
+                  <Link href={`/blog/${categorySlug}/${blog.slug}`} className={styles.blogCardLink} prefetch={false}>
+                    <div className={styles.blogCardImageWrapper}>
+                      <BlogImage
+                        src={blogImage}
+                        alt={blog.title}
+                        width={400}
+                        height={250}
+                        className={styles.blogCardImage}
+                        fallbackSrc="/blog-images/online-education-category.jpg"
+                      />
                     </div>
-                  </div>
-                  <div className={styles.blogCardArrow}>→</div>
-                </Link>
-              </article>
-            ))}
+                    <div className={styles.blogCardContent}>
+                      <div className={styles.blogCardCategory}>{blog.category}</div>
+                      <h2 className={styles.blogCardTitle}>{blog.title}</h2>
+                      <p className={styles.blogCardLead}>{blog.lead}</p>
+                      <div className={styles.blogCardMeta}>
+                        <span className={styles.blogDate}>
+                          {formatDate(blog.meta.publishedDate)}
+                        </span>
+                        <span className={styles.blogReadTime}>{blog.meta.readTime}</span>
+                      </div>
+                    </div>
+                    <div className={styles.blogCardArrow}>→</div>
+                  </Link>
+                </article>
+              )
+            })}
           </div>
         </div>
 

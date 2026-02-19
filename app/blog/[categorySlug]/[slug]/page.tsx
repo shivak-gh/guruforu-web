@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import Image from 'next/image'
 import { getBlogBySlug, getAllBlogs } from '../../lib/getBlogs'
+import { defaultBlogImage } from '../../lib/categoryImages'
+import BlogImage from '../../../components/BlogImage'
 import { getAuthor } from '../../../../lib/authors'
 import dynamicImport from 'next/dynamic'
 import styles from './page.module.css'
@@ -336,6 +337,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
   }
 
   // Generate comprehensive JSON-LD structured data for BlogPosting/Article schema
+  const blogFeaturedImage = (blog as { image?: string }).image || defaultBlogImage
   const blogPostingSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -343,7 +345,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
     description: blog.lead,
     image: {
       '@type': 'ImageObject',
-      url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+      url: `https://www.guruforu.com${blogFeaturedImage}`,
       width: 1200,
       height: 630,
     },
@@ -498,6 +500,18 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
               <span className={styles.readTime}> {blog.meta.readTime}</span>
             </p>
           </header>
+
+          <div className={styles.featuredImageWrapper}>
+            <BlogImage
+              src={(blog as { image?: string }).image || defaultBlogImage}
+              alt={blog.title}
+              width={1200}
+              height={630}
+              className={styles.featuredImage}
+              priority
+              fallbackSrc="/blog-images/online-education-category.jpg"
+            />
+          </div>
 
           <div className={styles.articleContent}>
             <section className={styles.section}>

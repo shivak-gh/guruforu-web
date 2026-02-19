@@ -19,6 +19,7 @@
     "DevOps learning",
     "GuruForU computer science"
   ],
+  "image": "/blog-images/computer-science-category.jpg",
   "lead": "Teaching Computer Science effectively means combining theory with practice. Node.js and AWS hands-on labs give students real-world skills: server-side JavaScript, cloud deployment, and modern DevOps workflows. This guide covers how to teach both.",
   "sections": [
     {

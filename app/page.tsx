@@ -7,6 +7,8 @@ import dynamic from 'next/dynamic'
 import { headers } from 'next/headers'
 import { detectLocale, getSEOContent, localizeText, generateHreflangLinks } from '../lib/locale'
 import { getAllCategories, getAllBlogs } from './blog/lib/getBlogs'
+import BlogImage from './components/BlogImage'
+import BlogCategories from './components/BlogCategories'
 
 // Lazy load NavMenu to reduce initial bundle size
 const NavMenu = dynamic(() => import('./components/NavMenu'), {
@@ -301,12 +303,26 @@ export default async function ComingSoon() {
         <p className={styles.subtitle}>
           GuruForU combines live online tutoring with AI-powered progress tracking. Our platform helps parents see exactly how their child is doing in math, science, and other subjects, while expert tutors provide personalized support. Whether you need help with homework, exam preparation, or building long-term skills, we tailor learning to your child&apos;s pace and goals.
         </p>
+        <div className={styles.heroImageWrap}>
+          <Image
+            src="/blog-images/online-education-category.jpg"
+            alt="AI-powered online tutoring and personalized learning for your child"
+            width={800}
+            height={500}
+            className={styles.heroImage}
+            sizes="(max-width: 768px) 100vw, 800px"
+            priority={false}
+          />
+        </div>
         <div className={styles.divider}></div>
-        
+
         <section aria-labelledby="features-heading">
           <h2 id="features-heading" className={styles.featuresHeading}>Why Choose GuruForU for Your Child&apos;s Education?</h2>
           <div className={styles.features} role="list">
             <article className={styles.feature} role="listitem">
+              <div className={styles.featureImageWrap}>
+                <Image src="/blog-images/math-category.jpg" alt="AI mastery tracking and progress reports" width={400} height={250} className={styles.featureImage} sizes="(max-width: 768px) 100vw, 400px" />
+              </div>
               <div className={styles.featureIcon} aria-hidden="true">✓</div>
               <div className={styles.featureContent}>
                 <h3 className={styles.featureTitle}>AI Mastery Tracking</h3>
@@ -314,6 +330,9 @@ export default async function ComingSoon() {
               </div>
             </article>
             <article className={styles.feature} role="listitem">
+              <div className={styles.featureImageWrap}>
+                <Image src="/blog-images/learning-strategies-category.jpg" alt="Personalized learning paths for your child" width={400} height={250} className={styles.featureImage} sizes="(max-width: 768px) 100vw, 400px" />
+              </div>
               <div className={styles.featureIcon} aria-hidden="true">✓</div>
               <div className={styles.featureContent}>
                 <h3 className={styles.featureTitle}>{localized('Personalized Learning')}</h3>
@@ -321,6 +340,9 @@ export default async function ComingSoon() {
               </div>
             </article>
             <article className={styles.feature} role="listitem">
+              <div className={styles.featureImageWrap}>
+                <Image src="/blog-images/technology-category.jpg" alt="Expert online tutors and live classes" width={400} height={250} className={styles.featureImage} sizes="(max-width: 768px) 100vw, 400px" />
+              </div>
               <div className={styles.featureIcon} aria-hidden="true">✓</div>
               <div className={styles.featureContent}>
                 <h3 className={styles.featureTitle}>Expert Online Tutors</h3>
@@ -328,6 +350,9 @@ export default async function ComingSoon() {
               </div>
             </article>
             <article className={styles.feature} role="listitem">
+              <div className={styles.featureImageWrap}>
+                <Image src="/blog-images/online-education-category.jpg" alt="Interactive learning sessions and live classes" width={400} height={250} className={styles.featureImage} sizes="(max-width: 768px) 100vw, 400px" />
+              </div>
               <div className={styles.featureIcon} aria-hidden="true">✓</div>
               <div className={styles.featureContent}>
                 <h3 className={styles.featureTitle}>Interactive Learning Sessions</h3>
@@ -384,12 +409,7 @@ export default async function ComingSoon() {
         )}
 
         <section aria-label={localized('Explore by topic')} className={styles.exploreSection}>
-          <h2 className={styles.benefitsHeading}>{localized('Explore by topic')}</h2>
-          <nav className={styles.footerLinks}>
-            {categories.map((cat) => (
-              <Link key={cat.slug} href={`/blog/${cat.slug}`} className={styles.footerLink} prefetch={false}>{cat.name}</Link>
-            ))}
-          </nav>
+          <BlogCategories categories={categories} />
         </section>
         </main>
       </div>

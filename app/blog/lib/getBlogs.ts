@@ -11,6 +11,7 @@ export interface BlogMeta {
     publishedDate: string
   }
   lead: string
+  image?: string
 }
 
 // Helper function to convert category name to slug
@@ -48,7 +49,8 @@ export async function getAllBlogs(): Promise<BlogMeta[]> {
           category: category,
           categorySlug: categoryToSlug(category),
           meta: content.meta,
-          lead: content.lead
+          lead: content.lead,
+          image: content.image
         })
       } catch (error) {
         // Skip invalid JSON files

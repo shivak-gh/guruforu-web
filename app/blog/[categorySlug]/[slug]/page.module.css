@@ -221,6 +221,29 @@
   font-weight: 500;
 }
 
+.featuredImageWrapper {
+  width: 100%;
+  margin: 2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.featuredImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .featuredImageWrapper {
+    margin: 1.5rem 0;
+    border-radius: 8px;
+  }
+}
+
 .articleContent {
   color: #333;
 }
