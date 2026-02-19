@@ -509,6 +509,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
               height={630}
               className={styles.featuredImage}
               priority
+              sizes="(max-width: 768px) 100vw, 1200px"
               fallbackSrc="/blog-images/online-education-category.jpg"
             />
           </div>

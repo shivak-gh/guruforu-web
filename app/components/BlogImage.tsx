@@ -90,6 +90,7 @@ export default function BlogImage({
         height={height}
         className={className}
         priority={priority}
+        sizes={sizes ?? (width >= 1000 ? '(max-width: 768px) 100vw, 1200px' : '(max-width: 768px) 100vw, 400px')}
         onError={handleError}
         onLoad={handleLoad}
         style={{

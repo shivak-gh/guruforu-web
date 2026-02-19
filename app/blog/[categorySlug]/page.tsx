@@ -245,6 +245,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                         width={400}
                         height={250}
                         className={styles.blogCardImage}
+                        sizes="(max-width: 768px) 100vw, 400px"
                         fallbackSrc="/blog-images/online-education-category.jpg"
                       />
                     </div>

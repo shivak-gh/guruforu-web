@@ -65,6 +65,15 @@ After adding real images, update the file extensions:
 2. **Blog Post Images** (in JSON files): Each post’s `image` points to a category JPG or a custom path.
 3. **Default fallback**: `defaultCategoryImage` and `defaultBlogImage` in `categoryImages.ts` use `online-education-category.jpg`. Components use these constants.
 
+## SEO & Core Web Vitals
+
+- **Alt text**: Descriptive, keyword-rich (e.g. "AI mastery tracking - student progress reports")
+- **Width/Height**: Always set to prevent CLS (Cumulative Layout Shift)
+- **Sizes**: Use responsive `sizes` for correct srcset (e.g. `(max-width: 768px) 100vw, 400px`)
+- **Priority**: Set `priority` only on LCP images (homepage hero, blog featured image)
+- **Lazy loading**: Below-fold images use `loading="lazy"` (Next Image default when `priority` is false)
+- **Formats**: Next.js serves AVIF/WebP automatically for optimal delivery
+
 ## Image Optimization Tips
 
 1. **Compress images** before uploading (use tools like TinyPNG or ImageOptim)

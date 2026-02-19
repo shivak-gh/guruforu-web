@@ -311,7 +311,7 @@ export default async function ComingSoon() {
             height={500}
             className={styles.heroImage}
             sizes="(max-width: 768px) 100vw, 800px"
-            priority={false}
+            priority
           />
         </div>
         <div className={styles.divider}></div>
@@ -321,7 +321,7 @@ export default async function ComingSoon() {
           <div className={styles.features} role="list">
             <article className={styles.feature} role="listitem">
               <div className={styles.featureImageWrap}>
-                <Image src="/blog-images/ai-mastery-tracking.jpg" alt="AI mastery tracking and progress reports" width={400} height={250} className={styles.featureImage} sizes="(max-width: 768px) 100vw, 400px" />
+                <Image src="/blog-images/ai-mastery-tracking.jpg" alt="AI mastery tracking - student progress reports and real-time insights" width={400} height={250} className={styles.featureImage} sizes="(max-width: 768px) 100vw, 400px" loading="lazy" />
               </div>
               <div className={styles.featureIcon} aria-hidden="true">✓</div>
               <div className={styles.featureContent}>
@@ -331,7 +331,7 @@ export default async function ComingSoon() {
             </article>
             <article className={styles.feature} role="listitem">
               <div className={styles.featureImageWrap}>
-                <Image src="/blog-images/personalized-learning.jpg" alt="Personalized learning paths for your child" width={400} height={250} className={styles.featureImage} sizes="(max-width: 768px) 100vw, 400px" />
+                <Image src="/blog-images/personalized-learning.jpg" alt="Personalized learning - AI-driven paths tailored to your child's strengths" width={400} height={250} className={styles.featureImage} sizes="(max-width: 768px) 100vw, 400px" loading="lazy" />
               </div>
               <div className={styles.featureIcon} aria-hidden="true">✓</div>
               <div className={styles.featureContent}>
@@ -341,7 +341,7 @@ export default async function ComingSoon() {
             </article>
             <article className={styles.feature} role="listitem">
               <div className={styles.featureImageWrap}>
-                <Image src="/blog-images/expert-online-tutors.jpg" alt="Expert online tutors and live classes" width={400} height={250} className={styles.featureImage} sizes="(max-width: 768px) 100vw, 400px" />
+                <Image src="/blog-images/expert-online-tutors.jpg" alt="Expert online tutors - qualified teachers for live classes" width={400} height={250} className={styles.featureImage} sizes="(max-width: 768px) 100vw, 400px" loading="lazy" />
               </div>
               <div className={styles.featureIcon} aria-hidden="true">✓</div>
               <div className={styles.featureContent}>
@@ -351,7 +351,7 @@ export default async function ComingSoon() {
             </article>
             <article className={styles.feature} role="listitem">
               <div className={styles.featureImageWrap}>
-                <Image src="/blog-images/interactive-learning-sessions.jpg" alt="Interactive learning sessions and live classes" width={400} height={250} className={styles.featureImage} sizes="(max-width: 768px) 100vw, 400px" />
+                <Image src="/blog-images/interactive-learning-sessions.jpg" alt="Interactive learning sessions - engaging live classes with multimedia" width={400} height={250} className={styles.featureImage} sizes="(max-width: 768px) 100vw, 400px" loading="lazy" />
               </div>
               <div className={styles.featureIcon} aria-hidden="true">✓</div>
               <div className={styles.featureContent}>

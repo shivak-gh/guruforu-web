@@ -81,6 +81,7 @@ export default function CategoryImage({
         width={width}
         height={height}
         className={className}
+        sizes={sizes ?? '(max-width: 768px) 100vw, 400px'}
         onError={handleError}
         onLoad={handleLoad}
         style={{

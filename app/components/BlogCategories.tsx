@@ -36,10 +36,11 @@ export default async function BlogCategories({ categories }: BlogCategoriesProps
             <div className={styles.categoryImageWrapper}>
               <CategoryImage
                 src={getCategoryImage(category.slug)}
-                alt={`${category.name} category`}
+                alt={`${category.name} category - education articles and resources`}
                 width={400}
                 height={250}
                 className={styles.categoryImage}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 213px"
               />
             </div>
             <div className={styles.categoryContent}>
