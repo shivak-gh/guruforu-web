@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
   
   if (!category) {
     return {
-      title: 'Category Not Found | GuruForU Blog',
+      title: 'Category Not Found | GuruForU',
       description: 'The requested blog category could not be found.',
     }
   }
@@ -47,15 +47,15 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
   }, {} as Record<string, string>)
 
   return {
-    title: `${category.name} Articles | GuruForU Online Tutoring Blog`,
+    title: `${category.name} | GuruForU - Online Education Resources`,
     description: `Read ${category.count} ${category.count === 1 ? 'article' : 'expert articles'} about ${category.name} for online tutoring and education. Tips, guides, and strategies for students and parents.`,
     keywords: [
       `${category.name} online tutoring`,
-      `${category.name} education blog`,
+      `${category.name} online learning`,
       `${category.name} learning tips`,
       `${category.name} for students`,
-      'online tutoring blog',
-      'education articles',
+      'online learning resources',
+      'online learning articles',
       'learning strategies',
       'student success tips',
       category.name.toLowerCase()
@@ -72,7 +72,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       },
     },
     openGraph: {
-      title: `${category.name} Articles | GuruForU Online Tutoring Blog`,
+      title: `${category.name} | GuruForU - Online Education Resources`,
       description: `Read ${category.count} ${category.count === 1 ? 'article' : 'expert articles'} about ${category.name} for online tutoring and education. Tips, guides, and strategies for students and parents.`,
       url: `https://www.guruforu.com/blog/${categorySlug}`,
       siteName: 'GuruForU',
@@ -89,7 +89,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${category.name} Articles | GuruForU Online Tutoring Blog`,
+      title: `${category.name} | GuruForU - Online Education Resources`,
       description: `Read ${category.count} ${category.count === 1 ? 'article' : 'expert articles'} about ${category.name} for online tutoring and education.`,
       images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
       creator: '@guruforu_official',
@@ -142,7 +142,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
   const collectionPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${category.name} | GuruForU Blog`,
+    name: `${category.name} | GuruForU Learning Resources`,
     description: `Explore ${category.count} ${category.count === 1 ? 'article' : 'articles'} in ${category.name} category. Expert insights on child education and learning.`,
     url: `https://www.guruforu.com/blog/${categorySlug}`,
     inLanguage: 'en-US',
@@ -178,7 +178,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Blog',
+        name: 'Resources',
         item: 'https://www.guruforu.com/blog',
       },
       {
@@ -218,7 +218,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
           <nav className={styles.breadcrumb} aria-label="Breadcrumb">
             <Link href="/" className={styles.breadcrumbLink} prefetch={false}>Home</Link>
             <span className={styles.breadcrumbSeparator}>/</span>
-            <Link href="/blog" className={styles.breadcrumbLink} prefetch={false}>Blog</Link>
+            <Link href="/blog" className={styles.breadcrumbLink} prefetch={false}>Resources</Link>
             <span className={styles.breadcrumbSeparator}>/</span>
             <span className={styles.breadcrumbCurrent}>{category.name}</span>
           </nav>
@@ -271,7 +271,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         <footer className={styles.footer}>
           <nav className={styles.footerLinks}>
             <Link href="/" className={styles.footerLink} prefetch={false}>GuruForU Home</Link>
-            <Link href="/blog" className={styles.footerLink} prefetch={false}>Education Blog</Link>
+            <Link href="/blog" className={styles.footerLink} prefetch={false}>Resources</Link>
             <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact Us</Link>
             <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>
             <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>

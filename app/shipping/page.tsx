@@ -151,7 +151,7 @@ export default function ShippingPolicy() {
             <p className={styles.text}>
               <strong>GuruForU</strong> provides <strong>digital educational services</strong> and content. As such, there are no physical 
               products that require shipping. All services, including <Link href="/" className={styles.link}>online classes</Link>, learning materials, 
-              and progress reports, are delivered digitally through our platform. Explore our <Link href="/blog" className={styles.link}>education blog</Link> for more information.
+              and progress reports, are delivered digitally through our platform. Explore our <Link href="/blog" className={styles.link}>learning resources</Link> for more information.
             </p>
           </div>
 

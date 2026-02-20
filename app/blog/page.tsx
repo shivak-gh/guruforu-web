@@ -34,21 +34,21 @@ export async function generateMetadata(): Promise<Metadata> {
   }, {} as Record<string, string>)
 
   return {
-    title: 'Education Blog | GuruForU - Online Tutoring & Learning Tips',
-    description: 'Expert education blog with articles on online tutoring, AI-powered learning, student progress tracking, and personalized learning strategies. Tips for parents and students.',
+    title: 'Learning Resources | GuruForU - Online Education & Tutoring',
+    description: 'Expert articles on online learning, AI-powered tutoring, student progress tracking, and personalized learning. Tips and guides for parents and students from GuruForU online education.',
     keywords: [
-      'online tutoring blog',
-      'education blog for parents',
+      'online learning resources',
+      'online learning for students',
       'online learning tips',
       'student progress tracking guide',
       'AI-powered learning articles',
       'personalized learning strategies',
       'online tutoring advice',
-      'child education resources',
+      'online education resources',
       'homeschooling tips',
       'online class best practices',
       'student success strategies',
-      'parenting education blog'
+      'online education articles'
     ],
     robots: {
       index: true,
@@ -62,8 +62,8 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: 'Education Blog | GuruForU - Online Tutoring & Learning Tips',
-      description: 'Expert education blog with articles on online tutoring, AI-powered learning, student progress tracking, and personalized learning strategies. Tips for parents and students.',
+      title: 'Learning Resources | GuruForU - Online Education & Tutoring',
+      description: 'Expert articles on online learning, AI-powered tutoring, student progress tracking, and personalized learning. Tips and guides for parents and students from GuruForU online education.',
       url: 'https://www.guruforu.com/blog',
       siteName: 'GuruForU',
       type: 'website',
@@ -79,8 +79,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Education Blog | GuruForU - Online Tutoring & Learning Tips',
-      description: 'Expert education blog with articles on online tutoring, AI-powered learning, student progress tracking, and personalized learning strategies.',
+      title: 'Learning Resources | GuruForU - Online Education & Tutoring',
+      description: 'Expert articles on online learning, AI-powered tutoring, student progress tracking, and personalized learning. Tips and guides from GuruForU online education.',
       images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
       creator: '@guruforu_official',
       site: '@guruforu_official',
@@ -125,8 +125,8 @@ export default async function BlogListing() {
   const blogSchema = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
-    name: 'GuruForU Blog',
-    description: 'Expert insights on child education, learning strategies, and AI-powered personalized learning.',
+    name: 'GuruForU Learning Resources',
+    description: 'Expert articles and guides on online learning, tutoring strategies, and AI-powered personalized education from GuruForU.',
     url: 'https://www.guruforu.com/blog',
     inLanguage: 'en-US',
     publisher: {
@@ -164,7 +164,7 @@ export default async function BlogListing() {
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Blog',
+        name: 'Resources',
         item: 'https://www.guruforu.com/blog',
       },
     ],
@@ -198,10 +198,10 @@ export default async function BlogListing() {
           <nav className={styles.breadcrumb} aria-label="Breadcrumb">
             <Link href="/" className={styles.breadcrumbLink} prefetch={false}>Home</Link>
             <span className={styles.breadcrumbSeparator}>/</span>
-            <span className={styles.breadcrumbCurrent}>{localized('Blog')}</span>
+            <span className={styles.breadcrumbCurrent}>{localized('Resources')}</span>
           </nav>
           <header className={styles.pageHeader}>
-            <h1 className={styles.pageTitle}>{localized('Our Blog')}</h1>
+            <h1 className={styles.pageTitle}>{localized('Learning Resources')}</h1>
             <p className={styles.pageSubtitle}>
               {localized('Expert insights on')} <strong>{localized('child education')}</strong>, <strong>{localized('learning strategies')}</strong>, {localized('and')} <strong>{localized('AI-powered personalized learning')}</strong>
             </p>

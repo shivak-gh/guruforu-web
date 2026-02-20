@@ -384,14 +384,14 @@ export default async function ComingSoon() {
               {localized('Book Free Consultation')}
             </Link>
             <Link href="/blog" className={styles.secondaryButton} prefetch={false}>
-              {localized('Read Education Blog')}
+              {localized('Learning Resources')}
             </Link>
           </div>
         </section>
 
         {latestBlogs.length > 0 && (
           <section aria-labelledby="latest-blog-heading" className={styles.benefitsList}>
-            <h2 id="latest-blog-heading" className={styles.benefitsHeading}>{localized('Latest from the blog')}</h2>
+            <h2 id="latest-blog-heading" className={styles.benefitsHeading}>{localized('Latest Articles')}</h2>
             <ul className={styles.benefitsUl}>
               {latestBlogs.map((post) => (
                 <li key={post.slug}>
@@ -417,7 +417,7 @@ export default async function ComingSoon() {
       <footer className={styles.footer}>
         <nav className={styles.footerLinks}>
           <Link href="/about" className={styles.footerLink} prefetch={false}>{localized('About Us')}</Link>
-          <Link href="/blog" className={styles.footerLink} prefetch={false}>{localized('Education Blog')}</Link>
+          <Link href="/blog" className={styles.footerLink} prefetch={false}>{localized('Resources')}</Link>
           <Link href="/contact" className={styles.footerLink} prefetch={false}>{localized('Contact Us')}</Link>
           <Link href="/free-session" className={styles.footerLink} prefetch={false}>{localized('Free Session')}</Link>
           <a href="mailto:support@guruforu.com" className={styles.footerLink}>{localized('Email Support')}</a>

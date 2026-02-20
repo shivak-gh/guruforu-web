@@ -185,7 +185,7 @@ export default async function EarlyAccessPage() {
         <footer className={styles.footer}>
           <nav className={styles.footerLinks}>
             <Link href="/" className={styles.footerLink} prefetch={false}>{localized('GuruForU Home')}</Link>
-            <Link href="/blog" className={styles.footerLink} prefetch={false}>{localized('Education Blog')}</Link>
+            <Link href="/blog" className={styles.footerLink} prefetch={false}>{localized('Resources')}</Link>
             <Link href="/contact" className={styles.footerLink} prefetch={false}>{localized('Contact Us')}</Link>
             <a href="mailto:support@guruforu.com" className={styles.footerLink}>{localized('Email Support')}</a>
             <Link href="/terms" className={styles.footerLink} prefetch={false}>{localized('Terms and Conditions')}</Link>

@@ -121,8 +121,8 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
   
   if (!blog || blog.categorySlug !== categorySlug) {
     return {
-      title: 'Blog Post Not Found | GuruForU',
-      description: 'The requested blog post could not be found.',
+      title: 'Article Not Found | GuruForU',
+      description: 'The requested article could not be found.',
     }
   }
 
@@ -140,7 +140,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     `${blog.category.toLowerCase()} online tutoring`,
     `online ${blog.category.toLowerCase()} classes`,
     `${blog.category.toLowerCase()} learning tips`,
-    'online tutoring blog',
+    'online learning resources',
     'AI-powered learning',
     'student progress tracking',
     'personalized learning',
@@ -414,7 +414,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Blog',
+        name: 'Resources',
         item: 'https://www.guruforu.com/blog',
       },
       {
@@ -512,7 +512,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
           <nav className={styles.breadcrumb} aria-label="Breadcrumb">
             <Link href="/" className={styles.breadcrumbLink} prefetch={false}>Home</Link>
             <span className={styles.breadcrumbSeparator}>/</span>
-            <Link href="/blog" className={styles.breadcrumbLink} prefetch={false}>Blog</Link>
+            <Link href="/blog" className={styles.breadcrumbLink} prefetch={false}>Resources</Link>
             <span className={styles.breadcrumbSeparator}>/</span>
             <Link href={`/blog/${categorySlug}`} className={styles.breadcrumbLink} prefetch={false}>{blog.category}</Link>
             <span className={styles.breadcrumbSeparator}>/</span>
@@ -691,7 +691,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
         <footer className={styles.footer}>
           <nav className={styles.footerLinks}>
             <Link href="/" className={styles.footerLink} prefetch={false}>GuruForU Home</Link>
-            <Link href="/blog" className={styles.footerLink} prefetch={false}>Education Blog</Link>
+            <Link href="/blog" className={styles.footerLink} prefetch={false}>Resources</Link>
             <Link href={`/blog/${categorySlug}`} className={styles.footerLink} prefetch={false}>{blog.category}</Link>
             <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact Us</Link>
             <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>

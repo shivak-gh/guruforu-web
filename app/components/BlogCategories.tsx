@@ -24,7 +24,7 @@ export default async function BlogCategories({ categories }: BlogCategoriesProps
 
   return (
     <section className={styles.categoriesSection}>
-      <h2 className={styles.categoriesTitle}>{localized('Explore Our Blog Categories')}</h2>
+      <h2 className={styles.categoriesTitle}>{localized('Explore by Topic')}</h2>
       <div className={styles.categoriesGrid}>
         {categories.map((category) => (
           <Link

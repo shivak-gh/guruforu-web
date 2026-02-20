@@ -73,7 +73,7 @@ export default function AboutUs() {
         name: 'How can I get started with GuruForU?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Book a free consultation session to discuss your child\'s learning needs. Our AI diagnostics identify learning gaps and create a personalized roadmap. You can also explore our education blog for tips and guides, or contact us for more information.'
+          text: 'Book a free consultation session to discuss your child\'s learning needs. Our AI diagnostics identify learning gaps and create a personalized roadmap. You can also explore our learning resources for tips and guides, or contact us for more information.'
         }
       }
     ]
@@ -133,7 +133,7 @@ export default function AboutUs() {
             <section className={styles.section}>
               <h2 className={styles.sectionTitle}>Editorial & Trust</h2>
               <p className={styles.text}>
-                Blog and learning content on GuruForU are written and reviewed by our <strong>GuruForU Editorial Team</strong>—
+                Articles and learning content on GuruForU are written and reviewed by our <strong>GuruForU Editorial Team</strong>—
                 educators and curriculum specialists focused on accurate, practical advice for parents and students. We link to
                 trusted sources and keep our recommendations aligned with current best practices in education.
               </p>
@@ -147,7 +147,7 @@ export default function AboutUs() {
               <h2 className={styles.sectionTitle}>Get Started</h2>
               <p className={styles.text}>
                 Book a <Link href="/free-session" className={styles.link}>free consultation session</Link> to see how GuruForU can
-                support your child&apos;s learning, or explore our <Link href="/blog" className={styles.link}>education blog</Link> for
+                support your child&apos;s learning, or explore our <Link href="/blog" className={styles.link}>learning resources</Link> for
                 tips and guides.
               </p>
             </section>
@@ -170,7 +170,7 @@ export default function AboutUs() {
                 <div className={styles.faqItem}>
                   <dt className={styles.faqQuestion}>How can I get started with GuruForU?</dt>
                   <dd className={styles.faqAnswer}>
-                    Book a <Link href="/free-session" className={styles.link}>free consultation session</Link> to discuss your child&apos;s learning needs. Our AI diagnostics identify learning gaps and create a personalized roadmap. You can also explore our <Link href="/blog" className={styles.link}>education blog</Link> for tips and guides, or <Link href="/contact" className={styles.link}>contact us</Link> for more information.
+                    Book a <Link href="/free-session" className={styles.link}>free consultation session</Link> to discuss your child&apos;s learning needs. Our AI diagnostics identify learning gaps and create a personalized roadmap. You can also explore our <Link href="/blog" className={styles.link}>learning resources</Link> for tips and guides, or <Link href="/contact" className={styles.link}>contact us</Link> for more information.
                   </dd>
                 </div>
               </dl>
@@ -180,7 +180,7 @@ export default function AboutUs() {
           <footer className={styles.footer}>
             <nav className={styles.footerLinks}>
               <Link href="/" className={styles.footerLink} prefetch={false}>Home</Link>
-              <Link href="/blog" className={styles.footerLink} prefetch={false}>Blog</Link>
+              <Link href="/blog" className={styles.footerLink} prefetch={false}>Resources</Link>
               <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact</Link>
               <Link href="/free-session" className={styles.footerLink} prefetch={false}>Free Session</Link>
               <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy</Link>
