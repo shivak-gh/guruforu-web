@@ -346,6 +346,17 @@ Learning Challenges: ${data.details || 'Not specified'}`;
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
+      {/* noscript fallback for Google Ads form detection */}
+      <noscript>
+        <form action="/api/free-consultation" method="post" id="free-session-form-noscript">
+          <input type="text" name="name" placeholder="Parent Name" required autoComplete="name" />
+          <input type="email" name="email" placeholder="Email" required autoComplete="email" />
+          <input type="text" name="grade" placeholder="Child's Grade" required />
+          <input type="text" name="country" placeholder="Country" autoComplete="country-name" />
+          <textarea name="details" placeholder="Learning challenges"></textarea>
+          <button type="submit">Book Free Session</button>
+        </form>
+      </noscript>
       <NavMenu />
       <div className={styles.container}>
         <div className={styles.background}>
@@ -356,13 +367,13 @@ Learning Challenges: ${data.details || 'Not specified'}`;
           {/* Hero Section */}
           <div className={styles.hero}>
             <h1 className={styles.heroTitle}>
-              {localized('Free AI Learning Diagnostic Session')}
+              {localized('FREE Math & Science Assessment Session')}
             </h1>
             <p className={styles.heroSubtitle}>
-              {localized('Book a')} <strong>{localized('15-minute strategy session')}</strong>. {localized('We\'ll analyze')} <strong>{localized('learning gaps')}</strong> {localized('and build a')} <strong>{localized('custom subject roadmap')}</strong> {localized('for your child—at no cost.')}
+              <strong>Struggling with Algebra? Chemistry? Physics?</strong> Book a <strong>free 15-minute session</strong> with our expert tutors. We&apos;ll identify exactly where your child needs help and create a personalized plan.
             </p>
             <p className={styles.heroSubtitle}>
-              During your free session we&apos;ll discuss your child&apos;s goals, identify any learning gaps, and outline a personalized roadmap. No obligation—just a chance to see how GuruForU can support your child&apos;s success in math, science, and beyond.
+              <strong>No credit card. No obligation.</strong> Just real help from real teachers who specialize in K-12 Math &amp; Science.
             </p>
           </div>
 
@@ -371,7 +382,14 @@ Learning Challenges: ${data.details || 'Not specified'}`;
             <div className={styles.formSection}>
               <h2 className={styles.formTitle}>{localized('Book Your Free Session')}</h2>
               
-              <form className={styles.consultationForm} onSubmit={handleEmailSubmit}>
+              <form 
+                id="free-session-form"
+                className={styles.consultationForm} 
+                onSubmit={handleEmailSubmit}
+                action="/api/free-consultation"
+                method="post"
+                data-form-type="lead"
+              >
                 <div className={styles.formGroup}>
                   <label htmlFor="name" className={styles.label}>
                     {localized('Parent Name')} <span className={styles.required}>*</span>
@@ -383,6 +401,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    autoComplete="name"
                     className={styles.input}
                     placeholder={localized('Your full name')}
                   />
@@ -399,6 +418,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    autoComplete="email"
                     className={styles.input}
                     placeholder={localized('your.email@example.com')}
                   />
@@ -582,6 +602,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                 <div className={styles.actionButtons}>
                   <button
                     type="submit"
+                    name="submit"
                     disabled={isSubmitting}
                     className={styles.primaryButton}
                   >

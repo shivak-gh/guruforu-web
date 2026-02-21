@@ -321,6 +321,20 @@ export default function ContactUs() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
       />
+      {/* noscript fallback for Google Ads form detection */}
+      <noscript>
+        <form action="/api/contact" method="post" id="contact-form-noscript">
+          <input type="text" name="name" placeholder="Name" required autoComplete="name" />
+          <input type="email" name="email" placeholder="Email" required autoComplete="email" />
+          <select name="subject" required>
+            <option value="">Select subject</option>
+            <option value="general">General Inquiry</option>
+            <option value="support">Technical Support</option>
+          </select>
+          <textarea name="message" placeholder="Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </noscript>
       <NavMenu />
       <div className={styles.container}>
         <div className={styles.background}>
@@ -359,7 +373,14 @@ export default function ContactUs() {
               </div>
             </div>
 
-            <form className={styles.contactForm} onSubmit={handleSubmit}>
+            <form 
+              id="contact-form"
+              className={styles.contactForm} 
+              onSubmit={handleSubmit}
+              action="/api/contact"
+              method="post"
+              data-form-type="contact"
+            >
               <div className={styles.formGroup}>
                 <label htmlFor="name" className={styles.label}>
                   {localized('Name')} <span className={styles.required}>*</span>
@@ -371,6 +392,7 @@ export default function ContactUs() {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  autoComplete="name"
                   className={styles.input}
                   placeholder={localized('Your full name')}
                 />
@@ -387,6 +409,7 @@ export default function ContactUs() {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  autoComplete="email"
                   className={styles.input}
                   placeholder={localized('your.email@example.com')}
                 />
@@ -461,6 +484,7 @@ export default function ContactUs() {
 
               <button
                 type="submit"
+                name="submit"
                 disabled={isSubmitting}
                 className={styles.submitButton}
               >
