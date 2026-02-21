@@ -18,6 +18,8 @@ declare global {
       ready: (callback: () => void) => void
       execute: (siteKey: string, options: { action: string }) => Promise<string>
     }
+    gtag: (...args: any[]) => void
+    dataLayer: any[]
   }
 }
 
@@ -282,6 +284,19 @@ Learning Challenges: ${data.details || 'Not specified'}`;
       if (response.ok && data.success) {
         setSubmitStatus('success')
         setFormData({ name: '', email: '', grade: '', country: '', timeSlot: '', details: '' })
+        
+        // Fire Google Ads conversion tracking
+        if (typeof window !== 'undefined' && window.gtag) {
+          // Google Ads Conversion (replace AW-XXXXXXXXX/XXXXXXXX with your conversion ID and label)
+          // window.gtag('event', 'conversion', { 'send_to': 'AW-XXXXXXXXX/XXXXXXXX' })
+          
+          // GA4 generate_lead event for tracking
+          window.gtag('event', 'generate_lead', {
+            'event_category': 'Free Session',
+            'event_label': 'Free Session Form Submission',
+            'value': 1,
+          })
+        }
       } else {
         console.error('Form submission error:', {
           status: response.status,

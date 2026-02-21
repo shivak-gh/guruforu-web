@@ -18,6 +18,8 @@ declare global {
       ready: (callback: () => void) => void
       execute: (siteKey: string, options: { action: string }) => Promise<string>
     }
+    gtag: (...args: any[]) => void
+    dataLayer: any[]
   }
 }
 
@@ -235,6 +237,14 @@ export default function ContactUs() {
       if (response.ok && data.success) {
         setSubmitStatus('success')
         setFormData({ name: '', email: '', subject: '', message: '' })
+        
+        // Fire Google Analytics event for contact form
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'contact_form_submit', {
+            'event_category': 'Contact',
+            'event_label': 'Contact Form Submission',
+          })
+        }
       } else {
         console.error('Form submission error:', {
           status: response.status,
