@@ -31,6 +31,20 @@ export const metadata: Metadata = {
     siteName: 'GuruForU',
     type: 'website',
     locale: 'en_US',
+    images: [
+      {
+        url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+        width: 1200,
+        height: 630,
+        alt: 'GuruForU - Online Math & Science Tutoring',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Online Math & Science Tutoring | FREE Session',
+    description: 'Expert 1-on-1 tutoring for K-12. Book your FREE session today!',
+    images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
   },
   alternates: { canonical: 'https://www.guruforu.com/about' },
 }

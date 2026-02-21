@@ -37,6 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createSitemapEntry('/contact', now, 'monthly', 0.8),
     createSitemapEntry('/free-session', now, 'weekly', 0.9),
     createSitemapEntry('/about', now, 'monthly', 0.8),
+    createSitemapEntry('/how-it-works', now, 'monthly', 0.8),
   ]
 
   // Static pages - Legal/Policy pages

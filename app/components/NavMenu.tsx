@@ -58,6 +58,9 @@ export default function NavMenu() {
             <Link href="/about" className={styles.navLink} aria-label="About GuruForU">{localized('About Us')}</Link>
           </li>
           <li>
+            <Link href="/how-it-works" className={styles.navLink} aria-label="How GuruForU Works">{localized('How It Works')}</Link>
+          </li>
+          <li>
             <Link href="/blog" className={styles.navLink} aria-label="Learning Resources">{localized('Resources')}</Link>
           </li>
           <li>
@@ -91,6 +94,9 @@ export default function NavMenu() {
           </li>
           <li>
             <Link href="/about" className={styles.mobileNavLink} onClick={closeMenu} aria-label="About GuruForU">{localized('About Us')}</Link>
+          </li>
+          <li>
+            <Link href="/how-it-works" className={styles.mobileNavLink} onClick={closeMenu} aria-label="How GuruForU Works">{localized('How It Works')}</Link>
           </li>
           <li>
             <Link href="/blog" className={styles.mobileNavLink} onClick={closeMenu} aria-label="Learning Resources">{localized('Resources')}</Link>
