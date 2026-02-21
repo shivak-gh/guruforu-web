@@ -288,12 +288,6 @@ export default async function ComingSoon() {
             quality={85}
           />
         </div>
-        <div className={styles.comingSoonBadge} aria-label="Now accepting early access">{localized('Now Accepting Early Access')}</div>
-        <div className={styles.earlyAccessLink}>
-          <Link href="/early-access" className={styles.notifyButton}>
-            {localized('Notify Me')}
-          </Link>
-        </div>
         <main id="main-content">
           <h1 className={styles.title}>AI-Powered Online Classes</h1>
         <p className={styles.subtitle}>

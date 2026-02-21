@@ -119,10 +119,6 @@ const nextConfig = {
           headers: [{ key: 'Cache-Control', value: oneHour }],
         },
         {
-          source: '/early-access',
-          headers: [{ key: 'Cache-Control', value: oneHour }],
-        },
-        {
           source: '/free-session',
           headers: [{ key: 'Cache-Control', value: oneHour }],
         },
@@ -189,10 +185,6 @@ const nextConfig = {
           headers: noCacheHeaders,
         },
         {
-          source: '/early-access',
-          headers: noCacheHeaders,
-        },
-        {
           source: '/free-session',
           headers: noCacheHeaders,
         },
@@ -249,6 +241,11 @@ const nextConfig = {
     return [
       {
         source: '/free-consultation',
+        destination: '/free-session',
+        permanent: true,
+      },
+      {
+        source: '/early-access',
         destination: '/free-session',
         permanent: true,
       },

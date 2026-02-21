@@ -36,7 +36,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createSitemapEntry('/blog', latestBlogDate, 'daily', 0.9), // Blog: lastModified = latest post
     createSitemapEntry('/contact', now, 'monthly', 0.8),
     createSitemapEntry('/free-session', now, 'weekly', 0.9),
-    createSitemapEntry('/early-access', now, 'weekly', 0.8),
     createSitemapEntry('/about', now, 'monthly', 0.8),
   ]
 
