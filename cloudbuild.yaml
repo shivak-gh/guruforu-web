@@ -48,7 +48,7 @@ steps:
 
 substitutions:
   _SERVICE_NAME: guruforu-web
-  _REGION: us-central1
+  _REGION: asia-southeast1
   _MEMORY: 512Mi
   _CPU: '1'
   _MIN_INSTANCES: '0'
