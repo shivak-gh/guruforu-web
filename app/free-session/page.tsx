@@ -18,8 +18,12 @@ declare global {
       ready: (callback: () => void) => void
       execute: (siteKey: string, options: { action: string }) => Promise<string>
     }
-    gtag: (...args: any[]) => void
-    dataLayer: any[]
+    gtag?: (
+      command: string,
+      targetId: string | Date | object,
+      config?: object
+    ) => void
+    dataLayer?: any[]
   }
 }
 
