@@ -68,7 +68,7 @@
   align-items: center;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .desktopMenu {
     display: flex;
   }
@@ -122,7 +122,7 @@
   z-index: 1001;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .menuButton {
     display: none;
   }
@@ -186,7 +186,7 @@
   right: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .mobileMenu {
     display: none;
   }
@@ -240,7 +240,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .overlay {
     display: none;
   }
