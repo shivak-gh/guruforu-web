@@ -144,5 +144,23 @@
     "text": "GuruForU's AI-powered platform identifies your child's strengths and gaps, provides practice at the right level, and tracks progress so you can see improvement over time. Our tutors work with students in a supportive environment to build both skills and confidence. Help your child move from 'I'm bad at math' to 'I can learn math.'",
     "buttonText": "Explore Math Tutoring",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "What is math anxiety?",
+      "answer": "A feeling of tension, worry, or fear that interferes with working with numbers. It can reduce working memory, lower test scores, and lead to avoiding math—even when students are capable."
+    },
+    {
+      "question": "How can parents support math confidence?",
+      "answer": "Avoid saying 'I was never good at math.' Praise effort and process, not just correct answers. Normalize struggle and connect math to real life (cooking, shopping, sports)."
+    },
+    {
+      "question": "When should I seek tutoring for math anxiety?",
+      "answer": "If your child persistently avoids math, has declining grades despite effort, or shows strong anxiety before tests. A tutor can fill gaps and provide low-pressure practice."
+    },
+    {
+      "question": "Can math confidence be built at any age?",
+      "answer": "Yes. Math anxiety is common and treatable. With the right support—including a growth mindset and targeted practice—students can learn to manage anxiety and build skills."
+    }
+  ]
 }

@@ -300,5 +300,23 @@
     "text": "GuruForU's AI-powered platform provides personalized Grade 5 math instruction tailored to your child's learning pace. Our system identifies strengths and areas for improvement, provides targeted practice on fractions, decimals, geometry, and problem-solving, and tracks progress with detailed mastery reports. Help your child build confidence and excel in Grade 5 mathematics.",
     "buttonText": "Explore Our Math Programs",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "What fraction skills should Grade 5 students master?",
+      "answer": "Adding and subtracting fractions with unlike denominators (using LCM), multiplying and dividing fractions, and equivalent fractions. These are the building blocks for algebra and higher math."
+    },
+    {
+      "question": "Why are decimals important in Grade 5?",
+      "answer": "Decimals connect to money, measurements, and percentages. Students need place value (tenths, hundredths), operations with alignment of decimal points, and the link between fractions and decimals."
+    },
+    {
+      "question": "What geometry concepts does Grade 5 cover?",
+      "answer": "Volume, area, coordinate grids, and basic geometric shapes. Understanding these prepares students for middle school geometry and spatial reasoning."
+    },
+    {
+      "question": "How can I help my child with Grade 5 word problems?",
+      "answer": "Encourage them to identify what's given, what's asked, and which operation or strategy fits. Practice with real-world scenarios like shopping or measuring."
+    }
+  ]
 }

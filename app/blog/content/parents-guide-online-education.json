@@ -278,5 +278,23 @@
     "text": "GuruForU offers a comprehensive online learning platform that combines AI-powered personalization with expert human tutors. With detailed progress tracking, adaptive learning paths, and flexible scheduling, we make online education effective and accessible for every child.",
     "buttonText": "Explore Our Platform",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "How do I choose the right online education platform for my child?",
+      "answer": "Look for platforms that offer qualified tutors, flexible scheduling, progress tracking, and a good fit with your child's learning style. A free trial helps you evaluate before committing."
+    },
+    {
+      "question": "What should I expect from online tutoring sessions?",
+      "answer": "One-on-one or small group sessions via video, shared whiteboard, and real-time interaction. Sessions should feel engaging and adapted to your child's pace and needs."
+    },
+    {
+      "question": "How can I support my child's online learning at home?",
+      "answer": "Create a quiet study space, help with tech setup, and check in on progress. Trust the tutor for instruction but stay involved in schedule and motivation."
+    },
+    {
+      "question": "Is online education as effective as in-person?",
+      "answer": "Research suggests format matters less than consistency and quality. A student who meets regularly with a skilled tutor—online or in-person—tends to improve when the fit is right."
+    }
+  ]
 }

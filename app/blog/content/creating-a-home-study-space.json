@@ -1,0 +1,59 @@
+{
+  "title": "Creating a Home Study Space That Works",
+  "slug": "creating-a-home-study-space",
+  "category": "Study Tips",
+  "meta": {
+    "readTime": "5 min read",
+    "publishedDate": "2026-02-01"
+  },
+  "keywords": [
+    "home study space",
+    "study room",
+    "study area for kids",
+    "homework space"
+  ],
+  "image": "/blog-images/creating-a-home-study-space.jpg",
+  "lead": "You don't need a dedicated room. A consistent, distraction-free corner can make a real difference in focus and productivity.",
+  "sections": [
+    {
+      "title": "Consistency Matters More Than Size",
+      "content": ["The same spot each day signals 'study time' to the brain. A corner of the dining table, a small desk in the bedroom, or a spot at the kitchen counter—anywhere works if it's consistent."]
+    },
+    {
+      "title": "Light and Comfort",
+      "content": ["Good lighting reduces eye strain. A comfortable chair (but not so comfortable they fall asleep) helps. Keep supplies within reach so they're not constantly getting up."]
+    },
+    {
+      "title": "Minimize Distractions",
+      "content": ["Phones in another room or in a drawer. Turn off notifications. If siblings are noisy, consider headphones (music-free or low-fi) or scheduling study during quieter times."]
+    },
+    {
+      "title": "Involve Your Child",
+      "content": ["Let them help organize the space. A plant, a picture, or a favorite mug can make it feel like their spot. Ownership increases the chance they'll use it."]
+    }
+  ],
+  "cta": {
+    "title": "Support Learning at Home",
+    "text": "GuruForU's online tutoring works from any quiet corner. Book a free session to try it.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "Do I need a dedicated room for a home study space?",
+      "answer": "No. A consistent corner—dining table, small desk, or kitchen counter—works. Consistency matters more than size; the same spot signals 'study time' to the brain."
+    },
+    {
+      "question": "How can I minimize distractions during study?",
+      "answer": "Phones in another room or drawer, notifications off. If siblings are noisy, use headphones (music-free or low-fi) or schedule study during quieter times."
+    },
+    {
+      "question": "What makes a study space effective?",
+      "answer": "Good lighting, a comfortable but not too comfortable chair, supplies within reach, and involvement from your child in organizing it. Ownership increases the chance they'll use it."
+    },
+    {
+      "question": "Should my child help set up their study space?",
+      "answer": "Yes. Let them help organize. A plant, picture, or favorite mug can make it feel like their spot. Ownership increases engagement."
+    }
+  ]
+}

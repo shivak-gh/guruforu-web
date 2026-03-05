@@ -1,0 +1,59 @@
+{
+  "title": "Python for Beginners: A Student's First Programming Language",
+  "slug": "python-for-beginners-students",
+  "category": "Computer Science",
+  "meta": {
+    "readTime": "6 min read",
+    "publishedDate": "2026-02-10"
+  },
+  "keywords": [
+    "Python for beginners",
+    "Python programming students",
+    "learn Python",
+    "first programming language"
+  ],
+  "image": "/blog-images/python-for-beginners-students.jpg",
+  "lead": "Python is readable, widely used, and forgiving. That makes it a strong first language for students who want to learn to code.",
+  "sections": [
+    {
+      "title": "Why Python First",
+      "content": ["Clean syntax means less time fighting punctuation and more time learning logic. \"Print hello\" is print('hello'). Variables don't need type declarations. Errors are usually readable."]
+    },
+    {
+      "title": "Core Concepts to Master",
+      "content": ["Variables, loops, conditionals, and functions. Once those are solid, lists and dictionaries open up. Most beginner projects stay within these basics."]
+    },
+    {
+      "title": "Project Ideas",
+      "content": ["Simple calculators, number games, mad libs, or a to-do list in the terminal. Small projects that produce visible results keep motivation high."]
+    },
+    {
+      "title": "When to Move On",
+      "content": ["After variables, loops, and functions feel comfortable, consider object-oriented concepts or exploring libraries. But mastery of basics first pays off."]
+    }
+  ],
+  "cta": {
+    "title": "Learn Programming With a Tutor",
+    "text": "GuruForU offers computer science tutoring including Python.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "Why is Python a good first programming language?",
+      "answer": "Clean syntax means less time on punctuation and more on logic. Variables don't need type declarations, errors are readable, and print('hello') is simple. It's forgiving for beginners."
+    },
+    {
+      "question": "What Python concepts should beginners master first?",
+      "answer": "Variables, loops, conditionals, and functions. Once those are solid, lists and dictionaries open up. Most beginner projects stay within these basics."
+    },
+    {
+      "question": "What are good first Python projects for students?",
+      "answer": "Simple calculators, number games, mad libs, or a to-do list in the terminal. Small projects with visible results keep motivation high."
+    },
+    {
+      "question": "When should students move beyond Python basics?",
+      "answer": "After variables, loops, and functions feel comfortable. Then consider object-oriented concepts or libraries. Mastery of basics first pays off."
+    }
+  ]
+}

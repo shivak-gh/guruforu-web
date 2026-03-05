@@ -170,5 +170,23 @@
     "text": "Experience how AI-powered personalized learning can enhance your child's focus and academic success. Join thousands of parents who trust GuruForU for their children's education journey.",
     "buttonText": "Learn More About GuruForU",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "How long can children typically maintain focus?",
+      "answer": "Research suggests about 2–3 minutes per year of age. A 10-year-old can generally focus for 20–30 minutes before needing a break. Quality of engagement matters as much as duration."
+    },
+    {
+      "question": "What is spaced repetition and why does it work?",
+      "answer": "Learning spread over time is retained better than cramming. Regular, consistent practice beats last-minute studying. The spacing effect has been demonstrated in educational research for decades."
+    },
+    {
+      "question": "What is active recall and why is it effective?",
+      "answer": "Actively retrieving information from memory strengthens neural pathways more than passive review. Testing and quizzing aren't just assessments—they're powerful learning tools."
+    },
+    {
+      "question": "What is interleaving in study sessions?",
+      "answer": "Mixing different types of problems or subjects during study improves long-term retention. Alternating problem types helps develop deeper understanding than completing all of one type before moving on."
+    }
+  ]
 }

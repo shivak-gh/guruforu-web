@@ -1,0 +1,59 @@
+{
+  "title": "Screen Time and Learning: Finding the Balance",
+  "slug": "screen-time-and-learning-balance",
+  "category": "Technology",
+  "meta": {
+    "readTime": "5 min read",
+    "publishedDate": "2026-02-09"
+  },
+  "keywords": [
+    "screen time learning",
+    "online learning screen time",
+    "screen time balance",
+    "educational screen time"
+  ],
+  "image": "/blog-images/screen-time-and-learning-balance.jpg",
+  "lead": "Online tutoring adds screen time. The question isn't whether screens are good or bad—it's how to use them for learning without burning out.",
+  "sections": [
+    {
+      "title": "Not All Screen Time Is Equal",
+      "content": ["A focused tutoring session is different from passive scrolling. Interactive, purposeful screen use—video calls, problem-solving, collaborative work—engages the brain differently than passive consumption."]
+    },
+    {
+      "title": "Build in Breaks",
+      "content": ["After a 45-minute session, step away. Look out a window, grab water, move. Back-to-back screen blocks lead to fatigue and diminishing returns."]
+    },
+    {
+      "title": "Protect Sleep",
+      "content": ["Avoid screens right before bed when possible. If evening tutoring is the only option, dim the screen and keep the room lit to reduce blue light impact."]
+    },
+    {
+      "title": "Quality Over Quantity",
+      "content": ["An hour of focused tutoring can be more valuable than two hours of distracted studying. Prioritize intentional use over total minutes."]
+    }
+  ],
+  "cta": {
+    "title": "Make Screen Time Count",
+    "text": "GuruForU sessions are structured and purposeful—focused learning, not mindless scrolling.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "Is all screen time the same?",
+      "answer": "No. Focused tutoring—video calls, problem-solving, collaborative work—engages the brain differently than passive scrolling. Interactive, purposeful use is not the same as mindless consumption."
+    },
+    {
+      "question": "How can I prevent screen fatigue during learning?",
+      "answer": "Build in breaks. After a 45-minute session, step away—look out a window, grab water, move. Back-to-back screen blocks lead to fatigue and diminishing returns."
+    },
+    {
+      "question": "Should we avoid screens before bed?",
+      "answer": "Yes when possible. If evening tutoring is the only option, dim the screen and keep the room lit to reduce blue light impact on sleep."
+    },
+    {
+      "question": "Does more screen time mean better learning?",
+      "answer": "No. Quality over quantity. An hour of focused tutoring can be more valuable than two hours of distracted studying."
+    }
+  ]
+}

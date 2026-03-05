@@ -11,7 +11,8 @@
     "lint": "next lint",
     "clean:all": "rimraf .next && rimraf build && rimraf .next/standalone",
     "generate:blog-images": "node scripts/generate-blog-images.js",
-    "create:placeholders": "node scripts/create-svg-placeholders.js"
+    "create:placeholders": "node scripts/create-svg-placeholders.js",
+    "download:pexels-images": "node scripts/download-pexels-images.js"
   },
   "dependencies": {
     "@getbrevo/brevo": "^3.0.1",

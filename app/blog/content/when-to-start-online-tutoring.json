@@ -1,0 +1,59 @@
+{
+  "title": "When to Start Online Tutoring: A Parent's Timing Guide",
+  "slug": "when-to-start-online-tutoring",
+  "category": "Online Education",
+  "meta": {
+    "readTime": "5 min read",
+    "publishedDate": "2026-01-28"
+  },
+  "keywords": [
+    "when to start tutoring",
+    "best age for online tutoring",
+    "online tutoring timing",
+    "tutoring readiness"
+  ],
+  "image": "/blog-images/when-to-start-online-tutoring.jpg",
+  "lead": "Is your child ready for online tutoring? The answer depends less on age and more on a few practical signs. Here's how to decide.",
+  "sections": [
+    {
+      "title": "The Early Years (K-2)",
+      "content": ["Younger kids can do online tutoring, but sessions need to be shorter—15 to 20 minutes max. They also need a parent nearby to help with tech and keep them focused. If your child can sit for a short video call with grandparents, they can likely handle a brief tutoring session."]
+    },
+    {
+      "title": "Middle Elementary (3-5)",
+      "content": ["This is when many kids start to benefit. They can usually follow instructions, use a mouse or trackpad, and stay engaged for 30–45 minutes. Reading and math foundations are being set, so early help can prevent gaps from widening."]
+    },
+    {
+      "title": "Signs Your Child Might Need Help Now",
+      "content": ["Frustration with homework, slipping grades, or \"I don't get it\" more often than usual. Some kids just need a few sessions to get back on track. Others need ongoing support. Starting earlier usually means less catch-up later."]
+    },
+    {
+      "title": "When to Wait",
+      "content": ["If your child is resistant to screens, struggles with sitting still, or needs hands-on materials, in-person might work better for now. You can revisit online tutoring as they get older."]
+    }
+  ],
+  "cta": {
+    "title": "See If Online Tutoring Fits",
+    "text": "Book a free session with GuruForU to see if your child is ready.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "What age is best to start online tutoring?",
+      "answer": "It depends less on age and more on readiness. Middle elementary (grades 3–5) is when many kids benefit most—they can follow instructions and stay engaged for 30–45 minutes."
+    },
+    {
+      "question": "Can younger kids (K-2) do online tutoring?",
+      "answer": "Yes, but sessions should be shorter (15–20 minutes) and a parent should be nearby for tech help and focus. If your child can do a short video call with grandparents, they can likely handle it."
+    },
+    {
+      "question": "When should I wait before starting online tutoring?",
+      "answer": "If your child resists screens, struggles to sit still, or needs hands-on materials, in-person might work better for now. You can revisit online tutoring as they get older."
+    },
+    {
+      "question": "What are signs my child needs help now?",
+      "answer": "Frustration with homework, slipping grades, or \"I don't get it\" more often than usual. Starting earlier usually means less catch-up later."
+    }
+  ]
+}

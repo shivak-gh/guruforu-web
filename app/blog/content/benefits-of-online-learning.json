@@ -165,5 +165,23 @@
     "text": "Discover how GuruForU's AI-powered platform combines the best of online learning with expert tutors and personalized progress tracking. Give your child the advantage of modern education.",
     "buttonText": "Explore GuruForU",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "What are the main benefits of online learning for students?",
+      "answer": "Flexibility, personalized pacing, access to expert tutors regardless of location, and learning from anywhere with internet. It also builds digital literacy."
+    },
+    {
+      "question": "How does online learning personalize instruction?",
+      "answer": "AI-powered platforms adapt to each child's learning style and pace. Lessons adjust based on understanding, weak areas get extra attention, and progress is tracked in detail."
+    },
+    {
+      "question": "Can online learning improve focus?",
+      "answer": "Yes. In a controlled home environment, students can learn without classroom distractions. One-on-one or small group sessions provide focused attention without competing with 20–30 peers."
+    },
+    {
+      "question": "Is online learning cost-effective?",
+      "answer": "Often yes. Without physical facility overhead, online platforms can offer competitive pricing while maintaining high-quality instruction."
+    }
+  ]
 }

@@ -1,0 +1,59 @@
+{
+  "title": "Physics Problem-Solving: A Step-by-Step Approach",
+  "slug": "physics-problem-solving-approach",
+  "category": "Science",
+  "meta": {
+    "readTime": "6 min read",
+    "publishedDate": "2026-02-05"
+  },
+  "keywords": [
+    "physics problem solving",
+    "physics problems",
+    "physics help",
+    "physics strategy"
+  ],
+  "image": "/blog-images/physics-problem-solving-approach.jpg",
+  "lead": "Physics problems can look overwhelming. A clear process—identify what you know, what you need, and which equation connects them—makes them manageable.",
+  "sections": [
+    {
+      "title": "Read and List",
+      "content": ["Write down the given quantities with units. Write what you're solving for. Often the act of organizing the information reveals the path forward."]
+    },
+    {
+      "title": "Pick the Right Equation",
+      "content": ["Most problems use a handful of core equations. Match the variables you have and need to an equation that connects them. Draw a diagram when motion or forces are involved."]
+    },
+    {
+      "title": "Units Matter",
+      "content": ["Convert everything to SI units before plugging in. Check that units cancel correctly in your final answer. Dimensional analysis catches many mistakes."]
+    },
+    {
+      "title": "Check Reasonableness",
+      "content": ["Does the answer make sense? Negative time? A car going 500 m/s? Sanity-check your result before moving on."]
+    }
+  ],
+  "cta": {
+    "title": "Get Physics Help",
+    "text": "GuruForU tutors can guide your child through physics problem-solving strategies.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "What's the first step in solving a physics problem?",
+      "answer": "Read and list: write down given quantities with units and what you're solving for. Organizing the information often reveals the path forward."
+    },
+    {
+      "question": "How do I pick the right equation for a physics problem?",
+      "answer": "Match the variables you have and need to an equation that connects them. Draw a diagram when motion or forces are involved."
+    },
+    {
+      "question": "Why do units matter in physics?",
+      "answer": "Convert everything to SI units before plugging in. Check that units cancel correctly in your final answer. Dimensional analysis catches many mistakes."
+    },
+    {
+      "question": "How do I check if my physics answer is reasonable?",
+      "answer": "Sanity-check before moving on. Negative time? A car going 500 m/s? If it doesn't make sense, recheck your work."
+    }
+  ]
+}

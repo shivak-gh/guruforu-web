@@ -1,0 +1,55 @@
+{
+  "title": "Active Recall: The Study Method Backed by Research",
+  "slug": "active-recall-study-method",
+  "category": "Learning Strategies",
+  "meta": {
+    "readTime": "5 min read",
+    "publishedDate": "2026-01-31"
+  },
+  "keywords": [
+    "active recall",
+    "retrieval practice",
+    "study method",
+    "testing effect"
+  ],
+  "image": "/blog-images/active-recall-study-method.jpg",
+  "lead": "Rereading feels productive, but trying to remember—and getting it wrong—actually strengthens learning more. Here's how to use active recall effectively.",
+  "sections": [
+    {
+      "title": "What Is Active Recall?",
+      "content": ["Instead of passively reviewing notes, you try to retrieve information from memory. Close the book. Answer the question. Then check. The effort of recalling strengthens the memory pathway more than simply seeing the answer again."]
+    },
+    {
+      "title": "How to Practice It",
+      "content": ["Flashcards, practice tests, explaining concepts out loud, or writing summaries from memory. The key is the attempt to recall before looking at the answer. Wrong answers aren't failures—they show what to review."]
+    },
+    {
+      "title": "Why It Feels Harder",
+      "content": ["Passive review feels easier and gives a false sense of familiarity. Active recall feels effortful, which is why it works. Encourage your child to embrace the struggle—it's part of the learning process."]
+    }
+  ],
+  "cta": {
+    "title": "Build Stronger Study Habits",
+    "text": "GuruForU tutors use active recall and other evidence-based techniques.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "What is active recall?",
+      "answer": "Instead of passively rereading notes, you try to retrieve information from memory. Close the book, answer the question, then check. The effort of recalling strengthens the memory pathway more than seeing the answer again."
+    },
+    {
+      "question": "How do I practice active recall?",
+      "answer": "Use flashcards, practice tests, explain concepts out loud, or write summaries from memory. The key is attempting to recall before looking at the answer."
+    },
+    {
+      "question": "Why does active recall feel harder than rereading?",
+      "answer": "Passive review feels easier and gives a false sense of familiarity. Active recall feels effortful, which is exactly why it works—the struggle strengthens learning."
+    },
+    {
+      "question": "Are wrong answers bad when using active recall?",
+      "answer": "No. Wrong answers show what to review. The act of trying to recall, even when wrong, strengthens memory more than passively seeing the correct answer."
+    }
+  ]
+}

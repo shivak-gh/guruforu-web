@@ -1,0 +1,60 @@
+{
+  "title": "Effective Note-Taking for Students: Methods That Actually Help",
+  "slug": "effective-note-taking-for-students",
+  "category": "Study Tips",
+  "meta": {
+    "readTime": "6 min read",
+    "publishedDate": "2026-01-27"
+  },
+  "keywords": [
+    "note taking for students",
+    "effective note taking",
+    "study notes",
+    "Cornell method",
+    "outline notes"
+  ],
+  "image": "/blog-images/effective-note-taking-for-students.jpg",
+  "lead": "Good notes aren't about writing everything down. They're about capturing what matters in a way you'll actually use later. Here are methods that work for school.",
+  "sections": [
+    {
+      "title": "The Cornell Method",
+      "content": ["Divide the page into a narrow left column and a wide right column. Take notes on the right during class. Later, add cues or questions on the left. At the bottom, write a one-sentence summary. The format forces you to review and condense."]
+    },
+    {
+      "title": "Outlining",
+      "content": ["Use headings and subheadings. Main idea, then supporting points, then details. Works well for lectures that follow a clear structure. Easy to scan when studying."]
+    },
+    {
+      "title": "Avoid Copying Verbatim",
+      "content": ["Write in your own words. If you're just transcribing, you're not processing. Pause, think, then write. One phrase per idea is often enough."]
+    },
+    {
+      "title": "Review Within 24 Hours",
+      "content": ["Notes fade fast. Skim them the same day or the next. Fill gaps while you remember the class. That review does more for retention than rewriting everything."]
+    }
+  ],
+  "cta": {
+    "title": "Get Study Support",
+    "text": "GuruForU tutors can help your child develop stronger note-taking and study habits.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "What is the Cornell method of note-taking?",
+      "answer": "Divide the page: narrow left column for cues or questions, wide right column for notes during class. At the bottom, write a one-sentence summary. The format forces review and condensing."
+    },
+    {
+      "question": "Should students copy everything the teacher says?",
+      "answer": "No. Write in your own words. Transcribing means you're not processing. Pause, think, then write. One phrase per idea is often enough."
+    },
+    {
+      "question": "When should students review their notes?",
+      "answer": "Within 24 hours. Notes fade fast. Skim the same day or next, fill gaps while you remember the class. That review helps retention more than rewriting."
+    },
+    {
+      "question": "When is outlining a good note-taking method?",
+      "answer": "For lectures with clear structure. Use headings and subheadings: main idea, supporting points, details. Easy to scan when studying."
+    }
+  ]
+}

@@ -520,5 +520,23 @@
     "text": "Whether your child is learning Science in the US, UK, Canada, Australia, New Zealand, Qatar, or the UAE, GuruForU's expert science teachers provide personalized online instruction tailored to their specific curriculum needs. Our teachers excel at explaining complex scientific concepts clearly, addressing student doubts immediately, and providing step-by-step guidance through problem-solving. With real-time doubt clarification, visual teaching aids, and curriculum-aligned instruction, we ensure your child masters science from Grade 1 to Grade 10. From basic concepts to advanced Biology, Chemistry, and Physics, our teacher-led approach provides comprehensive support. Get started with a free consultation to see how our expert teachers can help your child develop deep scientific understanding and excel in science.",
     "buttonText": "Book Your Free Science Assessment",
     "buttonLink": "/free-session"
-  }
+  },
+  "faq": [
+    {
+      "question": "How does science education differ across countries?",
+      "answer": "US emphasizes inquiry and NGSS three-dimensional learning. UK uses GCSE with practical components. Some curricula are more content-focused, others more hands-on. Assessment methods also vary."
+    },
+    {
+      "question": "What is NGSS and how does it affect US science learning?",
+      "answer": "Next Generation Science Standards emphasize Disciplinary Core Ideas, Science and Engineering Practices, and Crosscutting Concepts. Students learn by doing science—asking questions, modeling, investigating."
+    },
+    {
+      "question": "When do schools separate Biology, Chemistry, and Physics?",
+      "answer": "Varies by system. UK GCSE often separates sciences. US may keep integrated science longer or offer separate courses in high school. Early grades are usually integrated."
+    },
+    {
+      "question": "How can I support my child when we move between countries?",
+      "answer": "Identify curriculum gaps and get targeted support. Look for platforms that adapt to regional standards and help with transitions between different science curricula."
+    }
+  ]
 }

@@ -132,5 +132,23 @@
     "text": "GuruForU offers personalised Computer Science tutoring with hands-on projects in Node.js and cloud technologies. Our AI-powered platform adapts to your pace, tracks your progress, and helps you build real-world skills.",
     "buttonText": "Explore Our Programs",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "Why teach Node.js for computer science?",
+      "answer": "Node.js uses JavaScript for server-side programming—one language for frontend and backend. Students can build APIs, web servers, and full-stack apps while learning event-driven and async concepts."
+    },
+    {
+      "question": "What Node.js concepts should students learn?",
+      "answer": "Modules, file system (fs), HTTP and Express, async patterns (callbacks, Promises, async/await), environment configuration, and testing. These form the foundation for real projects."
+    },
+    {
+      "question": "Why are AWS hands-on labs valuable?",
+      "answer": "Cloud skills are in demand. Labs give real experience with EC2, S3, Lambda—no expensive hardware. Students learn scalability, security, cost management, and can prepare for AWS certifications."
+    },
+    {
+      "question": "How do hands-on labs differ from reading or lectures?",
+      "answer": "Labs replace passive learning with active practice. Students provision resources, deploy code, and troubleshoot. Skills stick because they're applied, not just studied."
+    }
+  ]
 }

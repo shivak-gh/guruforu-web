@@ -1,0 +1,51 @@
+{
+  "title": "Earth Science and Environmental Topics: What Students Need to Know",
+  "slug": "earth-science-and-environmental-topics",
+  "category": "Science",
+  "meta": {
+    "readTime": "5 min read",
+    "publishedDate": "2026-02-06"
+  },
+  "keywords": [
+    "earth science",
+    "environmental science",
+    "earth science study",
+    "ecology geology"
+  ],
+  "image": "/blog-images/earth-science-and-environmental-topics.jpg",
+  "lead": "Earth science blends geology, weather, climate, and ecology. The content is broad, but a few themes tie it together.",
+  "sections": [
+    {
+      "title": "Systems Thinking",
+      "content": ["Earth science is about systems: water cycle, rock cycle, carbon cycle. Understanding how one part affects another—how weathering leads to erosion, how climate affects biomes—builds coherence."]
+    },
+    {
+      "title": "Graphs and Data",
+      "content": ["Students need to read climate graphs, interpret geological timelines, and analyze ecological data. Practice with real or simplified datasets helps."]
+    },
+    {
+      "title": "Current Events",
+      "content": ["Connecting to real-world events—extreme weather, conservation efforts, climate reports—makes the material relevant and easier to remember."]
+    }
+  ],
+  "cta": {
+    "title": "Science Tutoring",
+    "text": "GuruForU offers tutoring across science subjects, including earth and environmental science.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "What topics does earth science cover?",
+      "answer": "Geology, weather, climate, and ecology. Understanding systems like the water cycle, rock cycle, and carbon cycle ties the content together."
+    },
+    {
+      "question": "What skills do students need for earth science?",
+      "answer": "Systems thinking (how one part affects another), reading climate graphs, interpreting geological timelines, and analyzing ecological data. Practice with real or simplified datasets helps."
+    },
+    {
+      "question": "How can I make earth science more relevant for my child?",
+      "answer": "Connect to current events: extreme weather, conservation efforts, climate reports. Real-world links make material easier to remember and more engaging."
+    }
+  ]
+}

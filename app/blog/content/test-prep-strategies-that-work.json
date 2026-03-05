@@ -1,0 +1,59 @@
+{
+  "title": "Test Prep Strategies That Work (Without Cramming)",
+  "slug": "test-prep-strategies-that-work",
+  "category": "Study Tips",
+  "meta": {
+    "readTime": "5 min read",
+    "publishedDate": "2026-01-29"
+  },
+  "keywords": [
+    "test prep strategies",
+    "exam preparation",
+    "study for tests",
+    "test preparation tips"
+  ],
+  "image": "/blog-images/test-prep-strategies-that-work.jpg",
+  "lead": "Cramming might get you through the test, but the material won't stick. Here's how to prepare in a way that builds real understanding.",
+  "sections": [
+    {
+      "title": "Start Early",
+      "content": ["A week out is better than the night before. Spread review over several days. Even 15–20 minutes daily beats a 3-hour session the day before."]
+    },
+    {
+      "title": "Practice Under Test Conditions",
+      "content": ["Do practice problems with a timer. No notes if the test won't allow them. Simulating the real conditions reduces surprises and anxiety."]
+    },
+    {
+      "title": "Focus on Weak Spots",
+      "content": ["Don't waste time rehearsing what you already know. Use practice tests or self-quizzing to find gaps, then target those."]
+    },
+    {
+      "title": "Sleep and Fuel",
+      "content": ["A rested brain recalls better. A good breakfast helps. Cutting sleep to study usually hurts performance more than it helps."]
+    }
+  ],
+  "cta": {
+    "title": "Prepare With Expert Help",
+    "text": "GuruForU tutors can create a targeted test prep plan for your child.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "When should my child start test prep?",
+      "answer": "A week out is better than the night before. Spread review over several days. Even 15–20 minutes daily beats a 3-hour cram session."
+    },
+    {
+      "question": "How can practice under test conditions help?",
+      "answer": "Do practice problems with a timer, no notes if the test won't allow them. Simulating real conditions reduces surprises and anxiety."
+    },
+    {
+      "question": "Should my child focus on weak spots or review everything?",
+      "answer": "Focus on gaps. Use practice tests or self-quizzing to find what you don't know, then target those areas. Don't waste time rehearsing what you already know."
+    },
+    {
+      "question": "Does cutting sleep to study help?",
+      "answer": "No. A rested brain recalls better. Cutting sleep usually hurts performance more than it helps. A good breakfast on test day matters too."
+    }
+  ]
+}

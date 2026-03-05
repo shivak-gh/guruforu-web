@@ -1,0 +1,59 @@
+{
+  "title": "Algebra 1: Getting Started and Building a Strong Foundation",
+  "slug": "algebra-1-getting-started",
+  "category": "Math",
+  "meta": {
+    "readTime": "6 min read",
+    "publishedDate": "2026-02-02"
+  },
+  "keywords": [
+    "algebra 1",
+    "algebra foundation",
+    "algebra for students",
+    "pre algebra to algebra"
+  ],
+  "image": "/blog-images/algebra-1-getting-started.jpg",
+  "lead": "Algebra 1 is a turning point. The shift from arithmetic to variables can trip students up. Here's how to set a solid foundation.",
+  "sections": [
+    {
+      "title": "The Jump from Numbers to Letters",
+      "content": ["Variables represent unknowns. For many kids, that abstract step is the first real challenge. Start with simple substitutions: if x = 5, what's 2x? Building that bridge from concrete numbers to letters helps."]
+    },
+    {
+      "title": "Core Skills to Master Early",
+      "content": ["Order of operations, combining like terms, solving one-step and two-step equations. These come up in every algebra topic. Nail them first."]
+    },
+    {
+      "title": "Common Stumbling Blocks",
+      "content": ["Negative numbers, fractions in equations, and word problems. These trip students even when they understand the mechanics. Extra practice on these areas pays off."]
+    },
+    {
+      "title": "When to Get Help",
+      "content": ["If your child is falling behind in the first few chapters, don't wait. Algebra builds on itself. Early intervention prevents bigger gaps later."]
+    }
+  ],
+  "cta": {
+    "title": "Strengthen Algebra Skills",
+    "text": "GuruForU math tutors specialize in algebra and can help your child build confidence.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "What is the biggest jump when starting Algebra 1?",
+      "answer": "Moving from numbers to variables. Start with simple substitutions (if x = 5, what's 2x?) to build the bridge from concrete numbers to letters."
+    },
+    {
+      "question": "What core skills should students master first in algebra?",
+      "answer": "Order of operations, combining like terms, solving one-step and two-step equations. These come up in every algebra topic."
+    },
+    {
+      "question": "What are common stumbling blocks in algebra?",
+      "answer": "Negative numbers, fractions in equations, and word problems. Extra practice on these areas pays off even when students understand the mechanics."
+    },
+    {
+      "question": "When should I get help for algebra?",
+      "answer": "If your child is falling behind in the first few chapters, don't wait. Algebra builds on itself, and early intervention prevents bigger gaps later."
+    }
+  ]
+}

@@ -177,5 +177,23 @@
     "text": "Book a free consultation to discuss your goals and see how our tutors make SQL basics easy. Our experts teach SQL from kids to professionals—we'll match you with an expert who can guide you from your first SELECT to writing real queries you can use in projects and beyond.",
     "buttonText": "Book a Free Session",
     "buttonLink": "/free-session"
-  }
+  },
+  "faq": [
+    {
+      "question": "What is SQL and why should students learn it?",
+      "answer": "SQL is the standard language for querying databases. Apps use it to store and retrieve data. Learning SQL opens doors to data analysis, web development, and tech careers—and it reads like plain English."
+    },
+    {
+      "question": "How hard is SQL to learn?",
+      "answer": "Basics like SELECT, FROM, WHERE, and ORDER BY often click within a few sessions. With step-by-step guidance and hands-on practice, SQL is very manageable for beginners."
+    },
+    {
+      "question": "Do I need to know programming before learning SQL?",
+      "answer": "No. SQL has a clear, readable structure. You don't need to be a math whiz or know another language. The best way to learn is often with live, personalized tutoring."
+    },
+    {
+      "question": "What SQL concepts should beginners master first?",
+      "answer": "Selecting data, filtering with WHERE, sorting with ORDER BY. Once those are solid, joins, grouping, and subqueries become easier. Build the foundation first."
+    }
+  ]
 }

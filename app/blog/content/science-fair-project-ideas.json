@@ -1,0 +1,59 @@
+{
+  "title": "Science Fair Project Ideas That Stand Out",
+  "slug": "science-fair-project-ideas",
+  "category": "Science",
+  "meta": {
+    "readTime": "5 min read",
+    "publishedDate": "2026-02-07"
+  },
+  "keywords": [
+    "science fair ideas",
+    "science fair project",
+    "science project ideas",
+    "student science fair"
+  ],
+  "image": "/blog-images/science-fair-project-ideas.jpg",
+  "lead": "A strong science fair project has a clear question, controlled variables, and measurable results. Here's how to choose and structure one.",
+  "sections": [
+    {
+      "title": "Start With a Testable Question",
+      "content": ["\"Which fertilizer makes plants grow fastest?\" works. \"Is global warming bad?\" doesn't—it's not measurable in a classroom. The best questions compare two or more conditions and produce data."]
+    },
+    {
+      "title": "Control Your Variables",
+      "content": ["Change one thing, keep everything else the same. Same amount of light, water, and soil for each plant—only the fertilizer type changes. That way you know what caused the difference."]
+    },
+    {
+      "title": "Document Everything",
+      "content": ["Photos, daily notes, tables. Judges want to see the process, not just the result. A clear lab notebook shows you did the work."]
+    },
+    {
+      "title": "Present Clearly",
+      "content": ["Hypothesis, procedure, results, conclusion. Simple headings and clear graphs beat fancy decorations. Let the science speak."]
+    }
+  ],
+  "cta": {
+    "title": "Get Science Support",
+    "text": "GuruForU tutors can help refine project ideas and strengthen the science behind them.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "What makes a good science fair question?",
+      "answer": "A testable question that compares two or more conditions and produces data. 'Which fertilizer makes plants grow fastest?' works. 'Is global warming bad?' doesn't—it's not measurable."
+    },
+    {
+      "question": "Why do variables matter in a science fair project?",
+      "answer": "Change one thing, keep everything else the same. Same light, water, soil—only fertilizer type changes. That way you know what caused the difference."
+    },
+    {
+      "question": "What should students document for the science fair?",
+      "answer": "Photos, daily notes, tables. Judges want to see the process, not just the result. A clear lab notebook shows you did the work."
+    },
+    {
+      "question": "How should a science fair project be presented?",
+      "answer": "Hypothesis, procedure, results, conclusion. Simple headings and clear graphs beat fancy decorations. Let the science speak."
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "title": "Chemistry: Equations and Stoichiometry Made Clear",
+  "slug": "chemistry-equations-and-stoichiometry",
+  "category": "Science",
+  "meta": {
+    "readTime": "6 min read",
+    "publishedDate": "2026-02-04"
+  },
+  "keywords": [
+    "stoichiometry",
+    "chemistry equations",
+    "balancing equations",
+    "chemistry help"
+  ],
+  "image": "/blog-images/chemistry-equations-and-stoichiometry.jpg",
+  "lead": "Balancing equations and stoichiometry are where many chemistry students get stuck. The logic is consistent—once you see the pattern, it clicks.",
+  "sections": [
+    {
+      "title": "Balancing Equations: The Rules",
+      "content": ["You can't create or destroy atoms. Change coefficients, not subscripts. Start with elements that appear in one place on each side. Practice with simple equations until it becomes automatic."]
+    },
+    {
+      "title": "Stoichiometry: Ratios and Proportions",
+      "content": ["The coefficients in a balanced equation tell you the mole ratio. Use that to convert between amounts of reactants and products. Set up proportions and solve."]
+    },
+    {
+      "title": "Common Mistakes",
+      "content": ["Forgetting to balance first. Mixing up grams and moles. Skipping units. Careful setup and dimensional analysis prevent most errors."]
+    },
+    {
+      "title": "Practice With Variety",
+      "content": ["Do limiting reactant problems, percent yield, and excess reactant problems. The same logic applies—the scenarios change, the approach doesn't."]
+    }
+  ],
+  "cta": {
+    "title": "Master Chemistry",
+    "text": "GuruForU tutors can walk your child through equations and stoichiometry step by step.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "What are the rules for balancing chemical equations?",
+      "answer": "You can't create or destroy atoms. Change coefficients, not subscripts. Start with elements that appear in one place on each side. Practice until it becomes automatic."
+    },
+    {
+      "question": "What is stoichiometry?",
+      "answer": "The coefficients in a balanced equation give you mole ratios. Use those ratios to convert between amounts of reactants and products using proportions."
+    },
+    {
+      "question": "What are common mistakes in stoichiometry?",
+      "answer": "Forgetting to balance first, mixing up grams and moles, and skipping units. Careful setup and dimensional analysis prevent most errors."
+    },
+    {
+      "question": "What types of stoichiometry problems should I practice?",
+      "answer": "Limiting reactant, percent yield, and excess reactant problems. The logic is the same—only the scenarios change."
+    }
+  ]
+}

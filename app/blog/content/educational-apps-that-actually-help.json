@@ -1,0 +1,51 @@
+{
+  "title": "Educational Apps That Actually Help (And When They Don't)",
+  "slug": "educational-apps-that-actually-help",
+  "category": "Technology",
+  "meta": {
+    "readTime": "5 min read",
+    "publishedDate": "2026-02-08"
+  },
+  "keywords": [
+    "educational apps",
+    "learning apps",
+    "study apps",
+    "edtech for students"
+  ],
+  "image": "/blog-images/educational-apps-that-actually-help.jpg",
+  "lead": "There's no shortage of educational apps. The ones that work usually do one thing well—flashcards, practice problems, or explanations—rather than trying to do everything.",
+  "sections": [
+    {
+      "title": "What Makes an App Effective",
+      "content": ["Spaced repetition, active recall, and clear feedback. Apps that simply present content without requiring retrieval or spaced practice tend to be less effective. Look for ones that quiz, not just teach."]
+    },
+    {
+      "title": "Subject-Specific vs General",
+      "content": ["Math apps with step-by-step problem solving. Language apps with spaced repetition for vocabulary. Reading apps with comprehension questions. Generic \"learning\" apps often spread too thin."]
+    },
+    {
+      "title": "When Apps Fall Short",
+      "content": ["Struggling learners often need a human to explain, adapt, and encourage. Apps can reinforce and practice, but they can't replace a good tutor when the child is lost."]
+    }
+  ],
+  "cta": {
+    "title": "Combine Apps With Live Tutoring",
+    "text": "GuruForU pairs technology with expert tutors for the best of both.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "What makes an educational app effective?",
+      "answer": "Spaced repetition, active recall, and clear feedback. Apps that quiz and require retrieval—not just present content—tend to be more effective."
+    },
+    {
+      "question": "Should I choose subject-specific or general learning apps?",
+      "answer": "Subject-specific often works better. Math apps with step-by-step problem solving, language apps with spaced repetition, reading apps with comprehension questions. Generic apps often spread too thin."
+    },
+    {
+      "question": "When can't educational apps replace a tutor?",
+      "answer": "When a child is really struggling and needs someone to explain, adapt, and encourage. Apps reinforce and practice; they can't replace a good tutor when the child is lost."
+    }
+  ]
+}

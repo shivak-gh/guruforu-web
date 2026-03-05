@@ -1,0 +1,96 @@
+{
+  "title": "Pomodoro Technique for Kids: A Simple Way to Improve Focus",
+  "slug": "pomodoro-technique-for-kids",
+  "category": "Learning Strategies",
+  "meta": {
+    "readTime": "5 min read",
+    "publishedDate": "2026-01-19"
+  },
+  "keywords": [
+    "Pomodoro technique for kids",
+    "focus timer children",
+    "study breaks for kids",
+    "25 minute study sessions",
+    "concentration for students",
+    "Pomodoro study method"
+  ],
+  "image": "/blog-images/pomodoro-technique-for-kids.jpg",
+  "lead": "The Pomodoro Technique—25 minutes of focus, then a short break—was built for adults. But it works surprisingly well for kids too. Here's how to adapt it so it actually sticks.",
+  "sections": [
+    {
+      "title": "What Is the Pomodoro Technique?",
+      "content": [
+        "You work for a set block (traditionally 25 minutes), take a 5-minute break, then repeat. After four blocks, you take a longer break. The idea is that short sprints keep your brain fresh and make big tasks less overwhelming. Kids respond to the same logic—they just need shorter blocks."
+      ]
+    },
+    {
+      "title": "Adjust the Timers by Age",
+      "content": [
+        "A full 25 minutes is too long for most elementary kids. Start with 15 or 20 minutes. Middle schoolers can often handle 25. High schoolers might do 25–30. The goal isn't to max out—it's to finish a block without zoning out."
+      ],
+      "list": [
+        {
+          "item": "Ages 6–8: 10–15 minute focus, 5 minute break"
+        },
+        {
+          "item": "Ages 9–12: 15–20 minute focus, 5 minute break"
+        },
+        {
+          "item": "Ages 13+: 25 minute focus, 5 minute break (or classic Pomodoro)"
+        }
+      ]
+    },
+    {
+      "title": "Make the Break Matter",
+      "content": [
+        "Staring at a phone for 5 minutes doesn't reset the brain. Get up. Walk. Grab water. Stretch. For younger kids, a quick game of catch or a few jumps works. The break should feel different from the work—that contrast helps them come back ready to focus."
+      ],
+      "highlights": [
+        {
+          "title": "Avoid Screen Breaks",
+          "text": "YouTube or games make it harder to return. Physical movement or a snack works better. Save screens for the longer break after 2–3 blocks."
+        },
+        {
+          "title": "Set a Timer for the Break Too",
+          "text": "Otherwise 5 minutes becomes 15. Use the same timer app or a kitchen timer. When it goes off, back to work."
+        }
+      ]
+    },
+    {
+      "title": "One Task Per Block",
+      "content": [
+        "Don't mix math homework and reading in the same block. Pick one. Finish what you can in that block, then switch on the next. The clarity helps—kids know exactly what they're supposed to be doing, and the sense of completion at the end of a block is motivating."
+      ]
+    },
+    {
+      "title": "When It Doesn't Stick",
+      "content": [
+        "Some kids hate timers. If yours finds it stressful, try \"one page\" or \"one problem set\" instead of time. The idea is the same: small chunks, clear stops, breaks in between. The format can be flexible."
+      ]
+    }
+  ],
+  "cta": {
+    "title": "Build Strong Study Habits",
+    "text": "GuruForU tutors use focused sessions that align with techniques like Pomodoro. See how structured learning can help your child.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "What is the Pomodoro Technique?",
+      "answer": "You work for a set block (traditionally 25 minutes), take a 5-minute break, then repeat. After four blocks, take a longer break. Short sprints keep the brain fresh and make big tasks less overwhelming."
+    },
+    {
+      "question": "How long should kids focus before a break?",
+      "answer": "Ages 6–8: 10–15 minutes. Ages 9–12: 15–20 minutes. Ages 13+: 25 minutes. Adjust based on your child—the goal is finishing a block without zoning out."
+    },
+    {
+      "question": "Should kids use screens during Pomodoro breaks?",
+      "answer": "No. YouTube or games make it harder to return to work. Physical movement, a snack, or a quick walk works better. Save screens for the longer break after 2–3 blocks."
+    },
+    {
+      "question": "What if my child hates timers?",
+      "answer": "Try \"one page\" or \"one problem set\" instead of time. Same idea: small chunks, clear stops, breaks in between. The format can be flexible."
+    }
+  ]
+}

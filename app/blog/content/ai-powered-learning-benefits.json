@@ -206,5 +206,23 @@
     "text": "Discover how GuruForU combines cutting-edge AI technology with expert human tutors to create the most effective learning experience for your child. See real-time progress tracking, personalized learning paths, and comprehensive mastery reports.",
     "buttonText": "Learn More About Our AI Platform",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "What is AI-powered learning?",
+      "answer": "AI analyzes how your child learns, identifies patterns, and adapts instruction in real time. It creates a unique learning path—adjusting difficulty, pace, and content—so each student gets personalized support."
+    },
+    {
+      "question": "How does AI personalize learning?",
+      "answer": "By recognizing learning style (visual, auditory, kinesthetic), optimizing pace, incorporating interests, and identifying when your child is most focused. It adapts continuously based on performance."
+    },
+    {
+      "question": "What progress can I see with AI-powered learning?",
+      "answer": "You can see which concepts are mastered, which need practice, learning velocity, and predictive performance on assessments—far beyond traditional grades."
+    },
+    {
+      "question": "Does AI replace the teacher or tutor?",
+      "answer": "No. AI supports teachers by handling routine tasks and providing insights. The human tutor remains essential for mentorship, motivation, and adapting to emotional needs."
+    }
+  ]
 }

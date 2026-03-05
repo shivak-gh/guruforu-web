@@ -1,0 +1,59 @@
+{
+  "title": "Web Development Basics for Students: HTML, CSS, and Beyond",
+  "slug": "web-development-basics-for-students",
+  "category": "Computer Science",
+  "meta": {
+    "readTime": "6 min read",
+    "publishedDate": "2026-02-11"
+  },
+  "keywords": [
+    "web development for students",
+    "HTML CSS for kids",
+    "learn web development",
+    "coding for students"
+  ],
+  "image": "/blog-images/web-development-basics-for-students.jpg",
+  "lead": "Building a simple webpage is satisfying. HTML structures content, CSS makes it look good. Students can see results quickly, which makes it a great entry point.",
+  "sections": [
+    {
+      "title": "HTML: Structure First",
+      "content": ["Headings, paragraphs, lists, links, and images. Learn the basic tags. A simple page with your name, a bio, and a few links is a solid first project."]
+    },
+    {
+      "title": "CSS: Make It Look Good",
+      "content": ["Colors, fonts, layout. Start with inline or internal CSS, then move to external stylesheets. Flexbox and Grid come later—basic styling first."]
+    },
+    {
+      "title": "Add Interactivity With JavaScript",
+      "content": ["Buttons that change text, forms that validate, simple animations. JavaScript brings pages to life. Learn the basics after HTML and CSS feel comfortable."]
+    },
+    {
+      "title": "Resources",
+      "content": ["Free editors like VS Code, browsers' developer tools, and sites like CodePen for quick experiments. No fancy setup needed to get started."]
+    }
+  ],
+  "cta": {
+    "title": "Build Skills With Expert Guidance",
+    "text": "GuruForU tutors can guide your child through web development basics.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "What should students learn first in web development?",
+      "answer": "HTML for structure—headings, paragraphs, lists, links, images. A simple page with a name, bio, and links is a solid first project."
+    },
+    {
+      "question": "When should students add CSS?",
+      "answer": "After basic HTML. Start with colors, fonts, layout. Inline or internal CSS first, then external stylesheets. Flexbox and Grid come later."
+    },
+    {
+      "question": "What does JavaScript add to a webpage?",
+      "answer": "Interactivity: buttons that change text, form validation, simple animations. Learn JavaScript basics after HTML and CSS feel comfortable."
+    },
+    {
+      "question": "What tools do students need for web development?",
+      "answer": "A free editor like VS Code, browser developer tools, and sites like CodePen for quick experiments. No fancy setup needed."
+    }
+  ]
+}

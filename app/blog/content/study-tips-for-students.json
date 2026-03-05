@@ -238,5 +238,23 @@
     "text": "GuruForU's AI-powered platform incorporates these science-backed study techniques automatically. Our system uses spaced repetition, active recall, and personalized practice to help your child study more effectively and achieve better results.",
     "buttonText": "Discover Our Learning Platform",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "What is active recall and why is it effective?",
+      "answer": "Actively retrieving information from memory—explaining out loud, writing summaries, self-quizzing—strengthens memory more than passive re-reading. The struggle to recall helps learning."
+    },
+    {
+      "question": "How does spaced repetition work?",
+      "answer": "Review material after 1 day, then 3 days, then a week, then 2 weeks. Spacing reviews improves long-term retention far more than cramming everything in one session."
+    },
+    {
+      "question": "What is the Feynman Technique?",
+      "answer": "Teach what you've learned in simple language. If you can't explain it simply, you don't understand it well enough. The act of teaching reveals gaps to review."
+    },
+    {
+      "question": "Why does sleep matter for studying?",
+      "answer": "Sleep is when the brain consolidates memories. Pulling all-nighters hurts performance. It's better to study less and sleep more than to sacrifice rest."
+    }
+  ]
 }

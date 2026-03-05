@@ -1,0 +1,107 @@
+{
+  "title": "Memory Techniques for School Subjects: What Works Beyond Rote Memorization",
+  "slug": "memory-techniques-for-school-subjects",
+  "category": "Learning Strategies",
+  "meta": {
+    "readTime": "6 min read",
+    "publishedDate": "2026-01-26"
+  },
+  "keywords": [
+    "memory techniques for students",
+    "memorization strategies",
+    "how to remember school material",
+    "mnemonics for students",
+    "memory tricks for studying",
+    "retention strategies"
+  ],
+  "image": "/blog-images/memory-techniques-for-school-subjects.jpg",
+  "lead": "Rereading notes and highlighting rarely sticks. But a few simple techniques—mnemonics, chunking, and retrieval practice—can make a real difference. Here are ones that actually work for school subjects.",
+  "sections": [
+    {
+      "title": "Mnemonics: Shortcuts That Stick",
+      "content": [
+        "Roy G. Biv for the rainbow. Please Excuse My Dear Aunt Sally for order of operations. Kids already use these—they're memorable because they're silly or vivid. The trick is creating them for your child's actual material."
+      ],
+      "list": [
+        {
+          "item": "Acronyms: Take the first letter of each term and make a word. HOMES for the Great Lakes (Huron, Ontario, Michigan, Erie, Superior)"
+        },
+        {
+          "item": "Acrostics: Make a sentence where the first letter of each word stands for something. \"King Philip Came Over For Good Soup\" for taxonomy (Kingdom, Phylum, Class, Order, Family, Genus, Species)"
+        },
+        {
+          "item": "Silly images: To remember that mitochondria are the \"powerhouse\" of the cell, picture a tiny power plant inside the cell. The weirder the image, the better it sticks"
+        }
+      ]
+    },
+    {
+      "title": "Chunking: Break It Into Bites",
+      "content": [
+        "The brain holds about 7 items in working memory. A 12-digit number is hard; 3 groups of 4 is easier. Same with study material. Don't try to memorize 20 vocabulary words at once. Do 5. Then 5 more. Group related concepts together—all the causes of the Civil War, then all the effects."
+      ],
+      "highlights": [
+        {
+          "title": "By Theme or Pattern",
+          "text": "Group vocabulary by topic. Group math formulas by unit. The structure itself becomes a memory cue."
+        },
+        {
+          "title": "By Size",
+          "text": "Flashcards in stacks of 5–7. Once one stack is solid, add the next. Avoid giant piles that feel overwhelming."
+        }
+      ]
+    },
+    {
+      "title": "Retrieval Practice: Test Yourself",
+      "content": [
+        "The act of trying to remember strengthens the memory more than rereading. Close the book. Try to write out the formula, list the steps, or explain the concept. Then check. Wrong answers aren't failures—they show what to review. This is why flashcards and practice tests work."
+      ],
+      "list": [
+        {
+          "item": "Flashcards: Old-school or digital. The flip-and-recall is the key"
+        },
+        {
+          "item": "Teach it back: Have your child explain the concept to you, a sibling, or the dog. Teaching forces retrieval"
+        },
+        {
+          "item": "Practice problems: For math and science, doing problems from memory beats copying solutions"
+        }
+      ]
+    },
+    {
+      "title": "Spaced Repetition: Review Before You Forget",
+      "content": [
+        "Cramming gets you through the test; it doesn't build long-term memory. Review the material again after a day, then a few days, then a week. Each time you successfully recall it, the memory gets stronger. Apps like Anki do this automatically, or you can use a simple schedule: today, tomorrow, in 3 days, in a week."
+      ]
+    },
+    {
+      "title": "Connect to What They Already Know",
+      "content": [
+        "New information sticks better when it hooks onto something existing. \"The mitochondria is like a battery\" or \"This historical event is similar to what's happening now.\" Help them find those connections—to other subjects, to TV shows, to real life. The more links, the easier it is to retrieve."
+      ]
+    }
+  ],
+  "cta": {
+    "title": "Strengthen Learning Strategies",
+    "text": "GuruForU tutors use evidence-based techniques to help students retain what they learn. Book a free session to see how.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "What are mnemonics and how do they help?",
+      "answer": "Shortcuts that stick—like Roy G. Biv for the rainbow or HOMES for the Great Lakes. Acronyms, acrostics, and silly mental images make abstract information memorable."
+    },
+    {
+      "question": "What is chunking in memorization?",
+      "answer": "Breaking material into smaller groups. The brain holds about 7 items in working memory. Do 5 vocabulary words at a time, group concepts by theme—the structure becomes a memory cue."
+    },
+    {
+      "question": "Why does retrieval practice work better than rereading?",
+      "answer": "The act of trying to remember strengthens the memory more than passive review. Flashcards, teaching it back, and practice problems force retrieval—wrong answers show what to review."
+    },
+    {
+      "question": "What is spaced repetition?",
+      "answer": "Review after a day, then a few days, then a week. Each successful recall strengthens the memory. Cramming gets you through the test; spacing builds long-term retention."
+    }
+  ]
+}

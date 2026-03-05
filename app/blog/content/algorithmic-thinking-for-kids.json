@@ -1,0 +1,59 @@
+{
+  "title": "Algorithmic Thinking for Kids: Logic Before Code",
+  "slug": "algorithmic-thinking-for-kids",
+  "category": "Computer Science",
+  "meta": {
+    "readTime": "5 min read",
+    "publishedDate": "2026-02-12"
+  },
+  "keywords": [
+    "algorithmic thinking",
+    "coding logic for kids",
+    "computational thinking",
+    "programming logic"
+  ],
+  "image": "/blog-images/algorithmic-thinking-for-kids.jpg",
+  "lead": "Before writing code, kids need to think in steps: break problems down, spot patterns, and plan sequences. That's algorithmic thinking—and it applies far beyond programming.",
+  "sections": [
+    {
+      "title": "Step-by-Step Instructions",
+      "content": ["\"Make a sandwich\" sounds simple until you list every step. Getting a child to write instructions for a task—and then having someone else follow them literally—reveals gaps in logic. Great exercise before any coding."]
+    },
+    {
+      "title": "Patterns and Repetition",
+      "content": ["Loops are just 'do this again.' Finding patterns in everyday tasks—setting the table, packing a lunch—builds the intuition for when to use loops in code."]
+    },
+    {
+      "title": "Conditions: If This, Then That",
+      "content": ["If it's raining, bring an umbrella. If the answer is wrong, try again. Conditionals are everywhere. Practice with real-life scenarios before translating to code."]
+    },
+    {
+      "title": "Debugging Mindset",
+      "content": ["When something doesn't work, what went wrong? Systematically testing each step—what did we expect? what actually happened?—is a skill that transfers to any problem."]
+    }
+  ],
+  "cta": {
+    "title": "Develop Computational Thinking",
+    "text": "GuruForU's computer science tutors help build logic and problem-solving skills.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "What is algorithmic thinking?",
+      "answer": "Breaking problems into steps, spotting patterns, and planning sequences. It's logic before code—and it applies far beyond programming."
+    },
+    {
+      "question": "How can kids practice step-by-step thinking without coding?",
+      "answer": "Have them write instructions for a task like \"make a sandwich\" and have someone follow them literally. Gaps in logic become obvious—and it's a great exercise before any coding."
+    },
+    {
+      "question": "What are conditionals and how do kids learn them?",
+      "answer": "Conditionals are \"if this, then that.\" Practice with real-life scenarios: if it's raining, bring an umbrella. If the answer is wrong, try again."
+    },
+    {
+      "question": "Why is a debugging mindset valuable?",
+      "answer": "When something doesn't work, systematically asking \"what did we expect? what actually happened?\" is a skill that transfers to any problem—not just programming."
+    }
+  ]
+}

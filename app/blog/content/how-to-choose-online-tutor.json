@@ -229,5 +229,23 @@
     "text": "GuruForU makes it easy to find qualified, experienced tutors who match your child's learning style and needs. With AI-powered matching and comprehensive progress tracking, you can make an informed decision with confidence.",
     "buttonText": "Browse Our Expert Tutors",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "What should I look for when choosing an online tutor?",
+      "answer": "Qualifications in the subject, experience with your child's age/grade, teaching style that matches how your child learns, and availability that fits your schedule."
+    },
+    {
+      "question": "How do I know if a tutor is a good fit?",
+      "answer": "Book a trial session. Observe whether your child engages, asks questions, and responds positively. Trust your child's feedback and your own observations."
+    },
+    {
+      "question": "Should the tutor match my child's curriculum?",
+      "answer": "Yes, especially for exam prep or board-specific content. Ensure the tutor is familiar with CBSE, ICSE, Common Core, or whichever system your child follows."
+    },
+    {
+      "question": "Can we switch tutors if it's not working?",
+      "answer": "Most platforms allow it. A good fit matters—if your child isn't connecting or progressing, trying a different tutor is reasonable."
+    }
+  ]
 }

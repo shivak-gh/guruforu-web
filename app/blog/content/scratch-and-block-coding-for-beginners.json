@@ -1,0 +1,51 @@
+{
+  "title": "Scratch and Block Coding: A Gentle Start to Programming",
+  "slug": "scratch-and-block-coding-for-beginners",
+  "category": "Computer Science",
+  "meta": {
+    "readTime": "5 min read",
+    "publishedDate": "2026-02-13"
+  },
+  "keywords": [
+    "Scratch programming",
+    "block coding",
+    "coding for kids",
+    "visual programming"
+  ],
+  "image": "/blog-images/scratch-and-block-coding-for-beginners.jpg",
+  "lead": "Block-based coding removes syntax errors and lets kids focus on logic. Scratch is free, widely used, and a natural stepping stone to text-based languages.",
+  "sections": [
+    {
+      "title": "Why Block Coding First",
+      "content": ["No typos, no missing semicolons. Kids snap blocks together and see results immediately. The concepts—loops, conditionals, variables—transfer directly to Python or JavaScript later."]
+    },
+    {
+      "title": "What Kids Can Build",
+      "content": ["Simple games, animated stories, quizzes. Scratch's sprite and backdrop library makes it easy to create something that feels real. Sharing projects online adds motivation."]
+    },
+    {
+      "title": "When to Move to Text",
+      "content": ["When they've made a few projects and start feeling limited by blocks—or when they ask \"how do real programmers do it?\"—that's the time to introduce Python or JavaScript."]
+    }
+  ],
+  "cta": {
+    "title": "Guide the Transition to Code",
+    "text": "GuruForU tutors can help kids move from Scratch to text-based programming.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "Why start with block coding instead of text?",
+      "answer": "No typos or missing semicolons. Kids snap blocks together and see results immediately. Loops, conditionals, variables—the concepts transfer to Python or JavaScript later."
+    },
+    {
+      "question": "What can kids build with Scratch?",
+      "answer": "Simple games, animated stories, quizzes. Scratch's sprite and backdrop library makes it easy to create something that feels real. Sharing projects online adds motivation."
+    },
+    {
+      "question": "When should kids move from Scratch to text-based programming?",
+      "answer": "When they've made a few projects and feel limited by blocks, or when they ask 'how do real programmers do it?'—that's the time for Python or JavaScript."
+    }
+  ]
+}

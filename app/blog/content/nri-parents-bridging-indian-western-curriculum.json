@@ -127,5 +127,23 @@
     "text": "GuruForU's AI-powered platform supports CBSE, ICSE, Common Core, GCSE, IB, and more. Our tutors understand NRI family goals—whether you plan for IIT, Oxbridge, or want flexibility. We adapt to your child's school and your aspirations.",
     "buttonText": "Explore Our Programs",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "How do Indian and Western curricula differ in math and science?",
+      "answer": "Indian boards (CBSE, ICSE) emphasize depth, step-wise solutions, and board exam format. Western (Common Core, GCSE, IB) often stress inquiry, application, and varied assessment. Content overlap exists but sequencing and emphasis differ."
+    },
+    {
+      "question": "Can my child study in the UK/US and still prepare for IIT or Indian universities?",
+      "answer": "Yes. Look for platforms that support both curricula. Supplement school learning with targeted preparation for JEE/NEET or Indian entrance exams if that's the goal."
+    },
+    {
+      "question": "What if we're unsure about returning to India?",
+      "answer": "Focus on building strong fundamentals that transfer across systems. Math and science concepts are universal; only exam formats and sequencing differ. Flexible tutoring can support both paths."
+    },
+    {
+      "question": "How can NRI parents support math and science at home?",
+      "answer": "Connect to real life, use online resources aligned with your child's school, and consider tutors who understand both Indian and Western curricula if you want flexibility."
+    }
+  ]
 }

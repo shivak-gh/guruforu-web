@@ -111,5 +111,23 @@
     "text": "GuruForU offers AI-powered math and science learning aligned with US standards. Our platform adapts to your child's level, addresses learning gaps, and builds conceptual understanding—whether you're following Common Core, NGSS, or state-specific curricula.",
     "buttonText": "Explore Our Programs",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "What math challenges do US students commonly face?",
+      "answer": "Common Core's emphasis on conceptual understanding, word problems, and multi-step reasoning can be difficult. Fractions, algebra readiness, and the shift from arithmetic to abstract thinking often need extra support."
+    },
+    {
+      "question": "How does NGSS affect science learning in the US?",
+      "answer": "NGSS emphasizes practices (inquiry, modeling, argumentation) alongside content. Students need to do science, not just read about it—hands-on and application-focused support helps."
+    },
+    {
+      "question": "Should tutoring align with my state's curriculum?",
+      "answer": "Yes. US curricula vary by state. Look for tutors or platforms familiar with Common Core, NGSS, or your state's specific standards so support matches what's taught in school."
+    },
+    {
+      "question": "How can I help my child with math and science at home?",
+      "answer": "Connect concepts to real life, praise effort over answers, and normalize struggle. For deeper gaps, targeted tutoring aligned with their curriculum is often most effective."
+    }
+  ]
 }

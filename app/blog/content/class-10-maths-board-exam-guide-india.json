@@ -150,5 +150,23 @@
     "text": "GuruForU offers AI-powered Maths tutoring aligned with CBSE, ICSE, and state boards. Our platform identifies weak chapters, provides targeted practice, and tracks progress—helping your child build confidence for the Class 10 board exam.",
     "buttonText": "Explore Math Programs",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "Why does the Class 10 Maths board exam matter for Indian students?",
+      "answer": "Class 10 marks influence stream selection (Science, Commerce, Arts), college admissions, and scholarship eligibility. Maths often determines whether a student can pursue PCM or PCB in Class 11."
+    },
+    {
+      "question": "What's the difference between CBSE Basic and Standard Maths?",
+      "answer": "Basic Maths is easier and for students not continuing Maths. Standard Maths is for PCM and Commerce. Choose based on your child's future stream."
+    },
+    {
+      "question": "How does ICSE Maths differ from CBSE?",
+      "answer": "ICSE syllabus is broader, with more weight on Commercial Mathematics, Statistics, and Probability. It has two 2-hour papers with emphasis on step-wise solutions and written reasoning."
+    },
+    {
+      "question": "When should my child start Class 10 board exam preparation?",
+      "answer": "Start early in the academic year. Identify weak chapters first, practice previous years' papers, and build a revision schedule. Early preparation reduces last-minute stress."
+    }
+  ]
 }

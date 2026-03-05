@@ -420,5 +420,23 @@
     "text": "Whether your child is learning Math in the US, Maths in the UK, or following curricula in Canada, Australia, New Zealand, Qatar, or the UAE, GuruForU's AI-powered platform adapts to their specific curriculum needs. Our expert tutors understand curriculum differences, our content aligns with regional standards, and our personalized learning paths ensure your child masters mathematics from Grade 1 to Grade 10. Get started with a free consultation to see how we can support your child's mathematical journey, regardless of where they learn.",
     "buttonText": "Book Your Free Math Assessment",
     "buttonLink": "/free-session"
-  }
+  },
+  "faq": [
+    {
+      "question": "What's the difference between Math (US) and Maths (UK)?",
+      "answer": "Terminology: US and Canada use 'Math'; UK, Australia, New Zealand use 'Maths.' More importantly, curriculum structure, progression, and assessment methods differ by country."
+    },
+    {
+      "question": "How does Common Core (US) differ from UK National Curriculum?",
+      "answer": "Common Core emphasizes conceptual understanding and real-world application. UK uses Key Stages with GCSE exams. Both cover similar concepts but with different sequencing and assessment."
+    },
+    {
+      "question": "What if my child switches between countries or curricula?",
+      "answer": "Curriculum mismatches can create gaps. Look for platforms that identify gaps and provide targeted instruction to ensure smooth transitions between systems."
+    },
+    {
+      "question": "Do Qatar and UAE follow a specific math curriculum?",
+      "answer": "International schools in Qatar and UAE often follow British (Cambridge, Edexcel) or American (Common Core) curricula. Check your school's affiliation."
+    }
+  ]
 }

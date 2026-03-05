@@ -134,5 +134,23 @@
     "text": "GuruForU offers AI-powered tutoring that understands both Indian and Western curricula. Whether your child studies in USA, UK, Australia, Dubai, or New Zealand—and whether you plan for local universities or a return to India—we adapt to your needs.",
     "buttonText": "Explore Our Programs",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "What challenges do Indian-origin students face in Western schools?",
+      "answer": "Curriculum differences (Common Core vs CBSE), different teaching styles, and sometimes language or cultural expectations. Strong fundamentals help; targeted support can bridge gaps."
+    },
+    {
+      "question": "Should we follow Indian or local curriculum for tutoring?",
+      "answer": "Match tutoring to your child's school curriculum first. If you plan for JEE/NEET or return to India, add supplement preparation. Many platforms support both."
+    },
+    {
+      "question": "How can we maintain Indian academic standards while abroad?",
+      "answer": "Use tutors familiar with Indian curricula for supplement, practice problem-solving and step-wise solutions, and consider periodic assessment against Indian standards if that's your goal."
+    },
+    {
+      "question": "Is it possible to prepare for both local and Indian universities?",
+      "answer": "Yes. Core concepts are universal. Exam formats differ. Flexible tutoring that adapts to your goals—local, Indian, or both—can support dual preparation."
+    }
+  ]
 }

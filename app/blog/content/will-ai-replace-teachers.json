@@ -118,5 +118,23 @@
     "text": "GuruForU combines AI tools like AI Vista with expert human tutors—so your child gets the best of both: personalized, efficient learning and the mentorship only a teacher can provide. See how it works.",
     "buttonText": "Explore GuruForU",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "Will AI replace teachers?",
+      "answer": "No. Education is about mentorship, empathy, and human connection. AI supports teachers by handling grading, flagging struggles, and personalizing practice—freeing teachers for what only they can do."
+    },
+    {
+      "question": "What can AI do in education?",
+      "answer": "AI can personalize practice, give instant feedback, automate grading and scheduling, and identify where students need help. It gives teachers better data and more time for teaching."
+    },
+    {
+      "question": "What makes human teachers irreplaceable?",
+      "answer": "Mentorship, emotional intelligence, reading when a student is anxious or confused, building trust, and judgment about when to push or ease off—things no algorithm can replicate."
+    },
+    {
+      "question": "How should parents evaluate AI education tools?",
+      "answer": "Ask whether the tool elevates the teacher-student relationship or works around it. The best tools give teachers superpowers while keeping the human at the center."
+    }
+  ]
 }

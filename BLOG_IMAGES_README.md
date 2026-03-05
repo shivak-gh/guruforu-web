@@ -40,7 +40,20 @@ Located in `/public/blog-images/`:
 - Format: JPG or PNG
 - File size: Keep under 500KB for optimal performance
 
-### Option 2: Generate Images Using Script
+### Option 2: Download Indian/Westernized Indian Context Images (Recommended)
+
+For images featuring Indian parents, students, and families (per brand guidelines):
+
+1. Get a free API key from [Pexels API](https://www.pexels.com/api/)
+2. Add to `.env.local`: `PEXELS_API_KEY=your_key`
+3. Run:
+```bash
+npm run download:pexels-images
+```
+
+Use `FORCE=1 npm run download:pexels-images` to overwrite existing images.
+
+### Option 3: Generate Images Using Script (Unsplash - may be deprecated)
 
 Run the image generation script (requires internet connection):
 
@@ -48,9 +61,9 @@ Run the image generation script (requires internet connection):
 npm run generate:blog-images
 ```
 
-This script downloads placeholder images from Unsplash Source API.
+Note: Unsplash Source API may return 503. Use Option 2 (Pexels) for reliable downloads.
 
-### Option 3: Create Custom Images
+### Option 4: Create Custom Images
 
 1. Design images in your preferred tool (Figma, Canva, Photoshop, etc.)
 2. Export as JPG or PNG

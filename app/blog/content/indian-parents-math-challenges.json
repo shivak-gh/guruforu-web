@@ -116,5 +116,23 @@
     "text": "GuruForU offers AI-powered math learning that adapts to your child's level and pace. Whether preparing for CBSE, ICSE, board exams, or Olympiads, our platform provides personalised practice, conceptual clarity, and progress tracking.",
     "buttonText": "Explore Math Programs",
     "buttonLink": "/"
-  }
+  },
+  "faq": [
+    {
+      "question": "What math challenges do Indian students commonly face?",
+      "answer": "Board exam pressure, weak foundations from earlier grades, difficulty with word problems and application, and gaps when moving from arithmetic to algebra. Conceptual clarity and practice both matter."
+    },
+    {
+      "question": "How does CBSE maths differ from ICSE?",
+      "answer": "CBSE uses NCERT; ICSE has a broader syllabus with more weight on commercial math, statistics, and step-wise solutions. Both require strong fundamentals for Class 11–12 and competitive exams."
+    },
+    {
+      "question": "When should my child start preparing for board exams?",
+      "answer": "Start early in the academic year. Identify weak chapters, practice previous years' papers, and build a revision schedule. Early preparation reduces last-minute stress."
+    },
+    {
+      "question": "Can tutoring help with Olympiads and competitive exams?",
+      "answer": "Yes. Tutors who understand Olympiad-style problems and competitive exam patterns can provide targeted practice beyond the regular curriculum."
+    }
+  ]
 }
