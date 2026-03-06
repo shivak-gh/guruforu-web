@@ -75,7 +75,7 @@ const images = {
   'teaching-computer-science-nodejs-aws-labs.jpg': { search: 'Indian student coding', width: 1200, height: 630 },
   'python-for-beginners-students.jpg': { search: 'Indian student programming laptop', width: 1200, height: 630 },
   'web-development-basics-for-students.jpg': { search: 'Indian student coding laptop', width: 1200, height: 630 },
-  'algorithmic-thinking-for-kids.jpg': { search: 'Indian child computer learning', width: 1200, height: 630 },
+  'algorithmic-thinking-for-kids.jpg': { search: 'Indian family technology education', width: 1200, height: 630 },
   'scratch-and-block-coding-for-beginners.jpg': { search: 'Indian child coding', width: 1200, height: 630 },
 }
 
@@ -140,12 +140,24 @@ function generateSVGPlaceholder(filename, width, height, search) {
 // Main function
 async function main() {
   const force = process.env.FORCE === '1' || process.argv.includes('--force')
+  const singleImage = process.env.SINGLE_IMAGE || process.argv.find(a => a.startsWith('--single='))?.slice(9)
   if (force) {
     console.log('Force mode: will overwrite existing images\n')
   }
+  if (singleImage) {
+    console.log(`Single image mode: ${singleImage}\n`)
+  }
   console.log('Generating blog images (Indian/westernized Indian family context)...\n')
   
-  for (const [filename, config] of Object.entries(images)) {
+  const entries = singleImage
+    ? Object.entries(images).filter(([filename]) => filename === singleImage)
+    : Object.entries(images)
+  if (singleImage && entries.length === 0) {
+    console.error(`No config found for: ${singleImage}`)
+    process.exit(1)
+  }
+
+  for (const [filename, config] of entries) {
     const filepath = path.join(BLOG_IMAGES_DIR, filename)
     
     // Skip if file already exists (unless force)

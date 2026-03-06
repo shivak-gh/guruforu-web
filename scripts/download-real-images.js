@@ -76,7 +76,7 @@ const images = {
   'teaching-computer-science-nodejs-aws-labs.jpg': { width: 1200, height: 630, id: 401 },
   'python-for-beginners-students.jpg': { width: 1200, height: 630, id: 402 },
   'web-development-basics-for-students.jpg': { width: 1200, height: 630, id: 403 },
-  'algorithmic-thinking-for-kids.jpg': { width: 1200, height: 630, id: 404 },
+  'algorithmic-thinking-for-kids.jpg': { width: 1200, height: 630, id: 306 },
   'scratch-and-block-coding-for-beginners.jpg': { width: 1200, height: 630, id: 405 },
 }
 

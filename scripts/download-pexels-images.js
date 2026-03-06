@@ -34,10 +34,10 @@ const imageConfigs = {
   'benefits-online-tutoring-busy-families.jpg': 'Indian parents children family',
   'online-learning-independent-study-skills.jpg': 'Indian student studying laptop',
   'online-vs-offline-tutoring-school-students.jpg': 'South Asian family education',
-  'when-to-start-online-tutoring.jpg': 'Indian parents child laptop',
+  'when-to-start-online-tutoring.jpg': 'Indian American parents child laptop learning',
   'effective-note-taking-for-students.jpg': 'Indian student studying notes',
   'test-prep-strategies-that-work.jpg': 'Indian student exam preparation',
-  'reducing-homework-stress.jpg': 'parents children homework together',
+  'reducing-homework-stress.jpg': 'Indian parents children homework together',
   'creating-a-home-study-space.jpg': 'family home study desk',
   'pomodoro-technique-for-kids.jpg': 'child studying focus',
   'how-to-build-daily-study-habits.jpg': 'family study routine',
@@ -53,7 +53,7 @@ const imageConfigs = {
   'screen-time-and-learning-balance.jpg': 'Indian family laptop',
   'python-for-beginners-students.jpg': 'Indian student programming',
   'web-development-basics-for-students.jpg': 'Indian student coding',
-  'algorithmic-thinking-for-kids.jpg': 'Indian child computer',
+  'algorithmic-thinking-for-kids.jpg': 'Indian family technology education',
   'scratch-and-block-coding-for-beginners.jpg': 'Indian child coding',
 }
 
@@ -114,11 +114,20 @@ async function main() {
   }
 
   const force = process.env.FORCE === '1' || process.argv.includes('--force')
+  const singleImage = process.env.SINGLE_IMAGE || process.argv.find(a => a.startsWith('--single='))?.slice(9)
+  if (singleImage) console.log(`Single image mode: ${singleImage}\n`)
   console.log('Downloading blog images from Pexels (Indian/westernized Indian context)...\n')
 
   let success = 0, fail = 0
+  const configs = singleImage
+    ? Object.entries(imageConfigs).filter(([f]) => f === singleImage)
+    : Object.entries(imageConfigs)
+  if (singleImage && configs.length === 0) {
+    console.error(`No config found for: ${singleImage}`)
+    process.exit(1)
+  }
 
-  for (const [filename, query] of Object.entries(imageConfigs)) {
+  for (const [filename, query] of configs) {
     const filepath = path.join(BLOG_IMAGES_DIR, filename)
     if (fs.existsSync(filepath) && !force) {
       console.log(`⊘ Skipped (exists): ${filename}`)
