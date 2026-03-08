@@ -129,6 +129,8 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   margin-top: 2rem;
+  overflow-x: hidden;
+  min-width: 0;
 }
 
 /* Disable expensive backdrop-filter on mobile */
@@ -176,7 +178,7 @@
 
 .blogGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
   gap: 2rem;
 }
 
@@ -188,6 +190,7 @@
   border: 1px solid rgba(102, 126, 234, 0.1);
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .blogCard:hover {
