@@ -242,11 +242,15 @@ export default function ContactUs() {
         setSubmitStatus('success')
         setFormData({ name: '', email: '', subject: '', message: '' })
         
-        // Fire Google Analytics event for contact form
+        // Fire Google Analytics events for contact form
         if (typeof window !== 'undefined' && window.gtag) {
           window.gtag('event', 'contact_form_submit', {
-            'event_category': 'Contact',
-            'event_label': 'Contact Form Submission',
+            event_category: 'Contact',
+            event_label: 'Contact Form Submission',
+          })
+          window.gtag('event', 'conversion_event_submit_lead_form', {
+            event_category: 'Contact',
+            event_label: 'Contact Form Submission',
           })
         }
       } else {

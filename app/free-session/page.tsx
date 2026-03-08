@@ -199,7 +199,7 @@ Best Time to Call: ${data.timeSlot || 'Not specified'}
 Learning Challenges: ${data.details || 'Not specified'}`;
   }
 
-  // WhatsApp action
+  // WhatsApp action - fires conversion event, then opens WhatsApp in new tab
   const handleWhatsAppClick = () => {
     if (!formData.name || !formData.email || !formData.grade) {
       setErrorMessage(localized('Please fill in at least Name, Email, and Grade before booking via WhatsApp.'))
@@ -208,10 +208,21 @@ Learning Challenges: ${data.details || 'Not specified'}`;
     }
 
     const msg = encodeURIComponent(generateSummary(formData))
-    // WhatsApp number: +91 6362 642 692 (formatted without + and spaces for URL)
     const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '916362642692'
-    if (typeof window !== 'undefined') {
-      window.open(`https://wa.me/${whatsappNumber}?text=${msg}`, '_blank')
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${msg}`
+
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'generate_lead', {
+        event_category: 'Free Session',
+        event_label: 'Book via WhatsApp',
+        value: 1,
+      })
+      window.gtag('event', 'conversion_event_submit_lead_form', {
+        event_callback: () => window.open(whatsappUrl, '_blank', 'noopener,noreferrer'),
+        event_timeout: 2000,
+      })
+    } else {
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
     }
   }
 
@@ -289,16 +300,17 @@ Learning Challenges: ${data.details || 'Not specified'}`;
         setSubmitStatus('success')
         setFormData({ name: '', email: '', grade: '', country: '', timeSlot: '', details: '' })
         
-        // Fire Google Ads conversion tracking
+        // Fire Google Analytics events for free session form
         if (typeof window !== 'undefined' && window.gtag) {
-          // Google Ads Conversion (replace AW-XXXXXXXXX/XXXXXXXX with your conversion ID and label)
-          // window.gtag('event', 'conversion', { 'send_to': 'AW-XXXXXXXXX/XXXXXXXX' })
-          
-          // GA4 generate_lead event for tracking
           window.gtag('event', 'generate_lead', {
-            'event_category': 'Free Session',
-            'event_label': 'Free Session Form Submission',
-            'value': 1,
+            event_category: 'Free Session',
+            event_label: 'Free Session Form Submission',
+            value: 1,
+          })
+          window.gtag('event', 'conversion_event_submit_lead_form', {
+            event_category: 'Free Session',
+            event_label: 'Free Session Form Submission',
+            value: 1,
           })
         }
       } else {
