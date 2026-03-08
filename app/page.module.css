@@ -181,9 +181,39 @@
   text-align: center;
   color: white;
   max-width: 900px;
-  width: 100%;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+}
+
+@media (min-width: 1440px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .content {
+    width: 80vw;
+    max-width: 80vw;
+  }
+
+  .heroImageWrapper,
+  .heroImageWrap {
+    max-width: 100%;
+  }
+
+  .features {
+    max-width: 100%;
+  }
+
+  .benefitsList {
+    max-width: 100%;
+  }
+
+  .ctaSection {
+    max-width: 100%;
+  }
+
+  .message {
+    max-width: 720px;
+  }
 }
 
 /* Disable fade-in animation on mobile for faster FCP/LCP */

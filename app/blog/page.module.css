@@ -61,8 +61,13 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem;
-  padding-top: 1.5rem;
+}
+
+@media (min-width: 1440px) {
+  .content {
+    max-width: 80%;
+    width: 80%;
+  }
 }
 
 .header {

@@ -65,6 +65,13 @@
   padding-top: 1.5rem;
 }
 
+@media (min-width: 1440px) {
+  .content {
+    max-width: 80%;
+    width: 80%;
+  }
+}
+
 .header {
   margin-bottom: 2rem;
 }
