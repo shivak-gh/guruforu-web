@@ -264,6 +264,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
             <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>
             <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>
             <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy Policy</Link>
+            <Link href="/site-map" className={styles.footerLink} prefetch={false}>Site Map</Link>
           </nav>
           <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
         </footer>

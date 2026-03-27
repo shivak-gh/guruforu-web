@@ -308,6 +308,9 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
   const wordCount = calculateWordCount()
   const articleBody = generateArticleBody()
   const relatedBlogs = await getRelatedBlogs(slug, categorySlug, 4)
+  const topArticles = allBlogs
+    .filter((b) => b.slug !== slug)
+    .slice(0, 8)
 
   // Organization schema (minimized)
   const organizationSchema = {
@@ -617,6 +620,28 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
                 </ul>
               </section>
             )}
+
+            {topArticles.length > 0 && (
+              <section className={styles.relatedArticles} aria-label="Top articles">
+                <h2 className={styles.sectionTitle}>Top Articles</h2>
+                <ul className={styles.relatedArticlesList}>
+                  {topArticles.map((topPost) => (
+                    <li key={topPost.slug} className={styles.relatedArticleCard}>
+                      <Link
+                        href={`/blog/${topPost.categorySlug}/${topPost.slug}`}
+                        className={styles.relatedArticleCardLink}
+                        prefetch={false}
+                      >
+                        <span className={styles.relatedArticleCardContent}>
+                          <span className={styles.relatedArticleCardTitle}>{topPost.title}</span>
+                          <span className={styles.relatedArticleCardMeta}>{topPost.category}</span>
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
           </div>
         </article>
 
@@ -629,6 +654,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
             <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>
             <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>
             <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy Policy</Link>
+            <Link href="/site-map" className={styles.footerLink} prefetch={false}>Site Map</Link>
           </nav>
           <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
         </footer>

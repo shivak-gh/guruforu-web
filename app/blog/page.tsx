@@ -247,6 +247,7 @@ export default async function BlogListing() {
             <a href="mailto:support@guruforu.com" className={styles.footerLink}>{localized('Email Support')}</a>
             <Link href="/terms" className={styles.footerLink} prefetch={false}>{localized('Terms and Conditions')}</Link>
             <Link href="/privacy" className={styles.footerLink} prefetch={false}>{localized('Privacy Policy')}</Link>
+            <Link href="/site-map" className={styles.footerLink} prefetch={false}>Site Map</Link>
           </nav>
           <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. {localized('All rights reserved.')}</p>
         </footer>

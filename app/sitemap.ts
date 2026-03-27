@@ -50,6 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     freeSessionLastModified,
     aboutLastModified,
     howItWorksLastModified,
+    siteMapLastModified,
     termsLastModified,
     privacyLastModified,
     shippingLastModified,
@@ -61,6 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getLastModifiedFromAppFile('free-session/page.tsx'),
     getLastModifiedFromAppFile('about/page.tsx'),
     getLastModifiedFromAppFile('how-it-works/page.tsx'),
+    getLastModifiedFromAppFile('site-map/page.tsx'),
     getLastModifiedFromAppFile('terms/page.tsx'),
     getLastModifiedFromAppFile('privacy/page.tsx'),
     getLastModifiedFromAppFile('shipping/page.tsx'),
@@ -74,6 +76,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createSitemapEntry('/free-session', freeSessionLastModified, 'weekly', 0.9),
     createSitemapEntry('/about', aboutLastModified, 'monthly', 0.8),
     createSitemapEntry('/how-it-works', howItWorksLastModified, 'monthly', 0.8),
+    createSitemapEntry('/site-map', siteMapLastModified, 'weekly', 0.7),
   ]
 
   // Static pages - Legal/Policy pages with file-based lastModified values.

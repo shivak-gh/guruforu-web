@@ -409,6 +409,7 @@ export default async function ComingSoon() {
           <Link href="/privacy" className={styles.footerLink} prefetch={false}>{localized('Privacy Policy')}</Link>
           <Link href="/shipping" className={styles.footerLink} prefetch={false}>{localized('Shipping Policy')}</Link>
           <Link href="/cancellation-refunds" className={styles.footerLink} prefetch={false}>{localized('Cancellation and Refunds')}</Link>
+          <Link href="/site-map" className={styles.footerLink} prefetch={false}>Site Map</Link>
         </nav>
         <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. {localized('All rights reserved.')}</p>
       </footer>
