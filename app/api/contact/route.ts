@@ -4,20 +4,8 @@ import { getSecret } from '@/lib/secret-manager'
 
 // Verify reCAPTCHA token and return detailed result
 async function verifyRecaptcha(token: string): Promise<{ valid: boolean; error?: string; details?: any }> {
-  // In production, always use Secret Manager (never env vars for secrets)
-  // In development, allow fallback to env vars for easier local testing
-  let recaptchaSecret: string | null = null
-  
-  if (process.env.NODE_ENV === 'production') {
-    // Production: Only use Secret Manager for security
-    recaptchaSecret = await getSecret('RECAPTCHA_SECRET_KEY')
-  } else {
-    // Development: Try Secret Manager first, fallback to env var for convenience
-    recaptchaSecret = await getSecret('RECAPTCHA_SECRET_KEY')
-    if (!recaptchaSecret) {
-      recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY || null
-    }
-  }
+  // Secret manager helper handles cache and environment fallback.
+  const recaptchaSecret = await getSecret('RECAPTCHA_SECRET_KEY')
 
   if (!recaptchaSecret) {
     const errorMsg = 'RECAPTCHA_SECRET_KEY is not set in Secret Manager or environment variables'
@@ -29,9 +17,6 @@ async function verifyRecaptcha(token: string): Promise<{ valid: boolean; error?:
     })
     return { valid: false, error: errorMsg }
   }
-
-  // Log that we have a secret key (but don't log the actual key)
-  console.log('reCAPTCHA secret key found:', recaptchaSecret.substring(0, 10) + '...' + recaptchaSecret.substring(recaptchaSecret.length - 10))
 
   try {
     const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
