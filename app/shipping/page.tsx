@@ -5,8 +5,8 @@ import Image from 'next/image'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Digital Service Delivery & Shipping Policy | GuruForU Online Tutoring',
-  description: 'GuruForU digital service delivery policy for online tutoring. Learn how to access online classes, technical requirements, account activation timelines, and service availability.',
+  title: 'Shipping and Digital Delivery Policy | GuruForU',
+  description: 'Learn how GuruForU delivers digital tutoring services, including access timelines, technical requirements, and service availability.',
   keywords: [
     'GuruForU service delivery',
     'online tutoring access',
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: 'Digital Service Delivery & Shipping Policy | GuruForU Online Tutoring',
-    description: 'GuruForU digital service delivery policy for online tutoring. Learn how to access online classes, technical requirements, account activation timelines, and service availability.',
+    title: 'Shipping and Digital Delivery Policy | GuruForU',
+    description: 'Understand how GuruForU delivers online services, activation timelines, and access requirements.',
     url: 'https://www.guruforu.com/shipping',
     siteName: 'GuruForU',
     type: 'website',
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Digital Service Delivery & Shipping Policy | GuruForU',
-    description: 'Learn about GuruForU digital service delivery and access timelines.',
+    title: 'Shipping and Digital Delivery Policy | GuruForU',
+    description: 'GuruForU digital service delivery, access timelines, and requirements.',
     images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
     creator: '@guruforu_official',
     site: '@guruforu_official',

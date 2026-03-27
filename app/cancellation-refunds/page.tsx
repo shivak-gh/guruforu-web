@@ -5,8 +5,8 @@ import Image from 'next/image'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Cancellation and Refunds Policy | GuruForU Online Tutoring',
-  description: 'GuruForU cancellation and refund policy for online tutoring. Learn refund eligibility, how to cancel subscriptions, processing times, and money-back guarantee for online classes.',
+  title: 'Cancellation and Refund Policy | GuruForU',
+  description: 'Review GuruForU\'s cancellation and refund policy, including eligibility, timelines, and how to request support.',
   keywords: [
     'GuruForU refund policy',
     'online tutoring cancellation',
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: 'Cancellation and Refunds Policy | GuruForU Online Tutoring',
-    description: 'GuruForU cancellation and refund policy for online tutoring. Learn refund eligibility, how to cancel subscriptions, processing times, and money-back guarantee for online classes.',
+    title: 'Cancellation and Refund Policy | GuruForU',
+    description: 'Understand GuruForU refund eligibility, cancellation terms, and request timelines.',
     url: 'https://www.guruforu.com/cancellation-refunds',
     siteName: 'GuruForU',
     type: 'website',
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cancellation and Refunds | GuruForU',
-    description: 'Learn about GuruForU refund eligibility and cancellation policies.',
+    title: 'Cancellation and Refund Policy | GuruForU',
+    description: 'Refund eligibility, cancellation terms, and support details for GuruForU services.',
     images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
     creator: '@guruforu_official',
     site: '@guruforu_official',

@@ -5,7 +5,6 @@ import { getAllCategories, getBlogsByCategory, categoryToSlug } from '../lib/get
 import dynamicImport from 'next/dynamic'
 import styles from './page.module.css'
 import Script from 'next/script'
-import { generateHreflangLinks } from '../../../lib/locale'
 
 // Lazy load NavMenu to reduce initial bundle size
 const NavMenu = dynamicImport(() => import('../../components/NavMenu'), {
@@ -13,10 +12,9 @@ const NavMenu = dynamicImport(() => import('../../components/NavMenu'), {
 })
 
 // Optimize RSC caching to reduce duplicate requests
-// Disable caching during development/stabilization
-// Set DISABLE_CACHE=false in environment to enable caching (revalidate=3600, dynamic='force-static')
-export const revalidate = 0 // Disabled for stability - set to 3600 when ready
-export const dynamic = 'force-dynamic' // Force dynamic rendering - set to 'force-static' when ready
+// Use ISR for better crawl consistency and lower server cost.
+export const revalidate = 3600
+export const dynamic = 'force-static'
 
 export async function generateStaticParams() {
   const categories = await getAllCategories()
@@ -37,18 +35,9 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     }
   }
 
-  // Generate hreflang links for this page (all locales point to same URL for single-URL site)
-  const baseUrl = 'https://www.guruforu.com'
-  const currentPath = `/blog/${categorySlug}`
-  const hreflangLinks = generateHreflangLinks(baseUrl, currentPath)
-  const languagesMap = hreflangLinks.reduce((acc, link) => {
-    acc[link.hreflang] = link.href
-    return acc
-  }, {} as Record<string, string>)
-
   return {
-    title: `${category.name} | GuruForU - Online Education Resources`,
-    description: `Read ${category.count} ${category.count === 1 ? 'article' : 'expert articles'} about ${category.name} for online tutoring and education. Tips, guides, and strategies for students and parents.`,
+    title: `${category.name} Guides for Parents & Students | GuruForU Blog`,
+    description: `Browse ${category.count} ${category.count === 1 ? 'practical guide' : 'practical guides'} on ${category.name}. Actionable learning tips and tutoring insights from GuruForU.`,
     keywords: [
       `${category.name} online tutoring`,
       `${category.name} online learning`,
@@ -72,8 +61,8 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       },
     },
     openGraph: {
-      title: `${category.name} | GuruForU - Online Education Resources`,
-      description: `Read ${category.count} ${category.count === 1 ? 'article' : 'expert articles'} about ${category.name} for online tutoring and education. Tips, guides, and strategies for students and parents.`,
+      title: `${category.name} Guides | GuruForU Blog`,
+      description: `Explore ${category.count} ${category.count === 1 ? 'guide' : 'guides'} on ${category.name} with practical tips for students and parents.`,
       url: `https://www.guruforu.com/blog/${categorySlug}`,
       siteName: 'GuruForU',
       type: 'website',
@@ -89,15 +78,14 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${category.name} | GuruForU - Online Education Resources`,
-      description: `Read ${category.count} ${category.count === 1 ? 'article' : 'expert articles'} about ${category.name} for online tutoring and education.`,
+      title: `${category.name} Guides | GuruForU Blog`,
+      description: `Practical ${category.name} learning guides from GuruForU for students and parents.`,
       images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
       creator: '@guruforu_official',
       site: '@guruforu_official',
     },
     alternates: {
       canonical: `https://www.guruforu.com/blog/${categorySlug}`,
-      languages: languagesMap,
     },
   }
 }

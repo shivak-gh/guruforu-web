@@ -5,8 +5,8 @@ import Image from 'next/image'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service & Conditions | GuruForU Online Tutoring',
-  description: 'GuruForU terms of service for online tutoring and AI-powered education. Understand user agreements, service policies, payment terms, and platform rules for students and parents.',
+  title: 'Terms and Conditions | GuruForU Service Agreement',
+  description: 'Read GuruForU\'s Terms and Conditions, including service rules, payment terms, user responsibilities, and platform policies.',
   keywords: [
     'GuruForU terms of service',
     'online tutoring terms and conditions',
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: 'Terms of Service & Conditions | GuruForU Online Tutoring',
-    description: 'GuruForU terms of service for online tutoring. Understand user agreements, service policies, payment terms, and platform rules for students and parents.',
+    title: 'Terms and Conditions | GuruForU',
+    description: 'Review GuruForU\'s service terms, platform policies, and user responsibilities.',
     url: 'https://www.guruforu.com/terms',
     siteName: 'GuruForU',
     type: 'website',
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Terms of Service & Conditions | GuruForU',
-    description: 'Read GuruForU terms and conditions and service agreement.',
+    title: 'Terms and Conditions | GuruForU',
+    description: 'Read GuruForU\'s service agreement and platform terms.',
     images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
     creator: '@guruforu_official',
     site: '@guruforu_official',

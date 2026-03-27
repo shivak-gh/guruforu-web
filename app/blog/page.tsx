@@ -4,8 +4,7 @@ import BlogImage from '../components/BlogImage'
 import dynamicImport from 'next/dynamic'
 import styles from './page.module.css'
 import Script from 'next/script'
-import { headers } from 'next/headers'
-import { detectLocale, localizeText, generateHreflangLinks } from '../../lib/locale'
+import { detectLocale, localizeText } from '../../lib/locale'
 import type { Metadata } from 'next'
 
 // Lazy load client components to reduce initial bundle size
@@ -17,25 +16,14 @@ const NavMenu = dynamicImport(() => import('../components/NavMenu'), {
 })
 
 // Optimize RSC caching to reduce duplicate requests
-// Disable caching during development/stabilization
-// Set DISABLE_CACHE=false in environment to enable caching (revalidate=3600, dynamic='force-static')
-export const revalidate = 0 // Disabled for stability - set to 3600 when ready
-export const dynamic = 'force-dynamic' // Force dynamic rendering - set to 'force-static' when ready
+// Use ISR for better crawl consistency and lower server cost.
+export const revalidate = 3600
+export const dynamic = 'force-static'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const baseUrl = 'https://www.guruforu.com'
-  const currentPath = '/blog'
-  
-  // Generate hreflang links for this page (all locales point to same URL for single-URL site)
-  const hreflangLinks = generateHreflangLinks(baseUrl, currentPath)
-  const languagesMap = hreflangLinks.reduce((acc, link) => {
-    acc[link.hreflang] = link.href
-    return acc
-  }, {} as Record<string, string>)
-
   return {
-    title: 'Learning Resources | GuruForU - Online Education & Tutoring',
-    description: 'Expert articles on online learning, AI-powered tutoring, student progress tracking, and personalized learning. Tips and guides for parents and students from GuruForU online education.',
+    title: 'GuruForU Blog | Practical Learning Guides for Parents & Students',
+    description: 'Explore practical guides on online learning, study strategies, and Math & Science tutoring. Actionable tips for parents and students from GuruForU experts.',
     keywords: [
       'online learning resources',
       'online learning for students',
@@ -62,8 +50,8 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: 'Learning Resources | GuruForU - Online Education & Tutoring',
-      description: 'Expert articles on online learning, AI-powered tutoring, student progress tracking, and personalized learning. Tips and guides for parents and students from GuruForU online education.',
+      title: 'GuruForU Blog | Learning Guides for Parents & Students',
+      description: 'Practical articles on study habits, online tutoring, and student progress for K-12 learners.',
       url: 'https://www.guruforu.com/blog',
       siteName: 'GuruForU',
       type: 'website',
@@ -79,15 +67,14 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Learning Resources | GuruForU - Online Education & Tutoring',
-      description: 'Expert articles on online learning, AI-powered tutoring, student progress tracking, and personalized learning. Tips and guides from GuruForU online education.',
+      title: 'GuruForU Blog | Learning Guides for Parents & Students',
+      description: 'Practical tips on study strategies, online tutoring, and K-12 learning progress.',
       images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
       creator: '@guruforu_official',
       site: '@guruforu_official',
     },
     alternates: {
       canonical: 'https://www.guruforu.com/blog',
-      languages: languagesMap,
       types: {
         'application/rss+xml': 'https://www.guruforu.com/feed.xml',
       },
@@ -97,8 +84,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function BlogListing() {
   const blogs = await getAllBlogs()
-  const headersList = await headers()
-  const localeInfo = detectLocale(headersList)
+  const localeInfo = detectLocale()
   const localized = (text: string) => localizeText(text, localeInfo.region)
 
   const formatDate = (dateString: string) => {

@@ -46,8 +46,8 @@ const localBusinessSchema = {
 }
 
 export const metadata: Metadata = {
-  title: 'Contact Us | GuruForU - Get in Touch',
-  description: 'Contact GuruForU for questions about online classes, AI-powered learning, or student progress tracking. We respond within 24-48 hours.',
+  title: 'Contact GuruForU | Talk to Our Tutoring Support Team',
+  description: 'Get in touch with GuruForU for tutoring questions, enrollment help, or support. We usually respond within 24-48 hours.',
   keywords: [
     'Contact GuruForU',
     'Online Tutoring Support',
@@ -67,8 +67,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Contact Us | GuruForU - Get in Touch',
-    description: 'Contact GuruForU for questions about online classes, AI-powered learning, or student progress tracking.',
+    title: 'Contact GuruForU | Support and Enrollment Help',
+    description: 'Reach GuruForU for tutoring support, enrollment guidance, and student learning questions.',
     url: 'https://www.guruforu.com/contact',
     siteName: 'GuruForU',
     images: [
@@ -84,8 +84,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact Us | GuruForU',
-    description: 'Contact GuruForU for questions about online classes, AI-powered learning, or student progress tracking.',
+    title: 'Contact GuruForU | Support and Enrollment Help',
+    description: 'Need help with GuruForU? Contact our team for quick support and guidance.',
     images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
     creator: '@guruforu_official',
     site: '@guruforu_official',

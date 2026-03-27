@@ -33,8 +33,8 @@ const faqSchema = {
 }
 
 export const metadata: Metadata = {
-  title: 'FREE Math & Science Tutoring Session | Book Now | GuruForU',
-  description: 'Get a FREE 15-minute assessment with expert Math & Science tutors. No credit card, no obligation. Find out exactly where your child needs help. Book now!',
+  title: 'Book a Free Math & Science Assessment | GuruForU',
+  description: 'Book a free 15-minute assessment with expert Math and Science tutors. No credit card, no obligation, and a clear plan for your child.',
   keywords: [
     'free math tutoring session',
     'free science tutoring',
@@ -59,8 +59,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'FREE Math & Science Tutoring Session | GuruForU',
-    description: 'Struggling with Math or Science? Book a FREE 15-minute session with expert tutors. No credit card required.',
+    title: 'Free Math & Science Assessment | GuruForU',
+    description: 'Book a free 15-minute assessment with expert tutors and get a personalized next-step plan.',
     url: 'https://www.guruforu.com/free-session',
     siteName: 'GuruForU',
     images: [
@@ -76,8 +76,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FREE Math & Science Tutoring Session | GuruForU',
-    description: 'Book a FREE 15-minute session with expert Math & Science tutors. No obligation.',
+    title: 'Free Math & Science Assessment | GuruForU',
+    description: 'No-obligation 15-minute assessment with expert tutors. Book your free session.',
     images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
   },
   alternates: {

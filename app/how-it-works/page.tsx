@@ -9,8 +9,8 @@ const NavMenu = dynamic(() => import('../components/NavMenu'), {
 })
 
 export const metadata: Metadata = {
-  title: 'How It Works | Online Tutoring Platform | GuruForU',
-  description: 'Learn how GuruForU works for teachers, students, and parents. Live video classes, AI-powered progress reports, interactive whiteboard, and complete visibility for parents.',
+  title: 'How GuruForU Works | Live Classes, Reports, and Parent Visibility',
+  description: 'See how GuruForU works for students, parents, and teachers with live online classes, AI-powered progress reports, and interactive learning tools.',
   keywords: [
     'how online tutoring works',
     'live tutoring platform',
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   ],
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'How It Works | GuruForU Online Tutoring',
-    description: 'Discover how GuruForU connects teachers, students, and parents through live video classes and AI-powered learning insights.',
+    title: 'How GuruForU Works | Live Tutoring Platform',
+    description: 'Learn how GuruForU connects students, parents, and teachers with live classes and AI-powered learning insights.',
     url: 'https://www.guruforu.com/how-it-works',
     siteName: 'GuruForU',
     type: 'website',
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'How It Works | GuruForU Online Tutoring',
-    description: 'Live video classes, AI-powered progress reports, and complete visibility for parents.',
+    title: 'How GuruForU Works | Live Tutoring Platform',
+    description: 'Live classes, AI progress reports, and better parent visibility in one platform.',
     images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
   },
   alternates: { canonical: 'https://www.guruforu.com/how-it-works' },

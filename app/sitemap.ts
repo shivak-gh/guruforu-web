@@ -1,9 +1,21 @@
 import { getAllBlogs, getAllCategories, getBlogsByCategory } from './blog/lib/getBlogs'
 import { defaultBlogImage } from './blog/lib/categoryImages'
 import { MetadataRoute } from 'next'
+import { stat } from 'fs/promises'
+import { join } from 'path'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.guruforu.com'
+
+  const getLastModifiedFromAppFile = async (relativeFilePath: string): Promise<Date> => {
+    try {
+      const fullPath = join(process.cwd(), 'app', relativeFilePath)
+      const stats = await stat(fullPath)
+      return stats.mtime
+    } catch {
+      return new Date()
+    }
+  }
   
   // Helper function to create sitemap entry
   const createSitemapEntry = (
@@ -29,23 +41,47 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ? new Date(blogs[0].meta.publishedDate)
     : new Date()
 
-  // Static pages - Main pages (updated recently for better crawling)
+  // Static pages - Main pages with file-based lastModified values.
   const now = new Date()
+  const [
+    homeLastModified,
+    blogLastModified,
+    contactLastModified,
+    freeSessionLastModified,
+    aboutLastModified,
+    howItWorksLastModified,
+    termsLastModified,
+    privacyLastModified,
+    shippingLastModified,
+    cancellationRefundsLastModified,
+  ] = await Promise.all([
+    getLastModifiedFromAppFile('page.tsx'),
+    getLastModifiedFromAppFile('blog/page.tsx'),
+    getLastModifiedFromAppFile('contact/page.tsx'),
+    getLastModifiedFromAppFile('free-session/page.tsx'),
+    getLastModifiedFromAppFile('about/page.tsx'),
+    getLastModifiedFromAppFile('how-it-works/page.tsx'),
+    getLastModifiedFromAppFile('terms/page.tsx'),
+    getLastModifiedFromAppFile('privacy/page.tsx'),
+    getLastModifiedFromAppFile('shipping/page.tsx'),
+    getLastModifiedFromAppFile('cancellation-refunds/page.tsx'),
+  ])
+
   const staticPages = [
-    createSitemapEntry('/', now, 'weekly', 1.0), // Homepage updated more frequently
-    createSitemapEntry('/blog', latestBlogDate, 'daily', 0.9), // Blog: lastModified = latest post
-    createSitemapEntry('/contact', now, 'monthly', 0.8),
-    createSitemapEntry('/free-session', now, 'weekly', 0.9),
-    createSitemapEntry('/about', now, 'monthly', 0.8),
-    createSitemapEntry('/how-it-works', now, 'monthly', 0.8),
+    createSitemapEntry('/', homeLastModified, 'weekly', 1.0),
+    createSitemapEntry('/blog', latestBlogDate > blogLastModified ? latestBlogDate : blogLastModified, 'daily', 0.9),
+    createSitemapEntry('/contact', contactLastModified, 'monthly', 0.8),
+    createSitemapEntry('/free-session', freeSessionLastModified, 'weekly', 0.9),
+    createSitemapEntry('/about', aboutLastModified, 'monthly', 0.8),
+    createSitemapEntry('/how-it-works', howItWorksLastModified, 'monthly', 0.8),
   ]
 
-  // Static pages - Legal/Policy pages
+  // Static pages - Legal/Policy pages with file-based lastModified values.
   const legalPages = [
-    createSitemapEntry('/terms', new Date(), 'yearly', 0.5),
-    createSitemapEntry('/privacy', new Date(), 'yearly', 0.5),
-    createSitemapEntry('/shipping', new Date(), 'yearly', 0.5),
-    createSitemapEntry('/cancellation-refunds', new Date(), 'yearly', 0.5),
+    createSitemapEntry('/terms', termsLastModified, 'yearly', 0.5),
+    createSitemapEntry('/privacy', privacyLastModified, 'yearly', 0.5),
+    createSitemapEntry('/shipping', shippingLastModified, 'yearly', 0.5),
+    createSitemapEntry('/cancellation-refunds', cancellationRefundsLastModified, 'yearly', 0.5),
   ]
 
   // Create blog category URLs (lastModified = latest post in that category)

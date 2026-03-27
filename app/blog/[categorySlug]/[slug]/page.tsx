@@ -7,7 +7,6 @@ import { getAuthor } from '../../../../lib/authors'
 import dynamicImport from 'next/dynamic'
 import styles from './page.module.css'
 import Script from 'next/script'
-import { generateHreflangLinks } from '../../../../lib/locale'
 
 // Descriptive anchor text for external links (SEO: avoid URL-only anchor text)
 function getAnchorTextForUrl(url: string): string {
@@ -102,10 +101,9 @@ const NavMenu = dynamicImport(() => import('../../../components/NavMenu'), {
 })
 
 // Optimize RSC caching to reduce duplicate requests
-// Disable caching during development/stabilization
-// Set DISABLE_CACHE=false in environment to enable caching (revalidate=3600, dynamic='force-static')
-export const revalidate = 0 // Disabled for stability - set to 3600 when ready
-export const dynamic = 'force-dynamic' // Force dynamic rendering - set to 'force-static' when ready
+// Use ISR for better crawl consistency and lower server cost.
+export const revalidate = 3600
+export const dynamic = 'force-static'
 
 export async function generateStaticParams() {
   const blogs = await getAllBlogs()
@@ -150,28 +148,15 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     ...blogKeywords,
   ]
 
-  // Use optional CTR-focused meta overrides; otherwise optimize defaults
+  // Use optional CTR-focused meta overrides; otherwise optimize defaults.
   const metaTitle = (blog as { metaTitle?: string }).metaTitle
   const metaDescription = (blog as { metaDescription?: string }).metaDescription
-  const optimizedTitle = metaTitle
-    ? (metaTitle.length > 55 ? `${metaTitle.substring(0, 52)}... | GuruForU` : `${metaTitle} | GuruForU`)
-    : blog.title.length > 55
-      ? `${blog.title.substring(0, 52)}... | GuruForU`
-      : `${blog.title} | GuruForU`
-  const optimizedDescription = metaDescription
-    ? (metaDescription.length > 160 ? `${metaDescription.substring(0, 157)}...` : metaDescription)
-    : blog.lead.length > 160
-      ? `${blog.lead.substring(0, 157)}...`
-      : blog.lead
-
-  // Generate hreflang links for this page (all locales point to same URL for single-URL site)
-  const baseUrl = 'https://www.guruforu.com'
-  const currentPath = `/blog/${categorySlug}/${slug}`
-  const hreflangLinks = generateHreflangLinks(baseUrl, currentPath)
-  const languagesMap = hreflangLinks.reduce((acc, link) => {
-    acc[link.hreflang] = link.href
-    return acc
-  }, {} as Record<string, string>)
+  const truncate = (text: string, maxLength: number) =>
+    text.length > maxLength ? `${text.slice(0, maxLength - 1).trimEnd()}…` : text
+  const rawTitle = (metaTitle || blog.title).trim()
+  const titleWithBrand = /guruforu/i.test(rawTitle) ? rawTitle : `${rawTitle} | GuruForU`
+  const optimizedTitle = truncate(titleWithBrand, 70)
+  const optimizedDescription = truncate((metaDescription || blog.lead).trim(), 160)
 
   return {
     title: optimizedTitle,
@@ -209,7 +194,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     },
     twitter: {
       card: 'summary_large_image',
-      title: blog.title.length > 70 ? `${blog.title.substring(0, 67)}...` : blog.title,
+      title: optimizedTitle,
       description: optimizedDescription,
       images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
       creator: '@guruforu_official',
@@ -217,7 +202,6 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     },
     alternates: {
       canonical: `https://www.guruforu.com/blog/${categorySlug}/${slug}`,
-      languages: languagesMap,
     },
   }
 }

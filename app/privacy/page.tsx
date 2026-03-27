@@ -5,8 +5,8 @@ import Image from 'next/image'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy & Data Protection | GuruForU Online Tutoring',
-  description: 'GuruForU privacy policy for online tutoring. Learn how we protect student data, handle personal information, comply with COPPA and GDPR, and ensure secure online learning.',
+  title: 'Privacy Policy | GuruForU Data Protection and Student Privacy',
+  description: 'Read GuruForU\'s Privacy Policy to understand how we protect student data, handle personal information, and support COPPA and GDPR compliance.',
   keywords: [
     'GuruForU privacy policy',
     'online tutoring privacy',
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: 'Privacy Policy & Data Protection | GuruForU Online Tutoring',
-    description: 'GuruForU privacy policy for online tutoring. Learn how we protect student data, handle personal information, comply with COPPA and GDPR, and ensure secure online learning.',
+    title: 'Privacy Policy | GuruForU',
+    description: 'Learn how GuruForU protects personal data and supports student privacy standards.',
     url: 'https://www.guruforu.com/privacy',
     siteName: 'GuruForU',
     type: 'website',
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Privacy Policy & Data Protection | GuruForU',
-    description: 'Learn how GuruForU protects your data and ensures secure online learning.',
+    title: 'Privacy Policy | GuruForU',
+    description: 'How GuruForU protects student and parent data across our platform.',
     images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
     creator: '@guruforu_official',
     site: '@guruforu_official',

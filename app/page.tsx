@@ -4,8 +4,7 @@ import Script from 'next/script'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
-import { headers } from 'next/headers'
-import { detectLocale, getSEOContent, localizeText, generateHreflangLinks } from '../lib/locale'
+import { detectLocale, getSEOContent, localizeText } from '../lib/locale'
 import { getAllCategories, getAllBlogs } from './blog/lib/getBlogs'
 import BlogImage from './components/BlogImage'
 import BlogCategories from './components/BlogCategories'
@@ -16,23 +15,15 @@ const NavMenu = dynamic(() => import('./components/NavMenu'), {
 })
 
 export async function generateMetadata(): Promise<Metadata> {
-  const headersList = await headers()
-  const localeInfo = detectLocale(headersList)
-  const seoContent = getSEOContent(localeInfo.region)
   const baseUrl = 'https://www.guruforu.com'
-  const currentPath = '/'
-
-  // Generate hreflang links for this page (all locales point to same URL for single-URL site)
-  const hreflangLinks = generateHreflangLinks(baseUrl, currentPath)
-  const languagesMap = hreflangLinks.reduce((acc, link) => {
-    acc[link.hreflang] = link.href
-    return acc
-  }, {} as Record<string, string>)
+  const title = 'Online Math & Science Tutoring with AI Progress Tracking | GuruForU'
+  const description =
+    'Live 1-on-1 online tutoring for K-12 Math and Science. Expert tutors, personalized learning plans, and AI-powered progress reports for parents. Book a free session.'
 
   return {
-    title: seoContent.title,
-    description: seoContent.description,
-    keywords: seoContent.keywords,
+    title,
+    description,
+    keywords: getSEOContent('DEFAULT').keywords,
     robots: {
       index: true,
       follow: true,
@@ -45,8 +36,8 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: seoContent.openGraphTitle,
-      description: seoContent.openGraphDescription,
+      title: 'GuruForU | Online Math & Science Tutoring for K-12',
+      description,
       url: baseUrl,
       siteName: 'GuruForU',
       images: [
@@ -58,26 +49,25 @@ export async function generateMetadata(): Promise<Metadata> {
         },
       ],
       type: 'website',
-      locale: localeInfo.openGraphLocale,
+      locale: 'en_US',
     },
     twitter: {
       card: 'summary_large_image',
-      title: seoContent.openGraphTitle,
-      description: seoContent.openGraphDescription,
+      title: 'GuruForU | Online Math & Science Tutoring for K-12',
+      description:
+        'Expert tutors + AI progress tracking for K-12 Math and Science. Book a free session with GuruForU.',
       images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
       creator: '@guruforu_official',
       site: '@guruforu_official',
     },
     alternates: {
       canonical: baseUrl,
-      languages: languagesMap,
     },
   }
 }
 
 export default async function ComingSoon() {
-  const headersList = await headers()
-  const localeInfo = detectLocale(headersList)
+  const localeInfo = detectLocale()
   const localized = (text: string) => localizeText(text, localeInfo.region)
   const [categories, allBlogs] = await Promise.all([getAllCategories(), getAllBlogs()])
   const latestBlogs = allBlogs.slice(0, 5)

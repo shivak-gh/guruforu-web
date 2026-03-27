@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
-import { headers } from 'next/headers'
 import { detectLocale, getSEOContent } from '../lib/locale'
 import './globals.css'
 
@@ -29,20 +28,19 @@ export const viewport: Viewport = {
 // Locale detection is a simple object lookup (<1ms overhead)
 
 export async function generateMetadata(): Promise<Metadata> {
-  // Next.js optimizes headers() - safe to call multiple times per request
-  const headersList = await headers()
-  const localeInfo = detectLocale(headersList)
-  const seoContent = getSEOContent(localeInfo.region)
   const baseUrl = 'https://www.guruforu.com'
+  const title = 'Online Math & Science Tutoring with AI Progress Tracking | GuruForU'
+  const description =
+    'Live online tutoring for K-12 Math and Science with expert teachers, personalized learning, and AI-powered progress insights.'
 
   // Note: Hreflang tags are generated per-page in each page's generateMetadata function
   // The root layout doesn't know the current path, so hreflang is handled by individual pages
 
   return {
     metadataBase: new URL(baseUrl),
-    title: seoContent.title,
-    description: seoContent.description,
-    keywords: seoContent.keywords,
+    title,
+    description,
+    keywords: getSEOContent('DEFAULT').keywords,
     icons: {
       icon: '/guruforu-ai-education-logo-dark.png',
       apple: '/guruforu-ai-education-logo-dark.png',
@@ -59,8 +57,8 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: seoContent.openGraphTitle,
-      description: seoContent.openGraphDescription,
+      title: 'GuruForU | Online Math & Science Tutoring for K-12',
+      description,
       url: baseUrl,
       siteName: 'GuruForU',
       images: [
@@ -72,12 +70,13 @@ export async function generateMetadata(): Promise<Metadata> {
         },
       ],
       type: 'website',
-      locale: localeInfo.openGraphLocale,
+      locale: 'en_US',
     },
     twitter: {
       card: 'summary_large_image',
-      title: seoContent.openGraphTitle,
-      description: seoContent.openGraphDescription,
+      title: 'GuruForU | Online Math & Science Tutoring for K-12',
+      description:
+        'Expert online tutors, personalized learning plans, and AI-powered progress tracking for students.',
       images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
       creator: '@guruforu_official',
       site: '@guruforu_official',
@@ -96,9 +95,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  // Next.js optimizes headers() - returns cached value within same request
-  const headersList = await headers()
-  const localeInfo = detectLocale(headersList)
+  // Keep server-rendered locale stable for consistent crawlable HTML.
+  const localeInfo = detectLocale()
 
   return (
     <html lang={localeInfo.htmlLang}>
