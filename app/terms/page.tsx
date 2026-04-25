@@ -139,6 +139,7 @@ export default function TermsAndConditions() {
         <div className={styles.pageContent}>
           <h1 className={styles.title}>Terms and Conditions</h1>
           <p className={styles.lastUpdated}>Last Updated: January 1, {new Date().getFullYear()}</p>
+          <p className={styles.text}>Guruforu is owned and operated by Gratiq Solutions LLP.</p>
           <p className={styles.text}>
             Welcome to <strong>GuruForU</strong>, your trusted platform for <strong>AI-powered online education</strong>. 
             These Terms and Conditions govern your use of our services, including our online classes, student progress tracking, 

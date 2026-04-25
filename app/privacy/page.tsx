@@ -139,6 +139,7 @@ export default function PrivacyPolicy() {
         <div className={styles.pageContent}>
           <h1 className={styles.title}>Privacy Policy</h1>
           <p className={styles.lastUpdated}>Last Updated: January 1, {new Date().getFullYear()}</p>
+          <p className={styles.text}>Guruforu is owned and operated by Gratiq Solutions LLP.</p>
           <p className={styles.text}>
             At <strong>GuruForU</strong>, we are committed to protecting your privacy and ensuring the security of your personal information. 
             This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our 
