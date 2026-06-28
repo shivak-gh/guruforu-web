@@ -1,0 +1,79 @@
+{
+  "title": "Class 11 Biology: Cell Cycle and Cell Division—Mitosis and Meiosis",
+  "slug": "class-11-cell-cycle-and-cell-division",
+  "category": "Biology",
+  "meta": { "readTime": "11 min read", "publishedDate": "2026-06-27" },
+  "keywords": ["class 11 biology", "cell cycle", "mitosis meiosis", "cell division class 11", "how to study mitosis"],
+  "image": "/blog-images/class-11-cell-cycle-and-cell-division.jpg",
+  "lead": "Mitosis and meiosis look similar in textbooks—both involve chromosomes dividing—but they serve completely different purposes and follow different rules. Class 11 students often mix up the stages, confuse chromosome counts, and can't explain why meiosis creates genetic variation. This guide breaks down why cell division feels hard, shares fascinating facts about the trillions of divisions in your body, and gives you a tackling playbook—plus how GuruForU teachers make mitosis and meiosis crystal clear.",
+  "sections": [
+    {
+      "title": "Why Cell Division Trips Up Class 11 Students",
+      "content": [
+        "Mitosis has prophase, metaphase, anaphase, telophase—and meiosis has TWO rounds of division with different outcomes. Drawing and labelling stages for both processes is a memorization marathon.",
+        "The conceptual leap is harder: understanding WHY mitosis produces identical cells while meiosis produces genetically unique gametes with half the chromosome number."
+      ],
+      "highlights": [
+        { "title": "Mitosis vs Meiosis Confusion", "text": "Students swap stage names, chromosome numbers, and outcomes between the two processes—especially in anaphase I vs anaphase II comparisons." },
+        { "title": "Chromosome Counting Errors", "text": "How many chromosomes at each stage? Students lose track of whether they're counting chromatids or chromosomes, especially after replication." },
+        { "title": "Crossing Over and Independent Assortment", "text": "Meiosis I creates variation through crossing over (prophase I) and independent assortment (metaphase I)—but students memorize terms without understanding the mechanism." }
+      ]
+    },
+    {
+      "title": "Fun Facts: Division Powers Life",
+      "content": ["Your body performs roughly 2 trillion cell divisions every day. Here are facts that make this chapter come alive."],
+      "highlights": [
+        { "title": "You Started as One Cell", "text": "Every human began as a single fertilized egg that divided via mitosis about 37 trillion times to build an entire body." },
+        { "title": "Meiosis Creates 8 Million Possible Gametes", "text": "Independent assortment alone in humans can produce 2²³ = 8,388,608 different egg or sperm combinations—before crossing over adds even more variation." },
+        { "title": "Cancer Is Mitosis Gone Wrong", "text": "Cancer cells divide uncontrollably because cell cycle checkpoints fail. Understanding normal division is key to understanding this disease." },
+        { "title": "Red Blood Cells Have No Nucleus", "text": "Mature RBCs eject their nucleus to carry more haemoglobin—they can't divide, so your body replaces 2 million RBCs every second via mitosis in bone marrow." }
+      ]
+    },
+    {
+      "title": "Cell Division Essentials: Mitosis vs Meiosis",
+      "content": [
+        "Cell cycle: Interphase (G1, S, G2) → M phase (mitosis + cytokinesis). S phase replicates DNA so each chromosome has two sister chromatids.",
+        "Mitosis: One division → 2 identical diploid cells. Purpose: growth, repair, asexual reproduction. Stages: Prophase → Metaphase → Anaphase → Telophase.",
+        "Meiosis: Two divisions → 4 genetically unique haploid cells. Meiosis I (reduction division) separates homologous pairs. Meiosis II separates sister chromatids.",
+        "Key events in meiosis I: Crossing over in prophase I (genetic recombination). Independent assortment in metaphase I (random chromosome alignment)."
+      ]
+    },
+    {
+      "title": "How to Tackle Cell Division: A Student's Playbook",
+      "content": ["Draw first, memorize second. Cell division is a visual topic—treat it that way."],
+      "list": [
+        { "item": "Step 1—Master Interphase First: Know what happens in G1, S, and G2 before touching mitosis. DNA replication in S phase is the setup for everything." },
+        { "item": "Step 2—Draw Mitosis Stages Weekly: Prophase (chromosomes condense), Metaphase (align at equator), Anaphase (chromatids separate), Telophase (nuclei reform). Label chromosome count at each stage." },
+        { "item": "Step 3—Compare Side by Side: Create a two-column chart: Mitosis vs Meiosis for divisions, starting cells, end cells, chromosome number, and genetic variation." },
+        { "item": "Step 4—Meiosis I vs Meiosis II: Meiosis I separates homologous chromosomes (reduction). Meiosis II separates sister chromatids (like mitosis). Never mix their anaphase events." },
+        { "item": "Step 5—Practice Chromosome Counting: 'Human cell with 46 chromosomes enters meiosis'—track the count through every stage until 4 cells with 23 chromosomes each." },
+        { "item": "Step 6—Connect to Class 12 Genetics: Meiosis explains why siblings differ genetically. This chapter is the direct foundation for inheritance and variation." }
+      ]
+    },
+    {
+      "title": "How GuruForU Teachers Tackle This Complex Topic",
+      "content": ["Cell division must be seen in motion—not as static textbook diagrams."],
+      "strategies": [
+        { "title": "Animated Division Sequences", "text": "Students watch mitosis and meiosis animations stage by stage, pausing to label structures and count chromosomes at each step." },
+        { "title": "Mitosis vs Meiosis Comparison Charts", "text": "We build a detailed comparison chart together in the first session—students reference it for every subsequent problem." },
+        { "title": "Chromosome Counting Drills", "text": "Rapid practice: given a starting cell and stage, how many chromosomes? How many chromatids? This single skill prevents most exam errors." },
+        { "title": "Crossing Over Visualisation", "text": "Interactive diagrams show homologous chromosomes exchanging segments in prophase I—making genetic recombination tangible." },
+        { "title": "Board and NEET Diagram Practice", "text": "Timed diagram drawing sessions for mitosis stages and meiosis I/II—exactly the format boards and NEET expect." },
+        { "title": "Genetics Bridge Session", "text": "We preview how meiosis leads to Punnett squares and inheritance patterns in Class 12, giving students a reason to master this chapter now." }
+      ]
+    }
+  ],
+  "cta": {
+    "title": "Master Cell Division with Visual Clarity",
+    "text": "Mitosis and meiosis become intuitive with animated sequences and chromosome counting drills. GuruForU biology tutors help your child draw, label, and understand cell division—the foundation for genetics and NEET success.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    { "question": "What is the main difference between mitosis and meiosis?", "answer": "Mitosis: one division, two identical diploid cells (growth/repair). Meiosis: two divisions, four unique haploid gametes (sexual reproduction)." },
+    { "question": "When does crossing over occur?", "answer": "During prophase I of meiosis, when homologous chromosomes pair up (synapsis) and exchange genetic material at chiasmata." },
+    { "question": "How many chromosomes in human gametes?", "answer": "23 chromosomes (haploid). Body cells have 46 (diploid). Meiosis reduces chromosome number by half." },
+    { "question": "How do GuruForU teachers simplify cell division?", "answer": "Through animated sequences, comparison charts, chromosome counting drills, crossing over visualisations, and timed diagram practice." },
+    { "question": "Why is this chapter important for NEET?", "answer": "Cell division, meiosis, and genetic variation are core NEET topics that connect directly to Class 12 genetics and biotechnology." }
+  ]
+}

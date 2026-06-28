@@ -1,6 +1,9 @@
 // Category image mapping for blog categories
 export const categoryImages: Record<string, string> = {
   'math': '/blog-images/math-category.jpg',
+  'physics': '/blog-images/science-category.jpg',
+  'chemistry': '/blog-images/science-category.jpg',
+  'biology': '/blog-images/science-category.jpg',
   'science': '/blog-images/science-category.jpg',
   'technology': '/blog-images/technology-category.jpg',
   'learning-strategies': '/blog-images/learning-strategies-category.jpg',

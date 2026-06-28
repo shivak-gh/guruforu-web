@@ -128,6 +128,12 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
   const titleWords = blog.title.toLowerCase().split(' ').filter((word: string) => word.length > 3)
   const categoryKeywords = blog.category.toLowerCase() === 'math' 
     ? ['online math tutoring', 'math tutoring online', 'math help online']
+    : blog.category.toLowerCase() === 'physics'
+    ? ['online physics tutoring', 'physics tutoring online', 'physics help online', 'class 11 physics']
+    : blog.category.toLowerCase() === 'chemistry'
+    ? ['online chemistry tutoring', 'chemistry tutoring online', 'chemistry help online', 'class 11 chemistry']
+    : blog.category.toLowerCase() === 'biology'
+    ? ['online biology tutoring', 'biology tutoring online', 'biology help online', 'class 11 biology', 'class 12 biology', 'NEET biology']
     : blog.category.toLowerCase() === 'science'
     ? ['online science tutoring', 'science tutoring online', 'science help online']
     : blog.category.toLowerCase() === 'technology'

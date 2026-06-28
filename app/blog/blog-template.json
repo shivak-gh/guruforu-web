@@ -3,69 +3,157 @@
   "slug": "your-blog-slug-here",
   "category": "General",
   "meta": {
-    "readTime": "X min read",
+    "readTime": "11 min read",
     "publishedDate": "YYYY-MM-DD"
   },
-  "lead": "Your lead paragraph that introduces the blog post topic. This should be engaging and provide a brief overview of what readers will learn.",
+  "keywords": [
+    "primary keyword",
+    "secondary keyword",
+    "how to study topic",
+    "class level if applicable"
+  ],
+  "image": "/blog-images/your-blog-slug-here.jpg",
+  "lead": "Hook the reader in 2–3 sentences. Acknowledge why the topic feels hard. Preview what they'll learn (playbook + fun facts). Tease how GuruForU teachers help.",
   "sections": [
     {
-      "title": "Section Title",
+      "title": "Why [Topic] Feels Hard in Class X",
       "content": [
-        "First paragraph of content for this section.",
-        "Second paragraph if needed."
-      ]
-    },
-    {
-      "title": "Section with Highlights",
-      "content": [
-        "Introduction paragraph explaining the highlights below."
+        "Empathetic opening: name the real difficulty (not 'it's hard' but WHY—e.g., too many formulas at once, abstract concepts, exam traps).",
+        "Second paragraph: the hidden skill gap most students miss."
       ],
       "highlights": [
         {
-          "title": "Highlight Title 1",
-          "text": "Description of the highlight point."
+          "title": "Common Struggle 1",
+          "text": "Specific mistake or confusion students face."
         },
         {
-          "title": "Highlight Title 2",
-          "text": "Description of another highlight point."
+          "title": "Common Struggle 2",
+          "text": "Another specific trap or misconception."
+        },
+        {
+          "title": "Common Struggle 3",
+          "text": "Exam-relevant error pattern."
         }
       ]
     },
     {
-      "title": "Section with Strategies",
+      "title": "Fun Facts: [Topic] in the Real World",
       "content": [
-        "Introduction paragraph explaining the strategies."
+        "One sentence framing why these facts make the topic interesting."
       ],
-      "strategies": [
+      "highlights": [
         {
-          "title": "Strategy Title 1",
-          "text": "Detailed explanation of the strategy."
+          "title": "Surprising Fact 1",
+          "text": "History, nature, technology, or daily-life connection. Keep under 2 sentences."
         },
         {
-          "title": "Strategy Title 2",
-          "text": "Detailed explanation of another strategy."
+          "title": "Surprising Fact 2",
+          "text": "Another engaging fact that makes readers want to keep reading."
+        },
+        {
+          "title": "Surprising Fact 3",
+          "text": "Connect to something students recognize (sports, phones, space, food, etc.)."
+        },
+        {
+          "title": "Surprising Fact 4",
+          "text": "A 'wow' fact that shows why this topic matters beyond exams."
         }
       ]
     },
     {
-      "title": "Section with List",
+      "title": "[Topic] Essentials: What You Must Know",
       "content": [
-        "Introduction paragraph before the list."
+        "Core concept 1 with plain-language explanation and key formula if relevant.",
+        "Core concept 2.",
+        "Core concept 3.",
+        "Core concept 4 (optional)."
+      ]
+    },
+    {
+      "title": "How to Tackle [Topic]: A Student's Playbook",
+      "content": [
+        "One sentence: the mindset or framework before the steps."
       ],
       "list": [
         {
-          "item": "Bold Term: Description of the list item with bold term at the start."
+          "item": "Step 1—Label: Specific actionable step students can follow."
         },
         {
-          "item": "Simple list item without bold formatting."
+          "item": "Step 2—Label: Next step in the playbook."
+        },
+        {
+          "item": "Step 3—Label: Continue with 5–6 total steps."
+        },
+        {
+          "item": "Step 4—Label: Include exam tips or sanity checks."
+        },
+        {
+          "item": "Step 5—Label: Practice recommendation."
+        },
+        {
+          "item": "Step 6—Label: Connect to next chapter or real application."
+        }
+      ]
+    },
+    {
+      "title": "How GuruForU Teachers Tackle This Complex Topic",
+      "content": [
+        "One sentence: GuruForU doesn't just explain formulas—we rebuild how students think about the topic."
+      ],
+      "strategies": [
+        {
+          "title": "Specific Teaching Move 1",
+          "text": "e.g., Real-world demos, visual simulations, or interactive models."
+        },
+        {
+          "title": "Specific Teaching Move 2",
+          "text": "e.g., Chunked skill progression—master one layer before adding the next."
+        },
+        {
+          "title": "Specific Teaching Move 3",
+          "text": "e.g., AI-powered gap detection and targeted practice drills."
+        },
+        {
+          "title": "Specific Teaching Move 4",
+          "text": "e.g., Live one-on-one problem solving with instant feedback."
+        },
+        {
+          "title": "Specific Teaching Move 5",
+          "text": "e.g., Exam pattern recognition for boards/JEE."
+        },
+        {
+          "title": "Specific Teaching Move 6",
+          "text": "e.g., Bridge to upcoming chapters so students see the bigger picture."
         }
       ]
     }
   ],
   "cta": {
-    "title": "Call to Action Title",
-    "text": "Call to action description text.",
-    "buttonText": "Button Text",
-    "buttonLink": "/"
-  }
+    "title": "Topic-Specific CTA Title",
+    "text": "2–3 sentences. Tie the topic to GuruForU's approach (personalized tutoring, AI tracking, expert teachers). Warm and helpful—not pushy.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    {
+      "question": "Topic-specific question 1?",
+      "answer": "Clear, concise answer."
+    },
+    {
+      "question": "Topic-specific question 2?",
+      "answer": "Clear, concise answer."
+    },
+    {
+      "question": "Topic-specific question 3?",
+      "answer": "Clear, concise answer."
+    },
+    {
+      "question": "How do GuruForU teachers help with [topic]?",
+      "answer": "Summarize 2–3 specific teaching strategies from the GuruForU section above."
+    },
+    {
+      "question": "Topic-specific question 4?",
+      "answer": "Clear, concise answer."
+    }
+  ]
 }

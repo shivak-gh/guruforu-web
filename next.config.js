@@ -238,6 +238,31 @@ const nextConfig = {
     return headers
   },
   async redirects() {
+    const class11PhysicsRedirects = [
+      'class-11-newtons-laws-of-motion',
+      'class-11-rotational-dynamics',
+      'class-11-oscillations',
+      'class-11-waves',
+      'class-11-physics-thermodynamics',
+      'class-11-fluid-mechanics',
+      'class-11-kinetic-theory-of-gases',
+    ].map((slug) => ({
+      source: `/blog/science/${slug}`,
+      destination: `/blog/physics/${slug}`,
+      permanent: true,
+    }))
+
+    const class11ChemistryRedirects = [
+      'class-11-chemical-bonding',
+      'class-11-chemistry-thermodynamics',
+      'class-11-equilibrium',
+      'class-11-general-organic-chemistry',
+    ].map((slug) => ({
+      source: `/blog/science/${slug}`,
+      destination: `/blog/chemistry/${slug}`,
+      permanent: true,
+    }))
+
     return [
       {
         source: '/free-consultation',
@@ -249,6 +274,8 @@ const nextConfig = {
         destination: '/free-session',
         permanent: true,
       },
+      ...class11PhysicsRedirects,
+      ...class11ChemistryRedirects,
     ]
   },
 }

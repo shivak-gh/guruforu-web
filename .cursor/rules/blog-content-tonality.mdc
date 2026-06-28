@@ -1,0 +1,70 @@
+---
+description: GuruForU blog voice, structure, and content standards for JSON blog posts
+globs: app/blog/content/**/*.json,app/blog/blog-template.json
+alwaysApply: false
+---
+
+# GuruForU Blog Tonality
+
+Write for **parents and Class 9–12 students**. Sound like a knowledgeable tutor who gets why the topic is hard—not a textbook.
+
+## Voice
+
+- **Empathetic first**: Acknowledge difficulty before teaching ("This feels overwhelming because…")
+- **Direct and warm**: Use "you" and "your child." Avoid stiff academic tone.
+- **Confident, not salesy**: GuruForU mentions should feel helpful, not pushy.
+- **Concrete over vague**: Name exact mistakes, formulas, and exam traps—not generic advice.
+
+## Required Section Flow
+
+Every topic/educational blog should follow this order:
+
+1. **Lead** (2–3 sentences): Hook + why it’s hard + what reader gets + GuruForU tease
+2. **Why [Topic] Feels Hard**: `content` + `highlights` (3 common struggles)
+3. **Fun Facts**: `content` + `highlights` (4 surprising real-world facts)
+4. **Core concepts**: `content` (deeper explanation, formulas where relevant)
+5. **How to Tackle [Topic]: A Student's Playbook**: `content` + `list` (5–6 numbered steps)
+6. **How GuruForU Teachers Tackle This Complex Topic**: `content` + `strategies` (5–6 items)
+7. **CTA**: Specific to the topic; button → `/free-session`
+8. **FAQ**: 5 Q&As; include one about how GuruForU helps
+
+## GuruForU Teacher Section
+
+Each strategy should name a **specific teaching move**, e.g.:
+- Real-world demos / simulations
+- Chunked skill progression
+- AI gap detection + targeted drills
+- Live one-on-one problem solving
+- Exam pattern recognition (boards/JEE)
+- Bridge to upcoming chapters
+
+Avoid generic lines like "our tutors are experts."
+
+## Fun Facts
+
+- Tie facts to daily life, history, technology, or nature
+- Make readers think "I didn't know that"
+- Keep each highlight under 2 sentences
+
+## Formatting Rules
+
+- `readTime`: 10–12 min for deep topic posts (~200 words/min)
+- `list` items: use `Bold Term: explanation` for step labels
+- Include `keywords` (5+) and `image` path `/blog-images/{slug}.jpg`
+- Slug: lowercase, hyphenated; must match filename
+
+## Lead Example
+
+```text
+Newton's three laws look simple on paper—but Class 11 turns them into inclined planes,
+pulley systems, and multi-body problems. This guide explains why the topic feels hard,
+shares surprising facts, gives you a step-by-step playbook, and shows how GuruForU
+teachers turn confusion into confidence.
+```
+
+## Avoid
+
+- Wall-of-text paragraphs (max 2–3 sentences per `content` item)
+- Jargon without a plain-language explanation
+- Promising "easy" topics—use "manageable," "systematic," "clear"
+- Skipping the GuruForU teacher section or fun facts

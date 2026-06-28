@@ -1,0 +1,79 @@
+{
+  "title": "Class 12 Biology: Molecular Basis of Inheritance—DNA, RNA, and Replication",
+  "slug": "class-12-molecular-basis-of-inheritance",
+  "category": "Biology",
+  "meta": { "readTime": "12 min read", "publishedDate": "2026-06-27" },
+  "keywords": ["class 12 biology", "DNA replication", "transcription translation", "central dogma", "NEET molecular biology"],
+  "image": "/blog-images/class-12-molecular-basis-of-inheritance.jpg",
+  "lead": "DNA → RNA → Protein. The central dogma sounds simple, but Class 12 molecular biology dives into replication mechanisms, transcription, splicing, genetic code, and translation—with enzymes, directionality, and molecular details at every step. This is consistently rated the hardest Class 12 biology chapter. This guide explains why, shares incredible DNA facts, and gives you a tackling playbook—plus how GuruForU teachers make molecular biology your NEET advantage.",
+  "sections": [
+    {
+      "title": "Why Molecular Basis of Inheritance Is the Hardest Class 12 Chapter",
+      "content": [
+        "This chapter demands you understand DNA structure, semi-conservative replication (with specific enzymes at each step), transcription (including RNA processing in eukaryotes), the genetic code, and translation—all with molecular detail.",
+        "Students memorize enzyme names (DNA polymerase, ligase, helicase) without understanding their roles, confuse the coding and template strands, and struggle with translation directionality (5' to 3')."
+      ],
+      "highlights": [
+        { "title": "Replication Enzyme Sequence", "text": "Helicase unwinds → SSBP stabilizes → primase adds primer → DNA polymerase III extends → polymerase I removes primer → ligase joins. Students mix up the order." },
+        { "title": "Template vs Coding Strand", "text": "Only one strand is transcribed (template/antisense). mRNA sequence matches the coding/sense strand (with U replacing T). Students confuse which is which." },
+        { "title": "Translation Steps and tRNA", "text": "Initiation, elongation, termination—with ribosome sites (A, P, E) and tRNA anticodons matching mRNA codons. Multiple moving parts to track simultaneously." }
+      ]
+    },
+    {
+      "title": "Fun Facts: The Molecule of Life",
+      "content": ["DNA is the most studied molecule in biology—and it holds secrets we're still discovering."],
+      "highlights": [
+        { "title": "DNA Was First Discovered in 1869", "text": "Friedrich Miescher isolated 'nuclein' from pus-soaked bandages. It took 84 more years before Watson and Crick revealed the double helix structure in 1953." },
+        { "title": "99.9% of Your DNA Is Identical to Any Human", "text": "The 0.1% difference—about 3 million base pairs—accounts for all human variation in appearance, disease susceptibility, and traits." },
+        { "title": "Humans Share 98.7% DNA with Chimpanzees", "text": "That small difference in ~3 billion base pairs is enough to account for the vast differences between our species." },
+        { "title": "Your DNA Could Reach the Sun and Back 600 Times", "text": "All the DNA in all your cells lined up would stretch about 10 billion miles—demonstrating the efficiency of DNA packaging." }
+      ]
+    },
+    {
+      "title": "Molecular Biology Essentials: Central Dogma",
+      "content": [
+        "DNA structure: Double helix, antiparallel strands, A-T (2 H-bonds), G-C (3 H-bonds), major/minor grooves, chromatin packaging (nucleosomes).",
+        "Replication: Semi-conservative. Leading strand (continuous) and lagging strand (Okazaki fragments). Key enzymes at replication fork.",
+        "Transcription: DNA → mRNA. RNA polymerase, promoter, terminator. Eukaryotic mRNA processing: 5' cap, 3' poly-A tail, intron splicing.",
+        "Translation: mRNA → Protein. Ribosomes read codons (3 nucleotides = 1 amino acid). tRNA brings amino acids via anticodon pairing. Start codon AUG, stop codons UAA/UAG/UGA."
+      ]
+    },
+    {
+      "title": "How to Tackle Molecular Biology: A Student's Playbook",
+      "content": ["Follow the central dogma as a production line—each step feeds the next."],
+      "list": [
+        { "item": "Step 1—Draw DNA Structure from Memory: Double helix, base pairs, 5' and 3' ends, hydrogen bonds. This is the foundation for replication and transcription." },
+        { "item": "Step 2—Replication Fork Diagram: Draw leading and lagging strands with all enzymes labelled at their positions. Practice 5 times until automatic." },
+        { "item": "Step 3—Template vs Coding Strand Rule: Template strand is read by RNA polymerase (3'→5'). mRNA matches coding strand (with U for T). Write this rule on every transcription problem." },
+        { "item": "Step 4—Genetic Code Table Practice: Given mRNA codon, find amino acid. Given amino acid sequence, write possible mRNA. Do 20 practice conversions." },
+        { "item": "Step 5—Translation as an Assembly Line: Ribosome A site (incoming tRNA), P site (peptide chain), E site (exit). Follow one tRNA through all three sites." },
+        { "item": "Step 6—Connect All Three Processes: One diagram showing replication → transcription → translation with enzymes, products, and locations (nucleus vs cytoplasm)." }
+      ]
+    },
+    {
+      "title": "How GuruForU Teachers Tackle This Complex Topic",
+      "content": ["Molecular biology is the highest-weightage NEET chapter—GuruForU teachers invest heavily here."],
+      "strategies": [
+        { "title": "Central Dogma Animation", "text": "Students watch the complete flow from DNA replication through transcription to translation in one continuous animated sequence." },
+        { "title": "Replication Fork Labelling Drills", "text": "Timed practice drawing replication forks with all enzymes—helicase, primase, polymerases, ligase—at correct positions." },
+        { "title": "Codon-Amino Acid Speed Practice", "text": "Daily 5-minute drills converting between mRNA codons and amino acids using the genetic code table until fluent." },
+        { "title": "Transcription-Translation Comparison", "text": "Side-by-side chart: template, product, enzyme, location, and directionality for both processes—eliminating the most common confusions." },
+        { "title": "NEET Previous Year Analysis", "text": "We analyse 10 years of NEET molecular biology questions by subtopic—replication, transcription, translation, operon—to identify high-yield areas." },
+        { "title": "Operon Concept Preview", "text": "Introduction to lac operon as a regulation example—connecting molecular biology to gene expression control for advanced NEET questions." }
+      ]
+    }
+  ],
+  "cta": {
+    "title": "Master the Central Dogma for NEET Success",
+    "text": "DNA replication, transcription, and translation become clear with animated sequences and enzyme labelling drills. GuruForU biology tutors help your child conquer the highest-weightage NEET biology chapter.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    { "question": "What is the central dogma?", "answer": "DNA → RNA → Protein. Genetic information flows from DNA (replication), to RNA (transcription), to protein (translation)." },
+    { "question": "What is semi-conservative replication?", "answer": "Each new DNA molecule has one original (parent) strand and one newly synthesized strand." },
+    { "question": "What is the difference between transcription and translation?", "answer": "Transcription: DNA → mRNA in the nucleus. Translation: mRNA → protein at ribosomes in the cytoplasm." },
+    { "question": "How do GuruForU teachers help with molecular biology?", "answer": "Through central dogma animations, replication fork drills, codon-amino acid practice, NEET previous year analysis, and operon concept previews." },
+    { "question": "How important is this chapter for NEET?", "answer": "Molecular basis of inheritance is the single highest-weightage chapter in NEET biology—often 8–12 questions per exam." }
+  ]
+}

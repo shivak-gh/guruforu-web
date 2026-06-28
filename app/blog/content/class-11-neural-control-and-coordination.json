@@ -1,0 +1,79 @@
+{
+  "title": "Class 11 Biology: Neural Control and Coordination",
+  "slug": "class-11-neural-control-and-coordination",
+  "category": "Biology",
+  "meta": { "readTime": "11 min read", "publishedDate": "2026-06-27" },
+  "keywords": ["class 11 biology", "neural control", "nerve impulse", "human brain", "how to study nervous system"],
+  "image": "/blog-images/class-11-neural-control-and-coordination.jpg",
+  "lead": "Your brain contains 86 billion neurons firing in precise patterns—yet Class 11 asks you to explain resting potential, action potential, synaptic transmission, and brain anatomy all in one chapter. Human physiology is where biology students hit their biggest memorization wall. This guide explains why neural control feels overwhelming, shares incredible facts about your nervous system, and gives you a tackling playbook—plus how GuruForU teachers make neurobiology engaging and exam-ready.",
+  "sections": [
+    {
+      "title": "Why Neural Control Overwhelms Class 11 Students",
+      "content": [
+        "This chapter combines electrophysiology (membrane potentials, ion channels), anatomy (brain regions, spinal cord structure), and physiology (reflex arcs, sensory pathways)—three disciplines in one.",
+        "Students memorise brain part names and functions without understanding how nerve impulses actually travel, or confuse resting potential (−70 mV) with action potential dynamics."
+      ],
+      "highlights": [
+        { "title": "Resting vs Action Potential", "text": "Students mix up the ion movements: K⁺/leaks at rest vs Na⁺ influx during depolarization vs K⁺ efflux during repolarization." },
+        { "title": "Brain Region Functions", "text": "Cerebrum, cerebellum, medulla, hypothalamus, thalamus—each has multiple functions that students list without connecting to real behaviours or disorders." },
+        { "title": "Synaptic Transmission Steps", "text": "Electrical → chemical → electrical signal conversion at synapses involves neurotransmitters, receptors, and reuptake—many steps to sequence correctly." }
+      ]
+    },
+    {
+      "title": "Fun Facts: Your Incredible Nervous System",
+      "content": ["Your nervous system processes information faster than any computer—and it runs on chemistry, not silicon."],
+      "highlights": [
+        { "title": "Nerve Impulses Travel Up to 120 m/s", "text": "Myelinated neurons conduct impulses at speeds up to 120 metres per second—fast enough to react to danger before conscious thought kicks in." },
+        { "title": "Your Brain Uses 20 Watts", "text": "The human brain runs on about 20 watts of power—less than a light bulb—yet performs computations no supercomputer can match." },
+        { "title": "Pain Receptors Are the Slowest", "text": "Pain signals travel via slow unmyelinated fibres (~1 m/s), which is why you feel pressure before pain when you stub your toe." },
+        { "title": "Neuroplasticity Rewires Your Brain", "text": "Your brain physically reorganises connections when you learn new skills. Practice literally changes your brain's structure through synaptic strengthening." }
+      ]
+    },
+    {
+      "title": "Neural Control Essentials: From Impulse to Action",
+      "content": [
+        "Neuron structure: Dendrites (receive signals) → Cell body → Axon (transmits) → Synaptic terminals (release neurotransmitters).",
+        "Resting potential: −70 mV maintained by Na⁺/K⁺ pump and K⁺ leak channels. More K⁺ inside, more Na⁺ outside.",
+        "Action potential: Stimulus → depolarization (Na⁺ channels open, Na⁺ rushes in) → repolarization (K⁺ channels open) → refractory period. All-or-nothing principle.",
+        "Synapse: Action potential arrives → Ca²⁺ channels open → neurotransmitter released → binds post-synaptic receptors → new potential generated."
+      ]
+    },
+    {
+      "title": "How to Tackle Neural Control: A Student's Playbook",
+      "content": ["Build from the nerve impulse outward—master the mechanism before the anatomy."],
+      "list": [
+        { "item": "Step 1—Draw a Neuron and Label Everything: Dendrite, cell body, axon, myelin sheath, Node of Ranvier, synaptic knob. Know what each part does." },
+        { "item": "Step 2—Resting Potential First: Understand WHY the membrane is −70 mV (Na⁺/K⁺ pump, ion concentrations). This is the baseline for everything else." },
+        { "item": "Step 3—Walk Through Action Potential: Draw the graph: resting → depolarization → peak → repolarization → hyperpolarization → return. Label ion movements at each phase." },
+        { "item": "Step 4—Synaptic Transmission Sequence: Presynaptic AP → Ca²⁺ influx → vesicle fusion → neurotransmitter release → receptor binding → postsynaptic response. Write this 5 times." },
+        { "item": "Step 5—Brain Map with Functions: Draw brain sagittal section. Label cerebrum (thinking, memory), cerebellum (balance), medulla (breathing, heart rate), hypothalamus (homeostasis)." },
+        { "item": "Step 6—Reflex Arc as a Complete Circuit: Receptor → sensory neuron → spinal cord (interneuron) → motor neuron → effector. Draw and label a knee-jerk reflex." }
+      ]
+    },
+    {
+      "title": "How GuruForU Teachers Tackle This Complex Topic",
+      "content": ["Neurobiology comes alive when students see impulses in action—not just read about them."],
+      "strategies": [
+        { "title": "Action Potential Graph Animation", "text": "Students watch the membrane potential graph evolve step by step, with ion channel states labelled at each phase." },
+        { "title": "Neuron Structure Model Building", "text": "Virtual 3D neuron models let students explore dendrites, axons, and synapses interactively before tackling physiology." },
+        { "title": "Synaptic Transmission Role-Play", "text": "We walk through synaptic transmission as a sequence game—each student represents one step (AP arrival, Ca²⁺ release, neurotransmitter, receptor binding)." },
+        { "title": "Brain Region Function Mapping", "text": "Connect each brain region to real disorders and behaviours—cerebellar ataxia, medulla damage, hypothalamic regulation—for memorable function associations." },
+        { "title": "Reflex Arc Diagram Drills", "text": "Timed practice drawing complete reflex arcs with all components labelled—a board exam favourite." },
+        { "title": "NEET Question Pattern Analysis", "text": "We categorise NEET questions by type (potential graphs, brain anatomy, synapse mechanism) so students know what to expect." }
+      ]
+    }
+  ],
+  "cta": {
+    "title": "Understand Your Nervous System with Expert Help",
+    "text": "Nerve impulses, brain anatomy, and synaptic transmission become clear with animated graphs and structured diagram drills. GuruForU biology tutors help your child master neural control—a high-weightage chapter for boards and NEET.",
+    "buttonText": "Book a Free Session",
+    "buttonLink": "/free-session"
+  },
+  "faq": [
+    { "question": "What is resting membrane potential?", "answer": "About −70 mV, maintained by the Na⁺/K⁺ pump creating unequal ion distribution across the neuron membrane." },
+    { "question": "How does a nerve impulse travel?", "answer": "Depolarization (Na⁺ influx) propagates along the axon. At synapses, it triggers neurotransmitter release to pass the signal to the next neuron." },
+    { "question": "What is the all-or-nothing principle?", "answer": "A stimulus either triggers a full action potential or none at all. Stronger stimuli increase frequency, not amplitude." },
+    { "question": "How do GuruForU teachers help with neural control?", "answer": "Through action potential animations, neuron model building, synaptic transmission sequences, brain function mapping, and reflex arc diagram drills." },
+    { "question": "Is this chapter important for NEET?", "answer": "Yes—nerve impulse mechanism, brain anatomy, and reflex arcs are among the most frequently tested human physiology topics in NEET." }
+  ]
+}
