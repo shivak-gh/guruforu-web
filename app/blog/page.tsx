@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getAllBlogs } from './lib/getBlogs'
+import { defaultBlogImage } from './lib/categoryImages'
 import BlogImage from '../components/BlogImage'
 import dynamicImport from 'next/dynamic'
 import Script from 'next/script'
@@ -151,14 +152,20 @@ export default async function BlogListing() {
         height: 630,
       },
     },
-    blogPost: blogs.map((blog) => ({
-      '@type': 'BlogPosting',
-      headline: blog.title,
-      description: blog.lead,
-      url: `https://www.guruforu.com/blog/${blog.categorySlug}/${blog.slug}`,
-      datePublished: blog.meta.publishedDate,
-      image: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
-    })),
+    blogPost: blogs.map((blog) => {
+      const imagePath = blog.image || defaultBlogImage
+      const imageUrl = imagePath.startsWith('http')
+        ? imagePath
+        : `https://www.guruforu.com${imagePath}`
+      return {
+        '@type': 'BlogPosting',
+        headline: blog.title,
+        description: blog.lead,
+        url: `https://www.guruforu.com/blog/${blog.categorySlug}/${blog.slug}`,
+        datePublished: blog.meta.publishedDate,
+        image: imageUrl,
+      }
+    }),
   }
 
   const breadcrumbStructuredData = {

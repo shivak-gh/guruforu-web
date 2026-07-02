@@ -47,7 +47,7 @@ export interface LocaleInfo {
   htmlLang: string
 }
 
-/** Live debugging — append to any URL, e.g. ?gf_region=IN or ?gf_locale=en-IN */
+/** Live debugging — see DEVELOPER_GUIDE.md § Locale debug query params */
 export const LOCALE_DEBUG_QUERY = {
   locale: 'gf_locale',
   region: 'gf_region',

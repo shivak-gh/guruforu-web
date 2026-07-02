@@ -126,7 +126,6 @@ export default function TermsAndConditions() {
 <div className="ip-content"><div className="ip-card">
           <h1 className="ip-title">Terms and Conditions</h1>
           <p className="ip-meta">Last Updated: January 1, {new Date().getFullYear()}</p>
-          <p className="ip-text">Guruforu is owned and operated by Gratiq Solutions LLP.</p>
           <p className="ip-text">
             Welcome to <strong>GuruForU</strong>, your trusted platform for <strong>AI-powered online education</strong>. 
             These Terms and Conditions govern your use of our services, including our online classes, student progress tracking, 

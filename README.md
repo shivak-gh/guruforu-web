@@ -1,14 +1,15 @@
-# GuruForU - Coming Soon Website
+# GuruForU - Marketing Website
 
-A beautiful, modern coming soon page built with Next.js 15 and ready to deploy on Google Cloud Run.
+A modern K-12 online tutoring marketing site built with Next.js, deployed on Google Cloud Run.
+
+**Developer documentation:** see **[DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md)** for localization, regional content, locale debug query params (`?gf_region=IN`), design system, SEO, and page architecture.
 
 ## Features
 
-- 🎨 Modern, responsive design with animated gradient background
-- ✨ Floating particle animations
+- 🎨 Light theme aligned with learn.guruforu.com (design tokens, card layouts)
+- 🌍 Regional content on About (US, UK, IN, AE, AU, etc.) with locale debug via `?gf_region=` / `?gf_locale=`
+- 📚 Resources blog, How It Works, About, contact & free-session flows
 - 🚀 Optimized for Google Cloud Run deployment
-- ⚡ Fast and lightweight
-- 📱 Fully responsive design
 
 ## Local Development
 

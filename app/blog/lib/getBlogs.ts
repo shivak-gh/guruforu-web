@@ -30,7 +30,8 @@ export async function getAllBlogs(): Promise<BlogMeta[]> {
     const jsonFiles = entries
       .filter(entry => 
         entry.isFile() && 
-        entry.name.endsWith('.json')
+        entry.name.endsWith('.json') &&
+        entry.name !== 'blog-template.json'
       )
       .map(entry => entry.name)
 
@@ -78,15 +79,29 @@ export async function getBlogBySlug(slug: string) {
     const fileContent = await readFile(contentPath, 'utf-8')
     const content = JSON.parse(fileContent)
     
-    // Add categorySlug to the blog object for consistency
     const category = content.category || 'General'
     return {
       ...content,
       categorySlug: categoryToSlug(category),
     }
-  } catch (error) {
-    console.error(`Error reading blog ${slug}:`, error)
-    return null
+  } catch {
+    // Fallback: find by slug field inside JSON (handles renamed files)
+    try {
+      const blogs = await getAllBlogs()
+      const match = blogs.find((b) => b.slug === slug)
+      if (!match) return null
+      const contentPath = join(process.cwd(), 'app', 'blog', 'content', `${match.slug}.json`)
+      const fileContent = await readFile(contentPath, 'utf-8')
+      const content = JSON.parse(fileContent)
+      const category = content.category || 'General'
+      return {
+        ...content,
+        categorySlug: categoryToSlug(category),
+      }
+    } catch (error) {
+      console.error(`Error reading blog ${slug}:`, error)
+      return null
+    }
   }
 }
 

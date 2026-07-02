@@ -47,6 +47,11 @@ export default function PageFooter({ localized = (t) => t }: PageFooterProps) {
                   {localized('Blog')}
                 </Link>
               </li>
+              <li>
+                <Link href="/site-map" className="gf-footer-link" prefetch={false}>
+                  {localized('Site Map')}
+                </Link>
+              </li>
             </ul>
           </nav>
 

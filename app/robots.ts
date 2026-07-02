@@ -5,6 +5,7 @@ export default function robots() {
       allow: '/',
     },
     sitemap: 'https://www.guruforu.com/sitemap.xml',
+    host: 'https://www.guruforu.com',
   }
 }
 

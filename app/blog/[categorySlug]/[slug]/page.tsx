@@ -157,6 +157,11 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
   const titleWithBrand = /guruforu/i.test(rawTitle) ? rawTitle : `${rawTitle} | GuruForU`
   const optimizedTitle = truncate(titleWithBrand, 70)
   const optimizedDescription = truncate((metaDescription || blog.lead).trim(), 160)
+  const featuredImagePath = (blog as { image?: string }).image || defaultBlogImage
+  const featuredImageUrl = featuredImagePath.startsWith('http')
+    ? featuredImagePath
+    : `https://www.guruforu.com${featuredImagePath}`
+  const dateModified = (await getBlogModifiedDate(slug)) || blog.meta.publishedDate
 
   return {
     title: optimizedTitle,
@@ -180,11 +185,11 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       siteName: 'GuruForU',
       type: 'article',
       publishedTime: blog.meta.publishedDate,
-      modifiedTime: blog.meta.publishedDate,
+      modifiedTime: dateModified,
       authors: [getAuthor((blog as { author?: string }).author).name],
       images: [
         {
-          url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+          url: featuredImageUrl,
           width: 1200,
           height: 630,
           alt: blog.title,
@@ -196,7 +201,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       card: 'summary_large_image',
       title: optimizedTitle,
       description: optimizedDescription,
-      images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
+      images: [featuredImageUrl],
       creator: '@guruforu_official',
       site: '@guruforu_official',
     },

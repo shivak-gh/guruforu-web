@@ -94,6 +94,18 @@ const PARENT_CARDS = [
     text: 'Session timeline, AI reports, periodic progress summaries, and assignment tracking.',
     variant: '',
   },
+  {
+    icon: '🔔',
+    title: 'Stay notified',
+    text: 'Session reminders, AI report alerts, and assignment due-date updates — so you never miss what matters.',
+    variant: 'amber',
+  },
+  {
+    icon: '👥',
+    title: 'Manage multiple children',
+    text: 'Separate profiles, subjects, and progress dashboards for each child from one parent account.',
+    variant: 'green',
+  },
 ]
 
 const STUDENT_CARDS = [
@@ -134,6 +146,16 @@ const TEACHER_CARDS = [
     icon: '💰',
     title: 'Keep your earnings',
     text: '100% of your class fees — zero commission. Only a nominal platform fee per session.',
+  },
+  {
+    icon: '✨',
+    title: 'AI writes your reports',
+    text: 'Session summaries generated automatically after every class — no manual note-taking or admin work.',
+  },
+  {
+    icon: '📋',
+    title: 'Assign & review homework',
+    text: 'Create assignments, track submissions, and give feedback — all from your teacher dashboard.',
   },
 ]
 
@@ -397,9 +419,20 @@ export default async function HowItWorks() {
               </p>
             </div>
             <div className="about-cards about-cards-3">
-              {TEACHER_CARDS.map((card) => (
+              {TEACHER_CARDS.map((card, i) => (
                 <article key={card.title} className="about-card">
-                  <div className="about-card-icon about-card-icon-amber" aria-hidden="true">{card.icon}</div>
+                  <div
+                    className={
+                      i % 3 === 1
+                        ? 'about-card-icon about-card-icon-amber'
+                        : i % 3 === 2
+                          ? 'about-card-icon about-card-icon-green'
+                          : 'about-card-icon'
+                    }
+                    aria-hidden="true"
+                  >
+                    {card.icon}
+                  </div>
                   <h3 className="about-card-title">{card.title}</h3>
                   <p className="about-card-text">{card.text}</p>
                 </article>

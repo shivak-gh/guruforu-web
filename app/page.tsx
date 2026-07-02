@@ -66,7 +66,7 @@ export default async function HomePage() {
   const localeInfo = detectLocale()
   const localized = (text: string) => localizeText(text, localeInfo.region)
   const [categories, allBlogs] = await Promise.all([getAllCategories(), getAllBlogs()])
-  const latestBlogs = allBlogs.slice(0, 3)
+  const latestBlogs = allBlogs.slice(0, 6)
 
   const organizationSchema = {
     '@context': 'https://schema.org',
@@ -110,14 +110,6 @@ export default async function HomePage() {
     url: 'https://www.guruforu.com',
     description: localized('Premium Online Tutoring enhanced with AI-powered personalized learning and real-time mastery reports.'),
     publisher: { '@type': 'Organization', name: 'GuruForU' },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: 'https://www.guruforu.com/blog?q={search_term_string}',
-      },
-      'query-input': 'required name=search_term_string',
-    },
   }
 
   const serviceSchema = {

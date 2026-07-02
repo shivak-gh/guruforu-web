@@ -126,7 +126,6 @@ export default function CancellationAndRefunds() {
 <div className="ip-content"><div className="ip-card">
           <h1 className="ip-title">Cancellation and Refunds</h1>
           <p className="ip-meta">Last Updated: January 1, {new Date().getFullYear()}</p>
-          <p className="ip-text">Guruforu is owned and operated by Gratiq Solutions LLP.</p>
           <p className="ip-text">
             At <strong>GuruForU</strong>, we want to ensure you have a positive experience with our <strong>online education services</strong>. 
             This Cancellation and Refunds Policy explains your rights regarding subscription cancellations and refund requests. 

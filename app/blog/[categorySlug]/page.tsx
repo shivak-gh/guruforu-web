@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import BlogImage from '../../components/BlogImage'
-import { getAllCategories, getBlogsByCategory, categoryToSlug } from '../lib/getBlogs'
+import { getAllCategories, getBlogsByCategory, getAllBlogs } from '../lib/getBlogs'
 import dynamicImport from 'next/dynamic'
 import Script from 'next/script'
 import PageFooter from '../../components/PageFooter'
@@ -29,9 +29,21 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
   const category = categories.find(cat => cat.slug === categorySlug)
   
   if (!category) {
+    const blogs = await getAllBlogs()
+    const post = blogs.find((b) => b.slug === categorySlug)
+    if (post) {
+      return {
+        title: `${post.title} | GuruForU`,
+        description: post.lead,
+        alternates: {
+          canonical: `https://www.guruforu.com/blog/${post.categorySlug}/${post.slug}`,
+        },
+      }
+    }
     return {
       title: 'Category Not Found | GuruForU',
       description: 'The requested blog category could not be found.',
+      robots: { index: false, follow: false },
     }
   }
 
@@ -94,11 +106,17 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
   const { categorySlug } = await params
   const categories = await getAllCategories()
   const category = categories.find(cat => cat.slug === categorySlug)
-  const blogs = getBlogsByCategory(categorySlug)
 
   if (!category) {
+    const blogs = await getAllBlogs()
+    const post = blogs.find((b) => b.slug === categorySlug)
+    if (post) {
+      redirect(`/blog/${post.categorySlug}/${post.slug}`)
+    }
     notFound()
   }
+
+  const blogs = getBlogsByCategory(categorySlug)
 
   const blogsList = await blogs
 

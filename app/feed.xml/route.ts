@@ -21,7 +21,6 @@ export async function GET() {
       <link>${baseUrl}/blog</link>
     </image>
     ${blogs
-      .slice(0, 20)
       .map(
         (blog) => `    <item>
       <title><![CDATA[${blog.title}]]></title>

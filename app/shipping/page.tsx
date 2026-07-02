@@ -126,7 +126,6 @@ export default function ShippingPolicy() {
 <div className="ip-content"><div className="ip-card">
           <h1 className="ip-title">Shipping Policy</h1>
           <p className="ip-meta">Last Updated: January 1, {new Date().getFullYear()}</p>
-          <p className="ip-text">Guruforu is owned and operated by Gratiq Solutions LLP.</p>
           <p className="ip-text">
             At <strong>GuruForU</strong>, we provide <strong>digital educational services</strong> and content through our online platform. 
             This Shipping Policy outlines how we deliver our services, including online classes, learning materials, progress reports, 
