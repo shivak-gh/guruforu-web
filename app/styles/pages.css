@@ -2348,24 +2348,33 @@
 }
 
 .ip-featured-image-wrapper {
+  position: relative;
   width: 100%;
-  margin: 2rem 0;
+  max-width: 40rem;
+  margin: 1.5rem auto 2rem;
+  aspect-ratio: 16 / 9;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 100%);
+}
+
+.ip-featured-image-wrapper > div {
+  position: absolute;
+  inset: 0;
 }
 
 .ip-featured-image {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
 
 @media (max-width: 768px) {
   .ip-featured-image-wrapper {
-    margin: 1.5rem 0;
+    max-width: 100%;
+    margin: 1.25rem auto 1.5rem;
     border-radius: 8px;
   }
 }

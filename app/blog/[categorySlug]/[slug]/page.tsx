@@ -497,11 +497,11 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
             <BlogImage
               src={(blog as { image?: string }).image || defaultBlogImage}
               alt={blog.title}
-              width={1200}
-              height={630}
+              width={640}
+              height={360}
               className="ip-featured-image"
               priority
-              sizes="(max-width: 768px) 100vw, 1200px"
+              sizes="(max-width: 768px) 100vw, 640px"
               fallbackSrc="/blog-images/online-education-category.jpg"
             />
           </div>
