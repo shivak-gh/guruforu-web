@@ -1,69 +1,38 @@
 .fab {
+  composes: gf-btn-primary from global;
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 1.5rem;
-  background: linear-gradient(135deg, #25D366 0%, #20BA5A 100%);
-  color: white;
-  text-decoration: none;
-  border-radius: 50px;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  padding: 0.875rem 1.25rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 20px hsl(var(--primary) / 0.35);
   z-index: 1000;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  font-size: 1rem;
-  animation: slideUp 0.3s ease;
 }
 
-/* Adjust position when consent banner is visible */
 body.consent-banner-visible .fab {
-  bottom: calc(2rem + 140px); /* Banner height + spacing */
+  bottom: calc(2rem + 140px);
 }
 
 .fab:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
-  background: linear-gradient(135deg, #20BA5A 0%, #1DA851 100%);
+  transform: translateY(-2px);
 }
 
 .fabIcon {
-  font-size: 1.3rem;
-  line-height: 1;
+  font-size: 1.125rem;
 }
 
 .fabText {
   white-space: nowrap;
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (max-width: 768px) {
   .fab {
     bottom: 1.5rem;
     right: 1.5rem;
-    padding: 0.875rem 1.25rem;
-    font-size: 0.9rem;
   }
 
-  .fabIcon {
-    font-size: 1.2rem;
-  }
-
-  /* Adjust position when consent banner is visible on mobile */
   body.consent-banner-visible .fab {
-    bottom: calc(1.5rem + 180px); /* Banner height + spacing on mobile */
+    bottom: calc(1.5rem + 180px);
   }
 }
 
@@ -71,28 +40,17 @@ body.consent-banner-visible .fab {
   .fab {
     bottom: 1rem;
     right: 1rem;
-    padding: 0.75rem 1rem;
-    font-size: 0.85rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0;
+    border-radius: 50%;
   }
 
   .fabText {
     display: none;
   }
 
-  .fab {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    justify-content: center;
-    padding: 0;
-  }
-
-  .fabIcon {
-    font-size: 1.5rem;
-  }
-
-  /* Adjust position when consent banner is visible on small mobile */
   body.consent-banner-visible .fab {
-    bottom: calc(1rem + 200px); /* Banner height + spacing on small mobile */
+    bottom: calc(1rem + 200px);
   }
 }

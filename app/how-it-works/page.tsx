@@ -1,8 +1,10 @@
-import styles from './page.module.css'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import Script from 'next/script'
+import { headers } from 'next/headers'
+import PageFooter from '../components/PageFooter'
+import { detectLocale, localizeText } from '../../lib/locale'
 
 const NavMenu = dynamic(() => import('../components/NavMenu'), {
   ssr: true,
@@ -10,7 +12,8 @@ const NavMenu = dynamic(() => import('../components/NavMenu'), {
 
 export const metadata: Metadata = {
   title: 'How GuruForU Works | Live Classes, Reports, and Parent Visibility',
-  description: 'See how GuruForU works for students, parents, and teachers with live online classes, AI-powered progress reports, and interactive learning tools.',
+  description:
+    'See how GuruForU works for students, parents, and teachers with live online classes, AI-powered progress reports, and interactive learning tools.',
   keywords: [
     'how online tutoring works',
     'live tutoring platform',
@@ -24,7 +27,8 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   openGraph: {
     title: 'How GuruForU Works | Live Tutoring Platform',
-    description: 'Learn how GuruForU connects students, parents, and teachers with live classes and AI-powered learning insights.',
+    description:
+      'Learn how GuruForU connects students, parents, and teachers with live classes and AI-powered learning insights.',
     url: 'https://www.guruforu.com/how-it-works',
     siteName: 'GuruForU',
     type: 'website',
@@ -47,17 +51,180 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://www.guruforu.com/how-it-works' },
 }
 
-export default function HowItWorks() {
+const OVERVIEW_STEPS = [
+  {
+    num: '1',
+    title: 'Book a free session',
+    text: 'Tell us about your child’s goals and schedule. We match them with the right tutor.',
+  },
+  {
+    num: '2',
+    title: 'Join live online',
+    text: '1-on-1 video class with whiteboard, screen share, and real-time problem solving.',
+  },
+  {
+    num: '3',
+    title: 'Get AI progress reports',
+    text: 'After every session, parents receive a Mastery Report with topics covered and next steps.',
+  },
+]
+
+const PARENT_CARDS = [
+  {
+    icon: '👨‍👩‍👧',
+    title: 'Enroll your child',
+    text: 'Add your child with grade, subjects, and login details. Manage passwords and profiles anytime.',
+    variant: '',
+  },
+  {
+    icon: '✅',
+    title: 'Approve teachers',
+    text: 'Review connection requests, approve or reject tutors, and pause access whenever you need.',
+    variant: 'amber',
+  },
+  {
+    icon: '💳',
+    title: 'Purchase credits',
+    text: 'Buy class credits in flexible packages with secure payments. Track balance and history.',
+    variant: 'green',
+  },
+  {
+    icon: '📊',
+    title: 'Track every session',
+    text: 'Session timeline, AI reports, periodic progress summaries, and assignment tracking.',
+    variant: '',
+  },
+  {
+    icon: '🔔',
+    title: 'Stay notified',
+    text: 'Session reminders, AI report alerts, and assignment due-date updates — so you never miss what matters.',
+    variant: 'amber',
+  },
+  {
+    icon: '👥',
+    title: 'Manage multiple children',
+    text: 'Separate profiles, subjects, and progress dashboards for each child from one parent account.',
+    variant: 'green',
+  },
+]
+
+const STUDENT_CARDS = [
+  {
+    icon: '📝',
+    title: 'Quick sign-up',
+    text: 'Create a student account, add grade level, subjects, and learning goals in minutes.',
+  },
+  {
+    icon: '🎥',
+    title: 'Live classroom',
+    text: 'HD video, interactive whiteboard, screen share, and live chat with your tutor.',
+  },
+  {
+    icon: '📈',
+    title: 'See your progress',
+    text: 'Session history, AI summaries after each class, and trends that show what you’ve mastered.',
+  },
+]
+
+const TEACHER_CARDS = [
+  {
+    icon: '🚀',
+    title: 'Get started fast',
+    text: 'Sign up, complete your profile, get approved, and start scheduling live classes.',
+  },
+  {
+    icon: '📅',
+    title: 'Your schedule',
+    text: 'Set weekly availability, block holidays, and see projected earnings at a glance.',
+  },
+  {
+    icon: '🎓',
+    title: 'Teach live',
+    text: 'HD video, whiteboard, screen share, chat, and a session timer built for tutoring.',
+  },
+  {
+    icon: '💰',
+    title: 'Keep your earnings',
+    text: '100% of your class fees — zero commission. Only a nominal platform fee per session.',
+  },
+  {
+    icon: '✨',
+    title: 'AI writes your reports',
+    text: 'Session summaries generated automatically after every class — no manual note-taking or admin work.',
+  },
+  {
+    icon: '📋',
+    title: 'Assign & review homework',
+    text: 'Create assignments, track submissions, and give feedback — all from your teacher dashboard.',
+  },
+]
+
+const CLASSROOM_FEATURES = [
+  { icon: '🎥', title: 'HD video calling', text: 'Crystal-clear WebRTC video and audio for face-to-face teaching.' },
+  { icon: '🖥️', title: 'Screen sharing', text: 'Share your full screen or a window for demos and walkthroughs.' },
+  { icon: '✏️', title: 'Interactive whiteboard', text: 'Draw, annotate, and explain — teachers and students participate.' },
+  { icon: '💬', title: 'Live chat', text: 'Exchange messages, links, and notes instantly during class.' },
+  { icon: '🎬', title: 'Session recording', text: 'Classes recorded with audio transcription for later review.' },
+  { icon: '🌐', title: 'Works everywhere', text: 'Chrome, Firefox, Edge, and Safari on desktop and mobile.' },
+]
+
+const AI_VISTA_ITEMS = [
+  { title: 'Automated session summaries', text: 'Detailed reports after every class — topics, engagement, and key moments.' },
+  { title: 'Audio transcription', text: 'Sessions transcribed so you can revisit what was discussed.' },
+  { title: 'Progress analytics', text: 'Data-driven insights on strengths and areas to improve over time.' },
+  { title: 'Zero extra admin', text: 'No manual note-taking. AI handles reports so tutors focus on teaching.' },
+]
+
+const COMPARE_ROWS = [
+  { feature: 'Session reports', traditional: 'Manual / none', guruforu: 'AI-generated automatically' },
+  { feature: 'Commission', traditional: '25–40% taken', guruforu: 'Zero commission' },
+  { feature: 'Revenue ownership', traditional: 'Platform keeps majority', guruforu: 'Teacher keeps 100%' },
+  { feature: 'Parent visibility', traditional: 'Limited or none', guruforu: 'Full AI-powered reports' },
+  { feature: 'Admin work', traditional: 'Hours of paperwork', guruforu: 'Zero — AI handles it' },
+]
+
+const FAQ_ITEMS = [
+  {
+    q: 'How do I get started as a teacher on GuruForU?',
+    a: 'Sign up using Google or email, complete your profile with subjects, qualifications and rates, get approved by our team, then start scheduling and conducting live classes.',
+  },
+  {
+    q: 'What features does the live classroom include?',
+    a: 'GuruForU classrooms include HD video calling, screen sharing, interactive whiteboard, live chat, session recording with transcription, and work on all major browsers.',
+  },
+  {
+    q: 'How can parents track their child\'s progress?',
+    a: 'Parents receive AI-generated session reports after each class, can view session timelines, access periodic progress reports, and monitor assignments from their dashboard.',
+  },
+  {
+    q: 'Do teachers keep 100% of their earnings?',
+    a: 'Yes, teachers keep 100% of their class fees with zero commission. GuruForU only charges a nominal platform fee per session.',
+  },
+]
+
+const iconClass = (variant?: string) => {
+  if (variant === 'amber') return 'about-card-icon about-card-icon-amber'
+  if (variant === 'green') return 'about-card-icon about-card-icon-green'
+  return 'about-card-icon'
+}
+
+export default async function HowItWorks() {
+  const headersList = await headers()
+  const localeInfo = detectLocale(headersList)
+  const localized = (text: string) => localizeText(text, localeInfo.region)
+
   const howItWorksSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     name: 'How GuruForU Works',
-    description: 'Learn how GuruForU connects teachers, students, and parents through live video classes and AI-powered learning insights.',
+    description:
+      'Learn how GuruForU connects teachers, students, and parents through live video classes and AI-powered learning insights.',
     url: 'https://www.guruforu.com/how-it-works',
     mainEntity: {
       '@type': 'Service',
       name: 'GuruForU Online Tutoring Platform',
-      description: 'Real-time online classroom platform connecting teachers and students through live video, collaborative whiteboards, and AI-powered learning insights.',
+      description:
+        'Real-time online classroom platform connecting teachers and students through live video, collaborative whiteboards, and AI-powered learning insights.',
       provider: {
         '@type': 'EducationalOrganization',
         name: 'GuruForU',
@@ -65,68 +232,17 @@ export default function HowItWorks() {
       },
       serviceType: 'Online Tutoring',
       areaServed: 'Global',
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'Tutoring Services',
-        itemListElement: [
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Live 1-on-1 Tutoring',
-              description: 'HD video classes with interactive whiteboard and screen sharing',
-            },
-          },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'AI-Powered Progress Reports',
-              description: 'Automated session summaries and learning analytics for parents',
-            },
-          },
-        ],
-      },
     },
   }
 
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'How do I get started as a teacher on GuruForU?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Sign up using Google or email, complete your profile with subjects, qualifications and rates, get approved by our team, then start scheduling and conducting live classes.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What features does the live classroom include?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'GuruForU classrooms include HD video calling, screen sharing, interactive whiteboard, live chat, session recording with transcription, and work on all major browsers.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How can parents track their child\'s progress?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Parents receive AI-generated session reports after each class, can view session timelines, access periodic progress reports, and monitor assignments from their dashboard.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Do teachers keep 100% of their earnings?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, teachers keep 100% of their class fees with zero commission. GuruForU only charges a nominal platform fee per session.',
-        },
-      },
-    ],
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
   }
 
   return (
@@ -141,311 +257,385 @@ export default function HowItWorks() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+
       <NavMenu />
-      <div className={styles.container}>
-        <div className={styles.background}>
-          <div className={styles.gradient}></div>
-        </div>
-        <div className={styles.content}>
-          <article className={styles.article}>
-            <h1 className={styles.title}>How GuruForU Works</h1>
-            <p className={styles.lead}>
-              GuruForU is a real-time online classroom platform that connects teachers and students through 
-              <strong> live video</strong>, <strong>collaborative whiteboards</strong>, and <strong>AI-powered learning insights</strong>. 
-              Whether you&apos;re a teacher, student, or parent — we have everything you need.
-            </p>
 
-            {/* Navigation Tabs */}
-            <div className={styles.tabNav}>
-              <a href="#teachers" className={styles.tabLink}>For Teachers</a>
-              <a href="#students" className={styles.tabLink}>For Students</a>
-              <a href="#parents" className={styles.tabLink}>For Parents</a>
+      <main className="hiw">
+        {/* Hero */}
+        <section className="about-hero" aria-labelledby="hiw-heading">
+          <div className="gf-container about-hero-inner">
+            <div className="gf-badge">
+              <span className="gf-badge-dot" aria-hidden="true" />
+              Live Classroom + AI Reports
             </div>
+            <h1 id="hiw-heading" className="about-hero-title">
+              How GuruForU <span className="gf-text-primary">Works</span>
+            </h1>
+            <p className="about-hero-lead">
+              Live video tutoring, an interactive whiteboard, and AI that reports progress to parents
+              — all in one platform for students, parents, and teachers.
+            </p>
+            <div className="about-hero-ctas">
+              <Link href="/free-session" className="gf-btn-primary" prefetch={false}>
+                {localized('Book Free Session')}
+              </Link>
+              <Link href="/about" className="gf-btn-outline" prefetch={false}>
+                {localized('About Us')}
+              </Link>
+            </div>
+          </div>
+        </section>
 
-            {/* For Teachers Section */}
-            <section id="teachers" className={styles.section}>
-              <h2 className={styles.sectionTitle}>For Teachers</h2>
-              
-              <div className={styles.subsection}>
-                <h3 className={styles.subsectionTitle}>Get Started in Minutes</h3>
-                <ol className={styles.numberedList}>
-                  <li><strong>Sign up</strong> using Google or email — it&apos;s quick and free.</li>
-                  <li><strong>Complete your profile</strong> — add your subjects, qualifications, experience, class rate, and a short bio.</li>
-                  <li><strong>Get approved</strong> — our team reviews your profile to ensure quality for students.</li>
-                  <li><strong>Start teaching</strong> — once approved, you&apos;re ready to schedule and conduct live classes.</li>
-                </ol>
-              </div>
+        {/* 3-step overview */}
+        <section className="home-trust" aria-label="How GuruForU works in three steps">
+          <div className="gf-container">
+            <div className="home-steps">
+              {OVERVIEW_STEPS.map((step) => (
+                <div key={step.num} className="home-step">
+                  <div className="home-step-num">{step.num}</div>
+                  <h2 className="home-step-title">{step.title}</h2>
+                  <p className="home-step-text">{step.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-              <div className={styles.subsection}>
-                <h3 className={styles.subsectionTitle}>Set Your Own Schedule</h3>
-                <ul className={styles.list}>
-                  <li>Use the <strong>weekly availability grid</strong> to mark the days and times you&apos;re free to teach.</li>
-                  <li>Add <strong>break times and holidays</strong> so students only book when you&apos;re available.</li>
-                  <li>View your <strong>projected earnings</strong> based on your availability — see weekly and monthly estimates at a glance.</li>
-                </ul>
-              </div>
-
-              <div className={styles.subsection}>
-                <h3 className={styles.subsectionTitle}>Conduct Live Classes</h3>
-                <ul className={styles.list}>
-                  <li><strong>HD Video &amp; Audio</strong> — teach face-to-face with your students using real-time video.</li>
-                  <li><strong>Screen Sharing</strong> — share your screen to walk through presentations, documents, or coding exercises.</li>
-                  <li><strong>Interactive Whiteboard</strong> — draw, annotate, and explain concepts visually in real time.</li>
-                  <li><strong>Live Chat</strong> — exchange messages during the session for quick notes, links, or questions.</li>
-                  <li><strong>Session Timer</strong> — track class duration in real time; the timer persists even if you refresh the page.</li>
-                </ul>
-              </div>
-
-              <div className={styles.highlightBox}>
-                <h3>AI-Vista Educator Suite</h3>
-                <ul>
-                  <li><strong>Zero Admin Workflow</strong> — AI automatically generates executive-quality session reports after every class. No manual note-taking required.</li>
-                  <li><strong>Objective Growth Proof</strong> — share AI-generated progress reports with parents to demonstrate measurable student improvement.</li>
-                  <li><strong>100% Revenue Ownership</strong> — keep what you earn. No commission fees, no marketplace cuts. We charge only a nominal platform fee per session.</li>
-                  <li><strong>Build Your Global Brand</strong> — teach students from anywhere in the world and grow your independent tutoring practice.</li>
-                </ul>
-              </div>
-
-              <div className={styles.subsection}>
-                <h3 className={styles.subsectionTitle}>Points &amp; Earnings</h3>
-                <ul className={styles.list}>
-                  <li><strong>Bonus points</strong> awarded when you join the platform.</li>
-                  <li><strong>Free classes</strong> to get started — no points needed for your first sessions.</li>
-                  <li>After free classes, a <strong>nominal platform fee</strong> is deducted per session from your points balance.</li>
-                  <li><strong>Purchase point packs</strong> anytime to keep teaching without interruption.</li>
-                  <li><strong>Track everything</strong> — view your complete transaction history, total earnings, points balance, and class payment records from your dashboard.</li>
-                </ul>
-              </div>
-            </section>
-
-            {/* For Students Section */}
-            <section id="students" className={styles.section}>
-              <h2 className={styles.sectionTitle}>For Students</h2>
-              
-              <div className={styles.subsection}>
-                <h3 className={styles.subsectionTitle}>Get Started Easily</h3>
-                <ol className={styles.numberedList}>
-                  <li><strong>Sign up</strong> using Google or email — choose the &quot;Student&quot; role.</li>
-                  <li><strong>Complete your profile</strong> — add your name, grade level, learning goals, and preferred subjects.</li>
-                  <li><strong>Connect with teachers</strong> — browse teacher profiles, check their expertise, and send a connection request.</li>
-                  <li><strong>Start learning</strong> — once a teacher accepts, you can join scheduled live classes.</li>
-                </ol>
-              </div>
-
-              <div className={styles.subsection}>
-                <h3 className={styles.subsectionTitle}>Join Live Classes</h3>
-                <ul className={styles.list}>
-                  <li><strong>One-click classroom entry</strong> — join your scheduled class directly from your dashboard.</li>
-                  <li><strong>HD Video &amp; Audio</strong> — see and hear your teacher clearly with real-time video.</li>
-                  <li><strong>Interactive Whiteboard</strong> — follow along as your teacher draws and explains, or use the whiteboard yourself.</li>
-                  <li><strong>Live Chat</strong> — ask questions, share notes, and interact during the session.</li>
-                  <li><strong>Screen Sharing</strong> — view your teacher&apos;s screen for demonstrations and walkthroughs.</li>
-                </ul>
-              </div>
-
-              <div className={styles.subsection}>
-                <h3 className={styles.subsectionTitle}>Track Your Progress</h3>
-                <ul className={styles.list}>
-                  <li><strong>Session History</strong> — view all your past and upcoming classes with details like subject, date, duration, and teacher.</li>
-                  <li><strong>AI-Powered Reports</strong> — receive detailed session summaries generated by AI after each class, covering key topics, engagement, and areas for improvement.</li>
-                  <li><strong>Progress Reports</strong> — access periodic reports that track your learning trends and highlight strengths.</li>
-                </ul>
-              </div>
-            </section>
-
-            {/* For Parents Section */}
-            <section id="parents" className={styles.section}>
-              <h2 className={styles.sectionTitle}>For Parents</h2>
-              <p className={styles.text}>
-                GuruForU gives parents <strong>complete visibility and control</strong> over their child&apos;s learning journey — from enrollment to progress tracking.
+        {/* Audience jump links */}
+        <section className="about-section" aria-label="Choose your role">
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 className="about-section-title">Built for everyone in the learning journey</h2>
+              <p className="about-section-desc">
+                Jump to the section that matters most to you.
               </p>
+            </div>
+            <nav className="hiw-audience-nav" aria-label="Page sections">
+              <a href="#parents" className="hiw-audience-link">For Parents</a>
+              <a href="#students" className="hiw-audience-link">For Students</a>
+              <a href="#teachers" className="hiw-audience-link">For Teachers</a>
+              <a href="#classroom" className="hiw-audience-link">Live Classroom</a>
+              <a href="#ai-vista" className="hiw-audience-link">AI-Vista</a>
+            </nav>
+          </div>
+        </section>
 
-              <div className={styles.subsection}>
-                <h3 className={styles.subsectionTitle}>Enroll Your Child</h3>
-                <ul className={styles.list}>
-                  <li><strong>Add your child</strong> to the platform with their name, grade, subjects, and login credentials.</li>
-                  <li><strong>Manage passwords</strong> — reset and update your child&apos;s account password anytime.</li>
-                  <li><strong>Profile management</strong> — update your own profile and your child&apos;s information as needed.</li>
-                </ul>
-              </div>
-
-              <div className={styles.subsection}>
-                <h3 className={styles.subsectionTitle}>Manage Teacher Connections</h3>
-                <ul className={styles.list}>
-                  <li><strong>Approve or reject</strong> teacher connection requests for your child.</li>
-                  <li><strong>Pause or resume</strong> access to any connected teacher at any time.</li>
-                  <li><strong>Full oversight</strong> — you decide who teaches your child.</li>
-                </ul>
-              </div>
-
-              <div className={styles.subsection}>
-                <h3 className={styles.subsectionTitle}>Purchase Credits</h3>
-                <ul className={styles.list}>
-                  <li><strong>Buy class credits</strong> to book sessions for your child.</li>
-                  <li><strong>Flexible packages</strong> available in multiple currencies.</li>
-                  <li><strong>Secure payments</strong> powered by trusted payment providers.</li>
-                  <li><strong>Track your balance</strong> — view credit balance and full transaction history from your dashboard.</li>
-                </ul>
-              </div>
-
-              <div className={styles.highlightBox}>
-                <h3>Monitor Sessions &amp; Progress</h3>
-                <ul>
-                  <li><strong>Session Timeline</strong> — view every attended session with subject, date, time, duration, teacher name, and status.</li>
-                  <li><strong>AI Session Reports</strong> — receive detailed, AI-generated reports after each class covering topics discussed, engagement, strengths, and recommendations.</li>
-                  <li><strong>Periodic Progress Reports</strong> — access monthly and quarterly reports that track learning trends over time.</li>
-                  <li><strong>Assignment Tracking</strong> — monitor your child&apos;s assignments, submission status, due dates, and scores.</li>
-                </ul>
-              </div>
-            </section>
-
-            {/* Live Classroom Section */}
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>The Live Classroom Experience</h2>
-              <p className={styles.text}>
-                Every GuruForU class happens in a purpose-built virtual classroom designed for interactive learning:
+        {/* For Parents */}
+        <section
+          id="parents"
+          className="about-section about-section-alt hiw-section-anchor"
+          aria-labelledby="parents-heading"
+        >
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 id="parents-heading" className="about-section-title">For Parents</h2>
+              <p className="about-section-desc">
+                Complete visibility and control — from enrollment to progress tracking after every
+                session.
               </p>
+            </div>
+            <div className="about-cards about-cards-3">
+              {PARENT_CARDS.map((card) => (
+                <article key={card.title} className="about-card">
+                  <div className={iconClass(card.variant)} aria-hidden="true">{card.icon}</div>
+                  <h3 className="about-card-title">{card.title}</h3>
+                  <p className="about-card-text">{card.text}</p>
+                </article>
+              ))}
+            </div>
+            <div className="hiw-highlight-card">
+              <h3 className="hiw-highlight-card-title">Monitor sessions &amp; progress</h3>
+              <ul className="hiw-highlight-list">
+                <li>
+                  <strong>Session timeline</strong> — every class with subject, date, duration,
+                  teacher, and status.
+                </li>
+                <li>
+                  <strong>AI session reports</strong> — topics discussed, engagement, strengths,
+                  and recommendations after each class.
+                </li>
+                <li>
+                  <strong>Periodic progress reports</strong> — monthly and quarterly learning trends.
+                </li>
+                <li>
+                  <strong>Assignment tracking</strong> — due dates, submissions, and scores in one
+                  place.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
 
-              <div className={styles.featureGrid}>
-                <div className={styles.featureCard}>
-                  <h4>HD Video Calling</h4>
-                  <p>Crystal-clear, real-time video and audio powered by WebRTC peer-to-peer technology</p>
-                </div>
-                <div className={styles.featureCard}>
-                  <h4>Screen Sharing</h4>
-                  <p>Teachers can share their entire screen or specific windows for demonstrations</p>
-                </div>
-                <div className={styles.featureCard}>
-                  <h4>Interactive Whiteboard</h4>
-                  <p>Draw, write, and annotate in real time — both teachers and students can participate</p>
-                </div>
-                <div className={styles.featureCard}>
-                  <h4>Live Chat</h4>
-                  <p>Exchange messages, links, and notes instantly during the session</p>
-                </div>
-                <div className={styles.featureCard}>
-                  <h4>Session Recording</h4>
-                  <p>Classes are recorded with audio transcription for later review</p>
-                </div>
-                <div className={styles.featureCard}>
-                  <h4>Works Everywhere</h4>
-                  <p>Compatible with Chrome, Firefox, Edge, and Safari on desktop and mobile</p>
-                </div>
-              </div>
-
-              <div className={styles.requirements}>
-                <h3 className={styles.subsectionTitle}>Minimum Requirements</h3>
-                <ul className={styles.list}>
-                  <li><strong>Internet:</strong> 5 Mbps or higher (wired connection recommended)</li>
-                  <li><strong>Device:</strong> Laptop, desktop, or tablet with a webcam and microphone</li>
-                  <li><strong>Browser:</strong> Latest version of Chrome (recommended), Firefox, Edge, or Safari</li>
-                  <li><strong>Accessories:</strong> Writing pad recommended for students, mandatory for teachers</li>
-                </ul>
-              </div>
-            </section>
-
-            {/* AI-Vista Section */}
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>AI-Vista — Smart Learning Insights</h2>
-              <p className={styles.text}>
-                GuruForU&apos;s <strong>AI-Vista</strong> technology automatically analyzes every session and generates professional reports — so teachers can focus on teaching and parents can stay informed.
+        {/* For Students */}
+        <section
+          id="students"
+          className="about-section hiw-section-anchor"
+          aria-labelledby="students-heading"
+        >
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 id="students-heading" className="about-section-title">For Students</h2>
+              <p className="about-section-desc">
+                Join live classes from your dashboard and track what you&apos;ve learned over time.
               </p>
-
-              <div className={styles.highlightBox}>
-                <h3>What AI-Vista Delivers</h3>
-                <ul>
-                  <li><strong>Automated Session Summaries</strong> — detailed reports generated instantly after each class, covering topics, engagement, and key moments.</li>
-                  <li><strong>Audio Transcription</strong> — every session is transcribed, making it easy to revisit what was discussed.</li>
-                  <li><strong>Progress Analytics</strong> — track improvement over time with data-driven insights on strengths and areas to work on.</li>
-                  <li><strong>Zero Extra Work</strong> — no manual note-taking, no admin overhead. AI handles it all.</li>
-                </ul>
-              </div>
-
-              <div className={styles.comparisonTable}>
-                <h3 className={styles.subsectionTitle}>How We Compare</h3>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Feature</th>
-                      <th>Traditional Platforms</th>
-                      <th>GuruForU</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Session Reports</td>
-                      <td>Manual / None</td>
-                      <td className={styles.highlight}>AI-generated automatically</td>
-                    </tr>
-                    <tr>
-                      <td>Commission</td>
-                      <td>25-40% taken</td>
-                      <td className={styles.highlight}>Zero commission</td>
-                    </tr>
-                    <tr>
-                      <td>Revenue Ownership</td>
-                      <td>Platform keeps majority</td>
-                      <td className={styles.highlight}>Teacher keeps 100%</td>
-                    </tr>
-                    <tr>
-                      <td>Parent Visibility</td>
-                      <td>Limited or none</td>
-                      <td className={styles.highlight}>Full AI-powered reports</td>
-                    </tr>
-                    <tr>
-                      <td>Admin Work</td>
-                      <td>Hours of paperwork</td>
-                      <td className={styles.highlight}>Zero — AI handles it</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-
-            {/* Why Choose Section */}
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>Why Choose GuruForU?</h2>
-              <div className={styles.benefitsGrid}>
-                <div className={styles.benefitCard}>
-                  <h4>For Teachers</h4>
-                  <p>Teach on your terms. Set your own rates, keep 100% of your earnings, and let AI handle the admin work.</p>
+            </div>
+            <div className="about-cards about-cards-3">
+              {STUDENT_CARDS.map((card) => (
+                <article key={card.title} className="about-card">
+                  <div className="about-card-icon" aria-hidden="true">{card.icon}</div>
+                  <h3 className="about-card-title">{card.title}</h3>
+                  <p className="about-card-text">{card.text}</p>
+                </article>
+              ))}
+            </div>
+            <div className="hiw-step-cards hiw-step-cards-4 hiw-step-cards-spaced">
+              {[
+                { num: '1', title: 'Sign up', text: 'Create your student account with grade and subjects.' },
+                { num: '2', title: 'Connect', text: 'Browse tutors and send a connection request.' },
+                { num: '3', title: 'Join class', text: 'One-click entry from your dashboard at session time.' },
+                { num: '4', title: 'Review', text: 'Read AI summaries and track your progress over time.' },
+              ].map((step) => (
+                <div key={step.num} className="hiw-step-card">
+                  <span className="hiw-step-card-num">{step.num}</span>
+                  <h3 className="hiw-step-card-title">{step.title}</h3>
+                  <p className="hiw-step-card-text">{step.text}</p>
                 </div>
-                <div className={styles.benefitCard}>
-                  <h4>For Students</h4>
-                  <p>Learn from verified teachers in an interactive virtual classroom with real-time video, whiteboard, and chat.</p>
-                </div>
-                <div className={styles.benefitCard}>
-                  <h4>For Parents</h4>
-                  <p>Stay fully informed with AI-powered session reports, progress tracking, and complete control over your child&apos;s learning.</p>
-                </div>
-              </div>
-            </section>
+              ))}
+            </div>
+          </div>
+        </section>
 
-            {/* CTA Section */}
-            <section className={styles.ctaSection}>
-              <div className={styles.ctaBox}>
-                <h3>Ready to Get Started?</h3>
-                <p>Join GuruForU today — it&apos;s free to sign up for teachers and students!</p>
-                <Link href="/free-session" className={styles.ctaButton}>
-                  Book a Free Session →
+        {/* For Teachers */}
+        <section
+          id="teachers"
+          className="about-section about-section-alt hiw-section-anchor"
+          aria-labelledby="teachers-heading"
+        >
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 id="teachers-heading" className="about-section-title">For Teachers</h2>
+              <p className="about-section-desc">
+                Teach on your terms with professional tools and AI that handles the admin work.
+              </p>
+            </div>
+            <div className="about-cards about-cards-3">
+              {TEACHER_CARDS.map((card, i) => (
+                <article key={card.title} className="about-card">
+                  <div
+                    className={
+                      i % 3 === 1
+                        ? 'about-card-icon about-card-icon-amber'
+                        : i % 3 === 2
+                          ? 'about-card-icon about-card-icon-green'
+                          : 'about-card-icon'
+                    }
+                    aria-hidden="true"
+                  >
+                    {card.icon}
+                  </div>
+                  <h3 className="about-card-title">{card.title}</h3>
+                  <p className="about-card-text">{card.text}</p>
+                </article>
+              ))}
+            </div>
+            <div className="hiw-highlight-card">
+              <h3 className="hiw-highlight-card-title">AI-Vista Educator Suite</h3>
+              <ul className="hiw-highlight-list">
+                <li>
+                  <strong>Zero admin workflow</strong> — AI generates executive-quality session
+                  reports automatically.
+                </li>
+                <li>
+                  <strong>Objective growth proof</strong> — share AI progress reports with parents.
+                </li>
+                <li>
+                  <strong>100% revenue ownership</strong> — no commission; nominal platform fee only.
+                </li>
+                <li>
+                  <strong>Global reach</strong> — teach students worldwide and grow your practice.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Live Classroom */}
+        <section
+          id="classroom"
+          className="about-section hiw-section-anchor"
+          aria-labelledby="classroom-heading"
+        >
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 id="classroom-heading" className="about-section-title">
+                The live classroom experience
+              </h2>
+              <p className="about-section-desc">
+                Every session runs in a purpose-built virtual classroom designed for interactive
+                {localized(' Math')} &amp; Science tutoring.
+              </p>
+            </div>
+            <div className="about-cards about-cards-3">
+              {CLASSROOM_FEATURES.map((feature) => (
+                <article key={feature.title} className="about-card">
+                  <div className="about-card-icon about-card-icon-green" aria-hidden="true">{feature.icon}</div>
+                  <h3 className="about-card-title">{feature.title}</h3>
+                  <p className="about-card-text">{feature.text}</p>
+                </article>
+              ))}
+            </div>
+            <div className="hiw-requirements">
+              <h3 className="hiw-requirements-title">Minimum requirements</h3>
+              <ul className="hiw-requirements-list">
+                <li><strong>Internet:</strong> 5 Mbps or higher (wired recommended)</li>
+                <li><strong>Device:</strong> Laptop, desktop, or tablet with webcam and mic</li>
+                <li><strong>Browser:</strong> Latest Chrome (recommended), Firefox, Edge, or Safari</li>
+                <li><strong>Accessories:</strong> Writing pad recommended for students</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* AI-Vista */}
+        <section
+          id="ai-vista"
+          className="about-section about-section-alt hiw-section-anchor"
+          aria-labelledby="ai-vista-heading"
+        >
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 id="ai-vista-heading" className="about-section-title">
+                AI-Vista — smart learning insights
+              </h2>
+              <p className="about-section-desc">
+                AI analyzes every session and generates professional reports — tutors teach, parents
+                stay informed.
+              </p>
+            </div>
+            <div className="about-cards about-cards-3">
+              {AI_VISTA_ITEMS.map((item, i) => (
+                <article key={item.title} className="about-card">
+                  <div
+                    className={
+                      i % 3 === 1
+                        ? 'about-card-icon about-card-icon-amber'
+                        : i % 3 === 2
+                          ? 'about-card-icon about-card-icon-green'
+                          : 'about-card-icon'
+                    }
+                    aria-hidden="true"
+                  >
+                    ✨
+                  </div>
+                  <h3 className="about-card-title">{item.title}</h3>
+                  <p className="about-card-text">{item.text}</p>
+                </article>
+              ))}
+            </div>
+            <div className="hiw-compare-wrap">
+              <h3 className="hiw-compare-title">How we compare</h3>
+              <table className="hiw-compare-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Feature</th>
+                    <th scope="col">Traditional platforms</th>
+                    <th scope="col">GuruForU</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARE_ROWS.map((row) => (
+                    <tr key={row.feature}>
+                      <td>{row.feature}</td>
+                      <td>{row.traditional}</td>
+                      <td className="hiw-compare-good">{row.guruforu}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* Why choose */}
+        <section className="about-section" aria-labelledby="why-heading">
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 id="why-heading" className="about-section-title">Why choose GuruForU?</h2>
+            </div>
+            <div className="about-cards about-cards-3">
+              <article className="about-card">
+                <div className="about-card-icon" aria-hidden="true">👩‍🏫</div>
+                <h3 className="about-card-title">For teachers</h3>
+                <p className="about-card-text">
+                  Set your own rates, keep 100% of earnings, and let AI handle admin and reporting.
+                </p>
+              </article>
+              <article className="about-card">
+                <div className="about-card-icon about-card-icon-amber" aria-hidden="true">🎓</div>
+                <h3 className="about-card-title">For students</h3>
+                <p className="about-card-text">
+                  Learn from verified tutors in a live classroom with video, whiteboard, and chat.
+                </p>
+              </article>
+              <article className="about-card">
+                <div className="about-card-icon about-card-icon-green" aria-hidden="true">📊</div>
+                <h3 className="about-card-title">For parents</h3>
+                <p className="about-card-text">
+                  AI session reports, progress tracking, and full control over your child&apos;s
+                  learning.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="about-section about-section-alt" aria-labelledby="faq-heading">
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 id="faq-heading" className="about-section-title">Frequently asked questions</h2>
+            </div>
+            <div className="about-faq">
+              {FAQ_ITEMS.map((item) => (
+                <article key={item.q} className="about-faq-item">
+                  <h3 className="about-faq-q">{item.q}</h3>
+                  <p className="about-faq-a">{item.a}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="about-section" aria-labelledby="cta-heading">
+          <div className="gf-container">
+            <div className="about-cta">
+              <h2 id="cta-heading" className="about-cta-title">
+                Ready to get started?
+              </h2>
+              <p className="about-cta-desc">
+                Book a free session for your child — or sign up as a teacher. No commitment required.
+              </p>
+              <div className="about-cta-actions">
+                <Link href="/free-session" className="gf-btn-primary" prefetch={false}>
+                  {localized('Book Free Session')}
+                </Link>
+                <Link href="/contact" className="gf-btn-outline" prefetch={false}>
+                  {localized('Contact Us')}
                 </Link>
               </div>
-            </section>
-          </article>
+              <p className="about-cta-note">
+                Already have an account?{' '}
+                <a href="https://learn.guruforu.com/" target="_blank" rel="noopener noreferrer">
+                  Go to Classroom →
+                </a>
+              </p>
+            </div>
+          </div>
+        </section>
 
-          <footer className={styles.footer}>
-            <nav className={styles.footerLinks}>
-              <Link href="/" className={styles.footerLink} prefetch={false}>Home</Link>
-              <Link href="/about" className={styles.footerLink} prefetch={false}>About</Link>
-              <Link href="/blog" className={styles.footerLink} prefetch={false}>Resources</Link>
-              <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact</Link>
-              <Link href="/free-session" className={styles.footerLink} prefetch={false}>Free Session</Link>
-              <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy</Link>
-            </nav>
-            <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
-          </footer>
-        </div>
-      </div>
+        <PageFooter />
+      </main>
     </>
   )
 }

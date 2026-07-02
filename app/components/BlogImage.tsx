@@ -62,7 +62,7 @@ export default function BlogImage({
         style={{
           width: '100%',
           height: '100%',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+          background: 'hsl(var(--muted))',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -82,7 +82,7 @@ export default function BlogImage({
   const imageSrc = imgSrc.includes('?') ? imgSrc.split('?')[0] : imgSrc
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%', backgroundColor: '#667eea' }}>
+    <div style={{ position: 'relative', width: '100%', height: '100%', backgroundColor: 'hsl(var(--muted))' }}>
       <Image
         src={imageSrc}
         alt={alt}

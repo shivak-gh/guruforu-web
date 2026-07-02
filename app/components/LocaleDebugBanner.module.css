@@ -1,0 +1,50 @@
+.banner {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  max-width: min(24rem, calc(100vw - 2rem));
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  border: 1px dashed hsl(var(--primary) / 0.45);
+  background: hsl(var(--card) / 0.96);
+  box-shadow: 0 4px 20px hsl(var(--foreground) / 0.12);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.label {
+  font-weight: 700;
+  color: hsl(var(--primary));
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: hsl(var(--foreground));
+}
+
+.clear {
+  margin-left: auto;
+  color: hsl(var(--muted-foreground));
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.clear:hover {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .banner {
+    left: 0.75rem;
+    right: 0.75rem;
+    max-width: none;
+  }
+}

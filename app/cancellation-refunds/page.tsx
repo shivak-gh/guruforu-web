@@ -1,8 +1,11 @@
-import styles from './page.module.css'
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Script from 'next/script'
+import dynamic from 'next/dynamic'
+import PageFooter from '../components/PageFooter'
+
+const NavMenu = dynamic(() => import('../components/NavMenu'), { ssr: true })
+
 
 export const metadata: Metadata = {
   title: 'Cancellation and Refund Policy | GuruForU',
@@ -118,50 +121,33 @@ export default function CancellationAndRefunds() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-    <div className={styles.container}>
-      <div className={styles.background}>
-        <div className={styles.gradient}></div>
-      </div>
-
-      <div className={styles.content}>
-        <div className={styles.header}>
-          <Link href="/" className={styles.homeLink}>
-            <Image 
-              src="/guruforu-ai-education-logo.png" 
-              alt="GuruForU Logo" 
-              width={120}
-              height={60}
-              className={styles.logoImage}
-            />
-          </Link>
-        </div>
-
-        <div className={styles.pageContent}>
-          <h1 className={styles.title}>Cancellation and Refunds</h1>
-          <p className={styles.lastUpdated}>Last Updated: January 1, {new Date().getFullYear()}</p>
-          <p className={styles.text}>Guruforu is owned and operated by Gratiq Solutions LLP.</p>
-          <p className={styles.text}>
+    <NavMenu />
+      <div className="ip-layout">
+<div className="ip-content"><div className="ip-card">
+          <h1 className="ip-title">Cancellation and Refunds</h1>
+          <p className="ip-meta">Last Updated: January 1, {new Date().getFullYear()}</p>
+          <p className="ip-text">
             At <strong>GuruForU</strong>, we want to ensure you have a positive experience with our <strong>online education services</strong>. 
             This Cancellation and Refunds Policy explains your rights regarding subscription cancellations and refund requests. 
             We understand that circumstances may change, and we are committed to providing fair and transparent refund processes. 
             This policy applies to all our services, including online classes, tutoring sessions, and subscription plans.
           </p>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>1. Cancellation Policy</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">1. Cancellation Policy</h2>
+            <p className="ip-text">
               You may <strong>cancel your subscription or service enrollment</strong> at any time. Cancellations can be 
               requested through your account settings or by contacting our support team through our 
-              <Link href="/contact" className={styles.link}> Contact Us</Link> page. For questions about our services, visit our <Link href="/" className={styles.link}>home page</Link>.
+              <Link href="/contact" className="ip-link"> Contact Us</Link> page. For questions about our services, visit our <Link href="/" className="ip-link">home page</Link>.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>2. Refund Eligibility</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">2. Refund Eligibility</h2>
+            <p className="ip-text">
               Refunds are processed based on the following criteria:
             </p>
-            <ul className={styles.list}>
+            <ul className="ip-list">
               <li>
                 <strong>Full Refund:</strong> Cancellations made within <strong>7 days</strong> of initial purchase are 
                 eligible for a full refund, provided no substantial services have been utilized.
@@ -177,21 +163,21 @@ export default function CancellationAndRefunds() {
             </ul>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>3. Refund Processing Time</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">3. Refund Processing Time</h2>
+            <p className="ip-text">
               Approved refunds will be processed within 7-14 business days. The refund will be credited 
               to the original payment method used for the purchase. Please note that processing times may 
               vary depending on your bank or payment provider.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>4. Subscription Cancellations</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">4. Subscription Cancellations</h2>
+            <p className="ip-text">
               For recurring subscriptions:
             </p>
-            <ul className={styles.list}>
+            <ul className="ip-list">
               <li>You can cancel your subscription at any time from your account settings</li>
               <li>Cancellation will take effect at the end of the current billing period</li>
               <li>You will continue to have access to services until the end of your paid period</li>
@@ -200,34 +186,34 @@ export default function CancellationAndRefunds() {
             </ul>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>5. Class or Session Cancellations</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">5. Class or Session Cancellations</h2>
+            <p className="ip-text">
               Individual class or session cancellations:
             </p>
-            <ul className={styles.list}>
+            <ul className="ip-list">
               <li>Classes canceled at least 24 hours in advance may be rescheduled without penalty</li>
               <li>Classes canceled less than 24 hours in advance may be subject to a cancellation fee</li>
               <li>No-shows without prior cancellation are not eligible for refunds or credits</li>
             </ul>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>6. Special Circumstances</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">6. Special Circumstances</h2>
+            <p className="ip-text">
               We understand that exceptional circumstances may arise. In cases of medical emergencies, 
               family emergencies, or other significant life events, please contact us to discuss your 
               situation. We will review each case individually and work to find a fair solution.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>7. Refund Request Process</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">7. Refund Request Process</h2>
+            <p className="ip-text">
               To request a refund:
             </p>
-            <ol className={styles.orderedList}>
-              <li>Contact our support team through our <Link href="/contact" className={styles.link}>Contact Us</Link> page</li>
+            <ol className="ip-ordered-list">
+              <li>Contact our support team through our <Link href="/contact" className="ip-link">Contact Us</Link> page</li>
               <li>Provide your account information and purchase details</li>
               <li>State the reason for your refund request</li>
               <li>Our team will review your request and respond within 48 hours</li>
@@ -235,12 +221,12 @@ export default function CancellationAndRefunds() {
             </ol>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>8. Non-Refundable Items</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">8. Non-Refundable Items</h2>
+            <p className="ip-text">
               The following items are generally non-refundable:
             </p>
-            <ul className={styles.list}>
+            <ul className="ip-list">
               <li>Completed one-on-one tutoring sessions</li>
               <li>Downloaded or accessed digital materials</li>
               <li>Services that have been substantially utilized</li>
@@ -248,61 +234,61 @@ export default function CancellationAndRefunds() {
             </ul>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>9. Chargebacks</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">9. Chargebacks</h2>
+            <p className="ip-text">
               If you have concerns about a charge, we encourage you to contact us directly before 
               initiating a chargeback with your payment provider. Chargebacks may result in immediate 
               account suspension. We are committed to resolving all billing issues amicably.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>10. Policy Changes</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">10. Policy Changes</h2>
+            <p className="ip-text">
               We reserve the right to modify this Cancellation and Refunds Policy at any time. Any 
               changes will be posted on this page with an updated &quot;Last Updated&quot; date. Continued 
               use of our services after policy changes constitutes acceptance of the updated policy.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>11. Contact Information</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">11. Contact Information</h2>
+            <p className="ip-text">
               For questions about cancellations and refunds, please contact us through our 
-              <Link href="/contact" className={styles.link}> Contact Us</Link> page. Our support team 
+              <Link href="/contact" className="ip-link"> Contact Us</Link> page. Our support team 
               is available to assist you with any inquiries.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
-            <div className={styles.faqItem}>
-              <h3 className={styles.faqQuestion}>How do I cancel my online tutoring subscription?</h3>
-              <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">Frequently Asked Questions</h2>
+            <div className="ip-faq-item">
+              <h3 className="ip-faq-question">How do I cancel my online tutoring subscription?</h3>
+              <p className="ip-text">
                 You can cancel your subscription at any time from your account settings or by contacting our 
                 support team. Cancellation takes effect at the end of your current billing period, and you&apos;ll 
                 continue to have access until then.
               </p>
             </div>
-            <div className={styles.faqItem}>
-              <h3 className={styles.faqQuestion}>Can I get a refund for online tutoring classes?</h3>
-              <p className={styles.text}>
+            <div className="ip-faq-item">
+              <h3 className="ip-faq-question">Can I get a refund for online tutoring classes?</h3>
+              <p className="ip-text">
                 Refunds are available within 7 days of purchase if you haven&apos;t used the service. For subscription 
                 cancellations, refunds may be available for unused portions depending on the circumstances. 
                 Please contact us for specific refund eligibility.
               </p>
             </div>
-            <div className={styles.faqItem}>
-              <h3 className={styles.faqQuestion}>What is the refund processing time?</h3>
-              <p className={styles.text}>
+            <div className="ip-faq-item">
+              <h3 className="ip-faq-question">What is the refund processing time?</h3>
+              <p className="ip-text">
                 Approved refunds are typically processed within 5-10 business days. The refund will appear in 
                 your original payment method. Processing times may vary depending on your payment provider.
               </p>
             </div>
-            <div className={styles.faqItem}>
-              <h3 className={styles.faqQuestion}>Can I cancel a scheduled tutoring session?</h3>
-              <p className={styles.text}>
+            <div className="ip-faq-item">
+              <h3 className="ip-faq-question">Can I cancel a scheduled tutoring session?</h3>
+              <p className="ip-text">
                 Yes, you can cancel or reschedule sessions at least 24 hours in advance without penalty. 
                 Cancellations made less than 24 hours before the session may be subject to a cancellation fee. 
                 No-shows are not eligible for refunds.
@@ -311,9 +297,7 @@ export default function CancellationAndRefunds() {
           </div>
         </div>
 
-        <footer className={styles.footer}>
-          <p>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
-        </footer>
+        <PageFooter />
       </div>
     </div>
     </>

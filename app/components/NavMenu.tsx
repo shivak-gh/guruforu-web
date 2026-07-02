@@ -3,17 +3,32 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { detectLocale, localizeText, type Region } from '../../lib/locale'
 import styles from './NavMenu.module.css'
 
+const NAV_ITEMS = [
+  { href: '/', label: 'Home', ariaLabel: 'GuruForU Home Page' },
+  { href: '/about', label: 'About Us', ariaLabel: 'About GuruForU' },
+  { href: '/how-it-works', label: 'How It Works', ariaLabel: 'How GuruForU Works' },
+  { href: '/blog', label: 'Resources', ariaLabel: 'Learning Resources' },
+  { href: '/contact', label: 'Contact', ariaLabel: 'Contact GuruForU' },
+] as const
+
+function isNavActive(pathname: string, href: string) {
+  if (href === '/') return pathname === '/'
+  return pathname === href || pathname.startsWith(`${href}/`)
+}
+
 export default function NavMenu() {
+  const pathname = usePathname()
   const [region, setRegion] = useState<Region>('DEFAULT')
-  
+
   useEffect(() => {
     const localeInfo = detectLocale()
     setRegion(localeInfo.region)
   }, [])
-  
+
   const localized = (text: string) => localizeText(text, region)
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -40,7 +55,7 @@ export default function NavMenu() {
       <div className={styles.navContainer}>
         <Link href="/" className={styles.logoLink} onClick={closeMenu}>
           <Image
-            src="/guruforu-ai-education-logo.png"
+            src="/guruforu-ai-education-logo-dark.png"
             alt="GuruForU Logo"
             width={40}
             height={40}
@@ -51,23 +66,32 @@ export default function NavMenu() {
 
         {/* Desktop Menu */}
         <ul className={styles.desktopMenu}>
+          {NAV_ITEMS.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className={`${styles.navLink} ${isNavActive(pathname, item.href) ? styles.navLinkActive : ''}`}
+                aria-label={item.ariaLabel}
+                aria-current={isNavActive(pathname, item.href) ? 'page' : undefined}
+              >
+                {localized(item.label)}
+              </Link>
+            </li>
+          ))}
           <li>
-            <Link href="/" className={styles.navLink} aria-label="GuruForU Home Page">{localized('Home')}</Link>
+            <a
+              href="https://learn.guruforu.com/"
+              className={styles.navPortal}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {localized('Go to Classroom')}
+            </a>
           </li>
           <li>
-            <Link href="/about" className={styles.navLink} aria-label="About GuruForU">{localized('About Us')}</Link>
-          </li>
-          <li>
-            <Link href="/how-it-works" className={styles.navLink} aria-label="How GuruForU Works">{localized('How It Works')}</Link>
-          </li>
-          <li>
-            <Link href="/blog" className={styles.navLink} aria-label="Learning Resources">{localized('Resources')}</Link>
-          </li>
-          <li>
-            <Link href="/free-session" className={styles.navLink}>{localized('Free Session')}</Link>
-          </li>
-          <li>
-            <Link href="/contact" className={styles.navLink} aria-label="Contact GuruForU">{localized('Contact')}</Link>
+            <Link href="/free-session" className={styles.navCta}>
+              {localized('Book Free Session')}
+            </Link>
           </li>
         </ul>
 
@@ -89,23 +113,34 @@ export default function NavMenu() {
       {/* Mobile Menu */}
       <div className={`${styles.mobileMenu} ${isOpen ? styles.open : ''}`}>
         <ul className={styles.mobileMenuList}>
+          {NAV_ITEMS.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className={`${styles.mobileNavLink} ${isNavActive(pathname, item.href) ? styles.mobileNavLinkActive : ''}`}
+                onClick={closeMenu}
+                aria-label={item.ariaLabel}
+                aria-current={isNavActive(pathname, item.href) ? 'page' : undefined}
+              >
+                {localized(item.label)}
+              </Link>
+            </li>
+          ))}
           <li>
-            <Link href="/" className={styles.mobileNavLink} onClick={closeMenu} aria-label="GuruForU Home Page">{localized('Home')}</Link>
+            <a
+              href="https://learn.guruforu.com/"
+              className={styles.mobilePortal}
+              onClick={closeMenu}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {localized('Go to Classroom')}
+            </a>
           </li>
           <li>
-            <Link href="/about" className={styles.mobileNavLink} onClick={closeMenu} aria-label="About GuruForU">{localized('About Us')}</Link>
-          </li>
-          <li>
-            <Link href="/how-it-works" className={styles.mobileNavLink} onClick={closeMenu} aria-label="How GuruForU Works">{localized('How It Works')}</Link>
-          </li>
-          <li>
-            <Link href="/blog" className={styles.mobileNavLink} onClick={closeMenu} aria-label="Learning Resources">{localized('Resources')}</Link>
-          </li>
-          <li>
-            <Link href="/free-session" className={styles.mobileNavLink} onClick={closeMenu}>{localized('Free Session')}</Link>
-          </li>
-          <li>
-            <Link href="/contact" className={styles.mobileNavLink} onClick={closeMenu} aria-label="Contact GuruForU">{localized('Contact')}</Link>
+            <Link href="/free-session" className={styles.mobileCta} onClick={closeMenu}>
+              {localized('Book Free Session')}
+            </Link>
           </li>
         </ul>
       </div>

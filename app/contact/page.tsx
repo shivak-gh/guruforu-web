@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
-import styles from './page.module.css'
 import Link from 'next/link'
 import Script from 'next/script'
 import { detectLocale, localizeText, type Region } from '../../lib/locale'
+import PageFooter from '../components/PageFooter'
 
 // Lazy load NavMenu to reduce initial bundle size
 const NavMenu = dynamic(() => import('../components/NavMenu'), {
@@ -354,178 +354,188 @@ export default function ContactUs() {
         </form>
       </noscript>
       <NavMenu />
-      <div className={styles.container}>
-        <div className={styles.background}>
-          <div className={styles.gradient}></div>
-        </div>
+      <main className="form-page">
+        <section className="form-page-main" aria-labelledby="contact-heading">
+          <div className="gf-container">
+            <header className="form-page-head">
+              <h1 id="contact-heading" className="form-page-head-title">
+                {localized('Contact')} <span className="gf-text-primary">{localized('Us')}</span>
+              </h1>
+              <p className="form-page-head-lead">
+                {localized('Questions about classes, billing, or support? Fill out the form — we typically reply within 24–48 hours on business days.')}
+              </p>
+            </header>
 
-        <div className={styles.content}>
-        <div className={styles.pageContent}>
-          <h1 className={styles.title}>{localized('Contact Us')}</h1>
-          <p className={styles.subtitle}>
-            {localized('We\'d love to hear from you! Get in touch with us for any')} <strong>{localized('questions, feedback, or support')}</strong> {localized('about our')} <strong>{localized('online education platform')}</strong>.
-          </p>
-          <p className={styles.subtitle}>
-            Whether you have questions about our online classes, need help with your account, or want to learn more about AI-powered learning and progress tracking, our team is here to help. Fill out the form below and we&apos;ll get back to you within 24–48 hours on business days.
-          </p>
+            <div className="gf-form-grid gf-form-grid-contact">
+              <div className="gf-form-card">
+                <form
+                  id="contact-form"
+                  className="gf-form"
+                  onSubmit={handleSubmit}
+                  action="/api/contact"
+                  method="post"
+                  data-form-type="contact"
+                >
+                <div className="gf-form-body">
+                <div className="gf-form-row gf-form-row-2">
+                <div className="gf-form-group">
+                  <label htmlFor="name" className="gf-form-label">
+                    {localized('Name')} <span className="gf-form-required">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    autoComplete="name"
+                    className="gf-form-input"
+                    placeholder={localized('Your full name')}
+                  />
+                </div>
 
-          <h2 className={styles.sectionTitle}>{localized('Get in Touch')}</h2>
+                <div className="gf-form-group">
+                  <label htmlFor="email" className="gf-form-label">
+                    {localized('Email')} <span className="gf-form-required">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    autoComplete="email"
+                    className="gf-form-input"
+                    placeholder={localized('your.email@example.com')}
+                  />
+                </div>
+                </div>
 
-          <div className={styles.contactSection}>
-            <div className={styles.contactInfo}>
-              <div className={styles.infoItem}>
-                <h3 className={styles.infoTitle}>{localized('Email')}</h3>
-                <p className={styles.infoText}>
-                  <a href="mailto:support@guruforu.com" className={styles.emailLink}>
+                <div className="gf-form-group">
+                  <label htmlFor="subject" className="gf-form-label">
+                    {localized('Subject')} <span className="gf-form-required">*</span>
+                  </label>
+                  <select
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    className="gf-form-select"
+                  >
+                    <option value="">{localized('Select a subject')}</option>
+                    <option value="general">{localized('General Inquiry')}</option>
+                    <option value="support">{localized('Technical Support')}</option>
+                    <option value="billing">{localized('Billing Question')}</option>
+                    <option value="feedback">{localized('Feedback')}</option>
+                    <option value="other">{localized('Other')}</option>
+                  </select>
+                </div>
+
+                <div className="gf-form-group">
+                  <label htmlFor="message" className="gf-form-label">
+                    {localized('Message')} <span className="gf-form-required">*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={3}
+                    className="gf-form-textarea"
+                    placeholder={localized('Tell us how we can help you...')}
+                  />
+                </div>
+
+                {submitStatus === 'success' && (
+                  <div className="gf-form-msg gf-form-msg-success">
+                    {localized('Thank you! Your message has been sent successfully. We\'ll get back to you soon.')}
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="gf-form-msg gf-form-msg-error" role="alert">
+                    <strong>{localized('Oops! Something went wrong.')}</strong>
+                    <br />
+                    {errorMessage || localized('Please check your browser console (F12) for detailed error information.')}
+                    <br />
+                    <small>{localized('If the issue persists, please email us directly at')} <a href="mailto:support@guruforu.com" className="gf-form-link">support@guruforu.com</a></small>
+                  </div>
+                )}
+
+                <div className="gf-form-actions">
+                  <button
+                    type="submit"
+                    name="submit"
+                    disabled={isSubmitting}
+                    className="gf-btn-primary"
+                  >
+                    {isSubmitting ? localized('Sending...') : localized('Send Message')}
+                  </button>
+                </div>
+
+                {!recaptchaSiteKey && typeof window !== 'undefined' &&
+                 (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && (
+                  <div className="gf-form-msg gf-form-msg-warning">
+                    ⚠️ Note: reCAPTCHA is not configured for localhost. Form will work without reCAPTCHA verification.
+                    To enable reCAPTCHA, set NEXT_PUBLIC_RECAPTCHA_SITE_KEY in .env.local and restart your dev server.
+                  </div>
+                )}
+
+                {recaptchaSiteKey && !recaptchaLoaded.current && (
+                  <div className="gf-form-msg gf-form-msg-info">
+                    ℹ️ Loading reCAPTCHA protection...
+                  </div>
+                )}
+
+                </div>
+              </form>
+            </div>
+
+            <aside className="gf-form-aside" aria-label={localized('Contact information')}>
+              <div className="gf-info-card">
+                <h2 className="gf-info-card-title">{localized('Email')}</h2>
+                <p className="gf-info-card-text">
+                  <a href="mailto:support@guruforu.com" className="gf-form-link">
                     support@guruforu.com
                   </a>
                 </p>
               </div>
-              <div className={styles.infoItem}>
-                <h3 className={styles.infoTitle}>{localized('Response Time')}</h3>
-                <p className={styles.infoText}>{localized('We typically respond within')} <strong>24-48 hours</strong> {localized('during business days')}</p>
+              <div className="gf-info-card">
+                <h2 className="gf-info-card-title">{localized('Response Time')}</h2>
+                <p className="gf-info-card-text">
+                  {localized('We typically respond within')} <strong>24-48 hours</strong> {localized('during business days')}
+                </p>
               </div>
-              <div className={styles.infoItem}>
-                <h3 className={styles.infoTitle}>{localized('Support Availability')}</h3>
-                <p className={styles.infoText}>{localized('We\'re here to help! Reach out anytime and we\'ll get back to you')} <strong>{localized('as soon as possible')}</strong>.</p>
+              <div className="gf-info-card">
+                <h2 className="gf-info-card-title">{localized('Support Availability')}</h2>
+                <p className="gf-info-card-text">
+                  {localized('We\'re here to help! Reach out anytime and we\'ll get back to you')} <strong>{localized('as soon as possible')}</strong>.
+                </p>
               </div>
-            </div>
-
-            <form 
-              id="contact-form"
-              className={styles.contactForm} 
-              onSubmit={handleSubmit}
-              action="/api/contact"
-              method="post"
-              data-form-type="contact"
-            >
-              <div className={styles.formGroup}>
-                <label htmlFor="name" className={styles.label}>
-                  {localized('Name')} <span className={styles.required}>*</span>
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  autoComplete="name"
-                  className={styles.input}
-                  placeholder={localized('Your full name')}
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label htmlFor="email" className={styles.label}>
-                  {localized('Email')} <span className={styles.required}>*</span>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  autoComplete="email"
-                  className={styles.input}
-                  placeholder={localized('your.email@example.com')}
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label htmlFor="subject" className={styles.label}>
-                  {localized('Subject')} <span className={styles.required}>*</span>
-                </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className={styles.select}
-                >
-                  <option value="">{localized('Select a subject')}</option>
-                  <option value="general">{localized('General Inquiry')}</option>
-                  <option value="support">{localized('Technical Support')}</option>
-                  <option value="billing">{localized('Billing Question')}</option>
-                  <option value="feedback">{localized('Feedback')}</option>
-                  <option value="other">{localized('Other')}</option>
-                </select>
-              </div>
-
-              <div className={styles.formGroup}>
-                <label htmlFor="message" className={styles.label}>
-                  {localized('Message')} <span className={styles.required}>*</span>
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className={styles.textarea}
-                  placeholder={localized('Tell us how we can help you...')}
-                />
-              </div>
-
-              {submitStatus === 'success' && (
-                <div className={styles.successMessage}>
-                  {localized('Thank you! Your message has been sent successfully. We\'ll get back to you soon.')}
-                </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className={styles.errorMessage} role="alert">
-                  <strong>{localized('Oops! Something went wrong.')}</strong>
-                  <br />
-                  {errorMessage || localized('Please check your browser console (F12) for detailed error information.')}
-                  <br />
-                  <small>{localized('If the issue persists, please email us directly at')} <a href="mailto:support@guruforu.com" className={styles.emailLink}>support@guruforu.com</a></small>
-                </div>
-              )}
-
-              {!recaptchaSiteKey && typeof window !== 'undefined' && 
-               (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && (
-                <div className={styles.warningMessage}>
-                  ⚠️ Note: reCAPTCHA is not configured for localhost. Form will work without reCAPTCHA verification. 
-                  To enable reCAPTCHA, set NEXT_PUBLIC_RECAPTCHA_SITE_KEY in .env.local and restart your dev server.
-                </div>
-              )}
-
-              {recaptchaSiteKey && !recaptchaLoaded.current && (
-                <div className={styles.infoMessage}>
-                  ℹ️ Loading reCAPTCHA protection...
-                </div>
-              )}
-
-              <button
-                type="submit"
-                name="submit"
-                disabled={isSubmitting}
-                className={styles.submitButton}
-              >
-                {isSubmitting ? localized('Sending...') : localized('Send Message')}
-              </button>
-            </form>
-          </div>
-
-          <div className={styles.additionalLinks}>
-            <p className={styles.linksText}>{localized('You may also find answers in our:')}</p>
-            <div className={styles.links}>
-              <Link href="/terms" className={styles.link} prefetch={false}>{localized('Terms and Conditions')}</Link>
-              <Link href="/privacy" className={styles.link} prefetch={false}>{localized('Privacy Policy')}</Link>
-              <Link href="/cancellation-refunds" className={styles.link} prefetch={false}>{localized('Cancellation and Refunds')}</Link>
+            </aside>
             </div>
           </div>
-        </div>
+        </section>
 
-        <footer className={styles.footer}>
-          <p>© {new Date().getFullYear()} GuruForU. {localized('All rights reserved.')}</p>
-        </footer>
-      </div>
-    </div>
+        <section className="about-section about-section-alt">
+          <div className="gf-container">
+            <div className="gf-form-links">
+              <p className="gf-form-links-text">{localized('You may also find answers in our:')}</p>
+              <div className="gf-form-links-row">
+                <Link href="/terms" className="gf-form-link" prefetch={false}>{localized('Terms and Conditions')}</Link>
+                <Link href="/privacy" className="gf-form-link" prefetch={false}>{localized('Privacy Policy')}</Link>
+                <Link href="/cancellation-refunds" className="gf-form-link" prefetch={false}>{localized('Cancellation and Refunds')}</Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <PageFooter localized={localized} />
+      </main>
     </>
   )
 }

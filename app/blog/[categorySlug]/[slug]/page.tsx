@@ -5,8 +5,8 @@ import { defaultBlogImage } from '../../lib/categoryImages'
 import BlogImage from '../../../components/BlogImage'
 import { getAuthor } from '../../../../lib/authors'
 import dynamicImport from 'next/dynamic'
-import styles from './page.module.css'
 import Script from 'next/script'
+import PageFooter from '../../../components/PageFooter'
 
 // Descriptive anchor text for external links (SEO: avoid URL-only anchor text)
 function getAnchorTextForUrl(url: string): string {
@@ -77,7 +77,7 @@ function linkify(text: string) {
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className={styles.externalLink}
+        className="ip-external-link"
         title={url}
       >
         {anchorText}
@@ -157,6 +157,11 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
   const titleWithBrand = /guruforu/i.test(rawTitle) ? rawTitle : `${rawTitle} | GuruForU`
   const optimizedTitle = truncate(titleWithBrand, 70)
   const optimizedDescription = truncate((metaDescription || blog.lead).trim(), 160)
+  const featuredImagePath = (blog as { image?: string }).image || defaultBlogImage
+  const featuredImageUrl = featuredImagePath.startsWith('http')
+    ? featuredImagePath
+    : `https://www.guruforu.com${featuredImagePath}`
+  const dateModified = (await getBlogModifiedDate(slug)) || blog.meta.publishedDate
 
   return {
     title: optimizedTitle,
@@ -180,11 +185,11 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       siteName: 'GuruForU',
       type: 'article',
       publishedTime: blog.meta.publishedDate,
-      modifiedTime: blog.meta.publishedDate,
+      modifiedTime: dateModified,
       authors: [getAuthor((blog as { author?: string }).author).name],
       images: [
         {
-          url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+          url: featuredImageUrl,
           width: 1200,
           height: 630,
           alt: blog.title,
@@ -196,7 +201,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       card: 'summary_large_image',
       title: optimizedTitle,
       description: optimizedDescription,
-      images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
+      images: [featuredImageUrl],
       creator: '@guruforu_official',
       site: '@guruforu_official',
     },
@@ -468,72 +473,68 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <NavMenu />
-      <div className={styles.container}>
-        <div className={styles.background}>
-          <div className={styles.gradient}></div>
-        </div>
-
-        <div className={styles.content}>
-        <article className={styles.article}>
-          <nav className={styles.breadcrumb} aria-label="Breadcrumb">
-            <Link href="/" className={styles.breadcrumbLink} prefetch={false}>Home</Link>
-            <span className={styles.breadcrumbSeparator}>/</span>
-            <Link href="/blog" className={styles.breadcrumbLink} prefetch={false}>Resources</Link>
-            <span className={styles.breadcrumbSeparator}>/</span>
-            <Link href={`/blog/${categorySlug}`} className={styles.breadcrumbLink} prefetch={false}>{blog.category}</Link>
-            <span className={styles.breadcrumbSeparator}>/</span>
-            <span className={styles.breadcrumbCurrent}>{blog.title}</span>
+      <div className="ip-layout">
+<div className="ip-content">
+        <article className="ip-card">
+          <nav className="ip-breadcrumb" aria-label="Breadcrumb">
+            <Link href="/" className="ip-link" prefetch={false}>Home</Link>
+            <span className="ip-breadcrumb-separator">/</span>
+            <Link href="/blog" className="ip-link" prefetch={false}>Resources</Link>
+            <span className="ip-breadcrumb-separator">/</span>
+            <Link href={`/blog/${categorySlug}`} className="ip-link" prefetch={false}>{blog.category}</Link>
+            <span className="ip-breadcrumb-separator">/</span>
+            <span className="ip-breadcrumb-current">{blog.title}</span>
           </nav>
-          <header className={styles.articleHeader}>
-            <h1 className={styles.title}>{blog.title}</h1>
-            <p className={styles.meta}>
+          <header className="ip-article-header">
+            <h1 className="ip-title">{blog.title}</h1>
+            <p className="ip-meta">
               Published on {formatDate(blog.meta.publishedDate)} | 
-              <span className={styles.readTime}> {blog.meta.readTime}</span>
+              <span className="ip-read-time"> {blog.meta.readTime}</span>
             </p>
           </header>
 
-          <div className={styles.featuredImageWrapper}>
+          <div className="ip-featured-image-wrapper">
             <BlogImage
               src={(blog as { image?: string }).image || defaultBlogImage}
               alt={blog.title}
               width={1200}
               height={630}
-              className={styles.featuredImage}
+              className="ip-featured-image"
               priority
               sizes="(max-width: 768px) 100vw, 1200px"
               fallbackSrc="/blog-images/online-education-category.jpg"
             />
           </div>
 
-          <div className={styles.articleContent}>
-            <section className={styles.section}>
-              <p className={styles.lead}>{linkify(blog.lead)}</p>
+          <div className="ip-article-content">
+            <section className="ip-section">
+              <p className="ip-lead">{linkify(blog.lead)}</p>
             </section>
 
             {blog.sections && blog.sections.map((section: any, index: number) => (
-              <section key={index} className={styles.section}>
-                <h2 className={styles.sectionTitle}>{section.title}</h2>
+              <section key={index} className="ip-section">
+                <h2 className="ip-section-title">{section.title}</h2>
                 
                 {section.content && section.content.map((paragraph: string, pIndex: number) => (
-                  <p key={pIndex} className={styles.text}>{linkify(paragraph)}</p>
+                  <p key={pIndex} className="ip-text">{linkify(paragraph)}</p>
                 ))}
 
                 {section.highlights && section.highlights.map((highlight: any, hIndex: number) => (
-                  <div key={hIndex} className={styles.highlightBox}>
-                    <h3 className={styles.highlightTitle}>{highlight.title}</h3>
-                    <p className={styles.highlightText}>{linkify(highlight.text)}</p>
+                  <div key={hIndex} className="ip-highlight-box">
+                    <h3 className="ip-highlight-title">{highlight.title}</h3>
+                    <p className="ip-highlight-text">{linkify(highlight.text)}</p>
                   </div>
                 ))}
 
                 {section.strategies && section.strategies.map((strategy: any, sIndex: number) => (
-                  <div key={sIndex} className={styles.strategyBox}>
-                    <h3 className={styles.strategyTitle}>{strategy.title}</h3>
-                    <p className={styles.strategyText}>{linkify(strategy.text)}</p>
+                  <div key={sIndex} className="ip-strategy-box">
+                    <h3 className="ip-strategy-title">{strategy.title}</h3>
+                    <p className="ip-strategy-text">{linkify(strategy.text)}</p>
                   </div>
                 ))}
 
                 {section.list && (
-                  <ul className={styles.list}>
+                  <ul className="ip-list">
                     {section.list.map((item: any, lIndex: number) => {
                       const parts = item.item.split(':')
                       if (parts.length > 1) {
@@ -554,13 +555,13 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
             {(() => {
               const author = getAuthor((blog as { author?: string }).author)
               return (
-                <section className={styles.authorBox} aria-label="About the author">
-                  <div className={styles.authorBoxInner}>
-                    <p className={styles.authorRole}>{author.role}</p>
-                    <h3 className={styles.authorName}>{author.name}</h3>
-                    <p className={styles.authorBio}>{author.bio}</p>
+                <section className="ip-author-box" aria-label="About the author">
+                  <div className="ip-author-box-inner">
+                    <p className="ip-author-role">{author.role}</p>
+                    <h3 className="ip-author-name">{author.name}</h3>
+                    <p className="ip-author-bio">{author.bio}</p>
                     {author.url && (
-                      <Link href={author.url} className={styles.authorLink} prefetch={false}>
+                      <Link href={author.url} className="ip-link" prefetch={false}>
                         Learn more about our team
                       </Link>
                     )}
@@ -570,48 +571,48 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
             })()}
 
             {/* FAQ Section */}
-            <section className={styles.faqSection}>
-              <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
+            <section className="ip-faq-section">
+              <h2 className="ip-section-title">Frequently Asked Questions</h2>
               {faqList.map((item: { question: string; answer: string }, idx: number) => (
-                <div key={idx} className={styles.faqItem}>
-                  <h3 className={styles.faqQuestion}>{item.question}</h3>
-                  <p className={styles.text}>{linkify(item.answer)}</p>
+                <div key={idx} className="ip-faq-item">
+                  <h3 className="ip-faq-question">{item.question}</h3>
+                  <p className="ip-text">{linkify(item.answer)}</p>
                 </div>
               ))}
             </section>
 
             {blog.cta && (
-              <div className={styles.ctaBox}>
-                <h3 className={styles.ctaTitle}>{blog.cta.title}</h3>
-                <p className={styles.ctaText}>{blog.cta.text}</p>
-                <Link href={blog.cta.buttonLink} className={styles.ctaButton} prefetch={false}>
+              <div className="ip-cta-box">
+                <h3 className="ip-cta-title">{blog.cta.title}</h3>
+                <p className="ip-cta-text">{blog.cta.text}</p>
+                <Link href={blog.cta.buttonLink} className="gf-btn-primary" prefetch={false}>
                   {blog.cta.buttonText}
                 </Link>
               </div>
             )}
 
             {relatedBlogs.length > 0 && (
-              <section className={styles.relatedArticles} aria-label="Related articles">
-                <h2 className={styles.sectionTitle}>Related Articles</h2>
-                <ul className={styles.relatedArticlesList}>
+              <section className="ip-related-articles" aria-label="Related articles">
+                <h2 className="ip-section-title">Related Articles</h2>
+                <ul className="ip-related-articles-list">
                   {relatedBlogs.map((related) => {
                     const relatedImage = (related as { image?: string }).image || defaultBlogImage
                     return (
-                      <li key={related.slug} className={styles.relatedArticleCard}>
-                        <Link href={`/blog/${related.categorySlug}/${related.slug}`} className={styles.relatedArticleCardLink} prefetch={false}>
-                          <span className={styles.relatedArticleImageWrap}>
+                      <li key={related.slug} className="ip-related-article-card">
+                        <Link href={`/blog/${related.categorySlug}/${related.slug}`} className="ip-related-article-card-link" prefetch={false}>
+                          <span className="ip-related-article-image-wrap">
                             <BlogImage
                               src={relatedImage}
                               alt=""
                               width={280}
                               height={160}
-                              className={styles.relatedArticleImage}
+                              className="ip-related-article-image"
                               sizes="(max-width: 600px) 100vw, 280px"
                             />
                           </span>
-                          <span className={styles.relatedArticleCardContent}>
-                            <span className={styles.relatedArticleCardTitle}>{related.title}</span>
-                            <span className={styles.relatedArticleCardMeta}>{related.meta.readTime}</span>
+                          <span className="ip-related-article-card-content">
+                            <span className="ip-related-article-card-title">{related.title}</span>
+                            <span className="ip-related-article-card-meta">{related.meta.readTime}</span>
                           </span>
                         </Link>
                       </li>
@@ -622,19 +623,19 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
             )}
 
             {topArticles.length > 0 && (
-              <section className={styles.relatedArticles} aria-label="Top articles">
-                <h2 className={styles.sectionTitle}>Top Articles</h2>
-                <ul className={styles.relatedArticlesList}>
+              <section className="ip-related-articles" aria-label="Top articles">
+                <h2 className="ip-section-title">Top Articles</h2>
+                <ul className="ip-related-articles-list">
                   {topArticles.map((topPost) => (
-                    <li key={topPost.slug} className={styles.relatedArticleCard}>
+                    <li key={topPost.slug} className="ip-related-article-card">
                       <Link
                         href={`/blog/${topPost.categorySlug}/${topPost.slug}`}
-                        className={styles.relatedArticleCardLink}
+                        className="ip-related-article-card-link"
                         prefetch={false}
                       >
-                        <span className={styles.relatedArticleCardContent}>
-                          <span className={styles.relatedArticleCardTitle}>{topPost.title}</span>
-                          <span className={styles.relatedArticleCardMeta}>{topPost.category}</span>
+                        <span className="ip-related-article-card-content">
+                          <span className="ip-related-article-card-title">{topPost.title}</span>
+                          <span className="ip-related-article-card-meta">{topPost.category}</span>
                         </span>
                       </Link>
                     </li>
@@ -645,19 +646,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ categor
           </div>
         </article>
 
-        <footer className={styles.footer}>
-          <nav className={styles.footerLinks}>
-            <Link href="/" className={styles.footerLink} prefetch={false}>GuruForU Home</Link>
-            <Link href="/blog" className={styles.footerLink} prefetch={false}>Resources</Link>
-            <Link href={`/blog/${categorySlug}`} className={styles.footerLink} prefetch={false}>{blog.category}</Link>
-            <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact Us</Link>
-            <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>
-            <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>
-            <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy Policy</Link>
-            <Link href="/site-map" className={styles.footerLink} prefetch={false}>Site Map</Link>
-          </nav>
-          <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
-        </footer>
+        <PageFooter />
       </div>
     </div>
     </>

@@ -1,4 +1,4 @@
-import { getAllBlogs, getAllCategories, getBlogsByCategory } from './blog/lib/getBlogs'
+import { getAllBlogs, getAllCategories, getBlogsByCategory, getBlogModifiedDate } from './blog/lib/getBlogs'
 import { defaultBlogImage } from './blog/lib/categoryImages'
 import { MetadataRoute } from 'next'
 import { stat } from 'fs/promises'
@@ -99,17 +99,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   )
 
   // Create blog post URLs with featured image for image sitemap
-  const blogUrls = blogs.map((blog) => {
-    const imagePath = (blog as { image?: string }).image || defaultBlogImage
-    const imageUrl = imagePath.startsWith('http') ? imagePath : `${baseUrl}${imagePath}`
-    return createSitemapEntry(
-      `/blog/${blog.categorySlug}/${blog.slug}`,
-      new Date(blog.meta.publishedDate),
-      'monthly',
-      0.8,
-      [imageUrl]
-    )
-  })
+  const blogUrls = await Promise.all(
+    blogs.map(async (blog) => {
+      const imagePath = (blog as { image?: string }).image || defaultBlogImage
+      const imageUrl = imagePath.startsWith('http') ? imagePath : `${baseUrl}${imagePath}`
+      const modified = await getBlogModifiedDate(blog.slug)
+      const lastModified = modified ? new Date(modified) : new Date(blog.meta.publishedDate)
+      return createSitemapEntry(
+        `/blog/${blog.categorySlug}/${blog.slug}`,
+        lastModified,
+        'monthly',
+        0.8,
+        [imageUrl]
+      )
+    })
+  )
 
   // Combine all URLs in order: static pages, legal pages, categories, blog posts
   return [

@@ -6,20 +6,16 @@ import { useState, useEffect } from 'react'
 interface CategoryImageProps {
   src: string
   alt: string
-  width: number
-  height: number
+  width?: number
+  height?: number
   className?: string
-  /** Optional title for SEO/accessibility (tooltip). Should describe the image. */
   title?: string
-  /** Responsive sizes hint for SEO (e.g. "(max-width: 768px) 100vw, 400px") */
   sizes?: string
 }
 
-export default function CategoryImage({ 
-  src, 
-  alt, 
-  width, 
-  height, 
+export default function CategoryImage({
+  src,
+  alt,
   className,
   title,
   sizes,
@@ -29,7 +25,6 @@ export default function CategoryImage({
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Reset error state when src changes
     setHasError(false)
     setIsLoading(true)
     setImgSrc(src)
@@ -39,7 +34,6 @@ export default function CategoryImage({
     if (!hasError) {
       setHasError(true)
       setIsLoading(false)
-      // Try default category image
       if (imgSrc !== '/blog-images/online-education-category.jpg') {
         setImgSrc('/blog-images/online-education-category.jpg')
       }
@@ -50,19 +44,18 @@ export default function CategoryImage({
     setIsLoading(false)
   }
 
-  // If image fails to load, show gradient placeholder using CSS
   if (hasError && imgSrc === '/blog-images/online-education-category.jpg') {
     return (
-      <div 
+      <div
         className={className}
         style={{
           width: '100%',
           height: '100%',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+          background: 'hsl(var(--muted))',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: 'white',
+          color: 'hsl(var(--muted-foreground))',
           fontSize: '0.875rem',
           fontWeight: 500,
         }}
@@ -73,22 +66,23 @@ export default function CategoryImage({
     )
   }
 
+  const imageSrc = imgSrc.includes('?') ? imgSrc.split('?')[0] : imgSrc
+
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%', backgroundColor: '#667eea' }}>
-      <Image
-        src={imgSrc}
-        alt={alt}
-        width={width}
-        height={height}
-        className={className}
-        sizes={sizes ?? '(max-width: 768px) 100vw, 400px'}
-        onError={handleError}
-        onLoad={handleLoad}
-        style={{
-          opacity: isLoading ? 0 : 1,
-          transition: 'opacity 0.3s ease',
-        }}
-      />
-    </div>
+    <Image
+      src={imageSrc}
+      alt={alt}
+      title={title}
+      fill
+      className={className}
+      sizes={sizes ?? '(max-width: 768px) 50vw, 25vw'}
+      onError={handleError}
+      onLoad={handleLoad}
+      style={{
+        objectFit: 'cover',
+        opacity: isLoading ? 0 : 1,
+        transition: 'opacity 0.3s ease',
+      }}
+    />
   )
 }

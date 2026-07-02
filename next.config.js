@@ -1,7 +1,39 @@
 /** @type {import('next').NextConfig} */
-// Cache control: enabled by default so JS/CSS and static assets are cached (fixes uncached asset issues).
-// Set DISABLE_CACHE=true in environment to disable caching (e.g. for debugging).
+// Cache control: production only. Dev must not send immutable headers or browsers keep stale CSS after theme changes.
+const fs = require('fs')
+const path = require('path')
+
+const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 const DISABLE_CACHE = process.env.DISABLE_CACHE === 'true'
+
+function categoryToSlug(category) {
+  return category
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
+/** 301 redirects for legacy /blog/[slug] URLs → /blog/[category]/[slug] */
+function getLegacyBlogRedirects() {
+  try {
+    const contentDir = path.join(__dirname, 'app', 'blog', 'content')
+    const files = fs.readdirSync(contentDir).filter(
+      (f) => f.endsWith('.json') && f !== 'blog-template.json'
+    )
+    return files.map((file) => {
+      const content = JSON.parse(fs.readFileSync(path.join(contentDir, file), 'utf-8'))
+      const slug = content.slug || file.replace('.json', '')
+      const categorySlug = categoryToSlug(content.category || 'General')
+      return {
+        source: `/blog/${slug}`,
+        destination: `/blog/${categorySlug}/${slug}`,
+        permanent: true,
+      }
+    })
+  } catch {
+    return []
+  }
+}
 
 const nextConfig = {
   output: 'standalone',
@@ -81,8 +113,8 @@ const nextConfig = {
       },
     ]
 
-    // Add cache headers only if caching is enabled
-    if (!DISABLE_CACHE) {
+    // Add cache headers only in production (never in dev — breaks hot reload / theme updates)
+    if (IS_PRODUCTION && !DISABLE_CACHE) {
       const oneHour = 'public, s-maxage=3600, max-age=3600, stale-while-revalidate=86400'
       headers.push(
         {
@@ -249,6 +281,7 @@ const nextConfig = {
         destination: '/free-session',
         permanent: true,
       },
+      ...getLegacyBlogRedirects(),
     ]
   },
 }

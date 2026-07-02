@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import BlogImage from '../../components/BlogImage'
-import { getAllCategories, getBlogsByCategory, categoryToSlug } from '../lib/getBlogs'
+import { getAllCategories, getBlogsByCategory, getAllBlogs } from '../lib/getBlogs'
 import dynamicImport from 'next/dynamic'
-import styles from './page.module.css'
 import Script from 'next/script'
+import PageFooter from '../../components/PageFooter'
 
 // Lazy load NavMenu to reduce initial bundle size
 const NavMenu = dynamicImport(() => import('../../components/NavMenu'), {
@@ -29,9 +29,21 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
   const category = categories.find(cat => cat.slug === categorySlug)
   
   if (!category) {
+    const blogs = await getAllBlogs()
+    const post = blogs.find((b) => b.slug === categorySlug)
+    if (post) {
+      return {
+        title: `${post.title} | GuruForU`,
+        description: post.lead,
+        alternates: {
+          canonical: `https://www.guruforu.com/blog/${post.categorySlug}/${post.slug}`,
+        },
+      }
+    }
     return {
       title: 'Category Not Found | GuruForU',
       description: 'The requested blog category could not be found.',
+      robots: { index: false, follow: false },
     }
   }
 
@@ -94,11 +106,17 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
   const { categorySlug } = await params
   const categories = await getAllCategories()
   const category = categories.find(cat => cat.slug === categorySlug)
-  const blogs = getBlogsByCategory(categorySlug)
 
   if (!category) {
+    const blogs = await getAllBlogs()
+    const post = blogs.find((b) => b.slug === categorySlug)
+    if (post) {
+      redirect(`/blog/${post.categorySlug}/${post.slug}`)
+    }
     notFound()
   }
+
+  const blogs = getBlogsByCategory(categorySlug)
 
   const blogsList = await blogs
 
@@ -196,59 +214,55 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
       />
       <NavMenu />
-      <div className={styles.container}>
-        <div className={styles.background}>
-          <div className={styles.gradient}></div>
-        </div>
-
-        <div className={styles.content}>
-        <div className={styles.categoryListing}>
-          <nav className={styles.breadcrumb} aria-label="Breadcrumb">
-            <Link href="/" className={styles.breadcrumbLink} prefetch={false}>Home</Link>
-            <span className={styles.breadcrumbSeparator}>/</span>
-            <Link href="/blog" className={styles.breadcrumbLink} prefetch={false}>Resources</Link>
-            <span className={styles.breadcrumbSeparator}>/</span>
-            <span className={styles.breadcrumbCurrent}>{category.name}</span>
+      <div className="ip-layout">
+<div className="ip-content">
+        <div className="ip-category-listing">
+          <nav className="ip-breadcrumb" aria-label="Breadcrumb">
+            <Link href="/" className="ip-link" prefetch={false}>Home</Link>
+            <span className="ip-breadcrumb-separator">/</span>
+            <Link href="/blog" className="ip-link" prefetch={false}>Resources</Link>
+            <span className="ip-breadcrumb-separator">/</span>
+            <span className="ip-breadcrumb-current">{category.name}</span>
           </nav>
-          <header className={styles.pageHeader}>
-            <h1 className={styles.pageTitle}>{category.name}</h1>
-            <p className={styles.pageSubtitle}>
+          <header className="ip-header">
+            <h1 className="ip-title">{category.name}</h1>
+            <p className="ip-lead">
               <strong>{category.count}</strong> {category.count === 1 ? 'article' : 'articles'} in this category covering <strong>educational topics and learning strategies</strong>
             </p>
-            <p className={styles.pageSubtitle}>
+            <p className="ip-lead">
               Articles in this category offer practical advice and insights for parents and students. Read on for expert tips, curriculum guides, and strategies to support your child&apos;s learning.
             </p>
           </header>
 
-          <div className={styles.blogGrid}>
+          <div className="ip-blog-grid">
             {blogsList.map((blog) => {
               const blogImage = blog.image || `/blog-images/online-education-category.jpg`
               return (
-                <article key={blog.slug} className={styles.blogCard}>
-                  <Link href={`/blog/${categorySlug}/${blog.slug}`} className={styles.blogCardLink} prefetch={false}>
-                    <div className={styles.blogCardImageWrapper}>
+                <article key={blog.slug} className="ip-blog-card">
+                  <Link href={`/blog/${categorySlug}/${blog.slug}`} className="ip-blog-card-link" prefetch={false}>
+                    <div className="ip-blog-card-image-wrapper">
                       <BlogImage
                         src={blogImage}
                         alt={blog.title}
                         width={400}
                         height={250}
-                        className={styles.blogCardImage}
+                        className="ip-blog-card-image"
                         sizes="(max-width: 768px) 100vw, 400px"
                         fallbackSrc="/blog-images/online-education-category.jpg"
                       />
                     </div>
-                    <div className={styles.blogCardContent}>
-                      <div className={styles.blogCardCategory}>{blog.category}</div>
-                      <h2 className={styles.blogCardTitle}>{blog.title}</h2>
-                      <p className={styles.blogCardLead}>{blog.lead}</p>
-                      <div className={styles.blogCardMeta}>
-                        <span className={styles.blogDate}>
+                    <div className="ip-blog-card-content">
+                      <div className="ip-blog-card-category">{blog.category}</div>
+                      <h2 className="ip-blog-card-title">{blog.title}</h2>
+                      <p className="ip-blog-card-lead">{blog.lead}</p>
+                      <div className="ip-blog-card-meta">
+                        <span className="ip-blog-date">
                           {formatDate(blog.meta.publishedDate)}
                         </span>
-                        <span className={styles.blogReadTime}>{blog.meta.readTime}</span>
+                        <span className="ip-blog-read-time">{blog.meta.readTime}</span>
                       </div>
                     </div>
-                    <div className={styles.blogCardArrow}>→</div>
+                    <div className="ip-blog-card-arrow">→</div>
                   </Link>
                 </article>
               )
@@ -256,18 +270,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
           </div>
         </div>
 
-        <footer className={styles.footer}>
-          <nav className={styles.footerLinks}>
-            <Link href="/" className={styles.footerLink} prefetch={false}>GuruForU Home</Link>
-            <Link href="/blog" className={styles.footerLink} prefetch={false}>Resources</Link>
-            <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact Us</Link>
-            <a href="mailto:support@guruforu.com" className={styles.footerLink}>Email Support</a>
-            <Link href="/terms" className={styles.footerLink} prefetch={false}>Terms and Conditions</Link>
-            <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy Policy</Link>
-            <Link href="/site-map" className={styles.footerLink} prefetch={false}>Site Map</Link>
-          </nav>
-          <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
-        </footer>
+        <PageFooter />
       </div>
     </div>
     </>

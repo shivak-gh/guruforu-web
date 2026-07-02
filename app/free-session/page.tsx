@@ -2,10 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
-import styles from './page.module.css'
 import Link from 'next/link'
 import Script from 'next/script'
 import { detectLocale, localizeText, type Region } from '../../lib/locale'
+import PageFooter from '../components/PageFooter'
+import CountryAutocomplete from '../components/CountryAutocomplete'
 
 // Lazy load NavMenu to reduce initial bundle size
 const NavMenu = dynamic(() => import('../components/NavMenu'), {
@@ -389,41 +390,33 @@ Learning Challenges: ${data.details || 'Not specified'}`;
         </form>
       </noscript>
       <NavMenu />
-      <div className={styles.container}>
-        <div className={styles.background}>
-          <div className={styles.gradient}></div>
-        </div>
+      <main className="form-page">
+        <section className="form-page-main" aria-labelledby="free-session-heading">
+          <div className="gf-container">
+            <header className="form-page-head">
+              <h1 id="free-session-heading" className="form-page-head-title">
+                {localized('Book Your')} <span className="gf-text-primary">{localized('Free Session')}</span>
+              </h1>
+              <p className="form-page-head-lead">
+                {localized('Free 15-minute Math & Science assessment with expert tutors. No credit card. No obligation.')}
+              </p>
+            </header>
 
-        <div className={styles.content}>
-          {/* Hero Section */}
-          <div className={styles.hero}>
-            <h1 className={styles.heroTitle}>
-              {localized('FREE Math & Science Assessment Session')}
-            </h1>
-            <p className={styles.heroSubtitle}>
-              <strong>Struggling with Algebra? Chemistry? Physics?</strong> Book a <strong>free 15-minute session</strong> with our expert tutors. We&apos;ll identify exactly where your child needs help and create a personalized plan.
-            </p>
-            <p className={styles.heroSubtitle}>
-              <strong>No credit card. No obligation.</strong> Just real help from real teachers who specialize in K-12 Math &amp; Science.
-            </p>
-          </div>
-
-          <div className={styles.mainContent}>
-            {/* Form Section */}
-            <div className={styles.formSection}>
-              <h2 className={styles.formTitle}>{localized('Book Your Free Session')}</h2>
-              
-              <form 
-                id="free-session-form"
-                className={styles.consultationForm} 
+            <div className="gf-form-grid gf-form-grid-reverse">
+              <div className="gf-form-card">
+                <form
+                  id="free-session-form"
+                  className="gf-form" 
                 onSubmit={handleEmailSubmit}
                 action="/api/free-consultation"
                 method="post"
                 data-form-type="lead"
               >
-                <div className={styles.formGroup}>
-                  <label htmlFor="name" className={styles.label}>
-                    {localized('Parent Name')} <span className={styles.required}>*</span>
+                <div className="gf-form-body">
+                <div className="gf-form-row gf-form-row-2">
+                <div className="gf-form-group">
+                  <label htmlFor="name" className="gf-form-label">
+                    {localized('Parent Name')} <span className="gf-form-required">*</span>
                   </label>
                   <input
                     type="text"
@@ -433,14 +426,14 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                     onChange={handleChange}
                     required
                     autoComplete="name"
-                    className={styles.input}
+                    className="gf-form-input"
                     placeholder={localized('Your full name')}
                   />
                 </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="email" className={styles.label}>
-                    {localized('Email')} <span className={styles.required}>*</span>
+                <div className="gf-form-group">
+                  <label htmlFor="email" className="gf-form-label">
+                    {localized('Email')} <span className="gf-form-required">*</span>
                   </label>
                   <input
                     type="email"
@@ -450,14 +443,16 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                     onChange={handleChange}
                     required
                     autoComplete="email"
-                    className={styles.input}
+                    className="gf-form-input"
                     placeholder={localized('your.email@example.com')}
                   />
                 </div>
+                </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="grade" className={styles.label}>
-                    {localized('Child\'s Grade')} <span className={styles.required}>*</span>
+                <div className="gf-form-row gf-form-row-3">
+                <div className="gf-form-group">
+                  <label htmlFor="grade" className="gf-form-label">
+                    {localized('Child\'s Grade')} <span className="gf-form-required">*</span>
                   </label>
                   <input
                     type="text"
@@ -466,82 +461,21 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                     value={formData.grade}
                     onChange={handleChange}
                     required
-                    className={styles.input}
-                    placeholder={localized('e.g., Grade 5, Year 3, Class 8, etc.')}
+                    className="gf-form-input"
+                    placeholder={localized('e.g., Grade 5')}
                   />
                 </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="country" className={styles.label}>
-                    {localized('Country')}
-                  </label>
-                  <input
-                    type="text"
-                    id="country"
-                    name="country"
-                    value={formData.country}
-                    onChange={handleChange}
-                    list="countries"
-                    className={styles.input}
-                    placeholder={localized('Start typing your country...')}
-                    autoComplete="country-name"
-                  />
-                  <datalist id="countries">
-                    <option value="United States">United States</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Australia">Australia</option>
-                    <option value="India">India</option>
-                    <option value="Singapore">Singapore</option>
-                    <option value="Malaysia">Malaysia</option>
-                    <option value="United Arab Emirates">United Arab Emirates</option>
-                    <option value="Saudi Arabia">Saudi Arabia</option>
-                    <option value="South Africa">South Africa</option>
-                    <option value="New Zealand">New Zealand</option>
-                    <option value="Germany">Germany</option>
-                    <option value="France">France</option>
-                    <option value="Spain">Spain</option>
-                    <option value="Italy">Italy</option>
-                    <option value="Netherlands">Netherlands</option>
-                    <option value="Belgium">Belgium</option>
-                    <option value="Switzerland">Switzerland</option>
-                    <option value="Austria">Austria</option>
-                    <option value="Sweden">Sweden</option>
-                    <option value="Norway">Norway</option>
-                    <option value="Denmark">Denmark</option>
-                    <option value="Finland">Finland</option>
-                    <option value="Poland">Poland</option>
-                    <option value="Portugal">Portugal</option>
-                    <option value="Greece">Greece</option>
-                    <option value="Ireland">Ireland</option>
-                    <option value="Japan">Japan</option>
-                    <option value="South Korea">South Korea</option>
-                    <option value="China">China</option>
-                    <option value="Hong Kong">Hong Kong</option>
-                    <option value="Taiwan">Taiwan</option>
-                    <option value="Thailand">Thailand</option>
-                    <option value="Philippines">Philippines</option>
-                    <option value="Indonesia">Indonesia</option>
-                    <option value="Vietnam">Vietnam</option>
-                    <option value="Bangladesh">Bangladesh</option>
-                    <option value="Pakistan">Pakistan</option>
-                    <option value="Sri Lanka">Sri Lanka</option>
-                    <option value="Nepal">Nepal</option>
-                    <option value="Brazil">Brazil</option>
-                    <option value="Mexico">Mexico</option>
-                    <option value="Argentina">Argentina</option>
-                    <option value="Chile">Chile</option>
-                    <option value="Colombia">Colombia</option>
-                    <option value="Peru">Peru</option>
-                    <option value="Egypt">Egypt</option>
-                    <option value="Kenya">Kenya</option>
-                    <option value="Nigeria">Nigeria</option>
-                    <option value="Ghana">Ghana</option>
-                  </datalist>
-                </div>
+                <CountryAutocomplete
+                  id="country"
+                  value={formData.country}
+                  onChange={(country) => setFormData({ ...formData, country })}
+                  label={localized('Country')}
+                  placeholder={localized('Start typing your country...')}
+                />
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="timeSlot" className={styles.label}>
+                <div className="gf-form-group">
+                  <label htmlFor="timeSlot" className="gf-form-label">
                     {localized('Preferred time to contact you')}
                   </label>
                   <select
@@ -549,7 +483,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                     name="timeSlot"
                     value={formData.timeSlot}
                     onChange={handleChange}
-                    className={styles.select}
+                    className="gf-form-select"
                   >
                     <option value="">{localized('Select preferred time')}</option>
                     <option value="Morning (9 AM - 12 PM)">{localized('Morning (9 AM - 12 PM)')}</option>
@@ -558,157 +492,155 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                     <option value="Anytime">{localized('Anytime')}</option>
                   </select>
                 </div>
+                </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="details" className={styles.label}>
-                    {localized('Tell us about their learning challenges')}
+                <div className="gf-form-group">
+                  <label htmlFor="details" className="gf-form-label">
+                    {localized('Learning challenges')}
                   </label>
                   <textarea
                     id="details"
                     name="details"
                     value={formData.details}
                     onChange={handleChange}
-                    rows={4}
-                    className={styles.textarea}
-                    placeholder={localized('Describe any specific subjects, topics, or learning difficulties your child is facing...')}
+                    rows={2}
+                    className="gf-form-textarea"
+                    placeholder={localized('Subjects or topics your child needs help with (optional)')}
                   />
                 </div>
 
                 {submitStatus === 'success' && (
-                  <div className={styles.successMessage} role="alert">
+                  <div className="gf-form-msg gf-form-msg-success" role="alert">
                     ✓ {localized('Thank you! We\'ll contact you soon to schedule your free session.')}
                   </div>
                 )}
 
                 {submitStatus === 'error' && errorMessage && (
-                  <div className={styles.errorMessage} role="alert">
+                  <div className="gf-form-msg gf-form-msg-error" role="alert">
                     <strong>{localized('Oops! Something went wrong.')}</strong>
                     <br />
                     {errorMessage}
                     <br />
-                    <small>{localized('If the issue persists, please email us directly at')} <a href="mailto:support@guruforu.com" className={styles.emailLink}>support@guruforu.com</a></small>
+                    <small>{localized('If the issue persists, please email us directly at')} <a href="mailto:support@guruforu.com" className="gf-form-link">support@guruforu.com</a></small>
                   </div>
                 )}
 
-                {!recaptchaSiteKey && typeof window !== 'undefined' && 
+                <div className="gf-form-actions gf-form-actions-row">
+                  <button
+                    type="submit"
+                    name="submit"
+                    disabled={isSubmitting}
+                    className="gf-btn-primary"
+                  >
+                    {isSubmitting ? localized('Submitting...') : localized('Secure My Free Session')}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleWhatsAppClick}
+                    className="gf-whatsapp-btn"
+                  >
+                    <span aria-hidden="true">💬</span>
+                    {localized('Book via WhatsApp')}
+                  </button>
+                </div>
+
+                {!recaptchaSiteKey && typeof window !== 'undefined' &&
                  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && (
-                  <div className={styles.warningMessage}>
+                  <div className="gf-form-msg gf-form-msg-warning">
                     ⚠️ Note: reCAPTCHA is not configured for localhost. Form will work without reCAPTCHA verification. 
                     To enable reCAPTCHA, set NEXT_PUBLIC_RECAPTCHA_SITE_KEY in .env.local and restart your dev server.
                   </div>
                 )}
 
                 {recaptchaSiteKey && !recaptchaLoaded.current && (
-                  <div className={styles.infoMessage}>
+                  <div className="gf-form-msg gf-form-msg-info">
                     ℹ️ Loading reCAPTCHA protection...
                   </div>
                 )}
 
                 {recaptchaSiteKey && (
-                  <div className={styles.captchaNotice}>
-                    <small>
-                      This site is protected by reCAPTCHA and the Google{' '}
-                      <a 
-                        href="https://policies.google.com/privacy" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className={styles.captchaLink}
-                      >
-                        Privacy Policy
-                      </a>
-                      {' '}and{' '}
-                      <a 
-                        href="https://policies.google.com/terms" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className={styles.captchaLink}
-                      >
-                        Terms of Service
-                      </a>
-                      {' '}apply.
-                    </small>
-                  </div>
+                  <p className="gf-form-note">
+                    This site is protected by reCAPTCHA and the Google{' '}
+                    <a
+                      href="https://policies.google.com/privacy"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="gf-form-link"
+                    >
+                      Privacy Policy
+                    </a>
+                    {' '}and{' '}
+                    <a
+                      href="https://policies.google.com/terms"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="gf-form-link"
+                    >
+                      Terms of Service
+                    </a>
+                    {' '}apply.
+                  </p>
                 )}
 
-                <div className={styles.actionButtons}>
-                  <button
-                    type="submit"
-                    name="submit"
-                    disabled={isSubmitting}
-                    className={styles.primaryButton}
-                  >
-                    {isSubmitting ? localized('Submitting...') : localized('Secure My Free Session')}
-                  </button>
-                  
-                  <button
-                    type="button"
-                    onClick={handleWhatsAppClick}
-                    className={styles.whatsappButton}
-                  >
-                    <span className={styles.whatsappIcon}>💬</span>
-                    {localized('Book via WhatsApp')}
-                  </button>
                 </div>
               </form>
             </div>
 
-            {/* Roadmap & Trust Section */}
-            <div className={styles.sidebar}>
-              {/* Student Progress Roadmap */}
-              <div className={styles.roadmap}>
-                <h3 className={styles.roadmapTitle}>{localized('Your Child\'s Progress Roadmap')}</h3>
-                <div className={styles.roadmapSteps}>
-                  <div className={styles.roadmapStep}>
-                    <div className={styles.stepNumber}>1</div>
-                    <div className={styles.stepContent}>
-                      <h4 className={styles.stepTitle}>{localized('Free Session')}</h4>
-                      <p className={styles.stepDescription}>{localized('15-minute strategy session to understand your child\'s needs')}</p>
+            <aside className="gf-form-aside" aria-label={localized('What to expect')}>
+              <div className="gf-form-card">
+                <h3 className="gf-form-card-title">{localized('Your Child\'s Progress Roadmap')}</h3>
+                <ol className="gf-roadmap-list">
+                  <li className="gf-roadmap-item">
+                    <span className="gf-roadmap-num" aria-hidden="true">1</span>
+                    <div>
+                      <p className="gf-roadmap-title">{localized('Free Session')}</p>
+                      <p className="gf-roadmap-desc">{localized('15-minute strategy session to understand your child\'s needs')}</p>
                     </div>
-                  </div>
-                  <div className={styles.roadmapStep}>
-                    <div className={styles.stepNumber}>2</div>
-                    <div className={styles.stepContent}>
-                      <h4 className={styles.stepTitle}>{localized('AI Learning Diagnostic')}</h4>
-                      <p className={styles.stepDescription}>{localized('Comprehensive analysis of learning gaps and strengths')}</p>
+                  </li>
+                  <li className="gf-roadmap-item">
+                    <span className="gf-roadmap-num" aria-hidden="true">2</span>
+                    <div>
+                      <p className="gf-roadmap-title">{localized('AI Learning Diagnostic')}</p>
+                      <p className="gf-roadmap-desc">{localized('Comprehensive analysis of learning gaps and strengths')}</p>
                     </div>
-                  </div>
-                  <div className={styles.roadmapStep}>
-                    <div className={styles.stepNumber}>3</div>
-                    <div className={styles.stepContent}>
-                      <h4 className={styles.stepTitle}>{localized('Personalized Roadmap')}</h4>
-                      <p className={styles.stepDescription}>{localized('Custom subject roadmap tailored to your child')}</p>
+                  </li>
+                  <li className="gf-roadmap-item">
+                    <span className="gf-roadmap-num" aria-hidden="true">3</span>
+                    <div>
+                      <p className="gf-roadmap-title">{localized('Personalized Roadmap')}</p>
+                      <p className="gf-roadmap-desc">{localized('Custom subject roadmap tailored to your child')}</p>
                     </div>
-                  </div>
-                  <div className={styles.roadmapStep}>
-                    <div className={styles.stepNumber}>4</div>
-                    <div className={styles.stepContent}>
-                      <h4 className={styles.stepTitle}>{localized('Expert Tutor Matching')}</h4>
-                      <p className={styles.stepDescription}>{localized('Connect with qualified tutors for ongoing support')}</p>
+                  </li>
+                  <li className="gf-roadmap-item">
+                    <span className="gf-roadmap-num" aria-hidden="true">4</span>
+                    <div>
+                      <p className="gf-roadmap-title">{localized('Expert Tutor Matching')}</p>
+                      <p className="gf-roadmap-desc">{localized('Connect with qualified tutors for ongoing support')}</p>
                     </div>
-                  </div>
-                </div>
+                  </li>
+                </ol>
               </div>
 
-              {/* Trust Section */}
-              <div className={styles.trustSection}>
-                <h3 className={styles.trustTitle}>{localized('What You\'ll Get')}</h3>
-                <ul className={styles.trustList}>
-                  <li className={styles.trustItem}>
-                    <span className={styles.trustIcon}>✓</span>
+              <div className="gf-form-card">
+                <h3 className="gf-form-card-title">{localized('What You\'ll Get')}</h3>
+                <ul className="gf-trust-list">
+                  <li className="gf-trust-item">
+                    <span className="gf-trust-icon" aria-hidden="true">✓</span>
                     <div>
                       <strong>{localized('Personalized Subject Roadmap')}</strong>
                       <p>{localized('Custom learning path designed specifically for your child')}</p>
                     </div>
                   </li>
-                  <li className={styles.trustItem}>
-                    <span className={styles.trustIcon}>✓</span>
+                  <li className="gf-trust-item">
+                    <span className="gf-trust-icon" aria-hidden="true">✓</span>
                     <div>
                       <strong>{localized('AI Mastery Analysis')}</strong>
                       <p>{localized('Deep insights into learning gaps and strengths')}</p>
                     </div>
                   </li>
-                  <li className={styles.trustItem}>
-                    <span className={styles.trustIcon}>✓</span>
+                  <li className="gf-trust-item">
+                    <span className="gf-trust-icon" aria-hidden="true">✓</span>
                     <div>
                       <strong>{localized('Expert Tutor Matching')}</strong>
                       <p>{localized('Connect with qualified tutors who understand your child\'s needs')}</p>
@@ -716,22 +648,13 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                   </li>
                 </ul>
               </div>
+            </aside>
             </div>
           </div>
+        </section>
 
-          <footer className={styles.footer}>
-            <nav className={styles.footerLinks}>
-              <Link href="/" className={styles.footerLink} prefetch={false}>{localized('GuruForU Home')}</Link>
-              <Link href="/blog" className={styles.footerLink} prefetch={false}>{localized('Resources')}</Link>
-              <Link href="/contact" className={styles.footerLink} prefetch={false}>{localized('Contact Us')}</Link>
-              <a href="mailto:support@guruforu.com" className={styles.footerLink}>{localized('Email Support')}</a>
-              <Link href="/terms" className={styles.footerLink} prefetch={false}>{localized('Terms and Conditions')}</Link>
-              <Link href="/privacy" className={styles.footerLink} prefetch={false}>{localized('Privacy Policy')}</Link>
-            </nav>
-            <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. {localized('All rights reserved.')}</p>
-          </footer>
-        </div>
-      </div>
+        <PageFooter localized={localized} />
+      </main>
     </>
   )
 }

@@ -1,0 +1,302 @@
+/* GuruForU design system — aligned with learn.guruforu.com */
+
+:root {
+  --background: 210 20% 98%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --primary: 221 83% 53%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222 47% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 35 95% 58%;
+  --accent-foreground: 222 47% 11%;
+  --border: 214.3 31.8% 91.4%;
+  --ring: 221 83% 53%;
+  --radius: 0.75rem;
+  --nav-height: 4rem;
+}
+
+.gf-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+.gf-container {
+  width: 100%;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.gf-section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.gf-section-muted {
+  background-color: hsl(var(--secondary) / 0.5);
+}
+
+.gf-card {
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: calc(var(--radius) * 1.5);
+  box-shadow: 0 1px 3px hsl(var(--foreground) / 0.04);
+}
+
+.gf-display {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.gf-text-muted {
+  color: hsl(var(--muted-foreground));
+}
+
+.gf-text-primary {
+  color: hsl(var(--primary));
+}
+
+.gf-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--card));
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.gf-badge-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: hsl(var(--accent));
+  animation: gf-pulse 2s ease-in-out infinite;
+}
+
+@keyframes gf-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.gf-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--card));
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.gf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.gf-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  transition: background-color 0.15s ease;
+}
+
+.gf-btn-primary:hover {
+  background-color: hsl(var(--primary) / 0.9);
+}
+
+.gf-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--border));
+  transition: background-color 0.15s ease;
+}
+
+.gf-btn-outline:hover {
+  background-color: hsl(var(--muted));
+}
+
+.gf-footer {
+  margin-top: auto;
+  border-top: 1px solid hsl(var(--border));
+  background-color: hsl(var(--card));
+  padding: 3.5rem 0 1.5rem;
+}
+
+.gf-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .gf-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .gf-footer-grid {
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: 2rem 3rem;
+  }
+}
+
+.gf-footer-brand-col {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 992px) {
+  .gf-footer-brand-col {
+    grid-column: auto;
+  }
+}
+
+.gf-footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: hsl(var(--foreground));
+  margin-bottom: 0.875rem;
+}
+
+.gf-footer-logo {
+  width: 2.25rem;
+  height: 2.25rem;
+  object-fit: contain;
+}
+
+.gf-footer-name {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: -0.02em;
+}
+
+.gf-footer-tagline {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: hsl(var(--muted-foreground));
+  max-width: 20rem;
+  margin: 0;
+}
+
+.gf-footer-col {
+  min-width: 0;
+}
+
+.gf-footer-heading {
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: hsl(var(--foreground));
+  margin-bottom: 1rem;
+}
+
+.gf-footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.gf-footer-link {
+  color: hsl(var(--muted-foreground));
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.15s ease;
+}
+
+.gf-footer-link:hover {
+  color: hsl(var(--primary));
+}
+
+.gf-footer-bottom {
+  padding-top: 1.5rem;
+  border-top: 1px solid hsl(var(--border));
+}
+
+.gf-footer-copy {
+  font-size: 0.8125rem;
+  color: hsl(var(--muted-foreground));
+  margin: 0;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .gf-footer-copy {
+    text-align: left;
+  }
+}
+
+.gf-cta-panel {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+  border-radius: calc(var(--radius) * 1.5);
+  border: 1px solid hsl(var(--primary) / 0.2);
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary) / 0.05) 0%,
+    hsl(260 60% 60% / 0.05) 100%
+  );
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gf-badge-dot {
+    animation: none;
+  }
+}

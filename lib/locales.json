@@ -78,6 +78,17 @@
       "htmlLang": "en"
     },
     {
+      "code": "en-IN",
+      "hreflang": "en-IN",
+      "region": "IN",
+      "countryCode": "IN",
+      "countryName": "India",
+      "currency": "INR",
+      "currencySymbol": "₹",
+      "openGraphLocale": "en_IN",
+      "htmlLang": "en"
+    },
+    {
       "code": "x-default",
       "hreflang": "x-default",
       "region": "DEFAULT",
@@ -104,7 +115,27 @@
       "AU": "en-AU",
       "NZ": "en-NZ",
       "QA": "en-QA",
-      "AE": "en-AE"
+      "AE": "en-AE",
+      "IN": "en-IN",
+      "DE": "en-GB",
+      "FR": "en-GB",
+      "IT": "en-GB",
+      "ES": "en-GB",
+      "NL": "en-GB",
+      "BE": "en-GB",
+      "AT": "en-GB",
+      "CH": "en-GB",
+      "IE": "en-GB",
+      "PL": "en-GB",
+      "SE": "en-GB",
+      "NO": "en-GB",
+      "DK": "en-GB",
+      "FI": "en-GB",
+      "PT": "en-GB",
+      "GR": "en-GB",
+      "CZ": "en-GB",
+      "RO": "en-GB",
+      "HU": "en-GB"
     },
     "languageMapping": {
       "en-gb": "en-GB",
@@ -113,7 +144,8 @@
       "en-au": "en-AU",
       "en-nz": "en-NZ",
       "en-qa": "en-QA",
-      "en-ae": "en-AE"
+      "en-ae": "en-AE",
+      "en-in": "en-IN"
     }
   }
 }

@@ -1,8 +1,11 @@
-import styles from './page.module.css'
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Script from 'next/script'
+import dynamic from 'next/dynamic'
+import PageFooter from '../components/PageFooter'
+
+const NavMenu = dynamic(() => import('../components/NavMenu'), { ssr: true })
+
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | GuruForU Data Protection and Student Privacy',
@@ -118,29 +121,12 @@ export default function PrivacyPolicy() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-    <div className={styles.container}>
-      <div className={styles.background}>
-        <div className={styles.gradient}></div>
-      </div>
-
-      <div className={styles.content}>
-        <div className={styles.header}>
-          <Link href="/" className={styles.homeLink}>
-            <Image 
-              src="/guruforu-ai-education-logo.png" 
-              alt="GuruForU Logo" 
-              width={120}
-              height={60}
-              className={styles.logoImage}
-            />
-          </Link>
-        </div>
-
-        <div className={styles.pageContent}>
-          <h1 className={styles.title}>Privacy Policy</h1>
-          <p className={styles.lastUpdated}>Last Updated: January 1, {new Date().getFullYear()}</p>
-          <p className={styles.text}>Guruforu is owned and operated by Gratiq Solutions LLP.</p>
-          <p className={styles.text}>
+    <NavMenu />
+      <div className="ip-layout">
+<div className="ip-content"><div className="ip-card">
+          <h1 className="ip-title">Privacy Policy</h1>
+          <p className="ip-meta">Last Updated: January 1, {new Date().getFullYear()}</p>
+          <p className="ip-text">
             At <strong>GuruForU</strong>, we are committed to protecting your privacy and ensuring the security of your personal information. 
             This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our 
             <strong> online education platform</strong>. We understand the importance of privacy, especially when it comes to student data, 
@@ -148,19 +134,19 @@ export default function PrivacyPolicy() {
             including students, parents, and educators.
           </p>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>1. Introduction</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">1. Introduction</h2>
+            <p className="ip-text">
               At <strong>GuruForU</strong>, we are committed to protecting your privacy. This Privacy Policy explains how we 
               collect, use, disclose, and safeguard your information when you use our <strong>online education platform</strong>. 
-              For questions, visit our <Link href="/contact" className={styles.link}>contact page</Link>.
+              For questions, visit our <Link href="/contact" className="ip-link">contact page</Link>.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>2. Information We Collect</h2>
-            <p className={styles.text}>We collect information that you provide directly to us, including:</p>
-            <ul className={styles.list}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">2. Information We Collect</h2>
+            <p className="ip-text">We collect information that you provide directly to us, including:</p>
+            <ul className="ip-list">
               <li>Personal identification information (name, email address, phone number)</li>
               <li>Account credentials and profile information</li>
               <li>Payment information (processed through secure third-party payment processors)</li>
@@ -169,10 +155,10 @@ export default function PrivacyPolicy() {
             </ul>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>3. How We Use Your Information</h2>
-            <p className={styles.text}>We use the collected information for various purposes:</p>
-            <ul className={styles.list}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">3. How We Use Your Information</h2>
+            <p className="ip-text">We use the collected information for various purposes:</p>
+            <ul className="ip-list">
               <li>To provide, maintain, and improve our services</li>
               <li>To process transactions and send related information</li>
               <li>To send you technical notices and support messages</li>
@@ -182,13 +168,13 @@ export default function PrivacyPolicy() {
             </ul>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>4. Information Sharing and Disclosure</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">4. Information Sharing and Disclosure</h2>
+            <p className="ip-text">
               We do not sell, trade, or rent your personal information to third parties. We may share your 
               information only in the following circumstances:
             </p>
-            <ul className={styles.list}>
+            <ul className="ip-list">
               <li>With your consent</li>
               <li>To comply with legal obligations</li>
               <li>To protect and defend our rights or property</li>
@@ -196,29 +182,29 @@ export default function PrivacyPolicy() {
             </ul>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>5. Data Security</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">5. Data Security</h2>
+            <p className="ip-text">
               We implement appropriate technical and organizational security measures to protect your personal 
               information against unauthorized access, alteration, disclosure, or destruction. However, no method 
               of transmission over the internet is 100% secure.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>6. Cookies and Tracking Technologies</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">6. Cookies and Tracking Technologies</h2>
+            <p className="ip-text">
               We use <strong>cookies and similar tracking technologies</strong> to track activity on our platform and hold certain 
               information. You can instruct your browser to refuse all cookies or to indicate when a cookie is 
               being sent. Our cookie consent banner allows you to control your preferences. Learn more about our 
-              <Link href="/terms" className={styles.link}> terms of service</Link>.
+              <Link href="/terms" className="ip-link"> terms of service</Link>.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>7. Your Rights</h2>
-            <p className={styles.text}>You have the right to:</p>
-            <ul className={styles.list}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">7. Your Rights</h2>
+            <p className="ip-text">You have the right to:</p>
+            <ul className="ip-list">
               <li>Access and receive a copy of your personal data</li>
               <li>Rectify inaccurate personal data</li>
               <li>Request deletion of your personal data</li>
@@ -228,71 +214,69 @@ export default function PrivacyPolicy() {
             </ul>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>8. Children&apos;s Privacy</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">8. Children&apos;s Privacy</h2>
+            <p className="ip-text">
               Our services are intended for users of all ages. We take special care to protect the privacy of 
               minors. If you are a parent or guardian and believe your child has provided us with personal 
               information, please contact us.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>9. Changes to This Privacy Policy</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">9. Changes to This Privacy Policy</h2>
+            <p className="ip-text">
               We may update our Privacy Policy from time to time. We will notify you of any changes by posting 
               the new Privacy Policy on this page and updating the &quot;Last Updated&quot; date.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>10. Contact Us</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">10. Contact Us</h2>
+            <p className="ip-text">
               If you have any questions about this Privacy Policy, please contact us through our 
-              <Link href="/contact" className={styles.link}> Contact Us</Link> page.
+              <Link href="/contact" className="ip-link"> Contact Us</Link> page.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
-            <div className={styles.faqItem}>
-              <h3 className={styles.faqQuestion}>How does GuruForU protect student privacy?</h3>
-              <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">Frequently Asked Questions</h2>
+            <div className="ip-faq-item">
+              <h3 className="ip-faq-question">How does GuruForU protect student privacy?</h3>
+              <p className="ip-text">
                 GuruForU implements comprehensive data protection measures including encryption, secure servers, 
                 and compliance with COPPA (Children&apos;s Online Privacy Protection Act) and GDPR. We never sell 
                 student data and only use it to provide educational services.
               </p>
             </div>
-            <div className={styles.faqItem}>
-              <h3 className={styles.faqQuestion}>What student information does GuruForU collect?</h3>
-              <p className={styles.text}>
+            <div className="ip-faq-item">
+              <h3 className="ip-faq-question">What student information does GuruForU collect?</h3>
+              <p className="ip-text">
                 We collect information necessary to provide online tutoring services, including name, email, 
                 grade level, learning progress data, and class participation records. Payment information is 
                 processed securely through third-party payment processors.
               </p>
             </div>
-            <div className={styles.faqItem}>
-              <h3 className={styles.faqQuestion}>Is GuruForU COPPA compliant?</h3>
-              <p className={styles.text}>
+            <div className="ip-faq-item">
+              <h3 className="ip-faq-question">Is GuruForU COPPA compliant?</h3>
+              <p className="ip-text">
                 Yes, GuruForU is fully compliant with COPPA regulations. We obtain parental consent before 
                 collecting information from children under 13 and provide parents with access to review, delete, 
                 or refuse further collection of their child&apos;s information.
               </p>
             </div>
-            <div className={styles.faqItem}>
-              <h3 className={styles.faqQuestion}>Can I delete my child&apos;s data from GuruForU?</h3>
-              <p className={styles.text}>
+            <div className="ip-faq-item">
+              <h3 className="ip-faq-question">Can I delete my child&apos;s data from GuruForU?</h3>
+              <p className="ip-text">
                 Yes, parents can request deletion of their child&apos;s data at any time by contacting us through 
-                our <Link href="/contact" className={styles.link}>Contact Us</Link> page. We will process 
+                our <Link href="/contact" className="ip-link">Contact Us</Link> page. We will process 
                 deletion requests within 30 days in accordance with applicable privacy laws.
               </p>
             </div>
           </div>
         </div>
 
-        <footer className={styles.footer}>
-          <p>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
-        </footer>
+        <PageFooter />
       </div>
     </div>
     </>

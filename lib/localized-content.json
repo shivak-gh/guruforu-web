@@ -155,6 +155,23 @@
     "CA": {},
     "QA": {},
     "AE": {},
+    "IN": {
+      "Personalized": "Personalised",
+      "Personalize": "Personalise",
+      "Personalization": "Personalisation",
+      "Personalized attention": "Personalised attention",
+      "personalized learning": "personalised learning",
+      "personalized learning paths": "personalised learning paths",
+      "Personalized Learning": "Personalised Learning",
+      "Personalized Roadmap": "Personalised Roadmap",
+      "Personalized Subject Roadmap": "Personalised Subject Roadmap",
+      "Personalized lessons": "Personalised lessons",
+      "Personalized pacing": "Personalised pacing",
+      "Personalized recommendations for next steps": "Personalised recommendations for next steps",
+      "Math": "Maths",
+      "Math for every level": "Maths for every level",
+      "Get Math Help": "Get Maths Help"
+    },
     "DEFAULT": {}
   },
   "educationalTerms": {
@@ -311,6 +328,32 @@
         "Middle School",
         "High School",
         "K-12"
+      ]
+    },
+    "IN": {
+      "gradeTerm": "Class",
+      "curriculumTerm": "CBSE",
+      "additionalTerms": [
+        "CBSE",
+        "ICSE",
+        "NCERT",
+        "State Board",
+        "Class levels",
+        "Board exams"
+      ],
+      "gradeLevels": [
+        "Class 1",
+        "Class 2",
+        "Class 3",
+        "Class 4",
+        "Class 5",
+        "Class 6",
+        "Class 7",
+        "Class 8",
+        "Class 9",
+        "Class 10",
+        "Class 11",
+        "Class 12"
       ]
     },
     "DEFAULT": {
@@ -506,6 +549,352 @@
       ],
       "openGraphTitle": "GuruForU - Best Online Classes with AI Student Progress Tracker",
       "openGraphDescription": "Premium online tutoring powered by AI. Get personalized learning with AI mastery tracking and expert online tutors."
+    }
+  },
+  "aboutPageContent": {
+    "US": {
+      "heroBadge": "Expert K-12 Tutoring",
+      "trustGradeValue": "K-12",
+      "trustGradeLabel": "All Grade Levels",
+      "examPrepCard": "Daily homework help plus SAT/ACT and AP exam preparation.",
+      "globalCurriculumCard": "Common Core, state standards, and international curricula supported.",
+      "subjectsSectionDesc": "From elementary foundations to AP-level courses — we cover it all.",
+      "mathTopics": [
+        { "label": "Elementary (K-5)", "text": "Fractions, decimals, word problems" },
+        { "label": "Middle School (6-8)", "text": "Pre-Algebra, ratios, equations" },
+        { "label": "Algebra 1 & 2", "text": "Quadratics, polynomials, graphing" },
+        { "label": "Geometry", "text": "Proofs, triangles, coordinate geometry" },
+        { "label": "Pre-Calc & Trig", "text": "Functions, limits, identities" },
+        { "label": "Calculus", "text": "Derivatives, integrals, AP prep" },
+        { "label": "SAT/ACT Math", "text": "Strategies and timed practice" }
+      ],
+      "mathAlignmentNote": "Aligned with Common Core and state standards — we work with your school curriculum.",
+      "scienceTopics": [
+        { "label": "Biology", "text": "Cells, genetics, ecology, AP Biology" },
+        { "label": "Chemistry", "text": "Reactions, stoichiometry, AP Chemistry" },
+        { "label": "Physics", "text": "Motion, forces, energy, AP Physics" },
+        { "label": "Earth Science", "text": "Geology, weather, climate" },
+        { "label": "General Science (K-8)", "text": "Scientific method & experiments" }
+      ],
+      "scienceAlignmentNote": "Honors, AP, and standard courses — plus lab report and exam prep.",
+      "globalReachCard": "Curriculum support for US, UK, Canada, Australia, and more.",
+      "faqMathAnswer": "We tutor all K-12 Math levels: Elementary Math, Pre-Algebra, Algebra 1 & 2, Geometry, Trigonometry, Pre-Calculus, Calculus, and Statistics. We also offer SAT/ACT Math prep aligned with Common Core and state standards.",
+      "faqScienceAnswer": "Biology, Chemistry, Physics, Earth Science, and General Science for all grade levels — including honors, AP, and standard courses plus exam preparation.",
+      "orgSchemaDescription": "Live online Math and Science tutoring for K-12 students. Expert teachers deliver personalized instruction aligned with Common Core and state standards, with AI-powered progress tracking.",
+      "orgSchemaKnowsAbout": ["Math Tutoring", "Science Tutoring", "K-12 Education", "Common Core", "SAT Prep", "AI Progress Tracking"]
+    },
+    "UK": {
+      "heroBadge": "Expert GCSE & A-Level Tutoring",
+      "trustGradeValue": "Years 1–13",
+      "trustGradeLabel": "All Key Stages",
+      "examPrepCard": "Daily homework help plus GCSE, A-Level, and IB exam preparation.",
+      "globalCurriculumCard": "National Curriculum, GCSE, A-Level, IGCSE, and IB programmes supported.",
+      "subjectsSectionDesc": "From Key Stage 1 foundations to A-Level — we cover it all.",
+      "mathTopics": [
+        { "label": "Key Stage 1–2", "text": "Number, fractions, decimals, word problems" },
+        { "label": "Key Stage 3", "text": "Algebra, ratios, equations, geometry" },
+        { "label": "GCSE Maths", "text": "Quadratics, trigonometry, statistics" },
+        { "label": "A-Level Maths", "text": "Calculus, mechanics, pure maths" },
+        { "label": "Further Maths", "text": "Advanced calculus and decision maths" },
+        { "label": "IGCSE & IB", "text": "International exam preparation" },
+        { "label": "11+ & Entrance Exams", "text": "Strategies and timed practice" }
+      ],
+      "mathAlignmentNote": "Aligned with the National Curriculum and your child's school syllabus — including GCSE and A-Level specifications.",
+      "scienceTopics": [
+        { "label": "Biology", "text": "Cells, genetics, ecology, GCSE & A-Level Biology" },
+        { "label": "Chemistry", "text": "Reactions, stoichiometry, GCSE & A-Level Chemistry" },
+        { "label": "Physics", "text": "Forces, energy, waves, GCSE & A-Level Physics" },
+        { "label": "Combined Science", "text": "GCSE Trilogy and Synergy courses" },
+        { "label": "General Science (KS1–3)", "text": "Scientific method & practical skills" }
+      ],
+      "scienceAlignmentNote": "GCSE, A-Level, and IB courses — plus coursework, lab reports, and exam prep.",
+      "globalReachCard": "National Curriculum, GCSE, A-Level, and IB support across the UK and Europe.",
+      "faqMathAnswer": "We tutor Maths from Key Stage 1 through A-Level: arithmetic, algebra, geometry, trigonometry, calculus, and statistics. We also offer GCSE, A-Level, and IB Maths prep aligned with the National Curriculum.",
+      "faqScienceAnswer": "Biology, Chemistry, Physics, Combined Science, and General Science for all key stages — including GCSE, A-Level, and IB courses plus exam preparation.",
+      "orgSchemaDescription": "Live online Maths and Science tutoring for Key Stage and GCSE/A-Level students. Expert teachers deliver personalised instruction aligned with the National Curriculum, with AI-powered progress tracking.",
+      "orgSchemaKnowsAbout": ["Maths Tutoring", "Science Tutoring", "GCSE", "A-Level", "National Curriculum", "AI Progress Tracking"]
+    },
+    "CA": {
+      "heroBadge": "Expert K-12 Tutoring",
+      "trustGradeValue": "K-12",
+      "trustGradeLabel": "All Grade Levels",
+      "examPrepCard": "Daily homework help plus provincial exam and university entrance preparation.",
+      "globalCurriculumCard": "Provincial curricula, national standards, and international programmes supported.",
+      "subjectsSectionDesc": "From elementary foundations to senior secondary — we cover it all.",
+      "mathTopics": [
+        { "label": "Elementary (K-6)", "text": "Fractions, decimals, word problems" },
+        { "label": "Junior High (7-9)", "text": "Pre-Algebra, ratios, equations" },
+        { "label": "Algebra 1 & 2", "text": "Quadratics, polynomials, graphing" },
+        { "label": "Geometry", "text": "Proofs, triangles, coordinate geometry" },
+        { "label": "Pre-Calc & Trig", "text": "Functions, limits, identities" },
+        { "label": "Calculus", "text": "Derivatives, integrals, advanced prep" },
+        { "label": "Provincial Exams", "text": "Strategies and timed practice" }
+      ],
+      "mathAlignmentNote": "Aligned with provincial curriculum standards — we work with your child's school programme.",
+      "scienceTopics": [
+        { "label": "Biology", "text": "Cells, genetics, ecology, senior biology" },
+        { "label": "Chemistry", "text": "Reactions, stoichiometry, senior chemistry" },
+        { "label": "Physics", "text": "Motion, forces, energy, senior physics" },
+        { "label": "Earth Science", "text": "Geology, weather, climate" },
+        { "label": "General Science (K-8)", "text": "Scientific method & experiments" }
+      ],
+      "scienceAlignmentNote": "Standard and advanced courses — plus lab report and provincial exam prep.",
+      "globalReachCard": "Curriculum support for Canada, US, UK, Australia, and more.",
+      "faqMathAnswer": "We tutor all K-12 Math levels from elementary through calculus and statistics, aligned with provincial curriculum standards. We also help with provincial exam and university entrance preparation.",
+      "faqScienceAnswer": "Biology, Chemistry, Physics, Earth Science, and General Science for all grade levels — including standard and advanced courses plus exam preparation.",
+      "orgSchemaDescription": "Live online Math and Science tutoring for K-12 students across Canada. Expert teachers deliver personalized instruction aligned with provincial curricula, with AI-powered progress tracking.",
+      "orgSchemaKnowsAbout": ["Math Tutoring", "Science Tutoring", "K-12 Education", "Provincial Curriculum", "AI Progress Tracking"]
+    },
+    "AU": {
+      "heroBadge": "Expert Australian Curriculum Tutoring",
+      "trustGradeValue": "Year 1–12",
+      "trustGradeLabel": "All Year Levels",
+      "examPrepCard": "Daily homework help plus NAPLAN, HSC, and VCE exam preparation.",
+      "globalCurriculumCard": "Australian Curriculum (ACARA), state syllabuses, and international programmes supported.",
+      "subjectsSectionDesc": "From primary foundations to Year 12 and senior secondary — we cover it all.",
+      "mathTopics": [
+        { "label": "Primary (F–6)", "text": "Number, fractions, decimals, word problems" },
+        { "label": "Years 7–9", "text": "Algebra, ratios, equations, geometry" },
+        { "label": "Year 10 Maths", "text": "Quadratics, trigonometry, statistics" },
+        { "label": "VCE / HSC Maths", "text": "Methods, Specialist, General Maths" },
+        { "label": "Calculus", "text": "Derivatives, integrals, exam prep" },
+        { "label": "Statistics", "text": "Data analysis and probability" },
+        { "label": "NAPLAN Maths", "text": "Strategies and timed practice" }
+      ],
+      "mathAlignmentNote": "Aligned with the Australian Curriculum and your child's school syllabus.",
+      "scienceTopics": [
+        { "label": "Biology", "text": "Cells, genetics, ecology, senior biology" },
+        { "label": "Chemistry", "text": "Reactions, stoichiometry, senior chemistry" },
+        { "label": "Physics", "text": "Motion, forces, energy, senior physics" },
+        { "label": "Earth & Space Science", "text": "Geology, weather, climate" },
+        { "label": "General Science (F–8)", "text": "Scientific method & experiments" }
+      ],
+      "scienceAlignmentNote": "Standard, extension, and senior secondary courses — plus lab report and exam prep.",
+      "globalReachCard": "Australian Curriculum support plus US, UK, UAE, and IB-aligned programmes.",
+      "faqMathAnswer": "We tutor Maths from Foundation Year through Year 12: arithmetic, algebra, geometry, trigonometry, calculus, and statistics. We also offer NAPLAN, HSC, and VCE Maths prep aligned with the Australian Curriculum.",
+      "faqScienceAnswer": "Biology, Chemistry, Physics, Earth Science, and General Science for all year levels — including standard, extension, and senior secondary courses plus exam preparation.",
+      "orgSchemaDescription": "Live online Maths and Science tutoring for Australian students. Expert teachers deliver personalised instruction aligned with the Australian Curriculum, with AI-powered progress tracking.",
+      "orgSchemaKnowsAbout": ["Maths Tutoring", "Science Tutoring", "Australian Curriculum", "ACARA", "NAPLAN", "AI Progress Tracking"]
+    },
+    "NZ": {
+      "heroBadge": "Expert New Zealand Curriculum Tutoring",
+      "trustGradeValue": "Year 1–13",
+      "trustGradeLabel": "All Year Levels",
+      "examPrepCard": "Daily homework help plus NCEA and university entrance preparation.",
+      "globalCurriculumCard": "New Zealand Curriculum, NCEA standards, and international programmes supported.",
+      "subjectsSectionDesc": "From primary foundations to NCEA Level 3 — we cover it all.",
+      "mathTopics": [
+        { "label": "Primary (Years 1–6)", "text": "Number, fractions, decimals, word problems" },
+        { "label": "Years 7–10", "text": "Algebra, ratios, equations, geometry" },
+        { "label": "NCEA Level 1 Maths", "text": "Statistics, algebra, geometry" },
+        { "label": "NCEA Level 2–3 Maths", "text": "Calculus, trigonometry, statistics" },
+        { "label": "Calculus", "text": "Derivatives, integrals, exam prep" },
+        { "label": "Statistics", "text": "Data analysis and probability" },
+        { "label": "Entrance Exams", "text": "Strategies and timed practice" }
+      ],
+      "mathAlignmentNote": "Aligned with the New Zealand Curriculum and your child's school programme.",
+      "scienceTopics": [
+        { "label": "Biology", "text": "Cells, genetics, ecology, NCEA biology" },
+        { "label": "Chemistry", "text": "Reactions, stoichiometry, NCEA chemistry" },
+        { "label": "Physics", "text": "Motion, forces, energy, NCEA physics" },
+        { "label": "Earth Science", "text": "Geology, weather, climate" },
+        { "label": "General Science (Years 1–8)", "text": "Scientific method & experiments" }
+      ],
+      "scienceAlignmentNote": "Standard and NCEA courses — plus lab report and exam prep.",
+      "globalReachCard": "New Zealand Curriculum support plus Australian, UK, and IB-aligned programmes.",
+      "faqMathAnswer": "We tutor Maths from Year 1 through Year 13, aligned with the New Zealand Curriculum and NCEA standards. We also help with NCEA and university entrance preparation.",
+      "faqScienceAnswer": "Biology, Chemistry, Physics, Earth Science, and General Science for all year levels — including NCEA courses plus exam preparation.",
+      "orgSchemaDescription": "Live online Maths and Science tutoring for New Zealand students. Expert teachers deliver personalised instruction aligned with the New Zealand Curriculum, with AI-powered progress tracking.",
+      "orgSchemaKnowsAbout": ["Maths Tutoring", "Science Tutoring", "New Zealand Curriculum", "NCEA", "AI Progress Tracking"]
+    },
+    "QA": {
+      "heroBadge": "Expert International Curriculum Tutoring",
+      "trustGradeValue": "K-12",
+      "trustGradeLabel": "All Grade Levels",
+      "examPrepCard": "Daily homework help plus IGCSE, A-Level, IB, and regional exam preparation.",
+      "globalCurriculumCard": "British, American, IB, and Qatar Ministry curricula supported.",
+      "subjectsSectionDesc": "From primary foundations to A-Level and IB — we cover it all.",
+      "mathTopics": [
+        { "label": "Primary (K-5)", "text": "Number, fractions, decimals, word problems" },
+        { "label": "Middle School (6-8)", "text": "Pre-Algebra, ratios, equations" },
+        { "label": "IGCSE Maths", "text": "Algebra, geometry, trigonometry, statistics" },
+        { "label": "A-Level Maths", "text": "Calculus, mechanics, pure maths" },
+        { "label": "IB Maths", "text": "Analysis, applications, and exam prep" },
+        { "label": "American Curriculum", "text": "Algebra, geometry, pre-calculus" },
+        { "label": "Entrance Exams", "text": "Strategies and timed practice" }
+      ],
+      "mathAlignmentNote": "Aligned with British, American, IB, and Qatar Ministry curricula used in your child's school.",
+      "scienceTopics": [
+        { "label": "Biology", "text": "Cells, genetics, ecology, IGCSE & A-Level Biology" },
+        { "label": "Chemistry", "text": "Reactions, stoichiometry, IGCSE & A-Level Chemistry" },
+        { "label": "Physics", "text": "Forces, energy, waves, IGCSE & A-Level Physics" },
+        { "label": "General Science (K-8)", "text": "Scientific method & experiments" },
+        { "label": "IB Sciences", "text": "SL and HL Biology, Chemistry, Physics" }
+      ],
+      "scienceAlignmentNote": "IGCSE, A-Level, IB, and standard courses — plus lab report and exam prep.",
+      "globalReachCard": "International curriculum support for Qatar, UAE, UK, and global school systems.",
+      "faqMathAnswer": "We tutor Maths across K-12 international programmes including British (IGCSE/A-Level), American, and IB curricula, aligned with the standards used in your child's school.",
+      "faqScienceAnswer": "Biology, Chemistry, Physics, and General Science for all grade levels — including IGCSE, A-Level, IB, and standard courses plus exam preparation.",
+      "orgSchemaDescription": "Live online Math and Science tutoring for K-12 students in Qatar. Expert teachers deliver personalized instruction aligned with international curricula, with AI-powered progress tracking.",
+      "orgSchemaKnowsAbout": ["Math Tutoring", "Science Tutoring", "International Curriculum", "IGCSE", "IB", "AI Progress Tracking"]
+    },
+    "AE": {
+      "heroBadge": "Expert International Curriculum Tutoring",
+      "trustGradeValue": "K-12",
+      "trustGradeLabel": "All Grade Levels",
+      "examPrepCard": "Daily homework help plus IGCSE, A-Level, IB, and Emirates exam preparation.",
+      "globalCurriculumCard": "British, American, IB, and UAE Ministry curricula supported.",
+      "subjectsSectionDesc": "From primary foundations to A-Level and IB — we cover it all.",
+      "mathTopics": [
+        { "label": "Primary (K-5)", "text": "Number, fractions, decimals, word problems" },
+        { "label": "Middle School (6-8)", "text": "Pre-Algebra, ratios, equations" },
+        { "label": "IGCSE Maths", "text": "Algebra, geometry, trigonometry, statistics" },
+        { "label": "A-Level Maths", "text": "Calculus, mechanics, pure maths" },
+        { "label": "IB Maths", "text": "Analysis, applications, and exam prep" },
+        { "label": "American Curriculum", "text": "Algebra, geometry, pre-calculus" },
+        { "label": "Entrance Exams", "text": "Strategies and timed practice" }
+      ],
+      "mathAlignmentNote": "Aligned with British, American, IB, and UAE Ministry curricula used in your child's school.",
+      "scienceTopics": [
+        { "label": "Biology", "text": "Cells, genetics, ecology, IGCSE & A-Level Biology" },
+        { "label": "Chemistry", "text": "Reactions, stoichiometry, IGCSE & A-Level Chemistry" },
+        { "label": "Physics", "text": "Forces, energy, waves, IGCSE & A-Level Physics" },
+        { "label": "General Science (K-8)", "text": "Scientific method & experiments" },
+        { "label": "IB Sciences", "text": "SL and HL Biology, Chemistry, Physics" }
+      ],
+      "scienceAlignmentNote": "IGCSE, A-Level, IB, and standard courses — plus lab report and exam prep.",
+      "globalReachCard": "International curriculum support for UAE, UK, Australia, and global school systems.",
+      "faqMathAnswer": "We tutor Maths across K-12 international programmes including British (IGCSE/A-Level), American, and IB curricula, aligned with the standards used in your child's school in the UAE.",
+      "faqScienceAnswer": "Biology, Chemistry, Physics, and General Science for all grade levels — including IGCSE, A-Level, IB, and standard courses plus exam preparation.",
+      "orgSchemaDescription": "Live online Math and Science tutoring for K-12 students in the UAE. Expert teachers deliver personalized instruction aligned with international curricula, with AI-powered progress tracking.",
+      "orgSchemaKnowsAbout": ["Math Tutoring", "Science Tutoring", "International Curriculum", "IGCSE", "IB", "AI Progress Tracking"]
+    },
+    "IN": {
+      "heroBadge": "Expert CBSE & ICSE Tutoring",
+      "trustGradeValue": "Class 1–12",
+      "trustGradeLabel": "All Classes",
+      "examPrepCard": "Daily homework help plus board exam, JEE foundation, and NEET foundation preparation.",
+      "globalCurriculumCard": "CBSE, ICSE, NCERT, and state board curricula supported.",
+      "subjectsSectionDesc": "From primary foundations to Class 12 board level — we cover it all.",
+      "mathTopics": [
+        { "label": "Primary (Classes 1–5)", "text": "Number sense, fractions, decimals, word problems" },
+        { "label": "Middle School (Classes 6–8)", "text": "Algebra basics, ratios, geometry, mensuration" },
+        { "label": "Class 9–10", "text": "Polynomials, coordinate geometry, trigonometry, statistics" },
+        { "label": "Class 11–12", "text": "Calculus, vectors, probability, advanced algebra" },
+        { "label": "CBSE / ICSE Maths", "text": "NCERT-aligned concepts and board exam prep" },
+        { "label": "Olympiad & NTSE", "text": "Competitive exam strategies and practice" },
+        { "label": "JEE Foundation", "text": "Concept building for engineering entrance prep" }
+      ],
+      "mathAlignmentNote": "Aligned with CBSE, ICSE, NCERT, and your child's school syllabus.",
+      "scienceTopics": [
+        { "label": "Biology", "text": "Cells, genetics, ecology, Class 11–12 botany & zoology" },
+        { "label": "Chemistry", "text": "Reactions, mole concept, organic & inorganic chemistry" },
+        { "label": "Physics", "text": "Mechanics, electricity, optics, modern physics" },
+        { "label": "Environmental Science", "text": "Ecosystems, conservation, sustainability" },
+        { "label": "General Science (Classes 1–8)", "text": "Scientific method, experiments & practicals" }
+      ],
+      "scienceAlignmentNote": "CBSE, ICSE, and state board courses — plus lab practicals and board exam prep.",
+      "globalReachCard": "CBSE & ICSE support plus international curricula for NRI and global students.",
+      "faqMathAnswer": "We tutor Maths from Class 1 through Class 12: arithmetic, algebra, geometry, trigonometry, calculus, and statistics. We support CBSE, ICSE, NCERT, and state board syllabuses, plus board exam and foundation prep.",
+      "faqScienceAnswer": "Biology, Chemistry, Physics, Environmental Science, and General Science for all classes — including CBSE, ICSE, and state board courses plus board exam and practical preparation.",
+      "orgSchemaDescription": "Live online Maths and Science tutoring for Indian students. Expert teachers deliver personalised instruction aligned with CBSE, ICSE, and NCERT, with AI-powered progress tracking.",
+      "orgSchemaKnowsAbout": ["Maths Tutoring", "Science Tutoring", "CBSE", "ICSE", "NCERT", "AI Progress Tracking"]
+    },
+    "DEFAULT": {
+      "heroBadge": "Expert K-12 & International Tutoring",
+      "trustGradeValue": "K-12+",
+      "trustGradeLabel": "Global Grade Levels",
+      "examPrepCard": "Daily homework help plus SAT, GCSE, NAPLAN, IB, and regional exam preparation.",
+      "globalCurriculumCard": "US, UK, Australian, UAE, and IB-aligned curricula supported.",
+      "subjectsSectionDesc": "From primary foundations to advanced secondary — we cover it all.",
+      "mathTopics": [
+        { "label": "Primary / Elementary", "text": "Fractions, decimals, word problems" },
+        { "label": "Middle / Lower Secondary", "text": "Pre-Algebra, ratios, equations" },
+        { "label": "Algebra & Geometry", "text": "Quadratics, polynomials, graphing, proofs" },
+        { "label": "Pre-Calc & Trigonometry", "text": "Functions, limits, identities" },
+        { "label": "Calculus", "text": "Derivatives, integrals, advanced prep" },
+        { "label": "Statistics", "text": "Data analysis and probability" },
+        { "label": "Exam Prep", "text": "SAT, GCSE, NAPLAN, IB, and regional exams" }
+      ],
+      "mathAlignmentNote": "Aligned with your child's school curriculum — US, UK, Australian, UAE, and IB standards supported.",
+      "scienceTopics": [
+        { "label": "Biology", "text": "Cells, genetics, ecology, senior-level biology" },
+        { "label": "Chemistry", "text": "Reactions, stoichiometry, senior-level chemistry" },
+        { "label": "Physics", "text": "Motion, forces, energy, senior-level physics" },
+        { "label": "Earth Science", "text": "Geology, weather, climate" },
+        { "label": "General Science", "text": "Scientific method & experiments" }
+      ],
+      "scienceAlignmentNote": "Standard and advanced courses worldwide — plus lab report and exam prep.",
+      "globalReachCard": "Curriculum support for US, UK, Canada, Australia, UAE, and more.",
+      "faqMathAnswer": "We tutor Math and Maths from primary through advanced secondary levels: arithmetic, algebra, geometry, trigonometry, calculus, and statistics. We support Common Core, GCSE, Australian Curriculum, IB, and other regional standards.",
+      "faqScienceAnswer": "Biology, Chemistry, Physics, Earth Science, and General Science for all grade levels — including standard, honors, GCSE, A-Level, IB, and AP courses plus exam preparation.",
+      "orgSchemaDescription": "Live online Math and Science tutoring for K-12 and international students. Expert teachers deliver personalized instruction aligned with global curricula, with AI-powered progress tracking.",
+      "orgSchemaKnowsAbout": ["Math Tutoring", "Science Tutoring", "K-12 Education", "International Curriculum", "IB", "AI Progress Tracking"]
+    }
+  },
+  "aboutPageSeo": {
+    "US": {
+      "title": "About GuruForU | K-12 Math & Science Tutors & AI Progress Tracking",
+      "description": "Meet the GuruForU team. Live 1-on-1 K-12 Math and Science tutoring aligned with Common Core and state standards, with AI-powered session reports for parents.",
+      "keywords": ["about guruforu", "K-12 online tutoring", "Common Core tutors", "math and science tutors", "AI progress tracking", "online tutoring team"],
+      "ogTitle": "About GuruForU | K-12 Tutors & Learning Approach",
+      "ogDescription": "Expert K-12 tutors, personalized live instruction, and AI mastery reports — see how GuruForU works for your family."
+    },
+    "UK": {
+      "title": "About GuruForU | GCSE & A-Level Maths & Science Tutors UK",
+      "description": "Meet the GuruForU team. Live 1-on-1 Maths and Science tutoring aligned with the National Curriculum, GCSE, and A-Level, with AI-powered progress reports for parents.",
+      "keywords": ["about guruforu", "GCSE tutors", "A-Level tutors", "National Curriculum tutoring", "online maths tutor UK", "AI progress tracking"],
+      "ogTitle": "About GuruForU | GCSE & A-Level Tutoring",
+      "ogDescription": "Expert GCSE and A-Level tutors, personalised live lessons, and AI mastery reports for UK families."
+    },
+    "CA": {
+      "title": "About GuruForU | K-12 Math & Science Tutors Canada",
+      "description": "Meet the GuruForU team. Live 1-on-1 K-12 Math and Science tutoring aligned with provincial curricula, with AI-powered progress reports for parents.",
+      "keywords": ["about guruforu", "Canadian online tutoring", "K-12 tutors Canada", "provincial curriculum tutoring", "math and science tutors"],
+      "ogTitle": "About GuruForU | Canadian K-12 Tutoring",
+      "ogDescription": "Expert tutors, personalised live instruction, and AI progress tracking for Canadian students."
+    },
+    "AU": {
+      "title": "About GuruForU | Australian Curriculum Maths & Science Tutors",
+      "description": "Meet the GuruForU team. Live 1-on-1 Maths and Science tutoring aligned with the Australian Curriculum, NAPLAN, HSC, and VCE, with AI progress reports.",
+      "keywords": ["about guruforu", "Australian Curriculum tutors", "NAPLAN tutoring", "HSC tutors", "VCE maths tutor", "online tutoring Australia"],
+      "ogTitle": "About GuruForU | Australian Curriculum Tutoring",
+      "ogDescription": "Expert Australian Curriculum tutors, personalised live lessons, and AI mastery reports for parents."
+    },
+    "NZ": {
+      "title": "About GuruForU | NCEA Maths & Science Tutors New Zealand",
+      "description": "Meet the GuruForU team. Live 1-on-1 Maths and Science tutoring aligned with the New Zealand Curriculum and NCEA, with AI-powered progress reports.",
+      "keywords": ["about guruforu", "NCEA tutors", "New Zealand online tutoring", "maths tutor NZ", "science tutoring NZ"],
+      "ogTitle": "About GuruForU | New Zealand Curriculum Tutoring",
+      "ogDescription": "Expert tutors, personalised live instruction, and AI progress tracking for New Zealand students."
+    },
+    "QA": {
+      "title": "About GuruForU | International Curriculum Tutors Qatar",
+      "description": "Meet the GuruForU team. Live 1-on-1 Math and Science tutoring for British, American, and IB programmes in Qatar, with AI-powered parent reports.",
+      "keywords": ["about guruforu", "Qatar online tutoring", "IGCSE tutors Qatar", "international school tutoring", "IB tutors Qatar"],
+      "ogTitle": "About GuruForU | Tutoring for Qatar International Schools",
+      "ogDescription": "Expert tutors for IGCSE, A-Level, and IB — live classes and AI progress reports for families in Qatar."
+    },
+    "AE": {
+      "title": "About GuruForU | International Curriculum Tutors UAE",
+      "description": "Meet the GuruForU team. Live 1-on-1 Math and Science tutoring for British, American, and IB curricula in the UAE, with AI-powered progress reports.",
+      "keywords": ["about guruforu", "UAE online tutoring", "Dubai tutors", "IGCSE tutors UAE", "IB tutors Dubai", "international curriculum tutoring"],
+      "ogTitle": "About GuruForU | Tutoring for UAE International Schools",
+      "ogDescription": "Expert tutors for IGCSE, A-Level, and IB — live classes and AI mastery reports for UAE families."
+    },
+    "IN": {
+      "title": "About GuruForU | CBSE & ICSE Maths & Science Tutors India",
+      "description": "Meet the GuruForU team. Live 1-on-1 Maths and Science tutoring aligned with CBSE, ICSE, and NCERT for Class 1–12, with AI-powered progress reports for parents.",
+      "keywords": ["about guruforu", "CBSE tutors", "ICSE tutors", "online tutoring India", "NCERT maths tutor", "Class 10 board exam prep", "AI progress tracking"],
+      "ogTitle": "About GuruForU | CBSE & ICSE Tutoring India",
+      "ogDescription": "Expert CBSE and ICSE tutors, personalised live lessons, and AI mastery reports for Indian students."
+    },
+    "DEFAULT": {
+      "title": "About GuruForU | Global Math & Science Tutors | K-12, CBSE, GCSE & IB",
+      "description": "Meet the GuruForU team. Live 1-on-1 Math and Science tutoring with AI progress tracking — supporting K-12, CBSE, ICSE, GCSE, A-Level, Australian Curriculum, UAE international programmes, and IB worldwide.",
+      "keywords": ["about guruforu", "online tutoring team", "K-12 tutoring", "CBSE tutors", "GCSE tutors", "international curriculum tutoring", "AI progress tracking", "math and science tutors"],
+      "ogTitle": "About GuruForU | Global Tutors & Learning Approach",
+      "ogDescription": "Expert tutors worldwide — live 1-on-1 Math and Science, personalised instruction, and AI mastery reports for every curriculum."
     }
   }
 }

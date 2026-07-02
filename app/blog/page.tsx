@@ -1,13 +1,14 @@
 import Link from 'next/link'
 import { getAllBlogs } from './lib/getBlogs'
+import { defaultBlogImage } from './lib/categoryImages'
 import BlogImage from '../components/BlogImage'
 import dynamicImport from 'next/dynamic'
-import styles from './page.module.css'
 import Script from 'next/script'
+import { headers } from 'next/headers'
 import { detectLocale, localizeText } from '../../lib/locale'
 import type { Metadata } from 'next'
+import PageFooter from '../components/PageFooter'
 
-// Lazy load client components to reduce initial bundle size
 const BlogCategoriesWrapper = dynamicImport(() => import('../components/BlogCategoriesWrapper'), {
   ssr: true,
 })
@@ -15,15 +16,40 @@ const NavMenu = dynamicImport(() => import('../components/NavMenu'), {
   ssr: true,
 })
 
-// Optimize RSC caching to reduce duplicate requests
-// Use ISR for better crawl consistency and lower server cost.
 export const revalidate = 3600
-export const dynamic = 'force-static'
+
+const RESOURCE_CARDS = [
+  {
+    icon: '📚',
+    title: 'Study strategies',
+    text: 'Proven techniques for homework, exams, and building lasting study habits at home.',
+    variant: '',
+  },
+  {
+    icon: '📐',
+    title: 'Math & Science tips',
+    text: 'Subject-specific guides to help students grasp concepts and parents support learning.',
+    variant: 'amber',
+  },
+  {
+    icon: '👨‍👩‍👧',
+    title: 'Parent guides',
+    text: 'Practical advice on tutoring choices, progress tracking, and online learning.',
+    variant: 'green',
+  },
+]
+
+const iconClass = (variant?: string) => {
+  if (variant === 'amber') return 'about-card-icon about-card-icon-amber'
+  if (variant === 'green') return 'about-card-icon about-card-icon-green'
+  return 'about-card-icon'
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'GuruForU Blog | Practical Learning Guides for Parents & Students',
-    description: 'Explore practical guides on online learning, study strategies, and Math & Science tutoring. Actionable tips for parents and students from GuruForU experts.',
+    description:
+      'Explore practical guides on online learning, study strategies, and Math & Science tutoring. Actionable tips for parents and students from GuruForU experts.',
     keywords: [
       'online learning resources',
       'online learning for students',
@@ -36,7 +62,7 @@ export async function generateMetadata(): Promise<Metadata> {
       'homeschooling tips',
       'online class best practices',
       'student success strategies',
-      'online education articles'
+      'online education articles',
     ],
     robots: {
       index: true,
@@ -51,7 +77,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       title: 'GuruForU Blog | Learning Guides for Parents & Students',
-      description: 'Practical articles on study habits, online tutoring, and student progress for K-12 learners.',
+      description:
+        'Practical articles on study habits, online tutoring, and student progress for K-12 learners.',
       url: 'https://www.guruforu.com/blog',
       siteName: 'GuruForU',
       type: 'website',
@@ -83,19 +110,18 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function BlogListing() {
-  const blogs = await getAllBlogs()
-  const localeInfo = detectLocale()
+  const headersList = await headers()
+  const localeInfo = detectLocale(headersList)
   const localized = (text: string) => localizeText(text, localeInfo.region)
+  const blogs = await getAllBlogs()
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
+  const formatDate = (dateString: string) =>
+    new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
     })
-  }
 
-  // Organization schema (minimized)
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -103,16 +129,16 @@ export default async function BlogListing() {
     url: 'https://www.guruforu.com',
     sameAs: [
       'https://twitter.com/guruforu_official',
-      'https://www.instagram.com/guruforu_official/'
+      'https://www.instagram.com/guruforu_official/',
     ],
   }
 
-  // Generate comprehensive JSON-LD structured data for Blog schema
   const blogSchema = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     name: 'GuruForU Learning Resources',
-    description: 'Expert articles and guides on online learning, tutoring strategies, and AI-powered personalized education from GuruForU.',
+    description:
+      'Expert articles and guides on online learning, tutoring strategies, and AI-powered personalized education from GuruForU.',
     url: 'https://www.guruforu.com/blog',
     inLanguage: 'en-US',
     publisher: {
@@ -126,17 +152,22 @@ export default async function BlogListing() {
         height: 630,
       },
     },
-    blogPost: blogs.map((blog) => ({
-      '@type': 'BlogPosting',
-      headline: blog.title,
-      description: blog.lead,
-      url: `https://www.guruforu.com/blog/${blog.categorySlug}/${blog.slug}`,
-      datePublished: blog.meta.publishedDate,
-      image: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
-    })),
+    blogPost: blogs.map((blog) => {
+      const imagePath = blog.image || defaultBlogImage
+      const imageUrl = imagePath.startsWith('http')
+        ? imagePath
+        : `https://www.guruforu.com${imagePath}`
+      return {
+        '@type': 'BlogPosting',
+        headline: blog.title,
+        description: blog.lead,
+        url: `https://www.guruforu.com/blog/${blog.categorySlug}/${blog.slug}`,
+        datePublished: blog.meta.publishedDate,
+        image: imageUrl,
+      }
+    }),
   }
 
-  // Breadcrumb structured data
   const breadcrumbStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -173,86 +204,158 @@ export default async function BlogListing() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
       />
+
       <NavMenu />
-      <div className={styles.container}>
-        <div className={styles.background}>
-          <div className={styles.gradient}></div>
-        </div>
 
-        <div className={styles.content}>
-        <div className={styles.blogListing}>
-          <nav className={styles.breadcrumb} aria-label="Breadcrumb">
-            <Link href="/" className={styles.breadcrumbLink} prefetch={false}>Home</Link>
-            <span className={styles.breadcrumbSeparator}>/</span>
-            <span className={styles.breadcrumbCurrent}>{localized('Resources')}</span>
-          </nav>
-          <header className={styles.pageHeader}>
-            <h1 className={styles.pageTitle}>{localized('Learning Resources')}</h1>
-            <p className={styles.pageSubtitle}>
-              {localized('Expert insights on')} <strong>{localized('child education')}</strong>, <strong>{localized('learning strategies')}</strong>, {localized('and')} <strong>{localized('AI-powered personalized learning')}</strong>
-            </p>
-            <p className={styles.pageSubtitle}>
-              We publish articles on online tutoring, math and science learning, study tips, and parenting guides. Browse by topic below or explore the latest posts to find practical advice for your child&apos;s education.
-            </p>
-          </header>
-
-          <BlogCategoriesWrapper />
-
-          {blogs.length === 0 ? (
-            <div className={styles.emptyState}>
-              <p>{localized('No blog posts available yet. Check back soon!')}</p>
+      <main className="blog">
+        {/* Hero */}
+        <section className="about-hero" aria-labelledby="resources-heading">
+          <div className="gf-container about-hero-inner">
+            <div className="gf-badge">
+              <span className="gf-badge-dot" aria-hidden="true" />
+              {localized('Parent & Student Guides')}
             </div>
-          ) : (
-            <div className={styles.blogGrid}>
-              {blogs.map((blog) => {
-                const blogImage = blog.image || `/blog-images/online-education-category.jpg`
-                return (
-                  <article key={blog.slug} className={styles.blogCard}>
-                    <Link href={`/blog/${blog.categorySlug}/${blog.slug}`} className={styles.blogCardLink} prefetch={false}>
-                      <div className={styles.blogCardImageWrapper}>
-                        <BlogImage
-                          src={blogImage}
-                          alt={blog.title}
-                          width={400}
-                          height={250}
-                          className={styles.blogCardImage}
-                          sizes="(max-width: 768px) 100vw, 400px"
-                          fallbackSrc="/blog-images/online-education-category.jpg"
-                        />
-                      </div>
-                      <div className={styles.blogCardContent}>
-                        <div className={styles.blogCardCategory}>{blog.category}</div>
-                        <h2 className={styles.blogCardTitle}>{blog.title}</h2>
-                        <p className={styles.blogCardLead}>{blog.lead}</p>
-                        <div className={styles.blogCardMeta}>
-                          <span className={styles.blogDate}>
-                            {formatDate(blog.meta.publishedDate)}
-                          </span>
-                          <span className={styles.blogReadTime}>{blog.meta.readTime}</span>
+            <h1 id="resources-heading" className="about-hero-title">
+              {localized('Learning')} <span className="gf-text-primary">{localized('Resources')}</span>
+            </h1>
+            <p className="about-hero-lead">
+              {localized('Expert insights on')}{' '}
+              <strong>{localized('child education')}</strong>,{' '}
+              <strong>{localized('learning strategies')}</strong>, {localized('and')}{' '}
+              <strong>{localized('AI-powered personalized learning')}</strong> — practical articles
+              for parents and students.
+            </p>
+            <div className="about-hero-ctas">
+              <Link href="/free-session" className="gf-btn-primary" prefetch={false}>
+                {localized('Book Free Session')}
+              </Link>
+              <Link href="/how-it-works" className="gf-btn-outline" prefetch={false}>
+                {localized('How It Works')}
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* What you'll find */}
+        <section className="about-section" aria-labelledby="resource-types-heading">
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 id="resource-types-heading" className="about-section-title">
+                What you&apos;ll find here
+              </h2>
+              <p className="about-section-desc">
+                Actionable guides written for parents and K-12 students — not generic blog filler.
+              </p>
+            </div>
+            <div className="about-cards about-cards-3">
+              {RESOURCE_CARDS.map((card) => (
+                <article key={card.title} className="about-card">
+                  <div className={iconClass(card.variant)} aria-hidden="true">
+                    {card.icon}
+                  </div>
+                  <h3 className="about-card-title">{localized(card.title)}</h3>
+                  <p className="about-card-text">{localized(card.text)}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Topics */}
+        <section className="about-section about-section-alt blog-topics-section" aria-label="Browse by topic">
+          <div className="gf-container">
+            <BlogCategoriesWrapper />
+            <p className="blog-rss">
+              <a href="/feed.xml">Subscribe via RSS</a>
+            </p>
+          </div>
+        </section>
+
+        {/* Latest articles */}
+        <section className="blog-articles-section about-section-alt" aria-labelledby="latest-heading">
+          <div className="gf-container">
+            <div className="blog-articles-head">
+              <h2 id="latest-heading" className="blog-articles-title">
+                {localized('Latest articles')}
+              </h2>
+              <p className="blog-articles-desc">
+                {localized('New guides on tutoring, study skills, and helping your child succeed online.')}
+              </p>
+            </div>
+
+            {blogs.length === 0 ? (
+              <div className="blog-empty">
+                <p>{localized('No blog posts available yet. Check back soon!')}</p>
+              </div>
+            ) : (
+              <div className="blog-articles-grid">
+                {blogs.map((blog) => {
+                  const blogImage = blog.image || '/blog-images/online-education-category.jpg'
+                  return (
+                    <article key={blog.slug} className="blog-card">
+                      <Link
+                        href={`/blog/${blog.categorySlug}/${blog.slug}`}
+                        className="blog-card-link"
+                        prefetch={false}
+                      >
+                        <div className="blog-card-image-wrap">
+                          <BlogImage
+                            src={blogImage}
+                            alt=""
+                            width={400}
+                            height={250}
+                            className="blog-card-image"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            fallbackSrc="/blog-images/online-education-category.jpg"
+                          />
                         </div>
-                      </div>
-                      <div className={styles.blogCardArrow}>→</div>
-                    </Link>
-                  </article>
-                )
-              })}
-            </div>
-          )}
-        </div>
+                        <div className="blog-card-body">
+                          <span className="blog-card-category">{blog.category}</span>
+                          <h3 className="blog-card-title">{blog.title}</h3>
+                          <p className="blog-card-lead">{blog.lead}</p>
+                          <div className="blog-card-footer">
+                            <span>
+                              {formatDate(blog.meta.publishedDate)} · {blog.meta.readTime}
+                            </span>
+                            <span className="blog-card-read" aria-hidden="true">
+                              Read →
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+                    </article>
+                  )
+                })}
+              </div>
+            )}
+          </div>
+        </section>
 
-        <footer className={styles.footer}>
-          <nav className={styles.footerLinks}>
-            <Link href="/" className={styles.footerLink} prefetch={false}>{localized('GuruForU Home')}</Link>
-            <Link href="/contact" className={styles.footerLink} prefetch={false}>{localized('Contact Us')}</Link>
-            <a href="mailto:support@guruforu.com" className={styles.footerLink}>{localized('Email Support')}</a>
-            <Link href="/terms" className={styles.footerLink} prefetch={false}>{localized('Terms and Conditions')}</Link>
-            <Link href="/privacy" className={styles.footerLink} prefetch={false}>{localized('Privacy Policy')}</Link>
-            <Link href="/site-map" className={styles.footerLink} prefetch={false}>Site Map</Link>
-          </nav>
-          <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. {localized('All rights reserved.')}</p>
-        </footer>
-      </div>
-    </div>
+        {/* CTA */}
+        <section className="about-section" aria-labelledby="resources-cta-heading">
+          <div className="gf-container">
+            <div className="about-cta">
+              <h2 id="resources-cta-heading" className="about-cta-title">
+                Ready to go beyond reading?
+              </h2>
+              <p className="about-cta-desc">
+                Book a free tutoring session and see how live 1-on-1 classes plus AI reports work for
+                your child.
+              </p>
+              <div className="about-cta-actions">
+                <Link href="/free-session" className="gf-btn-primary" prefetch={false}>
+                  {localized('Book Free Session')}
+                </Link>
+                <Link href="/contact" className="gf-btn-outline" prefetch={false}>
+                  {localized('Contact Us')}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <PageFooter localized={localized} />
+      </main>
     </>
   )
 }
