@@ -1,0 +1,162 @@
+/* Restores design-system buttons after pages.css — import last in globals.css */
+
+.gf-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  transition: background-color 0.15s ease;
+}
+
+.gf-btn-primary:hover {
+  background-color: hsl(var(--primary) / 0.9);
+}
+
+.gf-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  background-color: hsl(var(--card));
+  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--border));
+  transition: background-color 0.15s ease;
+}
+
+.gf-btn-outline:hover {
+  background-color: hsl(var(--muted));
+}
+
+.gf-footer-link {
+  color: hsl(var(--muted-foreground));
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.15s ease;
+}
+
+.gf-footer-link:hover {
+  color: hsl(var(--primary));
+}
+
+/* Form / page-specific buttons (not global design tokens) */
+.ip-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.ip-btn-primary:hover:not(:disabled) {
+  background-color: hsl(var(--primary) / 0.9);
+}
+
+.ip-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ip-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: white;
+  background: #25d366;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.ip-whatsapp-btn:hover {
+  background: #20ba5a;
+}
+
+/* Fix legacy dark-theme white text on light backgrounds */
+.ip-cta-box {
+  color: hsl(var(--foreground));
+}
+
+.ip-cta-box h3,
+.ip-cta-title {
+  color: hsl(var(--foreground));
+}
+
+.ip-cta-box p,
+.ip-cta-text {
+  color: hsl(var(--muted-foreground));
+}
+
+.ip-hero-title {
+  color: hsl(var(--foreground));
+  text-shadow: none;
+}
+
+.ip-hero-subtitle {
+  color: hsl(var(--muted-foreground));
+  text-shadow: none;
+}
+
+.ip-back-link {
+  color: hsl(var(--primary));
+  background: hsl(var(--muted));
+}
+
+.ip-back-link:hover {
+  background: hsl(var(--secondary));
+  color: hsl(var(--primary));
+}
+
+.ip-title {
+  color: hsl(var(--foreground));
+}
+
+.ip-lead {
+  color: hsl(var(--muted-foreground));
+}
+
+.ip-card {
+  color: hsl(var(--foreground));
+}
+
+.ip-faq-question {
+  color: hsl(var(--primary));
+}
+
+.ip-faq-answer {
+  color: hsl(var(--muted-foreground));
+}

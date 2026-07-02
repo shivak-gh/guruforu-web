@@ -17,12 +17,11 @@
   font-size: 1rem;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50px;
-  background: rgba(255, 255, 255, 0.95);
-  color: #333;
+  background: hsl(var(--card));
+  color: hsl(var(--foreground));
   outline: none;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
+  }
 
 /* Disable expensive backdrop-filter on mobile for better performance */
 @media (max-width: 768px) {
@@ -52,18 +51,18 @@
   font-size: 1rem;
   font-weight: 600;
   color: white;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 100%);
   border: none;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 15px hsl(var(--primary) / 0.4);
 }
 
 .button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 6px 20px hsl(var(--primary) / 0.5);
 }
 
 .button:active:not(:disabled) {
@@ -132,13 +131,13 @@
 }
 
 .captchaLink {
-  color: #667eea;
+  color: hsl(var(--primary));
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .captchaLink:hover {
-  color: #764ba2;
+  color: hsl(var(--primary));
   text-decoration: underline;
 }
 

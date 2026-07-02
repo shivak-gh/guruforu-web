@@ -1,8 +1,22 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
+import { Inter, Space_Grotesk } from 'next/font/google'
 import { detectLocale, getSEOContent } from '../lib/locale'
+import LocaleDebugBanner from './components/LocaleDebugBanner'
 import './globals.css'
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+})
 
 // Lazy load client components to reduce initial bundle size
 const ConsentBanner = dynamic(() => import('./components/ConsentBanner'), {
@@ -99,7 +113,7 @@ export default async function RootLayout({
   const localeInfo = detectLocale()
 
   return (
-    <html lang={localeInfo.htmlLang}>
+    <html lang={localeInfo.htmlLang} className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <head>
         {/* Hreflang tags are generated via metadata.alternates.languages in each page */}
         {/* Performance: Preconnect to external domains - Only for critical resources */}
@@ -245,6 +259,7 @@ export default async function RootLayout({
       </head>
           <body>
             {children}
+            <LocaleDebugBanner />
             <ConsentBanner />
             <Analytics />
             <FreeConsultationFAB />

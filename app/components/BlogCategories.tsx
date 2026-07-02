@@ -13,18 +13,40 @@ interface BlogCategoriesProps {
   }>
 }
 
+const CATEGORY_ICONS: Record<string, string> = {
+  math: '📐',
+  science: '🔬',
+  technology: '💻',
+  'learning-strategies': '🎯',
+  'study-tips': '📚',
+  'parenting-guide': '👨‍👩‍👧',
+  'online-education': '🌐',
+  'computer-science': '⌨️',
+}
+
+function getCategoryIcon(slug: string): string {
+  return CATEGORY_ICONS[slug] ?? '📖'
+}
+
 export default async function BlogCategories({ categories }: BlogCategoriesProps) {
   const headersList = await headers()
   const localeInfo = detectLocale(headersList)
   const localized = (text: string) => localizeText(text, localeInfo.region)
-  
+
   if (categories.length === 0) {
     return null
   }
 
   return (
-    <section className={styles.categoriesSection}>
-      <h2 className={styles.categoriesTitle}>{localized('Explore by Topic')}</h2>
+    <section className={styles.categoriesSection} aria-labelledby="topics-heading">
+      <div className={styles.categoriesHead}>
+        <h2 id="topics-heading" className={styles.categoriesTitle}>
+          {localized('Explore by Topic')}
+        </h2>
+        <p className={styles.categoriesDesc}>
+          {localized('Browse practical guides by subject — for parents and students.')}
+        </p>
+      </div>
       <div className={styles.categoriesGrid}>
         {categories.map((category) => (
           <Link
@@ -36,16 +58,25 @@ export default async function BlogCategories({ categories }: BlogCategoriesProps
             <div className={styles.categoryImageWrapper}>
               <CategoryImage
                 src={getCategoryImage(category.slug)}
-                alt={`${category.name} category - education articles and resources`}
-                width={400}
-                height={250}
+                alt={`${category.name} — education articles and resources`}
                 className={styles.categoryImage}
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 213px"
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               />
+              <span className={styles.categoryIcon} aria-hidden="true">
+                {getCategoryIcon(category.slug)}
+              </span>
             </div>
             <div className={styles.categoryContent}>
-              <h3 className={styles.categoryName}>{category.name}</h3>
-              <p className={styles.categoryCount}>{category.count} {category.count === 1 ? localized('article') : localized('articles')}</p>
+              <div className={styles.categoryText}>
+                <h3 className={styles.categoryName}>{category.name}</h3>
+                <span className={styles.categoryCount}>
+                  {category.count}{' '}
+                  {category.count === 1 ? localized('article') : localized('articles')}
+                </span>
+              </div>
+              <span className={styles.categoryArrow} aria-hidden="true">
+                →
+              </span>
             </div>
           </Link>
         ))}

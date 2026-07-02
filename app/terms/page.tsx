@@ -1,8 +1,11 @@
-import styles from './page.module.css'
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Script from 'next/script'
+import dynamic from 'next/dynamic'
+import PageFooter from '../components/PageFooter'
+
+const NavMenu = dynamic(() => import('../components/NavMenu'), { ssr: true })
+
 
 export const metadata: Metadata = {
   title: 'Terms and Conditions | GuruForU Service Agreement',
@@ -118,50 +121,34 @@ export default function TermsAndConditions() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-    <div className={styles.container}>
-      <div className={styles.background}>
-        <div className={styles.gradient}></div>
-      </div>
-
-      <div className={styles.content}>
-        <div className={styles.header}>
-          <Link href="/" className={styles.homeLink}>
-            <Image 
-              src="/guruforu-ai-education-logo.png" 
-              alt="GuruForU Logo" 
-              width={120}
-              height={60}
-              className={styles.logoImage}
-            />
-          </Link>
-        </div>
-
-        <div className={styles.pageContent}>
-          <h1 className={styles.title}>Terms and Conditions</h1>
-          <p className={styles.lastUpdated}>Last Updated: January 1, {new Date().getFullYear()}</p>
-          <p className={styles.text}>Guruforu is owned and operated by Gratiq Solutions LLP.</p>
-          <p className={styles.text}>
+    <NavMenu />
+      <div className="ip-layout">
+<div className="ip-content"><div className="ip-card">
+          <h1 className="ip-title">Terms and Conditions</h1>
+          <p className="ip-meta">Last Updated: January 1, {new Date().getFullYear()}</p>
+          <p className="ip-text">Guruforu is owned and operated by Gratiq Solutions LLP.</p>
+          <p className="ip-text">
             Welcome to <strong>GuruForU</strong>, your trusted platform for <strong>AI-powered online education</strong>. 
             These Terms and Conditions govern your use of our services, including our online classes, student progress tracking, 
             and educational resources. By accessing or using our platform, you agree to comply with and be bound by these terms. 
             Please read this document carefully to understand your rights and responsibilities as a user of our services.
           </p>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>1. Acceptance of Terms</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">1. Acceptance of Terms</h2>
+            <p className="ip-text">
               By accessing and using <strong>GuruForU</strong>, you accept and agree to be bound by the terms and provision of this agreement.
-              If you do not agree to these Terms and Conditions, please do not use our services. For questions about our terms, visit our <Link href="/contact" className={styles.link}>contact page</Link>.
+              If you do not agree to these Terms and Conditions, please do not use our services. For questions about our terms, visit our <Link href="/contact" className="ip-link">contact page</Link>.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>2. Use License</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">2. Use License</h2>
+            <p className="ip-text">
               Permission is granted to temporarily use GuruForU for personal, non-commercial transitory viewing only. 
               This is the grant of a license, not a transfer of title, and under this license you may not:
             </p>
-            <ul className={styles.list}>
+            <ul className="ip-list">
               <li>Modify or copy the materials</li>
               <li>Use the materials for any commercial purpose or for any public display</li>
               <li>Attempt to reverse engineer any software contained on GuruForU</li>
@@ -169,94 +156,94 @@ export default function TermsAndConditions() {
             </ul>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>3. Service Description</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">3. Service Description</h2>
+            <p className="ip-text">
               <strong>GuruForU</strong> provides an online platform connecting students with independent teachers for personalized 
               learning experiences. We offer <strong>AI-powered tools</strong> to track student progress and provide insights. 
-              Learn more about our <Link href="/" className={styles.link}>online classes</Link> and <Link href="/blog" className={styles.link}>educational resources</Link>.
+              Learn more about our <Link href="/" className="ip-link">online classes</Link> and <Link href="/blog" className="ip-link">educational resources</Link>.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>4. User Accounts</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">4. User Accounts</h2>
+            <p className="ip-text">
               You are responsible for maintaining the confidentiality of your account and password. You agree to 
               accept responsibility for all activities that occur under your account.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>5. Payment Terms</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">5. Payment Terms</h2>
+            <p className="ip-text">
               Payments for services are processed through our secure payment gateway. By making a payment, 
               you agree to our pricing terms and refund policy as outlined in our Cancellation and Refunds policy.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>6. Intellectual Property</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">6. Intellectual Property</h2>
+            <p className="ip-text">
               All content, features, and functionality of GuruForU, including but not limited to text, graphics, 
               logos, and software, are the exclusive property of GuruForU and are protected by copyright, 
               trademark, and other laws.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>7. Limitation of Liability</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">7. Limitation of Liability</h2>
+            <p className="ip-text">
               In no event shall GuruForU or its suppliers be liable for any damages (including, without limitation, 
               damages for loss of data or profit, or due to business interruption) arising out of the use or 
               inability to use the materials on GuruForU.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>8. Modifications</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">8. Modifications</h2>
+            <p className="ip-text">
               GuruForU may revise these terms of service at any time without notice. By using this service, 
               you are agreeing to be bound by the then current version of these Terms and Conditions.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>9. Contact Information</h2>
-            <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">9. Contact Information</h2>
+            <p className="ip-text">
               If you have any questions about these Terms and Conditions, please contact us through our 
-              <Link href="/contact" className={styles.link}> Contact Us</Link> page.
+              <Link href="/contact" className="ip-link"> Contact Us</Link> page.
             </p>
           </div>
 
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
-            <div className={styles.faqItem}>
-              <h3 className={styles.faqQuestion}>What are the terms of service for GuruForU online tutoring?</h3>
-              <p className={styles.text}>
+          <div className="ip-section">
+            <h2 className="ip-section-title">Frequently Asked Questions</h2>
+            <div className="ip-faq-item">
+              <h3 className="ip-faq-question">What are the terms of service for GuruForU online tutoring?</h3>
+              <p className="ip-text">
                 Our terms of service outline the rules and guidelines for using GuruForU&apos;s online tutoring platform, 
                 including user responsibilities, payment terms, intellectual property rights, and service limitations. 
                 By using our platform, you agree to comply with these terms.
               </p>
             </div>
-            <div className={styles.faqItem}>
-              <h3 className={styles.faqQuestion}>Can I cancel my online tutoring subscription?</h3>
-              <p className={styles.text}>
+            <div className="ip-faq-item">
+              <h3 className="ip-faq-question">Can I cancel my online tutoring subscription?</h3>
+              <p className="ip-text">
                 Yes, you can cancel your subscription at any time. Please refer to our 
-                <Link href="/cancellation-refunds" className={styles.link}> Cancellation and Refunds Policy</Link> for 
+                <Link href="/cancellation-refunds" className="ip-link"> Cancellation and Refunds Policy</Link> for 
                 detailed information about cancellation procedures and refund eligibility.
               </p>
             </div>
-            <div className={styles.faqItem}>
-              <h3 className={styles.faqQuestion}>What happens if I violate the terms of service?</h3>
-              <p className={styles.text}>
+            <div className="ip-faq-item">
+              <h3 className="ip-faq-question">What happens if I violate the terms of service?</h3>
+              <p className="ip-text">
                 Violations of our terms of service may result in suspension or termination of your account. 
                 We reserve the right to take appropriate action to protect our platform and other users. 
-                For specific concerns, please <Link href="/contact" className={styles.link}>contact us</Link>.
+                For specific concerns, please <Link href="/contact" className="ip-link">contact us</Link>.
               </p>
             </div>
-            <div className={styles.faqItem}>
-              <h3 className={styles.faqQuestion}>How do I accept the terms of service?</h3>
-              <p className={styles.text}>
+            <div className="ip-faq-item">
+              <h3 className="ip-faq-question">How do I accept the terms of service?</h3>
+              <p className="ip-text">
                 By creating an account, making a payment, or using any of GuruForU&apos;s services, you automatically 
                 accept and agree to be bound by these terms and conditions. We recommend reading the full terms 
                 before using our platform.
@@ -265,9 +252,7 @@ export default function TermsAndConditions() {
           </div>
         </div>
 
-        <footer className={styles.footer}>
-          <p>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
-        </footer>
+        <PageFooter />
       </div>
     </div>
     </>

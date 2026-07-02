@@ -2,10 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
-import styles from './page.module.css'
 import Link from 'next/link'
 import Script from 'next/script'
 import { detectLocale, localizeText, type Region } from '../../lib/locale'
+import PageFooter from '../components/PageFooter'
 
 // Lazy load NavMenu to reduce initial bundle size
 const NavMenu = dynamic(() => import('../components/NavMenu'), {
@@ -389,41 +389,37 @@ Learning Challenges: ${data.details || 'Not specified'}`;
         </form>
       </noscript>
       <NavMenu />
-      <div className={styles.container}>
-        <div className={styles.background}>
-          <div className={styles.gradient}></div>
-        </div>
-
-        <div className={styles.content}>
+      <div className="ip-layout">
+<div className="ip-content">
           {/* Hero Section */}
-          <div className={styles.hero}>
-            <h1 className={styles.heroTitle}>
+          <div className="ip-hero">
+            <h1 className="ip-hero-title">
               {localized('FREE Math & Science Assessment Session')}
             </h1>
-            <p className={styles.heroSubtitle}>
+            <p className="ip-hero-subtitle">
               <strong>Struggling with Algebra? Chemistry? Physics?</strong> Book a <strong>free 15-minute session</strong> with our expert tutors. We&apos;ll identify exactly where your child needs help and create a personalized plan.
             </p>
-            <p className={styles.heroSubtitle}>
+            <p className="ip-hero-subtitle">
               <strong>No credit card. No obligation.</strong> Just real help from real teachers who specialize in K-12 Math &amp; Science.
             </p>
           </div>
 
-          <div className={styles.mainContent}>
+          <div className="ip-main-content">
             {/* Form Section */}
-            <div className={styles.formSection}>
-              <h2 className={styles.formTitle}>{localized('Book Your Free Session')}</h2>
+            <div className="ip-form-section">
+              <h2 className="ip-form-title">{localized('Book Your Free Session')}</h2>
               
               <form 
                 id="free-session-form"
-                className={styles.consultationForm} 
+                className="ip-consultation-form" 
                 onSubmit={handleEmailSubmit}
                 action="/api/free-consultation"
                 method="post"
                 data-form-type="lead"
               >
-                <div className={styles.formGroup}>
-                  <label htmlFor="name" className={styles.label}>
-                    {localized('Parent Name')} <span className={styles.required}>*</span>
+                <div className="ip-form-group">
+                  <label htmlFor="name" className="ip-label">
+                    {localized('Parent Name')} <span className="ip-required">*</span>
                   </label>
                   <input
                     type="text"
@@ -433,14 +429,14 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                     onChange={handleChange}
                     required
                     autoComplete="name"
-                    className={styles.input}
+                    className="ip-input"
                     placeholder={localized('Your full name')}
                   />
                 </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="email" className={styles.label}>
-                    {localized('Email')} <span className={styles.required}>*</span>
+                <div className="ip-form-group">
+                  <label htmlFor="email" className="ip-label">
+                    {localized('Email')} <span className="ip-required">*</span>
                   </label>
                   <input
                     type="email"
@@ -450,14 +446,14 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                     onChange={handleChange}
                     required
                     autoComplete="email"
-                    className={styles.input}
+                    className="ip-input"
                     placeholder={localized('your.email@example.com')}
                   />
                 </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="grade" className={styles.label}>
-                    {localized('Child\'s Grade')} <span className={styles.required}>*</span>
+                <div className="ip-form-group">
+                  <label htmlFor="grade" className="ip-label">
+                    {localized('Child\'s Grade')} <span className="ip-required">*</span>
                   </label>
                   <input
                     type="text"
@@ -466,13 +462,13 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                     value={formData.grade}
                     onChange={handleChange}
                     required
-                    className={styles.input}
+                    className="ip-input"
                     placeholder={localized('e.g., Grade 5, Year 3, Class 8, etc.')}
                   />
                 </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="country" className={styles.label}>
+                <div className="ip-form-group">
+                  <label htmlFor="country" className="ip-label">
                     {localized('Country')}
                   </label>
                   <input
@@ -482,7 +478,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                     value={formData.country}
                     onChange={handleChange}
                     list="countries"
-                    className={styles.input}
+                    className="ip-input"
                     placeholder={localized('Start typing your country...')}
                     autoComplete="country-name"
                   />
@@ -540,8 +536,8 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                   </datalist>
                 </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="timeSlot" className={styles.label}>
+                <div className="ip-form-group">
+                  <label htmlFor="timeSlot" className="ip-label">
                     {localized('Preferred time to contact you')}
                   </label>
                   <select
@@ -549,7 +545,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                     name="timeSlot"
                     value={formData.timeSlot}
                     onChange={handleChange}
-                    className={styles.select}
+                    className="ip-select"
                   >
                     <option value="">{localized('Select preferred time')}</option>
                     <option value="Morning (9 AM - 12 PM)">{localized('Morning (9 AM - 12 PM)')}</option>
@@ -559,8 +555,8 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                   </select>
                 </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="details" className={styles.label}>
+                <div className="ip-form-group">
+                  <label htmlFor="details" className="ip-label">
                     {localized('Tell us about their learning challenges')}
                   </label>
                   <textarea
@@ -569,50 +565,50 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                     value={formData.details}
                     onChange={handleChange}
                     rows={4}
-                    className={styles.textarea}
+                    className="ip-textarea"
                     placeholder={localized('Describe any specific subjects, topics, or learning difficulties your child is facing...')}
                   />
                 </div>
 
                 {submitStatus === 'success' && (
-                  <div className={styles.successMessage} role="alert">
+                  <div className="ip-success-message" role="alert">
                     ✓ {localized('Thank you! We\'ll contact you soon to schedule your free session.')}
                   </div>
                 )}
 
                 {submitStatus === 'error' && errorMessage && (
-                  <div className={styles.errorMessage} role="alert">
+                  <div className="ip-error-message" role="alert">
                     <strong>{localized('Oops! Something went wrong.')}</strong>
                     <br />
                     {errorMessage}
                     <br />
-                    <small>{localized('If the issue persists, please email us directly at')} <a href="mailto:support@guruforu.com" className={styles.emailLink}>support@guruforu.com</a></small>
+                    <small>{localized('If the issue persists, please email us directly at')} <a href="mailto:support@guruforu.com" className="ip-link">support@guruforu.com</a></small>
                   </div>
                 )}
 
                 {!recaptchaSiteKey && typeof window !== 'undefined' && 
                  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && (
-                  <div className={styles.warningMessage}>
+                  <div className="ip-warning-message">
                     ⚠️ Note: reCAPTCHA is not configured for localhost. Form will work without reCAPTCHA verification. 
                     To enable reCAPTCHA, set NEXT_PUBLIC_RECAPTCHA_SITE_KEY in .env.local and restart your dev server.
                   </div>
                 )}
 
                 {recaptchaSiteKey && !recaptchaLoaded.current && (
-                  <div className={styles.infoMessage}>
+                  <div className="ip-info-message">
                     ℹ️ Loading reCAPTCHA protection...
                   </div>
                 )}
 
                 {recaptchaSiteKey && (
-                  <div className={styles.captchaNotice}>
+                  <div className="ip-captcha-notice">
                     <small>
                       This site is protected by reCAPTCHA and the Google{' '}
                       <a 
                         href="https://policies.google.com/privacy" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className={styles.captchaLink}
+                        className="ip-link"
                       >
                         Privacy Policy
                       </a>
@@ -621,7 +617,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                         href="https://policies.google.com/terms" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className={styles.captchaLink}
+                        className="ip-link"
                       >
                         Terms of Service
                       </a>
@@ -630,12 +626,12 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                   </div>
                 )}
 
-                <div className={styles.actionButtons}>
+                <div className="ip-action-buttons">
                   <button
                     type="submit"
                     name="submit"
                     disabled={isSubmitting}
-                    className={styles.primaryButton}
+                    className="ip-btn-primary"
                   >
                     {isSubmitting ? localized('Submitting...') : localized('Secure My Free Session')}
                   </button>
@@ -643,9 +639,9 @@ Learning Challenges: ${data.details || 'Not specified'}`;
                   <button
                     type="button"
                     onClick={handleWhatsAppClick}
-                    className={styles.whatsappButton}
+                    className="ip-whatsapp-btn"
                   >
-                    <span className={styles.whatsappIcon}>💬</span>
+                    <span className="ip-whatsapp-icon">💬</span>
                     {localized('Book via WhatsApp')}
                   </button>
                 </div>
@@ -653,62 +649,62 @@ Learning Challenges: ${data.details || 'Not specified'}`;
             </div>
 
             {/* Roadmap & Trust Section */}
-            <div className={styles.sidebar}>
+            <div className="ip-sidebar">
               {/* Student Progress Roadmap */}
-              <div className={styles.roadmap}>
-                <h3 className={styles.roadmapTitle}>{localized('Your Child\'s Progress Roadmap')}</h3>
-                <div className={styles.roadmapSteps}>
-                  <div className={styles.roadmapStep}>
-                    <div className={styles.stepNumber}>1</div>
-                    <div className={styles.stepContent}>
-                      <h4 className={styles.stepTitle}>{localized('Free Session')}</h4>
-                      <p className={styles.stepDescription}>{localized('15-minute strategy session to understand your child\'s needs')}</p>
+              <div className="ip-roadmap">
+                <h3 className="ip-roadmap-title">{localized('Your Child\'s Progress Roadmap')}</h3>
+                <div className="ip-roadmap-steps">
+                  <div className="ip-roadmap-step">
+                    <div className="ip-step-number">1</div>
+                    <div className="ip-step-content">
+                      <h4 className="ip-step-title">{localized('Free Session')}</h4>
+                      <p className="ip-step-description">{localized('15-minute strategy session to understand your child\'s needs')}</p>
                     </div>
                   </div>
-                  <div className={styles.roadmapStep}>
-                    <div className={styles.stepNumber}>2</div>
-                    <div className={styles.stepContent}>
-                      <h4 className={styles.stepTitle}>{localized('AI Learning Diagnostic')}</h4>
-                      <p className={styles.stepDescription}>{localized('Comprehensive analysis of learning gaps and strengths')}</p>
+                  <div className="ip-roadmap-step">
+                    <div className="ip-step-number">2</div>
+                    <div className="ip-step-content">
+                      <h4 className="ip-step-title">{localized('AI Learning Diagnostic')}</h4>
+                      <p className="ip-step-description">{localized('Comprehensive analysis of learning gaps and strengths')}</p>
                     </div>
                   </div>
-                  <div className={styles.roadmapStep}>
-                    <div className={styles.stepNumber}>3</div>
-                    <div className={styles.stepContent}>
-                      <h4 className={styles.stepTitle}>{localized('Personalized Roadmap')}</h4>
-                      <p className={styles.stepDescription}>{localized('Custom subject roadmap tailored to your child')}</p>
+                  <div className="ip-roadmap-step">
+                    <div className="ip-step-number">3</div>
+                    <div className="ip-step-content">
+                      <h4 className="ip-step-title">{localized('Personalized Roadmap')}</h4>
+                      <p className="ip-step-description">{localized('Custom subject roadmap tailored to your child')}</p>
                     </div>
                   </div>
-                  <div className={styles.roadmapStep}>
-                    <div className={styles.stepNumber}>4</div>
-                    <div className={styles.stepContent}>
-                      <h4 className={styles.stepTitle}>{localized('Expert Tutor Matching')}</h4>
-                      <p className={styles.stepDescription}>{localized('Connect with qualified tutors for ongoing support')}</p>
+                  <div className="ip-roadmap-step">
+                    <div className="ip-step-number">4</div>
+                    <div className="ip-step-content">
+                      <h4 className="ip-step-title">{localized('Expert Tutor Matching')}</h4>
+                      <p className="ip-step-description">{localized('Connect with qualified tutors for ongoing support')}</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Trust Section */}
-              <div className={styles.trustSection}>
-                <h3 className={styles.trustTitle}>{localized('What You\'ll Get')}</h3>
-                <ul className={styles.trustList}>
-                  <li className={styles.trustItem}>
-                    <span className={styles.trustIcon}>✓</span>
+              <div className="ip-trust-section">
+                <h3 className="ip-trust-title">{localized('What You\'ll Get')}</h3>
+                <ul className="ip-trust-list">
+                  <li className="ip-trust-item">
+                    <span className="ip-trust-icon">✓</span>
                     <div>
                       <strong>{localized('Personalized Subject Roadmap')}</strong>
                       <p>{localized('Custom learning path designed specifically for your child')}</p>
                     </div>
                   </li>
-                  <li className={styles.trustItem}>
-                    <span className={styles.trustIcon}>✓</span>
+                  <li className="ip-trust-item">
+                    <span className="ip-trust-icon">✓</span>
                     <div>
                       <strong>{localized('AI Mastery Analysis')}</strong>
                       <p>{localized('Deep insights into learning gaps and strengths')}</p>
                     </div>
                   </li>
-                  <li className={styles.trustItem}>
-                    <span className={styles.trustIcon}>✓</span>
+                  <li className="ip-trust-item">
+                    <span className="ip-trust-icon">✓</span>
                     <div>
                       <strong>{localized('Expert Tutor Matching')}</strong>
                       <p>{localized('Connect with qualified tutors who understand your child\'s needs')}</p>
@@ -719,17 +715,7 @@ Learning Challenges: ${data.details || 'Not specified'}`;
             </div>
           </div>
 
-          <footer className={styles.footer}>
-            <nav className={styles.footerLinks}>
-              <Link href="/" className={styles.footerLink} prefetch={false}>{localized('GuruForU Home')}</Link>
-              <Link href="/blog" className={styles.footerLink} prefetch={false}>{localized('Resources')}</Link>
-              <Link href="/contact" className={styles.footerLink} prefetch={false}>{localized('Contact Us')}</Link>
-              <a href="mailto:support@guruforu.com" className={styles.footerLink}>{localized('Email Support')}</a>
-              <Link href="/terms" className={styles.footerLink} prefetch={false}>{localized('Terms and Conditions')}</Link>
-              <Link href="/privacy" className={styles.footerLink} prefetch={false}>{localized('Privacy Policy')}</Link>
-            </nav>
-            <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. {localized('All rights reserved.')}</p>
-          </footer>
+          <PageFooter />
         </div>
       </div>
     </>

@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
-// Cache control: enabled by default so JS/CSS and static assets are cached (fixes uncached asset issues).
-// Set DISABLE_CACHE=true in environment to disable caching (e.g. for debugging).
+// Cache control: production only. Dev must not send immutable headers or browsers keep stale CSS after theme changes.
+const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 const DISABLE_CACHE = process.env.DISABLE_CACHE === 'true'
 
 const nextConfig = {
@@ -81,8 +81,8 @@ const nextConfig = {
       },
     ]
 
-    // Add cache headers only if caching is enabled
-    if (!DISABLE_CACHE) {
+    // Add cache headers only in production (never in dev — breaks hot reload / theme updates)
+    if (IS_PRODUCTION && !DISABLE_CACHE) {
       const oneHour = 'public, s-maxage=3600, max-age=3600, stale-while-revalidate=86400'
       headers.push(
         {

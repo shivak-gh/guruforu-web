@@ -1,59 +1,154 @@
-import styles from './page.module.css'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import Script from 'next/script'
+import { headers } from 'next/headers'
+import PageFooter from '../components/PageFooter'
+import { detectLocale, getAboutPageContent, getAboutPageSeo, localizeText } from '../../lib/locale'
 
 const NavMenu = dynamic(() => import('../components/NavMenu'), {
   ssr: true,
 })
 
-export const metadata: Metadata = {
-  title: 'About GuruForU | Our Tutors, Mission, and Learning Approach',
-  description: 'Meet the GuruForU team and see how expert tutors plus AI-powered progress tracking help K-12 students improve in Math and Science.',
-  keywords: [
-    'about guruforu',
-    'online tutoring team',
-    'math and science tutors',
-    'AI progress tracking for students',
-    'K-12 online tutoring',
-    'education platform mission',
-  ],
-  robots: { index: true, follow: true },
-  openGraph: {
-    title: 'About GuruForU | Tutors and Learning Approach',
-    description: 'Learn about GuruForU, our mission, and our AI-supported tutoring model for K-12 learners.',
-    url: 'https://www.guruforu.com/about',
-    siteName: 'GuruForU',
-    type: 'website',
-    locale: 'en_US',
-    images: [
-      {
-        url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
-        width: 1200,
-        height: 630,
-        alt: 'GuruForU - Online Math & Science Tutoring',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'About GuruForU | Tutors and Learning Approach',
-    description: 'Meet the team behind GuruForU and our approach to measurable student progress.',
-    images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
-  },
-  alternates: { canonical: 'https://www.guruforu.com/about' },
+const ABOUT_URL = 'https://www.guruforu.com/about'
+const ABOUT_OG_IMAGE = {
+  url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+  width: 1200,
+  height: 630,
+  alt: 'GuruForU - Online Math & Science Tutoring',
 }
 
-export default function AboutUs() {
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers()
+  const localeInfo = detectLocale(headersList)
+  const seo = getAboutPageSeo(localeInfo.region)
+
+  return {
+    title: seo.title,
+    description: seo.description,
+    keywords: seo.keywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    openGraph: {
+      title: seo.ogTitle,
+      description: seo.ogDescription,
+      url: ABOUT_URL,
+      siteName: 'GuruForU',
+      type: 'website',
+      locale: localeInfo.openGraphLocale,
+      images: [ABOUT_OG_IMAGE],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: seo.ogTitle,
+      description: seo.ogDescription,
+      images: [ABOUT_OG_IMAGE.url],
+    },
+    alternates: { canonical: ABOUT_URL },
+  }
+}
+
+const WHY_CARDS = [
+  {
+    icon: '👩‍🏫',
+    title: 'Real teachers, real-time',
+    text: 'Not videos or chatbots — live instruction with a human expert every session.',
+  },
+  {
+    icon: '📊',
+    title: 'You see the progress',
+    text: 'Detailed reports after every session, not just a grade at semester end.',
+  },
+  {
+    icon: '📅',
+    title: 'Flexible scheduling',
+    text: 'Evenings, weekends, and holidays — sessions fit your family routine.',
+  },
+  {
+    icon: '🏫',
+    title: 'Aligned with school',
+    text: 'We support what your child learns in class, not a separate curriculum.',
+  },
+  {
+    icon: '🔗',
+    title: 'One platform',
+    text: 'Student learning, teacher instruction, and parent reporting in one place.',
+  },
+  {
+    icon: '🌍',
+    title: 'Global reach',
+    key: 'globalReach' as const,
+  },
+]
+
+const TUTOR_CARDS = [
+  { icon: '🎓', title: 'Qualified degrees', text: 'Math, Science, or Education backgrounds' },
+  { icon: '📋', title: 'Teaching experience', text: 'Many are current or former classroom teachers' },
+  { icon: '✅', title: 'Background-checked', text: 'Every tutor is vetted before joining' },
+  { icon: '💻', title: 'Platform trained', text: 'Expert in our live classroom tools and methods' },
+]
+
+const AI_REPORT_ITEMS = [
+  'Topics covered in each session',
+  'Concepts your child has mastered',
+  'Areas that need more practice',
+  'Personalized recommendations for next steps',
+  'Progress charts over time',
+]
+
+const FAQ_STATIC = [
+  {
+    q: 'How do live tutoring sessions work?',
+    a: 'Students meet their tutor in live 1-on-1 or small group sessions (2–4 students) via our online classroom with video, screen share, digital whiteboard, and real-time problem solving. Sessions are typically 45–60 minutes.',
+  },
+  {
+    q: 'How do parents track progress?',
+    a: 'After each session, parents receive AI-generated Mastery Reports with topics covered, concepts mastered, areas needing work, and personalized recommendations on the parent dashboard.',
+  },
+  {
+    q: 'What are the tutor qualifications?',
+    a: 'All tutors have degrees in Math, Science, or Education with teaching or tutoring experience. They are background-checked and trained on our platform before working with students.',
+  },
+]
+
+export default async function AboutUs() {
+  const headersList = await headers()
+  const localeInfo = detectLocale(headersList)
+  const content = getAboutPageContent(localeInfo.region)
+  const localized = (text: string) => localizeText(text, localeInfo.region)
+
+  const faqItems = [
+    {
+      q: 'What Math subjects does GuruForU tutor?',
+      a: localized(content.faqMathAnswer),
+    },
+    {
+      q: 'What Science subjects does GuruForU tutor?',
+      a: localized(content.faqScienceAnswer),
+    },
+    ...FAQ_STATIC.map((item) => ({
+      q: localized(item.q),
+      a: localized(item.a),
+    })),
+  ]
+
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'EducationalOrganization',
     name: 'GuruForU',
     url: 'https://www.guruforu.com',
-    description: 'Live online Math and Science tutoring for K-12 students. Expert teachers deliver personalized instruction aligned with Common Core and state standards, with AI-powered progress tracking.',
+    description: localized(content.orgSchemaDescription),
     foundingDate: '2024',
-    knowsAbout: ['Math Tutoring', 'Science Tutoring', 'K-12 Education', 'Common Core', 'SAT Prep', 'AI Progress Tracking'],
+    knowsAbout: content.orgSchemaKnowsAbout.map((item) => localized(item)),
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Service',
@@ -65,48 +160,11 @@ export default function AboutUs() {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What Math subjects does GuruForU tutor?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'GuruForU offers tutoring for all K-12 Math levels: Elementary Math, Pre-Algebra, Algebra 1 & 2, Geometry, Trigonometry, Pre-Calculus, Calculus, and Statistics. We also offer SAT/ACT Math prep. All instruction is aligned with Common Core and state standards.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'What Science subjects does GuruForU tutor?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'GuruForU offers tutoring for Biology, Chemistry, Physics, Earth Science, and General Science for all grade levels. We cover honors, AP, and standard courses, plus SAT Subject Test and AP exam preparation.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'How do live tutoring sessions work?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Students meet with their tutor in live 1-on-1 or small group sessions (2-4 students) via our online classroom. Sessions include video chat, screen sharing, digital whiteboard, and real-time problem solving. Most sessions are 45-60 minutes.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'How do parents track their child\'s progress?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'After each session, parents receive AI-generated mastery reports showing topics covered, concepts mastered, areas needing work, and personalized recommendations. Our parent dashboard shows progress over time with clear visualizations.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'What are the tutor qualifications?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'All GuruForU tutors have degrees in Math, Science, or Education, with teaching or tutoring experience. Many are current or former classroom teachers. All tutors are background-checked and trained on our platform.'
-        }
-      }
-    ]
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
   }
 
   return (
@@ -121,232 +179,331 @@ export default function AboutUs() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <NavMenu />
-      <div className={styles.container}>
-        <div className={styles.background}>
-          <div className={styles.gradient}></div>
-        </div>
-        <div className={styles.content}>
-          <article className={styles.article}>
-            <h1 className={styles.title}>Online Math &amp; Science Tutoring That Works</h1>
-            <p className={styles.lead}>
-              Is your child struggling with Algebra? Falling behind in Chemistry? Feeling overwhelmed by homework?
-              <br /><br />
-              <strong>GuruForU connects your child with expert Math and Science tutors</strong> in live, 1-on-1 online sessions. 
-              Our AI tracks every concept they master—so you can see exactly where they&apos;re improving and where they need more help.
-            </p>
 
-            <div className={styles.ctaBox}>
-              <span className={styles.urgencyBadge}>Limited Spots Available</span>
-              <h3>Start with a FREE Assessment Session</h3>
-              <p>See how our tutors can help your child succeed in Math &amp; Science</p>
-              <Link href="/free-session" className={styles.ctaButton}>
-                Book Your Free Session →
+      <NavMenu />
+
+      <main className="about">
+        {/* Hero */}
+        <section className="about-hero" aria-labelledby="about-heading">
+          <div className="gf-container about-hero-inner">
+            <div className="gf-badge">
+              <span className="gf-badge-dot" aria-hidden="true" />
+              {localized(content.heroBadge)}
+            </div>
+            <h1 id="about-heading" className="about-hero-title">
+              Online {localized('Math')} &amp; Science Tutoring That{' '}
+              <span className="gf-text-primary">Works</span>
+            </h1>
+            <p className="about-hero-lead">
+              GuruForU connects your child with expert tutors in live 1-on-1 sessions. Our AI
+              tracks every concept they master — so you always know where they&apos;re improving
+              and where they need help.
+            </p>
+            <div className="about-hero-ctas">
+              <Link href="/free-session" className="gf-btn-primary" prefetch={false}>
+                {localized('Book Free Session')}
+              </Link>
+              <Link href="/how-it-works" className="gf-btn-outline" prefetch={false}>
+                {localized('How It Works')}
               </Link>
             </div>
+          </div>
+        </section>
 
-            <div className={styles.trustSignals}>
-              <div className={styles.trustItem}>
-                <span className={styles.trustNumber}>K-12</span>
-                <span className={styles.trustLabel}>All Grade Levels</span>
+        {/* Trust strip */}
+        <section className="home-trust" aria-label="GuruForU at a glance">
+          <div className="gf-container">
+            <div className="home-trust-grid">
+              <div className="home-trust-item">
+                <span className="home-trust-value">{content.trustGradeValue}</span>
+                <span className="home-trust-label">{localized(content.trustGradeLabel)}</span>
               </div>
-              <div className={styles.trustItem}>
-                <span className={styles.trustNumber}>1-on-1</span>
-                <span className={styles.trustLabel}>Live Sessions</span>
+              <div className="home-trust-item">
+                <span className="home-trust-value">1-on-1</span>
+                <span className="home-trust-label">{localized('Live Sessions')}</span>
               </div>
-              <div className={styles.trustItem}>
-                <span className={styles.trustNumber}>AI</span>
-                <span className={styles.trustLabel}>Progress Tracking</span>
+              <div className="home-trust-item">
+                <span className="home-trust-value">AI</span>
+                <span className="home-trust-label">{localized('Progress Tracking')}</span>
               </div>
-              <div className={styles.trustItem}>
-                <span className={styles.trustNumber}>Expert</span>
-                <span className={styles.trustLabel}>Certified Tutors</span>
+              <div className="home-trust-item">
+                <span className="home-trust-value">Expert</span>
+                <span className="home-trust-label">{localized('Certified Tutors')}</span>
               </div>
             </div>
+          </div>
+        </section>
 
-            <div className={styles.highlightBox}>
-              <h3>What You Get with GuruForU:</h3>
-              <ul>
-                <li>✓ <strong>Live 1-on-1 tutoring</strong> with expert Math &amp; Science teachers</li>
-                <li>✓ <strong>Personalized lessons</strong> aligned with your child&apos;s school curriculum</li>
-                <li>✓ <strong>AI-powered progress reports</strong> after every session</li>
-                <li>✓ <strong>Flexible scheduling</strong> — evenings, weekends, whenever works for you</li>
-                <li>✓ <strong>Homework help &amp; exam prep</strong> including SAT/ACT</li>
-              </ul>
+        {/* What you get */}
+        <section className="about-section" aria-labelledby="benefits-heading">
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 id="benefits-heading" className="about-section-title">
+                What you get with GuruForU
+              </h2>
+              <p className="about-section-desc">
+                Everything parents need for confident, measurable learning at home.
+              </p>
+            </div>
+            <div className="about-cards about-cards-3">
+              <article className="about-card">
+                <div className="about-card-icon" aria-hidden="true">🎥</div>
+                <h3 className="about-card-title">Live 1-on-1 tutoring</h3>
+                <p className="about-card-text">
+                  Expert {localized('Math')} &amp; Science teachers in real-time video sessions with
+                  whiteboard and screen share.
+                </p>
+              </article>
+              <article className="about-card">
+                <div className="about-card-icon about-card-icon-amber" aria-hidden="true">📚</div>
+                <h3 className="about-card-title">{localized('Personalized lessons')}</h3>
+                <p className="about-card-text">
+                  Instruction aligned with your child&apos;s school curriculum and learning pace.
+                </p>
+              </article>
+              <article className="about-card">
+                <div className="about-card-icon about-card-icon-green" aria-hidden="true">✨</div>
+                <h3 className="about-card-title">AI progress reports</h3>
+                <p className="about-card-text">
+                  Mastery summaries after every session so you never guess if tutoring is working.
+                </p>
+              </article>
+              <article className="about-card">
+                <div className="about-card-icon" aria-hidden="true">📅</div>
+                <h3 className="about-card-title">Flexible scheduling</h3>
+                <p className="about-card-text">
+                  Evenings, weekends, and holidays — book sessions when it works for your family.
+                </p>
+              </article>
+              <article className="about-card">
+                <div className="about-card-icon about-card-icon-amber" aria-hidden="true">📝</div>
+                <h3 className="about-card-title">Homework &amp; exam prep</h3>
+                <p className="about-card-text">{localized(content.examPrepCard)}</p>
+              </article>
+              <article className="about-card">
+                <div className="about-card-icon about-card-icon-green" aria-hidden="true">🌐</div>
+                <h3 className="about-card-title">Global curriculum</h3>
+                <p className="about-card-text">{localized(content.globalCurriculumCard)}</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        {/* Math & Science */}
+        <section className="about-section about-section-alt" aria-labelledby="subjects-heading">
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 id="subjects-heading" className="about-section-title">
+                Subjects we tutor
+              </h2>
+              <p className="about-section-desc">{localized(content.subjectsSectionDesc)}</p>
             </div>
 
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>Math Tutoring for Every Level</h2>
-              <p className={styles.text}>
-                From elementary arithmetic to AP Calculus, our tutors help students build confidence and master concepts at every grade level:
-              </p>
-              <ul className={styles.list}>
-                <li><strong>Elementary Math (K-5)</strong> — Number sense, fractions, decimals, word problems, multiplication, division</li>
-                <li><strong>Middle School Math (6-8)</strong> — Pre-Algebra, ratios, proportions, integers, intro to equations</li>
-                <li><strong>Algebra 1 &amp; 2</strong> — Linear equations, quadratics, polynomials, functions, graphing</li>
-                <li><strong>Geometry</strong> — Proofs, triangles, circles, area, volume, coordinate geometry</li>
-                <li><strong>Pre-Calculus &amp; Trigonometry</strong> — Functions, limits, trig identities, sequences</li>
-                <li><strong>Calculus (AP &amp; College Prep)</strong> — Derivatives, integrals, applications</li>
-                <li><strong>SAT/ACT Math Prep</strong> — Test strategies, timed practice, score improvement</li>
+            <article className="about-topic-card">
+              <div className="about-topic-header">
+                <div className="about-topic-icon" aria-hidden="true">📐</div>
+                <div>
+                  <h3 className="about-topic-title">{localized('Math for every level')}</h3>
+                  <p className="about-topic-desc">
+                    Build confidence from arithmetic through advanced secondary {localized('Math')}{' '}
+                    with tutors who adapt to your child&apos;s pace.
+                  </p>
+                </div>
+              </div>
+              <ul className="about-topic-list">
+                {content.mathTopics.map((topic) => (
+                  <li key={topic.label}>
+                    <strong>{localized(topic.label)}</strong> — {localized(topic.text)}
+                  </li>
+                ))}
               </ul>
-              <p className={styles.text}>
-                All instruction is aligned with <strong>Common Core</strong> and state standards. We work with your child&apos;s school curriculum—not against it.
-              </p>
-
-              <div className={styles.ctaBox}>
-                <h3>Struggling with Math?</h3>
-                <p>Our expert tutors have helped thousands of students go from frustrated to confident</p>
-                <Link href="/free-session" className={styles.ctaButton}>
-                  Get Math Help Now →
+              <div className="about-topic-footer">
+                <p className="about-topic-note">{localized(content.mathAlignmentNote)}</p>
+                <Link href="/free-session" className="gf-btn-primary" prefetch={false}>
+                  Get {localized('Math')} Help
                 </Link>
               </div>
-            </section>
+            </article>
 
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>Science Tutoring That Makes Sense</h2>
-              <p className={styles.text}>
-                Science can feel abstract and confusing. Our tutors break down complex concepts into clear, understandable lessons:
-              </p>
-              <ul className={styles.list}>
-                <li><strong>Biology</strong> — Cells, genetics, evolution, anatomy, ecology, AP Biology</li>
-                <li><strong>Chemistry</strong> — Atomic structure, reactions, stoichiometry, acids/bases, AP Chemistry</li>
-                <li><strong>Physics</strong> — Motion, forces, energy, waves, electricity, AP Physics</li>
-                <li><strong>Earth &amp; Environmental Science</strong> — Geology, weather, climate, ecosystems</li>
-                <li><strong>General Science (K-8)</strong> — Scientific method, experiments, foundational concepts</li>
+            <article className="about-topic-card">
+              <div className="about-topic-header">
+                <div className="about-topic-icon about-topic-icon-science" aria-hidden="true">🔬</div>
+                <div>
+                  <h3 className="about-topic-title">Science that makes sense</h3>
+                  <p className="about-topic-desc">
+                    Complex concepts broken into clear, visual lessons your child can actually
+                    follow.
+                  </p>
+                </div>
+              </div>
+              <ul className="about-topic-list">
+                {content.scienceTopics.map((topic) => (
+                  <li key={topic.label}>
+                    <strong>{localized(topic.label)}</strong> — {localized(topic.text)}
+                  </li>
+                ))}
               </ul>
-              <p className={styles.text}>
-                We cover <strong>honors, AP, and standard courses</strong>—plus lab report help and exam preparation.
-              </p>
-
-              <div className={styles.ctaBox}>
-                <h3>Need Science Help?</h3>
-                <p>From Biology to Physics — we make complex concepts click</p>
-                <Link href="/free-session" className={styles.ctaButton}>
-                  Get Science Help Now →
+              <div className="about-topic-footer">
+                <p className="about-topic-note">{localized(content.scienceAlignmentNote)}</p>
+                <Link href="/free-session" className="gf-btn-primary" prefetch={false}>
+                  Get Science Help
                 </Link>
               </div>
-            </section>
+            </article>
+          </div>
+        </section>
 
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>How Sessions Work</h2>
-              <p className={styles.text}>
-                <strong>Live 1-on-1 or Small Group (2-4 students)</strong> — Your child meets with their tutor in our online classroom via video chat. Sessions include screen sharing, a digital whiteboard for working through problems, and real-time Q&amp;A.
+        {/* How sessions work */}
+        <section className="about-section" aria-labelledby="sessions-heading">
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 id="sessions-heading" className="about-section-title">
+                How sessions work
+              </h2>
+              <p className="about-section-desc">
+                Simple, focused, and designed for real progress every week.
               </p>
-              <p className={styles.text}>
-                <strong>45-60 Minute Sessions</strong> — Long enough to make real progress, short enough to keep focus. Sessions are scheduled around your family&apos;s routine—after school, evenings, or weekends.
-              </p>
-              <p className={styles.text}>
-                <strong>Personalized Instruction</strong> — Tutors adapt to your child&apos;s pace. Struggling with fractions? We&apos;ll spend more time there. Ready to move ahead? We&apos;ll challenge them with harder problems.
-              </p>
-            </section>
+            </div>
+            <div className="home-steps">
+              <div className="home-step">
+                <div className="home-step-num">1</div>
+                <h3 className="home-step-title">Join live online</h3>
+                <p className="home-step-text">
+                  1-on-1 or small group (2–4) via video, whiteboard, and screen share in our
+                  classroom.
+                </p>
+              </div>
+              <div className="home-step">
+                <div className="home-step-num">2</div>
+                <h3 className="home-step-title">45–60 minute sessions</h3>
+                <p className="home-step-text">
+                  Long enough to make progress, short enough to stay focused. Scheduled around
+                  your routine.
+                </p>
+              </div>
+              <div className="home-step">
+                <div className="home-step-num">3</div>
+                <h3 className="home-step-title">{localized('Personalized pacing')}</h3>
+                <p className="home-step-text">
+                  Tutors spend more time where your child struggles and move ahead when
+                  they&apos;re ready.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>AI-Powered Progress Tracking</h2>
-              <p className={styles.text}>
-                After every session, our AI analyzes your child&apos;s performance and generates a <strong>Mastery Report</strong> for parents:
+        {/* AI + Tutors */}
+        <section className="about-section about-section-alt" aria-labelledby="platform-heading">
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 id="platform-heading" className="about-section-title">
+                AI insights &amp; expert tutors
+              </h2>
+              <p className="about-section-desc">
+                Human expertise plus technology that keeps parents in the loop.
               </p>
-              <ul className={styles.list}>
-                <li><strong>Topics Covered</strong> — What was taught in the session</li>
-                <li><strong>Concepts Mastered</strong> — What your child now understands well</li>
-                <li><strong>Areas Needing Work</strong> — Where they need more practice</li>
-                <li><strong>Personalized Recommendations</strong> — What to focus on next</li>
-                <li><strong>Progress Over Time</strong> — Visual charts showing improvement</li>
+            </div>
+            <div className="about-cards about-cards-4">
+              {TUTOR_CARDS.map((card) => (
+                <article key={card.title} className="about-card">
+                  <div className="about-card-icon" aria-hidden="true">{card.icon}</div>
+                  <h3 className="about-card-title">{card.title}</h3>
+                  <p className="about-card-text">{localized(card.text)}</p>
+                </article>
+              ))}
+            </div>
+            <article className="about-topic-card about-topic-card-spaced">
+              <div className="about-topic-header">
+                <div className="about-topic-icon" aria-hidden="true">📈</div>
+                <div>
+                  <h3 className="about-topic-title">AI-powered Mastery Reports</h3>
+                  <p className="about-topic-desc">
+                    After every session, our AI generates a report so you know exactly what your
+                    child learned.
+                  </p>
+                </div>
+              </div>
+              <ul className="about-topic-list">
+                {AI_REPORT_ITEMS.map((item) => (
+                  <li key={item}>{localized(item)}</li>
+                ))}
               </ul>
-              <p className={styles.text}>
-                No more guessing if tutoring is working. You&apos;ll see exactly how your child is progressing—backed by data.
-              </p>
-            </section>
+            </article>
+          </div>
+        </section>
 
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>Our Tutors</h2>
-              <p className={styles.text}>
-                Every GuruForU tutor is carefully selected and trained:
-              </p>
-              <ul className={styles.list}>
-                <li><strong>Degrees in Math, Science, or Education</strong></li>
-                <li><strong>Teaching or tutoring experience</strong> — Many are current or former classroom teachers</li>
-                <li><strong>Background-checked and vetted</strong></li>
-                <li><strong>Trained on our platform</strong> and teaching methods</li>
-              </ul>
-              <p className={styles.text}>
-                We match your child with a tutor who fits their learning style, grade level, and subject needs.
-              </p>
-            </section>
+        {/* Why parents choose */}
+        <section className="about-section" aria-labelledby="why-heading">
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 id="why-heading" className="about-section-title">
+                Why parents choose GuruForU
+              </h2>
+            </div>
+            <div className="about-cards about-cards-3">
+              {WHY_CARDS.map((card) => (
+                <article key={card.title} className="about-card">
+                  <div className="about-card-icon" aria-hidden="true">{card.icon}</div>
+                  <h3 className="about-card-title">{card.title}</h3>
+                  <p className="about-card-text">
+                    {'key' in card && card.key === 'globalReach'
+                      ? localized(content.globalReachCard)
+                      : card.text}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>Why Parents Choose GuruForU</h2>
-              <ul className={styles.list}>
-                <li><strong>Real teachers, real-time</strong> — Not videos. Not AI chatbots. Live instruction with a human expert.</li>
-                <li><strong>You see the progress</strong> — Detailed reports after every session, not just a grade at the end of the semester.</li>
-                <li><strong>Flexible scheduling</strong> — Sessions fit your life, not the other way around.</li>
-                <li><strong>Aligned with school</strong> — We support what your child is learning in class, not a separate curriculum.</li>
-                <li><strong>One platform</strong> — Student learning, teacher instruction, and parent reporting all in one place.</li>
-              </ul>
-            </section>
+        {/* FAQ */}
+        <section className="about-section about-section-alt" aria-labelledby="faq-heading">
+          <div className="gf-container">
+            <div className="about-section-head">
+              <h2 id="faq-heading" className="about-section-title">
+                Frequently asked questions
+              </h2>
+            </div>
+            <div className="about-faq">
+              {faqItems.map((item) => (
+                <article key={item.q} className="about-faq-item">
+                  <h3 className="about-faq-q">{item.q}</h3>
+                  <p className="about-faq-a">{item.a}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
-            <section className={styles.ctaSection}>
-              <div className={styles.ctaBox}>
-                <span className={styles.urgencyBadge}>Book This Week — Limited Availability</span>
-                <h3>Ready to Help Your Child Succeed?</h3>
-                <p>Start with a FREE assessment session. No commitment, no credit card required.</p>
-                <Link href="/free-session" className={styles.ctaButton}>
-                  Book Your Free Session Now →
+        {/* CTA */}
+        <section className="about-section" aria-labelledby="cta-heading">
+          <div className="gf-container">
+            <div className="about-cta">
+              <h2 id="cta-heading" className="about-cta-title">
+                Ready to help your child succeed?
+              </h2>
+              <p className="about-cta-desc">
+                Start with a free assessment session — no commitment, no credit card required.
+              </p>
+              <div className="about-cta-actions">
+                <Link href="/free-session" className="gf-btn-primary" prefetch={false}>
+                  {localized('Book Free Session')}
+                </Link>
+                <Link href="/contact" className="gf-btn-outline" prefetch={false}>
+                  {localized('Contact Us')}
                 </Link>
               </div>
-              <p className={styles.text} style={{ textAlign: 'center', marginTop: '1.5rem' }}>
-                Questions? <Link href="/contact" className={styles.link}>Contact us</Link> or call/text us anytime.
+              <p className="about-cta-note">
+                Questions? <Link href="/contact">Reach out anytime</Link> — we&apos;re here to
+                help.
               </p>
-            </section>
+            </div>
+          </div>
+        </section>
 
-            <section className={styles.faqSection}>
-              <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
-              <dl className={styles.faqList}>
-                <div className={styles.faqItem}>
-                  <dt className={styles.faqQuestion}>What Math subjects does GuruForU tutor?</dt>
-                  <dd className={styles.faqAnswer}>
-                    We tutor all K-12 Math levels: Elementary Math, Pre-Algebra, Algebra 1 &amp; 2, Geometry, Trigonometry, Pre-Calculus, Calculus, and Statistics. We also offer SAT/ACT Math prep. All instruction is aligned with Common Core and state standards.
-                  </dd>
-                </div>
-                <div className={styles.faqItem}>
-                  <dt className={styles.faqQuestion}>What Science subjects does GuruForU tutor?</dt>
-                  <dd className={styles.faqAnswer}>
-                    We tutor Biology, Chemistry, Physics, Earth Science, and General Science for all grade levels. We cover honors, AP, and standard courses, plus SAT Subject Test and AP exam preparation.
-                  </dd>
-                </div>
-                <div className={styles.faqItem}>
-                  <dt className={styles.faqQuestion}>How do live tutoring sessions work?</dt>
-                  <dd className={styles.faqAnswer}>
-                    Students meet with their tutor in live 1-on-1 or small group sessions (2-4 students) via our online classroom. Sessions include video chat, screen sharing, digital whiteboard, and real-time problem solving. Most sessions are 45-60 minutes.
-                  </dd>
-                </div>
-                <div className={styles.faqItem}>
-                  <dt className={styles.faqQuestion}>How do parents track their child&apos;s progress?</dt>
-                  <dd className={styles.faqAnswer}>
-                    After each session, parents receive AI-generated Mastery Reports showing topics covered, concepts mastered, areas needing work, and personalized recommendations. Our parent dashboard shows progress over time with clear visualizations.
-                  </dd>
-                </div>
-                <div className={styles.faqItem}>
-                  <dt className={styles.faqQuestion}>What are the tutor qualifications?</dt>
-                  <dd className={styles.faqAnswer}>
-                    All GuruForU tutors have degrees in Math, Science, or Education, with teaching or tutoring experience. Many are current or former classroom teachers. All tutors are background-checked and trained on our platform.
-                  </dd>
-                </div>
-              </dl>
-            </section>
-          </article>
-
-          <footer className={styles.footer}>
-            <nav className={styles.footerLinks}>
-              <Link href="/" className={styles.footerLink} prefetch={false}>Home</Link>
-              <Link href="/blog" className={styles.footerLink} prefetch={false}>Resources</Link>
-              <Link href="/contact" className={styles.footerLink} prefetch={false}>Contact</Link>
-              <Link href="/free-session" className={styles.footerLink} prefetch={false}>Free Session</Link>
-              <Link href="/privacy" className={styles.footerLink} prefetch={false}>Privacy</Link>
-            </nav>
-            <p className={styles.copyright}>© {new Date().getFullYear()} GuruForU. All rights reserved.</p>
-          </footer>
-        </div>
-      </div>
+        <PageFooter />
+      </main>
     </>
   )
 }

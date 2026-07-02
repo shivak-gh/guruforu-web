@@ -1,5 +1,23 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { LOCALE_DEBUG_HEADERS, LOCALE_DEBUG_QUERY } from './lib/locale'
+
+function withLocaleDebugHeaders(request: NextRequest): NextResponse | null {
+  const locale = request.nextUrl.searchParams.get(LOCALE_DEBUG_QUERY.locale)
+  const region = request.nextUrl.searchParams.get(LOCALE_DEBUG_QUERY.region)
+
+  if (!locale && !region) {
+    return null
+  }
+
+  const requestHeaders = new Headers(request.headers)
+  if (locale) requestHeaders.set(LOCALE_DEBUG_HEADERS.locale, locale)
+  if (region) requestHeaders.set(LOCALE_DEBUG_HEADERS.region, region)
+
+  return NextResponse.next({
+    request: { headers: requestHeaders },
+  })
+}
 
 export function proxy(request: NextRequest) {
   const url = request.nextUrl.clone()
@@ -22,7 +40,7 @@ export function proxy(request: NextRequest) {
     hostname.includes('.cloudfunctions.net') || // Cloud Functions
     process.env.NODE_ENV === 'development'
   ) {
-    return NextResponse.next()
+    return withLocaleDebugHeaders(request) ?? NextResponse.next()
   }
 
   // Normalize hostname (remove port for comparison)
@@ -47,7 +65,7 @@ export function proxy(request: NextRequest) {
   //   return NextResponse.redirect(url, 301)
   // }
 
-  return NextResponse.next()
+  return withLocaleDebugHeaders(request) ?? NextResponse.next()
 }
 
 // Configure which routes the proxy runs on

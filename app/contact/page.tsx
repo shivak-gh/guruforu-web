@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
-import styles from './page.module.css'
 import Link from 'next/link'
 import Script from 'next/script'
 import { detectLocale, localizeText, type Region } from '../../lib/locale'
+import PageFooter from '../components/PageFooter'
 
 // Lazy load NavMenu to reduce initial bundle size
 const NavMenu = dynamic(() => import('../components/NavMenu'), {
@@ -354,54 +354,50 @@ export default function ContactUs() {
         </form>
       </noscript>
       <NavMenu />
-      <div className={styles.container}>
-        <div className={styles.background}>
-          <div className={styles.gradient}></div>
-        </div>
-
-        <div className={styles.content}>
-        <div className={styles.pageContent}>
-          <h1 className={styles.title}>{localized('Contact Us')}</h1>
-          <p className={styles.subtitle}>
+      <div className="ip-layout">
+<div className="ip-content">
+        <div className="ip-card">
+          <h1 className="ip-title">{localized('Contact Us')}</h1>
+          <p className="ip-lead">
             {localized('We\'d love to hear from you! Get in touch with us for any')} <strong>{localized('questions, feedback, or support')}</strong> {localized('about our')} <strong>{localized('online education platform')}</strong>.
           </p>
-          <p className={styles.subtitle}>
+          <p className="ip-lead">
             Whether you have questions about our online classes, need help with your account, or want to learn more about AI-powered learning and progress tracking, our team is here to help. Fill out the form below and we&apos;ll get back to you within 24–48 hours on business days.
           </p>
 
-          <h2 className={styles.sectionTitle}>{localized('Get in Touch')}</h2>
+          <h2 className="ip-section-title">{localized('Get in Touch')}</h2>
 
-          <div className={styles.contactSection}>
-            <div className={styles.contactInfo}>
-              <div className={styles.infoItem}>
-                <h3 className={styles.infoTitle}>{localized('Email')}</h3>
-                <p className={styles.infoText}>
-                  <a href="mailto:support@guruforu.com" className={styles.emailLink}>
+          <div className="ip-contact-section">
+            <div className="ip-contact-info">
+              <div className="ip-info-item">
+                <h3 className="ip-info-title">{localized('Email')}</h3>
+                <p className="ip-info-text">
+                  <a href="mailto:support@guruforu.com" className="ip-link">
                     support@guruforu.com
                   </a>
                 </p>
               </div>
-              <div className={styles.infoItem}>
-                <h3 className={styles.infoTitle}>{localized('Response Time')}</h3>
-                <p className={styles.infoText}>{localized('We typically respond within')} <strong>24-48 hours</strong> {localized('during business days')}</p>
+              <div className="ip-info-item">
+                <h3 className="ip-info-title">{localized('Response Time')}</h3>
+                <p className="ip-info-text">{localized('We typically respond within')} <strong>24-48 hours</strong> {localized('during business days')}</p>
               </div>
-              <div className={styles.infoItem}>
-                <h3 className={styles.infoTitle}>{localized('Support Availability')}</h3>
-                <p className={styles.infoText}>{localized('We\'re here to help! Reach out anytime and we\'ll get back to you')} <strong>{localized('as soon as possible')}</strong>.</p>
+              <div className="ip-info-item">
+                <h3 className="ip-info-title">{localized('Support Availability')}</h3>
+                <p className="ip-info-text">{localized('We\'re here to help! Reach out anytime and we\'ll get back to you')} <strong>{localized('as soon as possible')}</strong>.</p>
               </div>
             </div>
 
             <form 
               id="contact-form"
-              className={styles.contactForm} 
+              className="ip-contact-form" 
               onSubmit={handleSubmit}
               action="/api/contact"
               method="post"
               data-form-type="contact"
             >
-              <div className={styles.formGroup}>
-                <label htmlFor="name" className={styles.label}>
-                  {localized('Name')} <span className={styles.required}>*</span>
+              <div className="ip-form-group">
+                <label htmlFor="name" className="ip-label">
+                  {localized('Name')} <span className="ip-required">*</span>
                 </label>
                 <input
                   type="text"
@@ -411,14 +407,14 @@ export default function ContactUs() {
                   onChange={handleChange}
                   required
                   autoComplete="name"
-                  className={styles.input}
+                  className="ip-input"
                   placeholder={localized('Your full name')}
                 />
               </div>
 
-              <div className={styles.formGroup}>
-                <label htmlFor="email" className={styles.label}>
-                  {localized('Email')} <span className={styles.required}>*</span>
+              <div className="ip-form-group">
+                <label htmlFor="email" className="ip-label">
+                  {localized('Email')} <span className="ip-required">*</span>
                 </label>
                 <input
                   type="email"
@@ -428,14 +424,14 @@ export default function ContactUs() {
                   onChange={handleChange}
                   required
                   autoComplete="email"
-                  className={styles.input}
+                  className="ip-input"
                   placeholder={localized('your.email@example.com')}
                 />
               </div>
 
-              <div className={styles.formGroup}>
-                <label htmlFor="subject" className={styles.label}>
-                  {localized('Subject')} <span className={styles.required}>*</span>
+              <div className="ip-form-group">
+                <label htmlFor="subject" className="ip-label">
+                  {localized('Subject')} <span className="ip-required">*</span>
                 </label>
                 <select
                   id="subject"
@@ -443,7 +439,7 @@ export default function ContactUs() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className={styles.select}
+                  className="ip-select"
                 >
                   <option value="">{localized('Select a subject')}</option>
                   <option value="general">{localized('General Inquiry')}</option>
@@ -454,9 +450,9 @@ export default function ContactUs() {
                 </select>
               </div>
 
-              <div className={styles.formGroup}>
-                <label htmlFor="message" className={styles.label}>
-                  {localized('Message')} <span className={styles.required}>*</span>
+              <div className="ip-form-group">
+                <label htmlFor="message" className="ip-label">
+                  {localized('Message')} <span className="ip-required">*</span>
                 </label>
                 <textarea
                   id="message"
@@ -465,37 +461,37 @@ export default function ContactUs() {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className={styles.textarea}
+                  className="ip-textarea"
                   placeholder={localized('Tell us how we can help you...')}
                 />
               </div>
 
               {submitStatus === 'success' && (
-                <div className={styles.successMessage}>
+                <div className="ip-success-message">
                   {localized('Thank you! Your message has been sent successfully. We\'ll get back to you soon.')}
                 </div>
               )}
 
               {submitStatus === 'error' && (
-                <div className={styles.errorMessage} role="alert">
+                <div className="ip-error-message" role="alert">
                   <strong>{localized('Oops! Something went wrong.')}</strong>
                   <br />
                   {errorMessage || localized('Please check your browser console (F12) for detailed error information.')}
                   <br />
-                  <small>{localized('If the issue persists, please email us directly at')} <a href="mailto:support@guruforu.com" className={styles.emailLink}>support@guruforu.com</a></small>
+                  <small>{localized('If the issue persists, please email us directly at')} <a href="mailto:support@guruforu.com" className="ip-link">support@guruforu.com</a></small>
                 </div>
               )}
 
               {!recaptchaSiteKey && typeof window !== 'undefined' && 
                (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && (
-                <div className={styles.warningMessage}>
+                <div className="ip-warning-message">
                   ⚠️ Note: reCAPTCHA is not configured for localhost. Form will work without reCAPTCHA verification. 
                   To enable reCAPTCHA, set NEXT_PUBLIC_RECAPTCHA_SITE_KEY in .env.local and restart your dev server.
                 </div>
               )}
 
               {recaptchaSiteKey && !recaptchaLoaded.current && (
-                <div className={styles.infoMessage}>
+                <div className="ip-info-message">
                   ℹ️ Loading reCAPTCHA protection...
                 </div>
               )}
@@ -504,26 +500,24 @@ export default function ContactUs() {
                 type="submit"
                 name="submit"
                 disabled={isSubmitting}
-                className={styles.submitButton}
+                className="ip-btn-primary"
               >
                 {isSubmitting ? localized('Sending...') : localized('Send Message')}
               </button>
             </form>
           </div>
 
-          <div className={styles.additionalLinks}>
-            <p className={styles.linksText}>{localized('You may also find answers in our:')}</p>
-            <div className={styles.links}>
-              <Link href="/terms" className={styles.link} prefetch={false}>{localized('Terms and Conditions')}</Link>
-              <Link href="/privacy" className={styles.link} prefetch={false}>{localized('Privacy Policy')}</Link>
-              <Link href="/cancellation-refunds" className={styles.link} prefetch={false}>{localized('Cancellation and Refunds')}</Link>
+          <div className="ip-additional-links">
+            <p className="ip-links-text">{localized('You may also find answers in our:')}</p>
+            <div className="ip-links">
+              <Link href="/terms" className="ip-link" prefetch={false}>{localized('Terms and Conditions')}</Link>
+              <Link href="/privacy" className="ip-link" prefetch={false}>{localized('Privacy Policy')}</Link>
+              <Link href="/cancellation-refunds" className="ip-link" prefetch={false}>{localized('Cancellation and Refunds')}</Link>
             </div>
           </div>
         </div>
 
-        <footer className={styles.footer}>
-          <p>© {new Date().getFullYear()} GuruForU. {localized('All rights reserved.')}</p>
-        </footer>
+        <PageFooter />
       </div>
     </div>
     </>
