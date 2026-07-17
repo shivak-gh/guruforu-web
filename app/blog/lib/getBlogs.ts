@@ -1,4 +1,4 @@
-import { readdir, readFile, stat } from 'fs/promises'
+import { readdir, readFile } from 'fs/promises'
 import { join } from 'path'
 
 export interface BlogMeta {
@@ -12,6 +12,35 @@ export interface BlogMeta {
   }
   lead: string
   image?: string
+  wordCount: number
+  indexable: boolean
+}
+
+/**
+ * Posts below this word count are treated as stubs: noindexed and excluded
+ * from sitemap.xml until they are expanded into full articles.
+ */
+export const MIN_INDEXABLE_WORDS = 500
+
+/** Count words across lead + all section content types */
+export function computeBlogWordCount(content: any): number {
+  let text = (content.lead || '') + ' '
+  if (Array.isArray(content.sections)) {
+    for (const section of content.sections) {
+      if (section.title) text += section.title + ' '
+      if (Array.isArray(section.content)) text += section.content.join(' ') + ' '
+      if (Array.isArray(section.highlights)) {
+        for (const h of section.highlights) text += (h.title || '') + ' ' + (h.text || '') + ' '
+      }
+      if (Array.isArray(section.strategies)) {
+        for (const s of section.strategies) text += (s.title || '') + ' ' + (s.text || '') + ' '
+      }
+      if (Array.isArray(section.list)) {
+        for (const l of section.list) text += (l.item || '') + ' '
+      }
+    }
+  }
+  return text.trim().split(/\s+/).filter(Boolean).length
 }
 
 // Helper function to convert category name to slug
@@ -44,6 +73,7 @@ export async function getAllBlogs(): Promise<BlogMeta[]> {
         const content = JSON.parse(fileContent)
         
         const category = content.category || 'General'
+        const wordCount = computeBlogWordCount(content)
         blogs.push({
           title: content.title,
           slug: content.slug || file.replace('.json', ''),
@@ -51,7 +81,9 @@ export async function getAllBlogs(): Promise<BlogMeta[]> {
           categorySlug: categoryToSlug(category),
           meta: content.meta,
           lead: content.lead,
-          image: content.image
+          image: content.image,
+          wordCount,
+          indexable: wordCount >= MIN_INDEXABLE_WORDS,
         })
       } catch (error) {
         // Skip invalid JSON files
@@ -150,12 +182,17 @@ export async function getRelatedBlogs(
     .slice(0, limit)
 }
 
-/** Get file modified date for BlogPosting dateModified (fallback: publishedDate) */
+/**
+ * Get modified date for BlogPosting dateModified.
+ * Uses explicit `dateModified` from the content JSON, falling back to
+ * `publishedDate`. Never uses filesystem mtime — CI builds reset mtimes on
+ * every deploy, which made sitemap lastmod claim all pages changed daily.
+ */
 export async function getBlogModifiedDate(slug: string): Promise<string | null> {
   try {
     const contentPath = join(process.cwd(), 'app', 'blog', 'content', `${slug}.json`)
-    const statResult = await stat(contentPath)
-    return statResult.mtime.toISOString().split('T')[0]
+    const content = JSON.parse(await readFile(contentPath, 'utf-8'))
+    return content.dateModified || content.meta?.publishedDate || null
   } catch {
     return null
   }

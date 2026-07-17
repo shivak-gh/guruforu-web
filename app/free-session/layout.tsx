@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     siteName: 'GuruForU',
     images: [
       {
-        url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+        url: 'https://www.guruforu.com/og-card.jpg',
         width: 1200,
         height: 630,
         alt: 'GuruForU Free Math & Science Session',
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Free Math & Science Assessment | GuruForU',
     description: 'No-obligation 15-minute assessment with expert tutors. Book your free session.',
-    images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
+    images: ['https://www.guruforu.com/og-card.jpg'],
   },
   alternates: {
     canonical: 'https://www.guruforu.com/free-session',

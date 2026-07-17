@@ -2,13 +2,15 @@ import Link from 'next/link'
 import Script from 'next/script'
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import dynamic from 'next/dynamic'
+import dynamicImport from 'next/dynamic'
 import { detectLocale, getSEOContent, localizeText } from '../lib/locale'
 import { getAllCategories, getAllBlogs } from './blog/lib/getBlogs'
 import BlogCategories from './components/BlogCategories'
 import PageFooter from './components/PageFooter'
 
-const NavMenu = dynamic(() => import('./components/NavMenu'), { ssr: true })
+const NavMenu = dynamicImport(() => import('./components/NavMenu'), { ssr: true })
+
+export const dynamic = 'force-static'
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = 'https://www.guruforu.com'
@@ -38,10 +40,10 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: 'GuruForU',
       images: [
         {
-          url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+          url: 'https://www.guruforu.com/og-card.jpg',
           width: 1200,
           height: 630,
-          alt: 'GuruForU - AI-Powered Online Education Platform',
+          alt: 'GuruForU - Live 1-on-1 Math & Science Tutoring',
         },
       ],
       type: 'website',
@@ -52,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: 'GuruForU | Online Math & Science Tutoring for K-12',
       description:
         'Expert tutors + AI progress tracking for K-12 Math and Science. Book a free session with GuruForU.',
-      images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
+      images: ['https://www.guruforu.com/og-card.jpg'],
       creator: '@guruforu_official',
       site: '@guruforu_official',
     },
@@ -135,69 +137,6 @@ export default async function HomePage() {
     },
   }
 
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What is GuruForU?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'GuruForU is an AI-powered online education platform providing personalized learning for children with expert tutors and comprehensive progress tracking.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How does AI-powered learning work?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: "Our AI adapts to each child's learning style and pace, providing real-time tracking and personalized learning paths for success.",
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What makes GuruForU different?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'GuruForU combines expert tutors with AI technology for comprehensive progress tracking, mastery reports, and personalized learning experiences.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: "How do I track my child's progress?",
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Parents receive detailed progress reports through our AI-powered dashboard with real-time analytics and learning insights.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Are the tutors qualified?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, all tutors are qualified independent teachers who are carefully vetted with profiles and qualifications available for review.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What subjects does GuruForU offer?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'GuruForU offers online tutoring for Math, Science, and other K-12 subjects with curriculum support for US, UK, Canada, Australia, New Zealand, Qatar, and UAE.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How do I get started with online tutoring?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: "Getting started is easy! Book a free consultation session to discuss your child's learning needs. Our AI diagnostics will identify learning gaps and create a personalized roadmap.",
-        },
-      },
-    ],
-  }
-
   return (
     <>
       <Script
@@ -215,12 +154,6 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
-      <Script
-        id="faq-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-
       <NavMenu />
 
       <main className="home">

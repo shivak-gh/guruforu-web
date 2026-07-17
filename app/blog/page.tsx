@@ -4,8 +4,7 @@ import { defaultBlogImage } from './lib/categoryImages'
 import BlogImage from '../components/BlogImage'
 import dynamicImport from 'next/dynamic'
 import Script from 'next/script'
-import { headers } from 'next/headers'
-import { detectLocale, localizeText } from '../../lib/locale'
+import { localizeText } from '../../lib/locale'
 import type { Metadata } from 'next'
 import PageFooter from '../components/PageFooter'
 
@@ -17,6 +16,7 @@ const NavMenu = dynamicImport(() => import('../components/NavMenu'), {
 })
 
 export const revalidate = 3600
+export const dynamic = 'force-static'
 
 const RESOURCE_CARDS = [
   {
@@ -84,7 +84,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: 'website',
       images: [
         {
-          url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+          url: 'https://www.guruforu.com/og-card.jpg',
           width: 1200,
           height: 630,
           alt: 'GuruForU Blog',
@@ -96,7 +96,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: 'summary_large_image',
       title: 'GuruForU Blog | Learning Guides for Parents & Students',
       description: 'Practical tips on study strategies, online tutoring, and K-12 learning progress.',
-      images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
+      images: ['https://www.guruforu.com/og-card.jpg'],
       creator: '@guruforu_official',
       site: '@guruforu_official',
     },
@@ -110,9 +110,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function BlogListing() {
-  const headersList = await headers()
-  const localeInfo = detectLocale(headersList)
-  const localized = (text: string) => localizeText(text, localeInfo.region)
+  const localized = (text: string) => localizeText(text, 'DEFAULT')
   const blogs = await getAllBlogs()
 
   const formatDate = (dateString: string) =>

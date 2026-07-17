@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { headers } from 'next/headers'
-import { detectLocale, localizeText } from '../../lib/locale'
+import { localizeText } from '../../lib/locale'
 import { getCategoryImage } from '../blog/lib/categoryImages'
 import CategoryImage from './CategoryImage'
 import styles from './BlogCategories.module.css'
@@ -29,9 +28,7 @@ function getCategoryIcon(slug: string): string {
 }
 
 export default async function BlogCategories({ categories }: BlogCategoriesProps) {
-  const headersList = await headers()
-  const localeInfo = detectLocale(headersList)
-  const localized = (text: string) => localizeText(text, localeInfo.region)
+  const localized = (text: string) => localizeText(text, 'DEFAULT')
 
   if (categories.length === 0) {
     return null

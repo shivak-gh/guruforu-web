@@ -77,10 +77,10 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: 'GuruForU',
       images: [
         {
-          url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+          url: 'https://www.guruforu.com/og-card.jpg',
           width: 1200,
           height: 630,
-          alt: 'GuruForU - AI-Powered Online Education Platform',
+          alt: 'GuruForU - Live 1-on-1 Math & Science Tutoring',
         },
       ],
       type: 'website',
@@ -91,7 +91,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: 'GuruForU | Online Math & Science Tutoring for K-12',
       description:
         'Expert online tutors, personalized learning plans, and AI-powered progress tracking for students.',
-      images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
+      images: ['https://www.guruforu.com/og-card.jpg'],
       creator: '@guruforu_official',
       site: '@guruforu_official',
     },
@@ -121,54 +121,6 @@ export default async function RootLayout({
         {/* Analytics scripts load lazily, so preconnect isn't needed immediately */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        {/* Structured Data (JSON-LD) for SEO */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Service",
-              "name": "GuruForU Online Tutoring",
-              "description": "Premium Online Tuitions enhanced with AI-powered personalized learning and real-time mastery reports.",
-              "serviceType": "Educational Service",
-              "provider": {
-                "@type": "EducationalOrganization",
-                "name": "GuruForU",
-                "url": "https://www.guruforu.com"
-              },
-              "areaServed": {
-                "@type": "Place",
-                "name": "Worldwide"
-              },
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Academic Courses",
-                "itemListElement": [
-                  {
-                    "@type": "Course",
-                    "name": "AI-Powered Personalized Learning",
-                    "description": "Tailored learning paths for students using advanced AI tracking.",
-                    "provider": {
-                      "@type": "Organization",
-                      "name": "GuruForU",
-                      "url": "https://www.guruforu.com"
-                    },
-                    "offers": {
-                      "@type": "Offer",
-                      "category": "Online Tutoring",
-                      "url": "https://www.guruforu.com"
-                    },
-                    "hasCourseInstance": {
-                      "@type": "CourseInstance",
-                      "courseMode": "online",
-                      "courseWorkload": "PT1H"
-                    }
-                  }
-                ]
-              }
-            })
-          }}
-        />
         {/* Google Consent Mode v2 - Initialize lazily for better performance */}
         {/* Changed to lazyOnload to improve FCP/LCP - consent mode initializes after page load */}
         <Script id="google-consent-mode" strategy="lazyOnload">

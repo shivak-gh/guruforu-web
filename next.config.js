@@ -286,6 +286,17 @@ const nextConfig = {
         destination: '/free-session',
         permanent: true,
       },
+      // Consolidated blog posts (cannibalization cleanup) — 301 to the surviving article.
+      ...[
+        ['indian-parents-math-challenges', '/blog/parenting-guide/indian-origin-parents-abroad-math-science'],
+        ['nri-parents-bridging-indian-western-curriculum', '/blog/parenting-guide/indian-origin-parents-abroad-math-science'],
+        ['test-prep-strategies-that-work', '/blog/study-tips/preparing-for-standardized-tests-without-stress'],
+        ['benefits-online-tutoring-busy-families', '/blog/online-education/benefits-of-online-learning'],
+        ['when-to-start-online-tutoring', '/blog/online-education/benefits-of-online-learning'],
+      ].flatMap(([slug, destination]) => [
+        { source: `/blog/:categorySlug/${slug}`, destination, permanent: true },
+        { source: `/blog/${slug}`, destination, permanent: true },
+      ]),
       ...getLegacyBlogRedirects(),
     ]
   },

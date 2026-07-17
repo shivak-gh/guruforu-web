@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
 import BlogImage from '../../components/BlogImage'
 import { getAllCategories, getBlogsByCategory, getAllBlogs } from '../lib/getBlogs'
+import { defaultBlogImage } from '../lib/categoryImages'
 import dynamicImport from 'next/dynamic'
 import Script from 'next/script'
 import PageFooter from '../../components/PageFooter'
@@ -80,7 +81,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       type: 'website',
       images: [
         {
-          url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+          url: 'https://www.guruforu.com/og-card.jpg',
           width: 1200,
           height: 630,
           alt: `${category.name} Category`,
@@ -92,7 +93,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       card: 'summary_large_image',
       title: `${category.name} Guides | GuruForU Blog`,
       description: `Practical ${category.name} learning guides from GuruForU for students and parents.`,
-      images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
+      images: ['https://www.guruforu.com/og-card.jpg'],
       creator: '@guruforu_official',
       site: '@guruforu_official',
     },
@@ -155,18 +156,24 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: category.count,
-      itemListElement: blogsList.map((blog, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        item: {
-          '@type': 'BlogPosting',
-          headline: blog.title,
-          description: blog.lead,
-          url: `https://www.guruforu.com/blog/${categorySlug}/${blog.slug}`,
-          datePublished: blog.meta.publishedDate,
-          image: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
-        },
-      })),
+      itemListElement: blogsList.map((blog, index) => {
+        const imagePath = blog.image || defaultBlogImage
+        const imageUrl = imagePath.startsWith('http')
+          ? imagePath
+          : `https://www.guruforu.com${imagePath}`
+        return {
+          '@type': 'ListItem',
+          position: index + 1,
+          item: {
+            '@type': 'BlogPosting',
+            headline: blog.title,
+            description: blog.lead,
+            url: `https://www.guruforu.com/blog/${categorySlug}/${blog.slug}`,
+            datePublished: blog.meta.publishedDate,
+            image: imageUrl,
+          },
+        }
+      }),
     },
   }
 

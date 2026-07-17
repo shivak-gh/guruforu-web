@@ -1,14 +1,15 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
+import dynamicImport from 'next/dynamic'
 import Script from 'next/script'
-import { headers } from 'next/headers'
 import PageFooter from '../components/PageFooter'
-import { detectLocale, localizeText } from '../../lib/locale'
+import { localizeText } from '../../lib/locale'
 
-const NavMenu = dynamic(() => import('../components/NavMenu'), {
+const NavMenu = dynamicImport(() => import('../components/NavMenu'), {
   ssr: true,
 })
+
+export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
   title: 'How GuruForU Works | Live Classes, Reports, and Parent Visibility',
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     images: [
       {
-        url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+        url: 'https://www.guruforu.com/og-card.jpg',
         width: 1200,
         height: 630,
         alt: 'GuruForU - How Online Tutoring Works',
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'How GuruForU Works | Live Tutoring Platform',
     description: 'Live classes, AI progress reports, and better parent visibility in one platform.',
-    images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
+    images: ['https://www.guruforu.com/og-card.jpg'],
   },
   alternates: { canonical: 'https://www.guruforu.com/how-it-works' },
 }
@@ -209,9 +210,7 @@ const iconClass = (variant?: string) => {
 }
 
 export default async function HowItWorks() {
-  const headersList = await headers()
-  const localeInfo = detectLocale(headersList)
-  const localized = (text: string) => localizeText(text, localeInfo.region)
+  const localized = (text: string) => localizeText(text, 'DEFAULT')
 
   const howItWorksSchema = {
     '@context': 'https://schema.org',

@@ -3,9 +3,10 @@
   "slug": "memory-techniques-for-school-subjects",
   "category": "Learning Strategies",
   "meta": {
-    "readTime": "6 min read",
+    "readTime": "9 min read",
     "publishedDate": "2026-01-26"
   },
+  "dateModified": "2026-07-17",
   "keywords": [
     "memory techniques for students",
     "memorization strategies",
@@ -71,6 +72,46 @@
       "title": "Spaced Repetition: Review Before You Forget",
       "content": [
         "Cramming gets you through the test; it doesn't build long-term memory. Review the material again after a day, then a few days, then a week. Each time you successfully recall it, the memory gets stronger. Apps like Anki do this automatically, or you can use a simple schedule: today, tomorrow, in 3 days, in a week."
+      ]
+    },
+    {
+      "title": "Match the Technique to the Subject",
+      "content": [
+        "Not every subject should be studied in the same way. Flashcards are useful for definitions, dates, symbols, and formulas, but they cannot replace solving a math problem or explaining a scientific process. Choose a memory method that resembles what the student will need to do in class or on the test."
+      ],
+      "list": [
+        {
+          "item": "Math: Recall the formula, then solve mixed problems without looking at worked examples. Explain why each step is valid"
+        },
+        {
+          "item": "Science: Draw and label a process such as photosynthesis, a cell, or an electric circuit from memory, then correct it in another color"
+        },
+        {
+          "item": "History: Build a timeline and connect each event to causes and consequences instead of memorizing isolated dates"
+        },
+        {
+          "item": "Languages: Retrieve vocabulary in complete sentences and practice producing the word in both directions—not only recognizing it"
+        }
+      ]
+    },
+    {
+      "title": "Mix Topics Instead of Repeating One Type",
+      "content": [
+        "Doing twenty identical problems can create the feeling of mastery because the student already knows which method to use. Mixing different question types—called interleaving—forces the learner to identify the right strategy before solving. A math review might combine fractions, percentages, and equations rather than completing each in a separate block.",
+        "Interleaving initially feels harder and may produce more mistakes, but that difficulty is useful. It strengthens discrimination: knowing not only how a method works, but when to use it. Start with a few mixed questions after focused practice rather than changing topics every minute."
+      ]
+    },
+    {
+      "title": "Sleep and Breaks Are Part of Remembering",
+      "content": [
+        "Memory does not finish forming when the study session ends. Sleep helps stabilize and connect new learning, while short breaks reduce the mental fatigue that makes later review ineffective. A rested student who studies for two focused blocks often retains more than one who rereads notes late into the night.",
+        "Plan demanding recall earlier in the evening, finish with a brief summary, and protect a consistent bedtime before exams. If attention is fading, take a movement or water break rather than switching to an absorbing game or video that makes returning difficult."
+      ]
+    },
+    {
+      "title": "Avoid the Illusion of Knowing",
+      "content": [
+        "Highlighting, copying notes, and rereading can make material look familiar without making it retrievable. Use a simple check: close the source and produce something. Write three key ideas, answer a question, draw the diagram, or teach the topic aloud. If the explanation falls apart, reopen the material briefly and try again. That feedback loop turns recognition into usable knowledge."
       ]
     },
     {

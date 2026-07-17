@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getBlogBySlug, getAllBlogs, getRelatedBlogs, getBlogModifiedDate } from '../../lib/getBlogs'
+import { getBlogBySlug, getAllBlogs, getRelatedBlogs, getBlogModifiedDate, computeBlogWordCount, MIN_INDEXABLE_WORDS } from '../../lib/getBlogs'
 import { defaultBlogImage } from '../../lib/categoryImages'
 import BlogImage from '../../../components/BlogImage'
 import { getAuthor } from '../../../../lib/authors'
@@ -163,15 +163,20 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
     : `https://www.guruforu.com${featuredImagePath}`
   const dateModified = (await getBlogModifiedDate(slug)) || blog.meta.publishedDate
 
+  // Stub posts are noindexed (and excluded from sitemap.xml) until expanded.
+  // Serving dozens of <200-word pages to Google suppresses sitewide quality
+  // signals and causes "Discovered - currently not indexed" for good pages.
+  const isIndexable = computeBlogWordCount(blog) >= MIN_INDEXABLE_WORDS
+
   return {
     title: optimizedTitle,
     description: optimizedDescription,
     keywords: keywords,
     robots: {
-      index: true,
+      index: isIndexable,
       follow: true,
       googleBot: {
-        index: true,
+        index: isIndexable,
         follow: true,
         'max-video-preview': -1,
         'max-image-preview': 'large',

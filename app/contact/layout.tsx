@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     siteName: 'GuruForU',
     images: [
       {
-        url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+        url: 'https://www.guruforu.com/og-card.jpg',
         width: 1200,
         height: 630,
         alt: 'GuruForU Contact',
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Contact GuruForU | Support and Enrollment Help',
     description: 'Need help with GuruForU? Contact our team for quick support and guidance.',
-    images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
+    images: ['https://www.guruforu.com/og-card.jpg'],
     creator: '@guruforu_official',
     site: '@guruforu_official',
   },

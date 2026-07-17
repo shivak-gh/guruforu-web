@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     images: [
       {
-        url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+        url: 'https://www.guruforu.com/og-card.jpg',
         width: 1200,
         height: 630,
         alt: 'GuruForU Shipping Policy',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Shipping and Digital Delivery Policy | GuruForU',
     description: 'GuruForU digital service delivery, access timelines, and requirements.',
-    images: ['https://www.guruforu.com/guruforu-ai-education-logo-dark.png'],
+    images: ['https://www.guruforu.com/og-card.jpg'],
     creator: '@guruforu_official',
     site: '@guruforu_official',
   },

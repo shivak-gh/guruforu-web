@@ -1,27 +1,26 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
+import dynamicImport from 'next/dynamic'
 import Script from 'next/script'
-import { headers } from 'next/headers'
 import PageFooter from '../components/PageFooter'
-import { detectLocale, getAboutPageContent, getAboutPageSeo, localizeText } from '../../lib/locale'
+import { getAboutPageContent, getAboutPageSeo, localizeText } from '../../lib/locale'
 
-const NavMenu = dynamic(() => import('../components/NavMenu'), {
+const NavMenu = dynamicImport(() => import('../components/NavMenu'), {
   ssr: true,
 })
 
+export const dynamic = 'force-static'
+
 const ABOUT_URL = 'https://www.guruforu.com/about'
 const ABOUT_OG_IMAGE = {
-  url: 'https://www.guruforu.com/guruforu-ai-education-logo-dark.png',
+  url: 'https://www.guruforu.com/og-card.jpg',
   width: 1200,
   height: 630,
   alt: 'GuruForU - Online Math & Science Tutoring',
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const headersList = await headers()
-  const localeInfo = detectLocale(headersList)
-  const seo = getAboutPageSeo(localeInfo.region)
+  const seo = getAboutPageSeo('DEFAULT')
 
   return {
     title: seo.title,
@@ -44,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: ABOUT_URL,
       siteName: 'GuruForU',
       type: 'website',
-      locale: localeInfo.openGraphLocale,
+      locale: 'en_US',
       images: [ABOUT_OG_IMAGE],
     },
     twitter: {
@@ -121,10 +120,8 @@ const FAQ_STATIC = [
 ]
 
 export default async function AboutUs() {
-  const headersList = await headers()
-  const localeInfo = detectLocale(headersList)
-  const content = getAboutPageContent(localeInfo.region)
-  const localized = (text: string) => localizeText(text, localeInfo.region)
+  const content = getAboutPageContent('DEFAULT')
+  const localized = (text: string) => localizeText(text, 'DEFAULT')
 
   const faqItems = [
     {

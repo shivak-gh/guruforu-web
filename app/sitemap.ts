@@ -1,22 +1,28 @@
 import { getAllBlogs, getAllCategories, getBlogsByCategory, getBlogModifiedDate } from './blog/lib/getBlogs'
 import { defaultBlogImage } from './blog/lib/categoryImages'
 import { MetadataRoute } from 'next'
-import { stat } from 'fs/promises'
-import { join } from 'path'
+
+// Last significant content update per static page. Update these when page
+// content meaningfully changes. Do NOT derive from file mtime — CI builds
+// reset mtimes on every deploy, which made every URL claim it changed today
+// and taught Google to distrust our lastmod values entirely.
+const STATIC_PAGE_DATES: Record<string, string> = {
+  '/': '2026-07-17',
+  '/blog': '2026-07-17',
+  '/contact': '2026-07-02',
+  '/free-session': '2026-07-02',
+  '/about': '2026-07-17',
+  '/how-it-works': '2026-07-17',
+  '/site-map': '2026-03-27',
+  '/terms': '2026-07-02',
+  '/privacy': '2026-07-02',
+  '/shipping': '2026-07-02',
+  '/cancellation-refunds': '2026-07-02',
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.guruforu.com'
 
-  const getLastModifiedFromAppFile = async (relativeFilePath: string): Promise<Date> => {
-    try {
-      const fullPath = join(process.cwd(), 'app', relativeFilePath)
-      const stats = await stat(fullPath)
-      return stats.mtime
-    } catch {
-      return new Date()
-    }
-  }
-  
   // Helper function to create sitemap entry
   const createSitemapEntry = (
     path: string,
@@ -31,69 +37,47 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority,
     ...(images && images.length > 0 ? { images } : {}),
   })
-  
-  // Get all blog posts and categories
-  const blogs = await getAllBlogs()
+
+  const staticDate = (path: string) => new Date(STATIC_PAGE_DATES[path])
+
+  // Only include indexable posts — stubs are noindexed until expanded, and
+  // listing noindexed URLs in the sitemap sends contradictory signals.
+  const allBlogs = await getAllBlogs()
+  const blogs = allBlogs.filter((blog) => blog.indexable)
   const categories = await getAllCategories()
 
-  // Most recent blog date for /blog lastModified
+  // Most recent indexable blog date for /blog lastModified
   const latestBlogDate = blogs.length > 0
     ? new Date(blogs[0].meta.publishedDate)
-    : new Date()
+    : staticDate('/blog')
 
-  // Static pages - Main pages with file-based lastModified values.
-  const now = new Date()
-  const [
-    homeLastModified,
-    blogLastModified,
-    contactLastModified,
-    freeSessionLastModified,
-    aboutLastModified,
-    howItWorksLastModified,
-    siteMapLastModified,
-    termsLastModified,
-    privacyLastModified,
-    shippingLastModified,
-    cancellationRefundsLastModified,
-  ] = await Promise.all([
-    getLastModifiedFromAppFile('page.tsx'),
-    getLastModifiedFromAppFile('blog/page.tsx'),
-    getLastModifiedFromAppFile('contact/page.tsx'),
-    getLastModifiedFromAppFile('free-session/page.tsx'),
-    getLastModifiedFromAppFile('about/page.tsx'),
-    getLastModifiedFromAppFile('how-it-works/page.tsx'),
-    getLastModifiedFromAppFile('site-map/page.tsx'),
-    getLastModifiedFromAppFile('terms/page.tsx'),
-    getLastModifiedFromAppFile('privacy/page.tsx'),
-    getLastModifiedFromAppFile('shipping/page.tsx'),
-    getLastModifiedFromAppFile('cancellation-refunds/page.tsx'),
-  ])
+  const blogListingDate = staticDate('/blog')
 
   const staticPages = [
-    createSitemapEntry('/', homeLastModified, 'weekly', 1.0),
-    createSitemapEntry('/blog', latestBlogDate > blogLastModified ? latestBlogDate : blogLastModified, 'daily', 0.9),
-    createSitemapEntry('/contact', contactLastModified, 'monthly', 0.8),
-    createSitemapEntry('/free-session', freeSessionLastModified, 'weekly', 0.9),
-    createSitemapEntry('/about', aboutLastModified, 'monthly', 0.8),
-    createSitemapEntry('/how-it-works', howItWorksLastModified, 'monthly', 0.8),
-    createSitemapEntry('/site-map', siteMapLastModified, 'weekly', 0.7),
+    createSitemapEntry('/', staticDate('/'), 'weekly', 1.0),
+    createSitemapEntry('/blog', latestBlogDate > blogListingDate ? latestBlogDate : blogListingDate, 'daily', 0.9),
+    createSitemapEntry('/contact', staticDate('/contact'), 'monthly', 0.8),
+    createSitemapEntry('/free-session', staticDate('/free-session'), 'weekly', 0.9),
+    createSitemapEntry('/about', staticDate('/about'), 'monthly', 0.8),
+    createSitemapEntry('/how-it-works', staticDate('/how-it-works'), 'monthly', 0.8),
+    createSitemapEntry('/site-map', staticDate('/site-map'), 'weekly', 0.7),
   ]
 
-  // Static pages - Legal/Policy pages with file-based lastModified values.
+  // Static pages - Legal/Policy pages
   const legalPages = [
-    createSitemapEntry('/terms', termsLastModified, 'yearly', 0.5),
-    createSitemapEntry('/privacy', privacyLastModified, 'yearly', 0.5),
-    createSitemapEntry('/shipping', shippingLastModified, 'yearly', 0.5),
-    createSitemapEntry('/cancellation-refunds', cancellationRefundsLastModified, 'yearly', 0.5),
+    createSitemapEntry('/terms', staticDate('/terms'), 'yearly', 0.5),
+    createSitemapEntry('/privacy', staticDate('/privacy'), 'yearly', 0.5),
+    createSitemapEntry('/shipping', staticDate('/shipping'), 'yearly', 0.5),
+    createSitemapEntry('/cancellation-refunds', staticDate('/cancellation-refunds'), 'yearly', 0.5),
   ]
 
-  // Create blog category URLs (lastModified = latest post in that category)
+  // Create blog category URLs (lastModified = latest indexable post in that category)
   const categoryUrls = await Promise.all(
     categories.map(async (category) => {
-      const catBlogs = await getBlogsByCategory(category.slug)
+      const catBlogs = (await getBlogsByCategory(category.slug)).filter((blog) => blog.indexable)
       const latestInCategory = catBlogs.length > 0
         ? new Date(catBlogs[0].meta.publishedDate)
-        : now
+        : staticDate('/blog')
       return createSitemapEntry(`/blog/${category.slug}`, latestInCategory, 'daily', 0.8)
     })
   )
@@ -123,4 +107,3 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...blogUrls,
   ]
 }
-

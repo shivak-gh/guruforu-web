@@ -3,9 +3,10 @@
   "slug": "pomodoro-technique-for-kids",
   "category": "Learning Strategies",
   "meta": {
-    "readTime": "5 min read",
+    "readTime": "8 min read",
     "publishedDate": "2026-01-19"
   },
+  "dateModified": "2026-07-17",
   "keywords": [
     "Pomodoro technique for kids",
     "focus timer children",
@@ -60,6 +61,45 @@
       "title": "One Task Per Block",
       "content": [
         "Don't mix math homework and reading in the same block. Pick one. Finish what you can in that block, then switch on the next. The clarity helps—kids know exactly what they're supposed to be doing, and the sense of completion at the end of a block is motivating."
+      ]
+    },
+    {
+      "title": "Plan the Blocks Before Starting",
+      "content": [
+        "A timer cannot create focus if the student spends half the block deciding what to do. Before the first countdown, write a short plan with a specific task for each round. Replace vague goals such as \"study math\" with \"complete questions 1–8\" or \"correct yesterday's fraction mistakes.\"",
+        "Estimate conservatively. If a task might take two blocks, write it across two lines rather than rushing. Put the hardest or most urgent task first while attention is fresh, then use a later block for reading, revision, or organizing notes."
+      ],
+      "list": [
+        {
+          "item": "Block 1: Review the example and complete five algebra problems"
+        },
+        {
+          "item": "Block 2: Check answers, correct mistakes, and write down one question for the teacher"
+        },
+        {
+          "item": "Block 3: Read the science section and summarize it in five sentences"
+        }
+      ]
+    },
+    {
+      "title": "Handle Interruptions Without Restarting",
+      "content": [
+        "Children often remember something else the moment focused work begins: a message to send, an item to find, or a question unrelated to the task. Keep a small \"later list\" beside the workspace. Write the thought down and return to it during the break instead of acting on it immediately.",
+        "Parents can protect the block by avoiding non-urgent questions while the timer is running. Silence notifications, place the phone outside reach, and keep required books and supplies nearby. If there is a genuine interruption, pause once and resume; do not treat an imperfect block as a failed session."
+      ]
+    },
+    {
+      "title": "How Many Pomodoros Should a Child Do?",
+      "content": [
+        "More blocks are not automatically better. Elementary students may complete one or two rounds, middle school students two or three, and older students three or four before a longer break. Stop when the planned work is complete or concentration has clearly declined.",
+        "For a typical homework evening, begin with two age-appropriate focus blocks separated by a five-minute break. After the second block, take 15–20 minutes away from the desk. Add another round only when needed. This prevents the method from becoming a way to stretch every evening into continuous study."
+      ]
+    },
+    {
+      "title": "Review What the Timer Reveals",
+      "content": [
+        "At the end, ask two questions: What was completed, and what made focusing difficult? If the task repeatedly takes longer than expected, break it down further next time. If your child finishes early and accurately, lengthen the block by five minutes or plan a little more work.",
+        "Track completed blocks for a week, but avoid turning the count into a competition. The goal is better attention and realistic planning—not collecting the most timer sessions. Praise returning after the break and working with care rather than simply sitting until the alarm."
       ]
     },
     {
