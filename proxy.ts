@@ -46,6 +46,14 @@ export function proxy(request: NextRequest) {
   // Normalize hostname (remove port for comparison)
   const hostnameWithoutPort = hostname.split(':')[0].toLowerCase()
 
+  // Canonicalize legacy demo URL directly to the live free-session page.
+  if (url.pathname === '/book-demo') {
+    url.hostname = 'www.guruforu.com'
+    url.pathname = '/free-session'
+    url.port = ''
+    return NextResponse.redirect(url, 301)
+  }
+
   // Redirect non-www to www
   if (hostnameWithoutPort === 'guruforu.com') {
     // Preserve protocol, pathname, and search params

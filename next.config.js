@@ -281,6 +281,11 @@ const nextConfig = {
         destination: '/free-session',
         permanent: true,
       },
+      {
+        source: '/book-demo',
+        destination: '/free-session',
+        permanent: true,
+      },
       ...getLegacyBlogRedirects(),
     ]
   },
