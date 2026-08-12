@@ -11,6 +11,7 @@ These can be set directly in Cloud Build or Cloud Run:
 - `CONTACT_EMAIL` - Email address where contact form submissions are sent
 - `BREVO_FROM_EMAIL` - Email address that appears as sender (must be verified in Brevo)
 - `BREVO_FROM_NAME` - Name that appears as sender
+- `BLOCKED_COUNTRIES` - Optional comma-separated ISO country codes to geo-block (default covers China, Russia, Iran, North Korea, Belarus, Syria, Cuba, Venezuela, Myanmar, Afghanistan, Sudan, South Sudan, Yemen, Iraq, Libya, Somalia, Eritrea, DR Congo, CAR, Mali, Niger, Chad, Zimbabwe)
 
 ### Secret Variables (Must be in Secret Manager)
 These should be stored in Google Secret Manager for security:
