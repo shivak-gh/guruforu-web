@@ -344,8 +344,8 @@ export default async function BlogListing() {
                 <Link href="/free-session" className="gf-btn-primary" prefetch={false}>
                   {localized('Book Free Session')}
                 </Link>
-                <Link href="/contact" className="gf-btn-outline" prefetch={false}>
-                  {localized('Contact Us')}
+                <Link href="/how-it-works#parents" className="gf-btn-outline" prefetch={false}>
+                  How it works for parents
                 </Link>
               </div>
             </div>

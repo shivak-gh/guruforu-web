@@ -191,6 +191,75 @@
   justify-content: center;
 }
 
+.home-section-cta {
+  margin-top: 1.75rem;
+}
+
+/* ── Audience promo (SEO hub links) ── */
+.home-audience {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .home-audience {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.home-audience-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem 1.75rem;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: calc(var(--radius) * 1.5);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.home-audience-link:hover {
+  border-color: hsl(var(--primary) / 0.35);
+  box-shadow: 0 8px 28px hsl(var(--foreground) / 0.07);
+}
+
+.home-audience-link:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+.home-audience-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: hsl(var(--primary));
+}
+
+.home-audience-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.home-audience-text {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: hsl(var(--muted-foreground));
+  margin: 0;
+}
+
+.home-audience-cta {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: hsl(var(--primary));
+}
+
 /* ── Feature cards ── */
 .home-features {
   display: grid;

@@ -302,6 +302,64 @@ export default async function HomePage() {
                 </p>
               </div>
             </div>
+            <div className="home-ctas-center home-section-cta">
+              <Link href="/how-it-works" className="gf-btn-outline" prefetch={false}>
+                See the full walkthrough
+              </Link>
+              <Link href="/free-session" className="gf-btn-primary" prefetch={false}>
+                {localized('Book Free Consultation')}
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Audience hub — crawl paths into how-it-works */}
+        <section className="home-section" aria-labelledby="audience-heading">
+          <div className="gf-container">
+            <div className="home-section-head">
+              <h2 id="audience-heading" className="home-section-title">
+                Built for parents and teachers
+              </h2>
+              <p className="home-section-desc">
+                Explore how GuruForU fits your role — then book a free session or join as a tutor.
+              </p>
+            </div>
+            <div className="home-audience">
+              <Link
+                href="/how-it-works#parents"
+                className="home-audience-link"
+                prefetch={false}
+              >
+                <span className="home-audience-kicker">For parents</span>
+                <h3 className="home-audience-title">Visibility after every class</h3>
+                <p className="home-audience-text">
+                  Approve tutors, manage credits, and get AI mastery reports so you always know what
+                  your child learned.
+                </p>
+                <span className="home-audience-cta">How it works for parents →</span>
+              </Link>
+              <Link
+                href="/how-it-works#teachers"
+                className="home-audience-link"
+                prefetch={false}
+              >
+                <span className="home-audience-kicker">For teachers</span>
+                <h3 className="home-audience-title">Teach more. Admin less.</h3>
+                <p className="home-audience-text">
+                  Keep 100% of class fees, use a live classroom built for tutoring, and let AI write
+                  session reports.
+                </p>
+                <span className="home-audience-cta">How it works for teachers →</span>
+              </Link>
+            </div>
+            <div className="home-ctas-center home-section-cta">
+              <Link href="/about" className="gf-btn-outline" prefetch={false}>
+                {localized('About Us')}
+              </Link>
+              <Link href="/blog" className="gf-btn-outline" prefetch={false}>
+                Parent resources
+              </Link>
+            </div>
           </div>
         </section>
 

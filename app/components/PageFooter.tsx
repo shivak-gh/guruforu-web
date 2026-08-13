@@ -64,6 +64,16 @@ export default function PageFooter({ localized = (t) => t }: PageFooterProps) {
                 </Link>
               </li>
               <li>
+                <Link href="/how-it-works#parents" className="gf-footer-link" prefetch={false}>
+                  For Parents
+                </Link>
+              </li>
+              <li>
+                <Link href="/how-it-works#teachers" className="gf-footer-link" prefetch={false}>
+                  For Teachers
+                </Link>
+              </li>
+              <li>
                 <Link href="/free-session" className="gf-footer-link" prefetch={false}>
                   {localized('Free Session')}
                 </Link>

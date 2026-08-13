@@ -492,8 +492,11 @@ export default async function AboutUs() {
                 </Link>
               </div>
               <p className="about-cta-note">
-                Questions? <Link href="/contact">Reach out anytime</Link> — we&apos;re here to
-                help.
+                Questions? <Link href="/contact">Reach out anytime</Link>
+                {' · '}
+                <Link href="/how-it-works#parents">How it works for parents</Link>
+                {' · '}
+                <Link href="/how-it-works#teachers">For teachers</Link>
               </p>
             </div>
           </div>

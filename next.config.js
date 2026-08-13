@@ -37,6 +37,9 @@ function getLegacyBlogRedirects() {
 
 const nextConfig = {
   output: 'standalone',
+  // Pin tracing root to this app. A stray package-lock.json in $HOME can make
+  // Next infer the wrong workspace root and break `next start`.
+  outputFileTracingRoot: path.join(__dirname),
   reactStrictMode: true,
   // Production optimizations
   productionBrowserSourceMaps: false,

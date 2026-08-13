@@ -7,13 +7,13 @@ import { MetadataRoute } from 'next'
 // reset mtimes on every deploy, which made every URL claim it changed today
 // and taught Google to distrust our lastmod values entirely.
 const STATIC_PAGE_DATES: Record<string, string> = {
-  '/': '2026-07-17',
+  '/': '2026-08-13',
   '/blog': '2026-07-17',
   '/contact': '2026-07-02',
   '/free-session': '2026-07-02',
   '/about': '2026-07-17',
-  '/how-it-works': '2026-07-17',
-  '/site-map': '2026-03-27',
+  '/how-it-works': '2026-08-13',
+  '/site-map': '2026-08-13',
   '/terms': '2026-07-02',
   '/privacy': '2026-07-02',
   '/shipping': '2026-07-02',
@@ -59,7 +59,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     createSitemapEntry('/contact', staticDate('/contact'), 'monthly', 0.8),
     createSitemapEntry('/free-session', staticDate('/free-session'), 'weekly', 0.9),
     createSitemapEntry('/about', staticDate('/about'), 'monthly', 0.8),
-    createSitemapEntry('/how-it-works', staticDate('/how-it-works'), 'monthly', 0.8),
+    createSitemapEntry('/how-it-works', staticDate('/how-it-works'), 'weekly', 0.9),
     createSitemapEntry('/site-map', staticDate('/site-map'), 'weekly', 0.7),
   ]
 

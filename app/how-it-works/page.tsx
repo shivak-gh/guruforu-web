@@ -12,24 +12,26 @@ const NavMenu = dynamicImport(() => import('../components/NavMenu'), {
 export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
-  title: 'How GuruForU Works | Live Classes, Reports, and Parent Visibility',
+  title: 'How GuruForU Works for Parents, Teachers & Students | Live Tutoring',
   description:
-    'See how GuruForU works for students, parents, and teachers with live online classes, AI-powered progress reports, and interactive learning tools.',
+    'How GuruForU works for parents and teachers: live 1-on-1 Math & Science classes, AI progress reports after every session, parent dashboards, and a zero-commission teaching platform.',
   keywords: [
     'how online tutoring works',
+    'online tutoring for parents',
+    'parent progress tracking tutoring',
+    'online teaching platform for tutors',
+    'zero commission tutoring platform',
+    'AI learning reports for parents',
     'live tutoring platform',
-    'online teaching platform',
-    'AI learning reports',
-    'parent progress tracking',
-    'virtual classroom',
+    'virtual classroom Math Science',
     'online math tutoring',
     'online science tutoring',
   ],
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'How GuruForU Works | Live Tutoring Platform',
+    title: 'How GuruForU Works for Parents, Teachers & Students',
     description:
-      'Learn how GuruForU connects students, parents, and teachers with live classes and AI-powered learning insights.',
+      'Live classes, AI mastery reports for parents, and a teacher-first platform with zero commission — see how GuruForU works.',
     url: 'https://www.guruforu.com/how-it-works',
     siteName: 'GuruForU',
     type: 'website',
@@ -39,14 +41,15 @@ export const metadata: Metadata = {
         url: 'https://www.guruforu.com/og-card.jpg',
         width: 1200,
         height: 630,
-        alt: 'GuruForU - How Online Tutoring Works',
+        alt: 'GuruForU - How Online Tutoring Works for Parents and Teachers',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'How GuruForU Works | Live Tutoring Platform',
-    description: 'Live classes, AI progress reports, and better parent visibility in one platform.',
+    title: 'How GuruForU Works for Parents, Teachers & Students',
+    description:
+      'Live classes, AI progress reports for parents, and zero-commission tools for teachers.',
     images: ['https://www.guruforu.com/og-card.jpg'],
   },
   alternates: { canonical: 'https://www.guruforu.com/how-it-works' },
@@ -186,20 +189,28 @@ const COMPARE_ROWS = [
 
 const FAQ_ITEMS = [
   {
-    q: 'How do I get started as a teacher on GuruForU?',
-    a: 'Sign up using Google or email, complete your profile with subjects, qualifications and rates, get approved by our team, then start scheduling and conducting live classes.',
-  },
-  {
-    q: 'What features does the live classroom include?',
-    a: 'GuruForU classrooms include HD video calling, screen sharing, interactive whiteboard, live chat, session recording with transcription, and work on all major browsers.',
+    q: 'How do parents get started with GuruForU?',
+    a: 'Book a free session to share your child’s goals and schedule. We match them with a tutor, then you enroll from the parent dashboard, approve teachers, buy credits, and track every class with AI reports.',
   },
   {
     q: 'How can parents track their child\'s progress?',
     a: 'Parents receive AI-generated session reports after each class, can view session timelines, access periodic progress reports, and monitor assignments from their dashboard.',
   },
   {
+    q: 'How do I get started as a teacher on GuruForU?',
+    a: 'Sign up using Google or email, complete your profile with subjects, qualifications and rates, get approved by our team, then start scheduling and conducting live classes.',
+  },
+  {
     q: 'Do teachers keep 100% of their earnings?',
     a: 'Yes, teachers keep 100% of their class fees with zero commission. GuruForU only charges a nominal platform fee per session.',
+  },
+  {
+    q: 'What features does the live classroom include?',
+    a: 'GuruForU classrooms include HD video calling, screen sharing, interactive whiteboard, live chat, session recording with transcription, and work on all major browsers.',
+  },
+  {
+    q: 'Is GuruForU only for Math and Science?',
+    a: 'GuruForU focuses on K-12 Math and Science so tutors and AI reports stay deep and curriculum-aligned — from homework help to exam prep across major curricula.',
   },
 ]
 
@@ -215,15 +226,15 @@ export default async function HowItWorks() {
   const howItWorksSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'How GuruForU Works',
+    name: 'How GuruForU Works for Parents, Teachers & Students',
     description:
-      'Learn how GuruForU connects teachers, students, and parents through live video classes and AI-powered learning insights.',
+      'See how GuruForU works for parents and teachers: live video tutoring, AI mastery reports, parent dashboards, and a zero-commission teaching platform.',
     url: 'https://www.guruforu.com/how-it-works',
     mainEntity: {
       '@type': 'Service',
       name: 'GuruForU Online Tutoring Platform',
       description:
-        'Real-time online classroom platform connecting teachers and students through live video, collaborative whiteboards, and AI-powered learning insights.',
+        'Real-time online classroom connecting teachers and students through live video, collaborative whiteboards, and AI-powered learning insights for parents.',
       provider: {
         '@type': 'EducationalOrganization',
         name: 'GuruForU',
@@ -231,6 +242,11 @@ export default async function HowItWorks() {
       },
       serviceType: 'Online Tutoring',
       areaServed: 'Global',
+      audience: [
+        { '@type': 'Audience', audienceType: 'Parents' },
+        { '@type': 'Audience', audienceType: 'Teachers' },
+        { '@type': 'Audience', audienceType: 'Students' },
+      ],
     },
   }
 
@@ -278,9 +294,12 @@ export default async function HowItWorks() {
               <Link href="/free-session" className="gf-btn-primary" prefetch={false}>
                 {localized('Book Free Session')}
               </Link>
-              <Link href="/about" className="gf-btn-outline" prefetch={false}>
-                {localized('About Us')}
-              </Link>
+              <a href="#parents" className="gf-btn-outline">
+                For Parents
+              </a>
+              <a href="#teachers" className="gf-btn-outline">
+                For Teachers
+              </a>
             </div>
           </div>
         </section>
@@ -361,6 +380,14 @@ export default async function HowItWorks() {
                   place.
                 </li>
               </ul>
+            </div>
+            <div className="hiw-section-cta">
+              <Link href="/free-session" className="gf-btn-primary" prefetch={false}>
+                {localized('Book Free Session')}
+              </Link>
+              <Link href="/about" className="gf-btn-outline" prefetch={false}>
+                Why parents choose GuruForU
+              </Link>
             </div>
           </div>
         </section>
@@ -454,6 +481,19 @@ export default async function HowItWorks() {
                   <strong>Global reach</strong> — teach students worldwide and grow your practice.
                 </li>
               </ul>
+            </div>
+            <div className="hiw-section-cta">
+              <a
+                href="https://learn.guruforu.com/"
+                className="gf-btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Apply to teach
+              </a>
+              <Link href="/contact" className="gf-btn-outline" prefetch={false}>
+                {localized('Contact Us')}
+              </Link>
             </div>
           </div>
         </section>
@@ -562,28 +602,28 @@ export default async function HowItWorks() {
               <h2 id="why-heading" className="about-section-title">Why choose GuruForU?</h2>
             </div>
             <div className="about-cards about-cards-3">
-              <article className="about-card">
+              <a href="#teachers" className="about-card about-card-link">
                 <div className="about-card-icon" aria-hidden="true">👩‍🏫</div>
                 <h3 className="about-card-title">For teachers</h3>
                 <p className="about-card-text">
                   Set your own rates, keep 100% of earnings, and let AI handle admin and reporting.
                 </p>
-              </article>
-              <article className="about-card">
+              </a>
+              <a href="#students" className="about-card about-card-link">
                 <div className="about-card-icon about-card-icon-amber" aria-hidden="true">🎓</div>
                 <h3 className="about-card-title">For students</h3>
                 <p className="about-card-text">
                   Learn from verified tutors in a live classroom with video, whiteboard, and chat.
                 </p>
-              </article>
-              <article className="about-card">
+              </a>
+              <a href="#parents" className="about-card about-card-link">
                 <div className="about-card-icon about-card-icon-green" aria-hidden="true">📊</div>
                 <h3 className="about-card-title">For parents</h3>
                 <p className="about-card-text">
                   AI session reports, progress tracking, and full control over your child&apos;s
                   learning.
                 </p>
-              </article>
+              </a>
             </div>
           </div>
         </section>
@@ -619,8 +659,11 @@ export default async function HowItWorks() {
                 <Link href="/free-session" className="gf-btn-primary" prefetch={false}>
                   {localized('Book Free Session')}
                 </Link>
-                <Link href="/contact" className="gf-btn-outline" prefetch={false}>
-                  {localized('Contact Us')}
+                <Link href="/about" className="gf-btn-outline" prefetch={false}>
+                  {localized('About Us')}
+                </Link>
+                <Link href="/blog" className="gf-btn-outline" prefetch={false}>
+                  Parent resources
                 </Link>
               </div>
               <p className="about-cta-note">
@@ -628,6 +671,12 @@ export default async function HowItWorks() {
                 <a href="https://learn.guruforu.com/" target="_blank" rel="noopener noreferrer">
                   Go to Classroom →
                 </a>
+                {' · '}
+                Teachers:{' '}
+                <a href="#teachers">See how teaching works</a>
+                {' · '}
+                Parents:{' '}
+                <a href="#parents">See parent tools</a>
               </p>
             </div>
           </div>

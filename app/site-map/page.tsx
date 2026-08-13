@@ -30,6 +30,17 @@ export default async function SiteMapPage() {
     { href: '/cancellation-refunds', label: 'Cancellation and Refunds' },
   ]
 
+  const audienceGuides = [
+    { href: '/how-it-works#parents', label: 'How It Works — For Parents' },
+    { href: '/how-it-works#teachers', label: 'How It Works — For Teachers' },
+    { href: '/how-it-works#students', label: 'How It Works — For Students' },
+    { href: '/how-it-works#classroom', label: 'How It Works — Live Classroom' },
+    { href: '/how-it-works#ai-vista', label: 'How It Works — AI-Vista Reports' },
+    { href: '/about', label: 'About GuruForU (for parents)' },
+    { href: '/free-session', label: 'Book a free session' },
+    { href: '/blog', label: 'Learning resources for parents' },
+  ]
+
   return (
     <main style={{ maxWidth: 1000, margin: '0 auto', padding: '2rem 1rem 3rem' }}>
       <h1>GuruForU Site Map</h1>
@@ -39,6 +50,17 @@ export default async function SiteMapPage() {
         <h2>Main Pages</h2>
         <ul>
           {staticPages.map((page) => (
+            <li key={page.href}>
+              <Link href={page.href}>{page.label}</Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section style={{ marginTop: '1.5rem' }}>
+        <h2>Parents &amp; Teachers</h2>
+        <ul>
+          {audienceGuides.map((page) => (
             <li key={page.href}>
               <Link href={page.href}>{page.label}</Link>
             </li>
