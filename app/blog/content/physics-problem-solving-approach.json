@@ -3,57 +3,174 @@
   "slug": "physics-problem-solving-approach",
   "category": "Science",
   "meta": {
-    "readTime": "6 min read",
+    "readTime": "10 min read",
     "publishedDate": "2026-02-05"
   },
+  "dateModified": "2026-08-14",
   "keywords": [
     "physics problem solving",
-    "physics problems",
-    "physics help",
-    "physics strategy"
+    "how to solve physics problems",
+    "physics kinematics",
+    "physics help for students",
+    "physics strategy",
+    "high school physics",
+    "GCSE physics problems",
+    "GuruForU physics tutoring"
   ],
+  "metaTitle": "Physics Problem-Solving: A Step-by-Step Approach | GuruForU",
+  "metaDescription": "Physics problems look overwhelming until you use a repeatable process: list, diagram, equation, units, and a sanity check. A parent and student guide.",
   "image": "/blog-images/physics-problem-solving-approach.jpg",
-  "lead": "Physics problems can look overwhelming. A clear process—identify what you know, what you need, and which equation connects them—makes them manageable.",
+  "lead": "Physics problems can look overwhelming: a paragraph, a diagram, three numbers, and a quantity you have never calculated before. Talent is not what separates students who finish them from students who freeze. A repeatable process is—identify what you know, what you need, and which relationship connects them. This guide turns that process into steps you can use on homework, quizzes, and exam papers from first-year physics through GCSE and high school.",
   "sections": [
     {
-      "title": "Read and List",
-      "content": ["Write down the given quantities with units. Write what you're solving for. Often the act of organizing the information reveals the path forward."]
+      "title": "Why Physics Feels Harder Than the Formula Sheet",
+      "content": [
+        "Students often think physics is 'remembering which equation.' The formula sheet is the easy part. The hard part is translating a story into symbols: which quantity is the unknown, which values are given, and which equation is even allowed. Two problems can use the same formula and look nothing alike.",
+        "The other trap is jumping to the calculator. Plugging numbers before the setup is clear produces answers with the wrong units, the wrong variable, or a sign that cannot exist. Slowing down for sixty seconds of listing and sketching is faster than restarting three times."
+      ],
+      "highlights": [
+        {
+          "title": "Physics is translation",
+          "text": "Words and diagrams become a short list of symbols. If the list is wrong, every equation after it is theatre."
+        },
+        {
+          "title": "One process, many topics",
+          "text": "Kinematics, forces, energy, and circuits all yield to the same habit: knowns, unknown, picture, equation, units, check."
+        },
+        {
+          "title": "Partial credit lives in the setup",
+          "text": "Exam boards and teachers mark the method. A boxed wrong number with no working scores worse than a clear setup and an arithmetic slip."
+        }
+      ]
     },
     {
-      "title": "Pick the Right Equation",
-      "content": ["Most problems use a handful of core equations. Match the variables you have and need to an equation that connects them. Draw a diagram when motion or forces are involved."]
+      "title": "Step 1: Read and List",
+      "content": [
+        "Read the whole problem once without writing. Then read it again and write a list. Include units. Write what you are solving for as a symbol, not as a sentence. Often the act of organising the information reveals the path forward."
+      ],
+      "list": [
+        {
+          "item": "Givens: m = 2.0 kg, v = 4.0 m/s, t = 3.0 s. If a value is 'at rest,' that is v = 0, not a missing number"
+        },
+        {
+          "item": "Unknown: What is a? What is F? Name it. If the question asks for two things, list both before starting"
+        },
+        {
+          "item": "Implied facts: g ≈ 9.8 or 10 m/s², horizontal projection, frictionless—these are givens even when no digit appears"
+        },
+        {
+          "item": "Cross out extras: A mass that never enters the energy equation is a distractor. Listing still helps you ignore it later"
+        }
+      ]
     },
     {
-      "title": "Units Matter",
-      "content": ["Convert everything to SI units before plugging in. Check that units cancel correctly in your final answer. Dimensional analysis catches many mistakes."]
+      "title": "Step 2: Draw, Then Pick the Equation",
+      "content": [
+        "Most problems use a handful of core relationships. Match the variables you have and need to an equation that connects them. Draw a diagram when motion or forces are involved—a blob with arrows is enough. A free-body diagram is not decoration; it is how you know whether to use F = ma, energy, or kinematics."
+      ],
+      "strategies": [
+        {
+          "title": "Kinematics (motion without worrying yet about why)",
+          "text": "If the problem gives acceleration, time, and a velocity or displacement, the SUVAT / kinematic equations are the usual path. Sketch a timeline: start, finish, direction."
+        },
+        {
+          "title": "Forces",
+          "text": "If the problem mentions push, friction, weight, or 'net force,' draw every force, choose a positive direction, then write ΣF = ma. Missing a force is the most common error—not the algebra."
+        },
+        {
+          "title": "Energy",
+          "text": "If height, springs, or 'how fast at the bottom' appear, try conservation of energy before hunting for acceleration. Energy often skips the messy middle of the motion."
+        },
+        {
+          "title": "When two equations seem possible",
+          "text": "Use the one that matches the givens you actually have. If you would need a quantity the problem never gave and you cannot find it, you picked the wrong tool."
+        }
+      ]
     },
     {
-      "title": "Check Reasonableness",
-      "content": ["Does the answer make sense? Negative time? A car going 500 m/s? Sanity-check your result before moving on."]
+      "title": "Step 3: Units Matter",
+      "content": [
+        "Convert everything to a consistent system before plugging in—usually SI (metres, kilograms, seconds, newtons). Check that units cancel correctly in the final answer. Dimensional analysis catches many mistakes that a calculator will happily hide."
+      ],
+      "list": [
+        {
+          "item": "cm to m, g to kg, minutes to seconds: Do this on the list, not in your head mid-equation"
+        },
+        {
+          "item": "km/h to m/s: Divide by 3.6. Mixing km/h with seconds is a classic exam trap"
+        },
+        {
+          "item": "Write units through the algebra: If you wanted newtons and your units simplify to kg·m/s², you are on track. If they simplify to seconds, you are not"
+        }
+      ]
+    },
+    {
+      "title": "Step 4: Check Reasonableness",
+      "content": [
+        "Does the answer make sense? Negative time? A car going 500 m/s? A 2 kg book weighing 2000 N? Sanity-check your result before moving on. If it fails the smell test, the mistake is usually in the list or the diagram, not in the last line of arithmetic."
+      ],
+      "highlights": [
+        {
+          "title": "Order of magnitude",
+          "text": "Walking speed is about 1 m/s, a car about 30 m/s, sound about 340 m/s. Answers far outside those bands for everyday objects are probably wrong."
+        },
+        {
+          "title": "Sign and direction",
+          "text": "A negative velocity can be fine if you defined a direction. A negative mass or a negative time for 'how long until' is not."
+        },
+        {
+          "title": "Compare to a simpler case",
+          "text": "If friction were zero, would the answer get larger or smaller? If your result went the other way, the setup is inverted."
+        }
+      ]
+    },
+    {
+      "title": "A Worked Pattern You Can Reuse",
+      "content": [
+        "Example type: A 1.2 kg cart, initially at rest, is pushed with a net force of 3.6 N. How fast is it going after 2.0 s?",
+        "List: m = 1.2 kg, F_net = 3.6 N, v₀ = 0, t = 2.0 s, unknown = v. Diagram: arrow for force in the positive direction. Equation: a = F/m = 3.0 m/s², then v = v₀ + at = 6.0 m/s. Units: N/kg = m/s²; (m/s²)·s = m/s. Check: from rest, a gentle push for two seconds should be a jogging speed, not highway speed. Done."
+      ]
+    },
+    {
+      "title": "How Parents Can Help Without Solving It",
+      "content": [
+        "Ask to see the list and the sketch before any calculator use. If those are empty, the issue is not 'they don't know physics'—they skipped the process. If the list is complete and the equation is still wrong, that is a teaching moment for a tutor or the teacher, not a reason to take over the algebra."
+      ]
+    },
+    {
+      "title": "How GuruForU Teaches Physics Problem-Solving",
+      "content": [
+        "GuruForU science tutors walk students through this process on the problems they actually face—homework, labs, GCSE/IGCSE, and high school physics. We do not skip to the formula. We build the habit of listing, diagramming, and checking so the next topic does not feel like starting from zero.",
+        "Parents see progress after sessions: which step is failing (translation, equation choice, units, or algebra) so support stays targeted."
+      ]
     }
   ],
   "cta": {
-    "title": "Get Physics Help",
-    "text": "GuruForU tutors can guide your child through physics problem-solving strategies.",
+    "title": "Get Physics Help That Teaches the Method",
+    "text": "GuruForU tutors guide students through physics problem-solving step by step—so homework and exams feel like a process, not a guess. Book a free session.",
     "buttonText": "Book a Free Session",
     "buttonLink": "/free-session"
   },
   "faq": [
     {
-      "question": "What's the first step in solving a physics problem?",
-      "answer": "Read and list: write down given quantities with units and what you're solving for. Organizing the information often reveals the path forward."
+      "question": "What is the first step in solving a physics problem?",
+      "answer": "Read and list: write down given quantities with units and what you are solving for. Organising the information often reveals the path forward."
     },
     {
       "question": "How do I pick the right equation for a physics problem?",
-      "answer": "Match the variables you have and need to an equation that connects them. Draw a diagram when motion or forces are involved."
+      "answer": "Match the variables you have and need to a relationship that connects them. Draw a diagram for motion or forces. If you would need a quantity the problem never gave, you likely picked the wrong tool."
     },
     {
       "question": "Why do units matter in physics?",
-      "answer": "Convert everything to SI units before plugging in. Check that units cancel correctly in your final answer. Dimensional analysis catches many mistakes."
+      "answer": "Convert to SI (or one consistent system) before plugging in. Check that units cancel to the unit of the unknown. Dimensional analysis catches many mistakes a calculator will not."
     },
     {
       "question": "How do I check if my physics answer is reasonable?",
-      "answer": "Sanity-check before moving on. Negative time? A car going 500 m/s? If it doesn't make sense, recheck your work."
+      "answer": "Sanity-check before moving on. Negative time, a car at 500 m/s, or a book weighing thousands of newtons means recheck the list and diagram—not just the last calculation."
+    },
+    {
+      "question": "Can a tutor help if my child understands the class but fails problems?",
+      "answer": "Yes. That pattern usually means the process (translation and setup) is missing, not the concept. GuruForU tutors practise that process on the student's own assignments."
     }
   ]
 }
