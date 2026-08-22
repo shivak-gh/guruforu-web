@@ -77,6 +77,12 @@ const images = {
   'web-development-basics-for-students.jpg': { search: 'Indian student coding laptop', width: 1200, height: 630 },
   'algorithmic-thinking-for-kids.jpg': { search: 'Indian family technology education', width: 1200, height: 630 },
   'scratch-and-block-coding-for-beginners.jpg': { search: 'Indian child coding', width: 1200, height: 630 },
+  'hsc-maths-study-tips-for-students.jpg': { search: 'Indian student exam maths calculator', width: 1200, height: 630 },
+  'vce-maths-methods-study-tips.jpg': { search: 'Indian student laptop maths graphs', width: 1200, height: 630 },
+  'year-10-maths-new-zealand-student-guide.jpg': { search: 'Indian teen maths homework tutor', width: 1200, height: 630 },
+  'ncea-calculus-or-statistics.jpg': { search: 'Indian student maths graphs study', width: 1200, height: 630 },
+  'sat-math-study-tips-for-students.jpg': { search: 'Indian student laptop test prep', width: 1200, height: 630 },
+  'ap-calculus-study-tips-for-students.jpg': { search: 'Indian student calculus notes calculator', width: 1200, height: 630 },
 }
 
 // Unsplash Source API (free, no API key needed)

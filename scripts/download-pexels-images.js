@@ -55,6 +55,12 @@ const imageConfigs = {
   'web-development-basics-for-students.jpg': 'Indian student coding',
   'algorithmic-thinking-for-kids.jpg': 'Indian family technology education',
   'scratch-and-block-coding-for-beginners.jpg': 'Indian child coding',
+  'hsc-maths-study-tips-for-students.jpg': 'Indian student exam maths calculator',
+  'vce-maths-methods-study-tips.jpg': 'Indian student laptop maths study',
+  'year-10-maths-new-zealand-student-guide.jpg': 'Indian teen maths homework',
+  'ncea-calculus-or-statistics.jpg': 'Indian student maths graphs study',
+  'sat-math-study-tips-for-students.jpg': 'Indian student laptop test prep',
+  'ap-calculus-study-tips-for-students.jpg': 'Indian student calculus notes calculator',
 }
 
 function fetchJson(url, headers = {}) {
