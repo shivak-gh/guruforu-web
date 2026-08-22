@@ -78,13 +78,17 @@ export function proxy(request: NextRequest) {
 
   // Skip geo-block and www redirects for local / internal hosts.
   if (!isLocalOrInternalHost(hostname)) {
-    const { countryCode, source } = resolveRequestCountryCode(request.headers)
-    if (isBlockedCountry(countryCode) && countryCode) {
-      const response = blockedCountryResponse(countryCode)
-      if (source) {
-        response.headers.set('X-Geo-Source', source)
+    try {
+      const { countryCode, source } = resolveRequestCountryCode(request.headers)
+      if (isBlockedCountry(countryCode) && countryCode) {
+        const response = blockedCountryResponse(countryCode)
+        if (source) {
+          response.headers.set('X-Geo-Source', source)
+        }
+        return response
       }
-      return response
+    } catch {
+      // Fail open — routing must continue if geo lookup throws.
     }
   } else {
     return withLocaleDebugHeaders(request) ?? NextResponse.next()

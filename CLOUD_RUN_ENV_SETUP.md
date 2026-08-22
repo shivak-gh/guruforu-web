@@ -12,7 +12,7 @@ These can be set directly in Cloud Build or Cloud Run:
 - `BREVO_FROM_EMAIL` - Email address that appears as sender (must be verified in Brevo)
 - `BREVO_FROM_NAME` - Name that appears as sender
 - `BLOCKED_COUNTRIES` - Optional comma-separated ISO country codes to geo-block (default covers China, Russia, Iran, North Korea, Belarus, Syria, Cuba, Venezuela, Myanmar, Afghanistan, Sudan, South Sudan, Yemen, Iraq, Libya, Somalia, Eritrea, DR Congo, CAR, Mali, Niger, Chad, Zimbabwe)
-- `GEO_BLOCK_IP_FALLBACK` - Set to `false` to disable IP-based country lookup when edge headers are missing (default: enabled; uses `x-forwarded-for` on Cloud Run)
+- `GEO_BLOCK_IP_FALLBACK` - Set to `true` to enable IP-based country lookup when edge headers are missing (default: off; uses `x-forwarded-for` + geoip-lite on Cloud Run)
 
 ### Secret Variables (Must be in Secret Manager)
 These should be stored in Google Secret Manager for security:

@@ -1,58 +1,69 @@
-import geoip from 'geoip-lite'
-
 /**
  * Geo-block denylist for high-risk / sanctioned / state-threat sources.
  *
  * Override at runtime with Cloud Run env:
  *   BLOCKED_COUNTRIES=CN,KP,IR,...
- *
- * Country detection order:
- * 1. Edge headers (Cloudflare cf-ipcountry, Cloud Armor, etc.)
- * 2. IP lookup via geoip-lite (works on plain Cloud Run using x-forwarded-for)
+ *   GEO_BLOCK_IP_FALLBACK=true   (default off — enable after verifying headers/IP path)
  */
 const DEFAULT_BLOCKED_COUNTRIES = [
-  // State-sponsored cyber / high attack volume
-  'CN', // China
-  'RU', // Russia
-  'KP', // North Korea
-  'IR', // Iran
-  'BY', // Belarus
-  // Comprehensive sanctioned / restricted jurisdictions
-  'SY', // Syria
-  'CU', // Cuba
-  'VE', // Venezuela
-  'MM', // Myanmar
-  'AF', // Afghanistan
-  'SD', // Sudan
-  'SS', // South Sudan
-  'YE', // Yemen
-  'IQ', // Iraq
-  'LY', // Libya
-  'SO', // Somalia
-  'ER', // Eritrea
-  'CD', // DR Congo
-  'CF', // Central African Republic
-  'ML', // Mali
-  'NE', // Niger
-  'TD', // Chad
-  'ZW', // Zimbabwe
+  'CN',
+  'RU',
+  'KP',
+  'IR',
+  'BY',
+  'SY',
+  'CU',
+  'VE',
+  'MM',
+  'AF',
+  'SD',
+  'SS',
+  'YE',
+  'IQ',
+  'LY',
+  'SO',
+  'ER',
+  'CD',
+  'CF',
+  'ML',
+  'NE',
+  'TD',
+  'ZW',
 ] as const
 
 const COUNTRY_HEADER_KEYS = [
-  'cf-ipcountry', // Cloudflare
-  'x-vercel-ip-country', // Vercel
-  'x-country-code', // Custom / CDN
-  'x-client-region', // Google Cloud Load Balancing (when configured)
-  'x-goog-ip-country', // Custom Cloud Armor header name some setups use
+  'cf-ipcountry',
+  'x-vercel-ip-country',
+  'x-country-code',
+  'x-client-region',
+  'x-goog-ip-country',
 ] as const
 
 const CLIENT_IP_HEADER_KEYS = [
-  'cf-connecting-ip', // Cloudflare
+  'cf-connecting-ip',
   'x-real-ip',
   'x-client-ip',
   'true-client-ip',
   'fastly-client-ip',
 ] as const
+
+type GeoIpModule = {
+  lookup: (ip: string) => { country?: string } | null
+}
+
+let geoipModule: GeoIpModule | null | undefined
+
+function getGeoIpModule(): GeoIpModule | null {
+  if (geoipModule !== undefined) return geoipModule
+  try {
+    // Lazy load so a missing DB in standalone cannot break proxy at import time.
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    geoipModule = require('geoip-lite') as GeoIpModule
+  } catch {
+    geoipModule = null
+  }
+  return geoipModule
+}
 
 export function getBlockedCountries(): Set<string> {
   const fromEnv = process.env.BLOCKED_COUNTRIES
@@ -69,7 +80,6 @@ export function getRequestCountryCode(
     const value = headers.get(key)
     if (!value) continue
     const code = value.trim().toUpperCase()
-    // Cloudflare uses XX for unknown and T1 for Tor
     if (!code || code === 'XX' || code === 'T1' || code.length !== 2) continue
     return code
   }
@@ -120,27 +130,38 @@ export function getClientIp(
 
 export function getCountryCodeFromIp(ip: string | null): string | null {
   if (!ip) return null
-  const geo = geoip.lookup(ip)
-  const code = geo?.country?.trim().toUpperCase()
-  if (!code || code.length !== 2) return null
-  return code
+  try {
+    const geoip = getGeoIpModule()
+    if (!geoip) return null
+    const geo = geoip.lookup(ip)
+    const code = geo?.country?.trim().toUpperCase()
+    if (!code || code.length !== 2) return null
+    return code
+  } catch {
+    return null
+  }
 }
 
 export function resolveRequestCountryCode(
   headers: Headers | { get: (key: string) => string | null }
 ): { countryCode: string | null; source: 'header' | 'ip' | null } {
-  const fromHeader = getRequestCountryCode(headers)
-  if (fromHeader) {
-    return { countryCode: fromHeader, source: 'header' }
-  }
+  try {
+    const fromHeader = getRequestCountryCode(headers)
+    if (fromHeader) {
+      return { countryCode: fromHeader, source: 'header' }
+    }
 
-  if (process.env.GEO_BLOCK_IP_FALLBACK === 'false') {
-    return { countryCode: null, source: null }
-  }
+    // Opt-in: IP fallback can mis-block or crash if geo DB is unavailable in prod.
+    if (process.env.GEO_BLOCK_IP_FALLBACK !== 'true') {
+      return { countryCode: null, source: null }
+    }
 
-  const fromIp = getCountryCodeFromIp(getClientIp(headers))
-  if (fromIp) {
-    return { countryCode: fromIp, source: 'ip' }
+    const fromIp = getCountryCodeFromIp(getClientIp(headers))
+    if (fromIp) {
+      return { countryCode: fromIp, source: 'ip' }
+    }
+  } catch {
+    // Fail open — never take the site offline because geo lookup failed.
   }
 
   return { countryCode: null, source: null }

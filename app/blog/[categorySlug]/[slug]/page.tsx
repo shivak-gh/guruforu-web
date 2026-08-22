@@ -50,7 +50,8 @@ function getAnchorTextForUrl(url: string): string {
 }
 
 // Helper function to convert URLs in text to clickable links (with descriptive anchor text for SEO)
-function linkify(text: string) {
+function linkify(text: string | undefined | null) {
+  if (!text) return null
   const urlRegex = /(https?:\/\/[^\s)]+|www\.[^\s)]+|khanacademy\.org[^\s)]*)/gi
   const parts: (string | JSX.Element)[] = []
   let lastIndex = 0
