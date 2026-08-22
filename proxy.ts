@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { LOCALE_DEBUG_HEADERS, LOCALE_DEBUG_QUERY } from './lib/locale'
-import { getRequestCountryCode, isBlockedCountry } from './lib/blocked-countries'
+import { isBlockedCountry, resolveRequestCountryCode } from './lib/blocked-countries'
 
 function withLocaleDebugHeaders(request: NextRequest): NextResponse | null {
   const locale = request.nextUrl.searchParams.get(LOCALE_DEBUG_QUERY.locale)
@@ -78,9 +78,13 @@ export function proxy(request: NextRequest) {
 
   // Skip geo-block and www redirects for local / internal hosts.
   if (!isLocalOrInternalHost(hostname)) {
-    const countryCode = getRequestCountryCode(request.headers)
+    const { countryCode, source } = resolveRequestCountryCode(request.headers)
     if (isBlockedCountry(countryCode) && countryCode) {
-      return blockedCountryResponse(countryCode)
+      const response = blockedCountryResponse(countryCode)
+      if (source) {
+        response.headers.set('X-Geo-Source', source)
+      }
+      return response
     }
   } else {
     return withLocaleDebugHeaders(request) ?? NextResponse.next()
