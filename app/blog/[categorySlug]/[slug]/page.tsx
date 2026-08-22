@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getBlogBySlug, getAllBlogs, getRelatedBlogs, getBlogModifiedDate, computeBlogWordCount, MIN_INDEXABLE_WORDS } from '../../lib/getBlogs'
@@ -53,7 +54,7 @@ function getAnchorTextForUrl(url: string): string {
 function linkify(text: string | undefined | null) {
   if (!text) return null
   const urlRegex = /(https?:\/\/[^\s)]+|www\.[^\s)]+|khanacademy\.org[^\s)]*)/gi
-  const parts: (string | JSX.Element)[] = []
+  const parts: (string | ReactElement)[] = []
   let lastIndex = 0
   let match
 

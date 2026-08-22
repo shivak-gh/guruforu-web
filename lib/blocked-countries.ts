@@ -57,7 +57,6 @@ function getGeoIpModule(): GeoIpModule | null {
   if (geoipModule !== undefined) return geoipModule
   try {
     // Lazy load so a missing DB in standalone cannot break proxy at import time.
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
     geoipModule = require('geoip-lite') as GeoIpModule
   } catch {
     geoipModule = null
